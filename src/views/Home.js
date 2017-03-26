@@ -21,7 +21,6 @@ export default (props) => (
               Apart from web stuff, I get stoked on creating AV art and the collision between music, creative coding, and visual art.
             </p>
           </Col>
-          <Col />
         </Flex>
       </Container>
     </Section>
