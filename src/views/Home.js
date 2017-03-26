@@ -2,12 +2,13 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import { Section, Container, Flex, Col, Tip, H1 } from '../components/common'
+import Cube from '../components/Cube'
 
 export default (props) => (
   <Page>
     <Section thin>
       <Container>
-        <Flex>
+        <Flex alignCenter>
           <Col>
             <H1>Eric Jinks.</H1>
             <p>
@@ -21,7 +22,7 @@ export default (props) => (
               Apart from web stuff, I get stoked on creating AV art and the collision between music, creative coding, and visual art.
             </p>
           </Col>
-          <Col>Helo!</Col>
+          <Col />
         </Flex>
       </Container>
     </Section>
