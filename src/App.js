@@ -6,10 +6,11 @@ import Home from './views/Home'
 import Projects from './views/Projects'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
+import Footer from './components/Footer'
 import globalStyles, { loadFonts } from './globalStyles'
 import { PageWrap } from './components/common'
 
-const siteTitle = 'HyperStatic'
+const siteTitle = 'Eric Jinks'
 const routes = [
   {
     title: 'About',
@@ -17,7 +18,7 @@ const routes = [
     component: Home,
     exact: true
   }, {
-    title: 'Projects',
+    title: 'Things',
     path: '/projects',
     component: Projects
   }
@@ -40,6 +41,7 @@ class App extends Component {
             ))}
             <Route component={NoMatch} />
           </Switch>
+          <Footer />
         </PageWrap>
       </Router>
     )

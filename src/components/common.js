@@ -3,6 +3,9 @@ import { color } from '../globalStyles'
 
 export const PageWrap = styled.div`
   padding: 10vh 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Section = styled.section`

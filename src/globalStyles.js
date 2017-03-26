@@ -45,7 +45,10 @@ export default () => injectGlobal`
 
 
   a{
-    color: ${color.primary};
+    color: inherit;
+    &:hover, &:focus{
+      color: ${color.primary};
+    }
   }
   ::selection{
     background: ${color.primary};

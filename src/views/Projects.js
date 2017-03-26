@@ -7,12 +7,18 @@ export default (props) => (
   <Page>
     <Section thin>
       <Container>
-        <h1>Projects</h1>
-        <p>A sem vel nec sodales mi vivamus senectus sed potenti a parturient nascetur tincidunt nisi pulvinar rhoncus a. Risus imperdiet taciti suspendisse facilisi a per metus cubilia varius a nostra adipiscing amet ultrices quisque ac mi a. Dictumst a ultrices mi a dignissim ad fermentum eget a nam et a blandit scelerisque. Taciti lorem tempor quam vestibulum dis habitasse vestibulum diam vel est ut proin dis auctor. Suscipit scelerisque orci magna interdum vel bibendum duis netus a consectetur dui magnis ac aliquet sem posuere tincidunt vestibulum.</p>
+        <p>Some of the projects I have worked or am working on.</p>
+        <div>Processing sketches</div>
+        <div>Visual Synths</div>
+        <div>C Horse </div>
+        <div>DS</div>
+        <div>Wild Ceramics</div>
+        <div>outrun</div>
+        <div>Arrival</div>
       </Container>
     </Section>
     <Helmet>
-      <title>Projects</title>
+      <title>Things</title>
     </Helmet>
   </Page>
 )
