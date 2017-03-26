@@ -2,7 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import { Section, Container, Flex, Col, Tip, H1 } from '../components/common'
-import Cube from '../components/Cube'
 
 export default (props) => (
   <Page>
