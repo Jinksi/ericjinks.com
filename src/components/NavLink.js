@@ -6,17 +6,20 @@ import { color } from '../globalStyles'
 
 const NavLink = styled.span`
   a {
-    padding: .5rem 1rem;
+    padding: .5rem;
     display: block;
     font-weight: 400;
-    transition: color 0.2s, border-bottom-color 0.2s;
+    transition: color 0.2s, border-color 0.2s;
     color: ${props => props.active ? color.primary : 'inherit'};
     text-decoration: none;
-    border-bottom: 1px solid;
-    border-bottom-color: ${props => props.active ? color.primary : 'transparent'};
+    border: 1px solid transparent;
+    border-bottom-color: ${props => props.active ? 'currentColor' : 'transparent'};
     &:hover, &:active, &:focus {
       color: ${props => props.active ? color.primary : 'inherit'};
     }
+  }
+  & + * {
+    margin-left: 1rem;
   }
 `
 

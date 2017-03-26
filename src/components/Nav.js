@@ -1,15 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Container } from './common'
+import { Container, Flex } from './common'
 
-const Nav = styled.nav`
-  padding: 0;
-  display: flex;
-  align-items: center;
-`
+import NavLink from './NavLink'
+import SocialLinks from './SocialLinks'
 
 export default (props) => (
   <Container>
-    <Nav {...props} />
+    <Flex alignCenter>
+      {props.routes.map((route, i) => (
+        <NavLink key={i} {...route} />
+      ))}
+      <SocialLinks />
+    </Flex>
   </Container>
 )

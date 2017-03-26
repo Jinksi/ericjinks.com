@@ -3,49 +3,44 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 import Home from './views/Home'
-import About from './views/About'
+import Projects from './views/Projects'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
-import NavLink from './components/NavLink'
-import Logo from './components/Logo'
-import globalStyles from './globalStyles'
+import globalStyles, { loadFonts } from './globalStyles'
+import { PageWrap } from './components/common'
 
 const siteTitle = 'HyperStatic'
 const routes = [
   {
-    title: 'Home',
+    title: 'About',
     path: '/',
     component: Home,
     exact: true
   }, {
-    title: 'About',
-    path: '/about',
-    component: About
+    title: 'Projects',
+    path: '/projects',
+    component: Projects
   }
 ]
 
 class App extends Component {
   componentDidMount () {
     globalStyles()
+    loadFonts()
   }
   render () {
     return (
       <Router>
-        <div>
+        <PageWrap>
           <Helmet titleTemplate={`${siteTitle} | %s`} />
-          <Nav>
-            <Logo>🍉</Logo>
-            {routes.map((route, i) => (
-              <NavLink key={i} {...route} />
-            ))}
-          </Nav>
+          <Nav routes={routes} />
           <Switch>
             {routes.map((route, i) => (
               <Route key={i} {...route} />
             ))}
             <Route component={NoMatch} />
           </Switch>
-        </div>
+        </PageWrap>
       </Router>
     )
   }
