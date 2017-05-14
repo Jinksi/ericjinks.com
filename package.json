@@ -1,26 +1,48 @@
 {
-  "name": "hyper-static",
-  "version": "0.1.1",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "^0.9.5",
-    "snazzy": "^6.0.0",
-    "standard": "^9.0.2"
-  },
-  "dependencies": {
-    "polished": "^1.0.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-helmet": "^5",
-    "react-router-dom": "^4.0.0",
-    "react-snapshot": "^1.0.4",
-    "styled-components": "^1.4.4",
-    "webfontloader": "^1.6.27"
-  },
+  "name": "eric-react",
+  "version": "0.1.0",
+  "description": "ericjinks.com - now in react",
+  "main": "app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot",
-    "test": "standard | snazzy && react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "NODE_ENV=development webpack-dev-server --inline --progress & gulp serve",
+    "build": "NODE_ENV=production gulp build && NODE_ENV=production webpack --progress -p",
+    "deploy": "npm run build && rsync -avzh dist/ evps:/var/www/ericjinks.com/html "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aframe": "^0.3.1",
+    "aframe-entity-generator-component": "^3.0.0",
+    "aframe-extras": "^2.5.1",
+    "aframe-react": "^2.0.0",
+    "firebase": "^3.4.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.15.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-helmet": "^3.1.0",
+    "react-icons": "^2.1.0",
+    "react-router": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "browser-sync": "^2.12.10",
+    "del": "^2.2.0",
+    "eslint": "^2.12.0",
+    "eslint-plugin-react": "^5.1.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rucksack": "^0.1.3",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-stream": "^3.2.0"
   }
 }

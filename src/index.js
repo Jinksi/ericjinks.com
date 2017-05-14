@@ -1,14 +1,12 @@
-import React from 'react'
-import { render } from 'react-snapshot'
+import React, { Component } from 'react'
+import { render } from 'react-dom'
 
-import App from './App'
+import { sketchData } from './components/sketches'
+import Routes from './routes'
+import SketchComponent from './components/sketch-component'
 
-const rootEl = document.getElementById('root')
-render(<App />, rootEl)
+window.sketchComponent = SketchComponent
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default
-    render(<NextApp />, rootEl)
-  })
-}
+render((
+  <Routes />
+), document.getElementById('container'))
