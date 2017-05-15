@@ -47,9 +47,9 @@ const Projects = ({ match, globalX, globalY }) => {
           <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
         </Container>
       </Section>
-      <Helmet>
-        <title>{project.title}</title>
-      </Helmet>
+      <Helmet
+        title={project.title}
+      />
     </Page>
   )
 }

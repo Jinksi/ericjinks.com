@@ -12,8 +12,8 @@ export default () => (
         <Cube text='404' />
       </Flex>
     </Section>
-    <Helmet>
-      <title>404 – Page Not Found</title>
-    </Helmet>
+    <Helmet
+      title='404 – Page Not Found'
+    />
   </Page>
 )

@@ -20,8 +20,8 @@ export default (props) => (
         </Flex>
       </Container>
     </Section>
-    <Helmet>
-      <title>About</title>
-    </Helmet>
+    <Helmet
+      title='About'
+    />
   </Page>
 )

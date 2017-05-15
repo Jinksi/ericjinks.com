@@ -22,9 +22,9 @@ const Projects = ({ globalX, globalY }) => (
         ))}
       </Container>
     </Section>
-    <Helmet>
-      <title>Projects</title>
-    </Helmet>
+    <Helmet
+      title='Projects'
+    />
   </Page>
 )
 
