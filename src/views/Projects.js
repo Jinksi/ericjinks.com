@@ -14,6 +14,7 @@ const Projects = ({ globalX, globalY }) => (
           <Card
             key={project.title}
             title={project.title}
+            to={`/projects/${project.id}`}
             image={project.image}
             globalX={globalX}
             globalY={globalY}

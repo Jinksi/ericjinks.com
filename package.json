@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "animejs": "^2.0.2",
+    "marked": "^0.3.6",
     "polished": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

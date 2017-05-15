@@ -77,3 +77,29 @@ export const H1 = styled.h1`
   font-weight: 200;
   color: ${color.primary};
 `
+
+export const Title = styled(Relative)`
+  background: ${color.secondary};
+  font-size: 3rem;
+  color: ${color.black};
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0rem 1rem;
+  line-height: 1;
+`
+
+export const Button = styled.a`
+  background: ${color.secondary};
+  color: ${color.black};
+  mix-blend-mode: lighten;
+  padding: 0rem 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: ${color.black};
+    opacity: 0.9;
+  }
+`

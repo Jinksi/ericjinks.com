@@ -12,7 +12,8 @@ export const font = {
 export const color = {
   primary: 'hsl(40, 28%, 100%)',
   secondary: 'hsl(40, 28%, 95%)',
-  black: '#272121'
+  black: '#272121',
+  highlight: 'hsl(350, 70%, 40%)'
 }
 
 export default () => injectGlobal`
@@ -34,6 +35,7 @@ export default () => injectGlobal`
     letter-spacing: .01em;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.5s ease;
   }
 
   *,
@@ -52,7 +54,7 @@ export default () => injectGlobal`
 
   p {
     margin-top: 0;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
   }
 
   h1, h2, h3, h4, h5 ,h6{

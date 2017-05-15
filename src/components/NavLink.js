@@ -14,10 +14,14 @@ const NavLink = styled.span`
     text-decoration: none;
     border: 1px solid transparent;
     border-bottom-color: ${props => props.active ? 'currentColor' : 'transparent'};
-    &:hover, &:active, &:focus {
+
+    &:hover,
+    &:active,
+    &:focus {
       color: ${props => props.active ? color.primary : 'inherit'};
     }
   }
+
   & + * {
     margin-left: 1rem;
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { Relative, Flex, BackgroundImage } from './common'
+import { Title, Flex, BackgroundImage } from './common'
 import { color } from '../globalStyles'
 
 const transition = `
@@ -45,17 +45,6 @@ const CardInner = styled(Flex)`
   ${transition};
 `
 
-const Title = styled(Relative)`
-  background: ${color.secondary};
-  font-size: 3rem;
-  color: ${color.black};
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0rem 1rem;
-  line-height: 1;
-`
-
 export default class Card extends Component {
   constructor (props) {
     super(props)
@@ -71,9 +60,9 @@ export default class Card extends Component {
   }
 
   render () {
-    const {title, image, globalX, globalY} = this.props
+    const { to, title, image, globalX, globalY } = this.props
     return (
-      <CardWrap to='/'>
+      <CardWrap to={to}>
         <BackgroundImage
           style={{
             transform: `scale(1.1) translate(${-globalX * 5}px, ${-globalY * 5}px)`

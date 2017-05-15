@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import { adjustHue } from 'polished'
 
 import Home from './views/Home'
 import Projects from './views/Projects'
+import ProjectsSingle from './views/ProjectsSingle'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import globalStyles from './globalStyles'
+import globalStyles, { color } from './globalStyles'
 import { PageWrap } from './components/common'
 
 const siteTitle = 'Eric Jinks'
@@ -20,7 +22,8 @@ const routes = [
   }, {
     title: 'Projects',
     path: '/projects',
-    component: Projects
+    component: Projects,
+    exact: true
   }
 ]
 
@@ -69,6 +72,13 @@ class App extends Component {
                 )}
               />
             ))}
+            <Route path='/projects/:id' render={(route) => (
+              <ProjectsSingle
+                {...route}
+                globalX={this.state.globalX}
+                globalY={this.state.globalY}
+              />
+            )} />
             <Route component={NoMatch} />
           </Switch>
           <Footer />
