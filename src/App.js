@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
+import ScrollToTop from './components/ScrollToTop'
 import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
@@ -55,33 +56,35 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <PageWrap>
-          <Helmet titleTemplate={`${siteTitle} | %s`} />
-          <Nav routes={routes} />
-          <Switch>
-            {routes.map(({component: Component, ...route}, i) => (
-              <Route
-                {...route}
-                key={i}
-                render={() => (
-                  <Component
-                    globalX={this.state.globalX}
-                    globalY={this.state.globalY}
-                  />
-                )}
-              />
-            ))}
-            <Route path='/projects/:id' render={(route) => (
-              <ProjectsSingle
-                {...route}
-                globalX={this.state.globalX}
-                globalY={this.state.globalY}
-              />
-            )} />
-            <Route component={NoMatch} />
-          </Switch>
-          <Footer />
-        </PageWrap>
+        <ScrollToTop>
+          <PageWrap>
+            <Helmet titleTemplate={`${siteTitle} | %s`} />
+            <Nav routes={routes} />
+            <Switch>
+              {routes.map(({component: Component, ...route}, i) => (
+                <Route
+                  {...route}
+                  key={i}
+                  render={() => (
+                    <Component
+                      globalX={this.state.globalX}
+                      globalY={this.state.globalY}
+                    />
+                  )}
+                />
+              ))}
+              <Route path='/projects/:id' render={(route) => (
+                <ProjectsSingle
+                  {...route}
+                  globalX={this.state.globalX}
+                  globalY={this.state.globalY}
+                />
+              )} />
+              <Route component={NoMatch} />
+            </Switch>
+            <Footer />
+          </PageWrap>
+        </ScrollToTop>
       </Router>
     )
   }

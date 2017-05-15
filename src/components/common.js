@@ -56,7 +56,9 @@ export const Flex = styled.div`
   width: ${props => props.fill ? '100%' : 'auto'};
 `
 
-export const Col = styled.div`
+export const Col = styled(Flex)`
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   flex: 1 1 auto;
 `
@@ -78,7 +80,8 @@ export const H1 = styled.h1`
   color: ${color.primary};
 `
 
-export const Title = styled(Relative)`
+export const Title = styled.h1`
+  position: relative;
   background: ${color.secondary};
   font-size: 3rem;
   color: ${color.black};
