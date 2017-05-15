@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import projects from '../projects/projects'
 import { Container, Section } from '../components/common'
 
-export default (props) => (
+const Projects = ({ globalX, globalY }) => (
   <Page>
     <Section thin>
       <Container>
@@ -15,8 +15,12 @@ export default (props) => (
             key={project.title}
             title={project.title}
             image={project.image}
+            globalX={globalX}
+            globalY={globalY}
           />
         ))}
+        {globalX}
+        {globalY}
         <div>Processing sketches</div>
         <div>Visual Synths</div>
         <div>C Horse </div>
@@ -30,3 +34,5 @@ export default (props) => (
     </Helmet>
   </Page>
 )
+
+export default Projects

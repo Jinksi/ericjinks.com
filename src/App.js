@@ -25,9 +25,31 @@ const routes = [
 ]
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      globalX: 0,
+      globalY: 0
+    }
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+  }
+
   componentDidMount () {
     globalStyles()
+    window.addEventListener('mousemove', this.handleMouseMove)
   }
+
+  componentWillUnmount () {
+    window.removeEventListener('mousemove', this.handleMouseMove)
+  }
+
+  handleMouseMove (e) {
+    this.setState({
+      globalX: (e.clientX / window.innerWidth) - 0.5, // -0.5 -> 0.5
+      globalY: (e.clientY / window.innerHeight) - 0.5 // -0.5 -> 0.5
+    })
+  }
+
   render () {
     return (
       <Router>
@@ -35,12 +57,24 @@ class App extends Component {
           <Helmet titleTemplate={`${siteTitle} | %s`} />
           <Nav routes={routes} />
           <Switch>
-            {routes.map((route, i) => (
-              <Route key={i} {...route} />
+            {routes.map(({component: Component, ...route}, i) => (
+              <Route
+                {...route}
+                key={i}
+                render={() => (
+                  <Component
+                    globalX={this.state.globalX}
+                    globalY={this.state.globalY}
+                  />
+                )}
+              />
             ))}
             <Route component={NoMatch} />
           </Switch>
           <Footer />
+          {this.state.globalX}
+          <br />
+          {this.state.globalY}
         </PageWrap>
       </Router>
     )

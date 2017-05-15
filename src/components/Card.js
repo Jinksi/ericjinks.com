@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+
 import { Relative, Flex, BackgroundImage } from './common'
 import { color } from '../globalStyles'
 
 const transition = `
-  transition: all .1s ease-in-out;
+  transition: all .1s ease-out;
 `
 
-const Card = styled(Link)`
+const CardWrap = styled(Link)`
   position: relative;
   display: block;
   mix-blend-mode: lighten;
   text-decoration: none;
+  overflow: hidden;
 
   .CardBackgroundImage {
     filter: saturate(30%);
-    ${transition};
+    transition: filter .1s ease-out;
   }
 
   &:hover,
@@ -24,7 +26,7 @@ const Card = styled(Link)`
     text-decoration: none;
 
     .CardBackgroundImage {
-      filter: saturate(100%);
+      filter: saturate(70%);
     }
 
     .CardInner {
@@ -54,13 +56,37 @@ const Title = styled(Relative)`
   line-height: 1;
 `
 
-export default ({title, image}) => (
-  <Card to='/'>
-    <BackgroundImage className='CardBackgroundImage' image={image} />
-    <CardInner className='CardInner' alignCenter justifyStart>
-      <Title className='CardTitle'>
-        {title}
-      </Title>
-    </CardInner>
-  </Card>
-)
+export default class Card extends Component {
+  constructor (props) {
+    super(props)
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+  }
+
+  componentDidMount () {
+
+  }
+
+  handleMouseMove (e) {
+    console.log(e)
+  }
+
+  render () {
+    const {title, image, globalX, globalY} = this.props
+    return (
+      <CardWrap to='/'>
+        <BackgroundImage
+          style={{
+            transform: `scale(1.1) translate(${-globalX * 5}px, ${-globalY * 5}px)`
+          }}
+          className='CardBackgroundImage'
+          image={image}
+        />
+        <CardInner className='CardInner' alignCenter justifyStart>
+          <Title className='CardTitle'>
+            {title}
+          </Title>
+        </CardInner>
+      </CardWrap>
+    )
+  }
+}
