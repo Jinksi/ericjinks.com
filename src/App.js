@@ -37,8 +37,11 @@ class App extends Component {
     this.handleMouseMove = this.handleMouseMove.bind(this)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     globalStyles()
+  }
+
+  componentDidMount () {
     window.addEventListener('mousemove', this.handleMouseMove)
   }
 
@@ -73,7 +76,7 @@ class App extends Component {
                   )}
                 />
               ))}
-              <Route path='/projects/:id' render={(route) => (
+              <Route path='/:id' render={(route) => (
                 <ProjectsSingle
                   {...route}
                   globalX={this.state.globalX}

@@ -16,7 +16,6 @@ const FooterInner = styled(Container)`
 export default () => (
   <Footer>
     <FooterInner>
-      <a target='_blank' href='#'>source on github</a>
     </FooterInner>
   </Footer>
 )
