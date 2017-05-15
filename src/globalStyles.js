@@ -1,15 +1,12 @@
 import { injectGlobal } from 'styled-components'
 import { normalize } from 'polished'
-import WebFont from 'webfontloader'
-
-export const loadFonts = () => WebFont.load({
-  google: {
-    families: ['PT Mono']
-  }
-})
 
 export const font = {
-  primary: `'PT Mono', sans-serif`
+  primary: `'PT Mono', sans-serif`,
+  system: `-apple-system, BlinkMacSystemFont,
+   "Segoe UI", "Roboto", "Oxygen",
+   "Ubuntu", "Cantarell", "Fira Sans",
+   "Droid Sans", "Helvetica Neue", sans-serif`
 }
 
 export const color = {
@@ -27,7 +24,7 @@ export default () => injectGlobal`
   }
 
   body {
-    font-family: ${font.primary};
+    font-family: ${font.system};
     min-height: 100vh;
     position: relative;
     background: ${color.black};

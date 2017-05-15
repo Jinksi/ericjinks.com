@@ -7,7 +7,7 @@ import Projects from './views/Projects'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import globalStyles, { loadFonts } from './globalStyles'
+import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
 
 const siteTitle = 'Eric Jinks'
@@ -27,7 +27,6 @@ const routes = [
 class App extends Component {
   componentDidMount () {
     globalStyles()
-    loadFonts()
   }
   render () {
     return (
