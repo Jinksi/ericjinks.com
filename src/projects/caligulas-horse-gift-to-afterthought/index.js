@@ -17,7 +17,7 @@ I collaborated with Brisbane band [Caligula's Horse](http://caligulashorse.com/)
 </p>
 `
 export default {
-  id: 'caligulas-horse-gift-to-afterthought-clip',
+  id: 'caligulas-horse-gift-to-afterthought',
   title: `Caligula's Horse Film Clip`,
   image: gift,
   external: 'https://www.youtube.com/watch?v=bVvOPSupIsg',

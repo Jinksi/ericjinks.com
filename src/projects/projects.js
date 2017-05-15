@@ -1,7 +1,12 @@
 import processingSketches from './processing-sketches'
-import cHorseAfterthought from './c-horse-afterthought'
+import vxSynths from './vx-synths'
+import cHorseAfterthought from './caligulas-horse-gift-to-afterthought'
+// DS
+// Wild Ceramics
+// Arrival
 
 export default [
   processingSketches,
-  cHorseAfterthought
+  cHorseAfterthought,
+  vxSynths
 ]

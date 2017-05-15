@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import { adjustHue } from 'polished'
 
 import Home from './views/Home'
 import Projects from './views/Projects'
@@ -9,7 +8,7 @@ import ProjectsSingle from './views/ProjectsSingle'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import globalStyles, { color } from './globalStyles'
+import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
 
 const siteTitle = 'Eric Jinks'
@@ -82,9 +81,6 @@ class App extends Component {
             <Route component={NoMatch} />
           </Switch>
           <Footer />
-          {this.state.globalX}
-          <br />
-          {this.state.globalY}
         </PageWrap>
       </Router>
     )

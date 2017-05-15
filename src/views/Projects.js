@@ -20,14 +20,6 @@ const Projects = ({ globalX, globalY }) => (
             globalY={globalY}
           />
         ))}
-        {globalX}
-        {globalY}
-        <div>Processing sketches</div>
-        <div>Visual Synths</div>
-        <div>C Horse </div>
-        <div>DS</div>
-        <div>Wild Ceramics</div>
-        <div>Arrival</div>
       </Container>
     </Section>
     <Helmet>

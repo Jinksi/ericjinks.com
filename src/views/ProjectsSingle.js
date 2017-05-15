@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import Page from '../components/Page'
 import marked from 'marked'
 import projects from '../projects/projects'
+import NoMatch from '../views/NoMatch'
+
 import { Title, Flex, Container, Section, BackgroundImage, Button } from '../components/common'
 
 const Header = styled(Section)`
@@ -19,6 +21,7 @@ const Header = styled(Section)`
 
 const Projects = ({ match, globalX, globalY }) => {
   const project = projects.find(x => x.id === match.params.id)
+  if (!project) return <NoMatch />
   return (
     <Page>
       <Header>
@@ -36,14 +39,16 @@ const Projects = ({ match, globalX, globalY }) => {
       </Header>
       <Section>
         <Container>
-          <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
           {project.external && (
-            <Button href={project.external} target='_blank'>View</Button>
+            <p>
+              <Button href={project.external} target='_blank'>View</Button>
+            </p>
           )}
+          <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
         </Container>
       </Section>
       <Helmet>
-        <title>Projects</title>
+        <title>{project.title}</title>
       </Helmet>
     </Page>
   )
