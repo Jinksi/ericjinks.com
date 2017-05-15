@@ -1197,11 +1197,7 @@ caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   version "1.0.30000669"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000669.tgz#dbe8f25700ecda631dfb05cb71027762bd4b03e5"
 
-cannon@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/cannon/-/cannon-0.6.2.tgz#1e7bc72dd5841982f3c104c2bc578bfa4fb1c572"
-
-"cannon@github:donmccurdy/cannon.js#v0.6.2-dev1":
+cannon@^0.6.2, "cannon@github:donmccurdy/cannon.js#v0.6.2-dev1":
   version "0.6.2"
   resolved "https://codeload.github.com/donmccurdy/cannon.js/tar.gz/022e8ba53fa83abf0ad8a0e4fd08623123838a17"
 
@@ -1712,7 +1708,7 @@ doctrine@^1.2.2:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7":
+document-register-element@dmarcos/document-register-element#8ccc532b7:
   version "0.5.4"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7"
 
