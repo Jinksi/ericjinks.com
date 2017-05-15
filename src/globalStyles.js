@@ -10,8 +10,8 @@ export const font = {
 }
 
 export const color = {
-  primary: '#89C5C4',
-  secondary: '#e3dccd',
+  primary: 'hsl(40, 28%, 100%)',
+  secondary: 'hsl(40, 28%, 95%)',
   black: '#272121'
 }
 
@@ -42,13 +42,24 @@ export default () => injectGlobal`
     box-sizing: border-box;
   }
 
-
   a{
     color: inherit;
+
     &:hover, &:focus{
       color: ${color.primary};
     }
   }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  h1, h2, h3, h4, h5 ,h6{
+    margin: 0;
+    margin-bottom: 0.5em;
+  }
+
   ::selection{
     background: ${color.primary};
     opacity: 1;

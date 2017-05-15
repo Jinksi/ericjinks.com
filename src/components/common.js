@@ -1,6 +1,19 @@
 import styled from 'styled-components'
 import { color } from '../globalStyles'
 
+export const Absolute = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`
+
+export const Relative = styled.div`
+  position: relative;
+  z-index: 0;
+`
+
 export const PageWrap = styled.div`
   padding: 10vh 0;
   min-height: 100vh;
@@ -48,11 +61,19 @@ export const Col = styled.div`
   flex: 1 1 auto;
 `
 
+export const BackgroundImage = styled(Absolute)`
+  background-size: cover;
+  background-position: center;
+  background-image: url(${props => props.image});
+  opacity: ${props => props.opacity || 1};
+  transition: opacity .5s ease;
+`
+
 export const Tip = styled.span`
   border-bottom: 1px dotted currentColor;
 `
 
 export const H1 = styled.h1`
-  font-weight: 300;
+  font-weight: 200;
   color: ${color.primary};
 `

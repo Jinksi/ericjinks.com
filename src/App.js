@@ -18,7 +18,7 @@ const routes = [
     component: Home,
     exact: true
   }, {
-    title: 'Things',
+    title: 'Projects',
     path: '/projects',
     component: Projects
   }
