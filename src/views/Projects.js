@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import Card from '../components/Card'
-import projects from '../projects/projects'
+import projectsList from '../projects/projectsList'
 import { Container, Section } from '../components/common'
 
 const Projects = ({ globalX, globalY }) => (
@@ -10,7 +10,7 @@ const Projects = ({ globalX, globalY }) => (
     <Section thin>
       <Container>
         <p>Some of the projects I have worked or am working on.</p>
-        { projects.map(project => (
+        { projectsList.map(project => (
           <Card
             key={project.title}
             title={project.title}

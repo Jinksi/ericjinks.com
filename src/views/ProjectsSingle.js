@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Page from '../components/Page'
 import marked from 'marked'
-import projects from '../projects/projects'
+import projectsList from '../projects/projectsList'
 import NoMatch from '../views/NoMatch'
 
 import { Title, Flex, Container, Section, BackgroundImage, Button } from '../components/common'
@@ -20,7 +20,7 @@ const Header = styled(Section)`
 `
 
 const Projects = ({ match, globalX, globalY }) => {
-  const project = projects.find(x => x.id === match.params.id)
+  const project = projectsList.find(x => x.id === match.params.id)
   if (!project) return <NoMatch />
   return (
     <Page>
