@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Page from '../components/Page'
@@ -19,39 +19,64 @@ const Header = styled(Section)`
   justify-content: flex-start;
 `
 
-const Projects = ({ match, globalX, globalY }) => {
-  const project = projectsList.find(x => x.id === match.params.id)
-  if (!project) return <NoMatch />
-  return (
-    <Page>
-      <Header>
-        <BackgroundImage
-          style={{
-            transform: `scale(1.1) translate(${-globalX * 5}px, ${-globalY * 5}px)`
-          }}
-          image={project.image}
+class Projects extends Component {
+  constructor (props) {
+    super(props)
+    this.headerBG = null
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+  }
+
+  componentDidMount () {
+    window.addEventListener('mousemove', this.handleMouseMove)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('mousemove', this.handleMouseMove)
+  }
+
+  handleMouseMove () {
+  }
+
+  render () {
+    const match = this.props.match
+    const project = projectsList.find(x => x.id === match.params.id)
+    if (!project) return <NoMatch />
+    return (
+      <Page>
+        <Header>
+          <BackgroundImage
+            className='animate-translate'
+            style={{
+              transform: `scale(1.1)`
+            }}
+            innerRef={el => { this.headerBG = el }}
+            image={project.image}
+          />
+          <Container>
+            <Flex>
+              <Title>
+                <div className='background animate-translate' />
+                <span>{project.title}</span>
+              </Title>
+            </Flex>
+          </Container>
+        </Header>
+        <Section>
+          <Container>
+            {project.external && (
+              <p>
+                <Button href={project.external} target='_blank'>View</Button>
+              </p>
+            )}
+            <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
+          </Container>
+        </Section>
+        <Helmet
+          title={project.title}
         />
-        <Container>
-          <Flex>
-            <Title>{project.title}</Title>
-          </Flex>
-        </Container>
-      </Header>
-      <Section>
-        <Container>
-          {project.external && (
-            <p>
-              <Button href={project.external} target='_blank'>View</Button>
-            </p>
-          )}
-          <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
-        </Container>
-      </Section>
-      <Helmet
-        title={project.title}
-      />
-    </Page>
-  )
+      </Page>
+    )
+  }
 }
 
 export default Projects

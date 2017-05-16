@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import projectsList from '../projects/projectsList'
 import { Container, Section } from '../components/common'
 
-const Projects = ({ globalX, globalY }) => (
+const Projects = () => (
   <Page>
     <Section thin>
       <Container>
@@ -15,8 +15,6 @@ const Projects = ({ globalX, globalY }) => (
             title={project.title}
             to={`/${project.id}`}
             image={project.image}
-            globalX={globalX}
-            globalY={globalY}
             brightness={project.brightness}
           />
         ))}

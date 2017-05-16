@@ -93,4 +93,9 @@ export default () => injectGlobal`
     background: ${color.primary};
     opacity: 1;
   }
+
+  .animate-translate {
+    position: relative;
+    display: block;
+  }
 `

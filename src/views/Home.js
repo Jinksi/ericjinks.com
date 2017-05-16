@@ -9,7 +9,10 @@ export default (props) => (
       <Container>
         <Flex alignCenter>
           <Col>
-            <Title>Eric Jinks</Title>
+            <Title>
+              <div className='background animate-translate' />
+              <span>Eric Jinks</span>
+            </Title>
             <p>
               Creative developer, sound designer / musician.
             </p>

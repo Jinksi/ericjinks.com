@@ -16,7 +16,6 @@ const CardWrap = styled(Link)`
   text-decoration: none;
   overflow: hidden;
 
-
   .CardBackgroundImage {
     filter: saturate(30%);
     transition: filter .1s ease-out;
@@ -25,14 +24,6 @@ const CardWrap = styled(Link)`
   &:hover,
   &:focus {
     text-decoration: none;
-
-    .CardBackgroundImage {
-      filter: saturate(70%);
-    }
-
-    .CardInner {
-      opacity: 1;
-    }
   }
 `
 
@@ -61,7 +52,7 @@ export default class Card extends Component {
   }
 
   render () {
-    const { to, title, image, globalX, globalY, brightness } = this.props
+    const { to, title, image, brightness } = this.props
     return (
       <CardWrap to={to}>
         <BackgroundImage
@@ -71,7 +62,8 @@ export default class Card extends Component {
         />
         <CardInner className='CardInner' alignCenter justifyStart>
           <Title className='CardTitle'>
-            {title}
+            <div className='background' />
+            <span className='animate-translate'>{title}</span>
           </Title>
         </CardInner>
       </CardWrap>

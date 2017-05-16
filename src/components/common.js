@@ -82,7 +82,6 @@ export const H1 = styled.h1`
 
 export const Title = styled.h1`
   position: relative;
-  background: ${color.secondary};
   font-size: 3rem;
   color: ${color.black};
   font-weight: 200;
@@ -90,6 +89,19 @@ export const Title = styled.h1`
   letter-spacing: 0.15em;
   padding: 0rem 1rem;
   line-height: 1;
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${color.secondary};
+  }
+
+  span {
+    position: relative;
+  }
 `
 
 export const Button = styled.a`

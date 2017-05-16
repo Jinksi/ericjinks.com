@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import anime from 'animejs'
+import _throttle from 'lodash/throttle'
 
 import ScrollToTop from './components/ScrollToTop'
 import Home from './views/Home'
@@ -30,11 +32,9 @@ const routes = [
 class App extends Component {
   constructor () {
     super()
-    this.state = {
-      globalX: 0,
-      globalY: 0
-    }
     this.handleMouseMove = this.handleMouseMove.bind(this)
+    this.globalAnimation = { globalX: 0, globalY: 0 }
+    window.globalAnimation = this.globalAnimation
   }
 
   componentWillMount () {
@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    window.addEventListener('mousemove', this.handleMouseMove)
+    window.addEventListener('mousemove', _throttle(this.handleMouseMove, 100))
   }
 
   componentWillUnmount () {
@@ -50,9 +50,20 @@ class App extends Component {
   }
 
   handleMouseMove (e) {
-    this.setState({
-      globalX: (e.clientX / window.innerWidth) - 0.5, // -0.5 -> 0.5
-      globalY: (e.clientY / window.innerHeight) - 0.5 // -0.5 -> 0.5
+    if (this.anim) this.anim.pause()
+    const mouseX = e.clientX
+    const mouseY = e.clientY
+    const h = window.innerHeight
+    const w = window.innerWidth
+    const x = -((mouseX / w) - 0.5) * 10
+    const y = -((mouseY / h) - 0.5) * 10
+    this.anim = anime({
+      targets: '.animate-translate',
+      duration: 400,
+      easing: 'easeOutCubic',
+      scale: 1.05,
+      translateX: x, // -0.5 -> 0.5
+      translateY: y // -0.5 -> 0.5
     })
   }
 
@@ -69,18 +80,13 @@ class App extends Component {
                   {...route}
                   key={i}
                   render={() => (
-                    <Component
-                      globalX={this.state.globalX}
-                      globalY={this.state.globalY}
-                    />
+                    <Component />
                   )}
                 />
               ))}
               <Route path='/:id' render={(route) => (
                 <ProjectsSingle
                   {...route}
-                  globalX={this.state.globalX}
-                  globalY={this.state.globalY}
                 />
               )} />
               <Route component={NoMatch} />
