@@ -10,7 +10,7 @@ export default (props) => (
         <Flex alignCenter>
           <Col>
             <Title>
-              <div className='background animate-translate' />
+              <div className='background animate-translate animate-translate-mobile' />
               <span>Eric Jinks</span>
             </Title>
             <p>

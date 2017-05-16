@@ -45,7 +45,7 @@ class Projects extends Component {
       <Page>
         <Header>
           <BackgroundImage
-            className='animate-translate'
+            className='animate-translate animate-translate-mobile'
             style={{
               transform: `scale(1.1)`
             }}
@@ -55,7 +55,7 @@ class Projects extends Component {
           <Container>
             <Flex>
               <Title>
-                <div className='background animate-translate' />
+                <div className='background animate-translate animate-translate-mobile' />
                 <span>{project.title}</span>
               </Title>
             </Flex>

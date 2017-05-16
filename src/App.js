@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import anime from 'animejs'
 import _throttle from 'lodash/throttle'
+import _each from 'lodash/each'
 
 import ScrollToTop from './components/ScrollToTop'
 import Home from './views/Home'
@@ -33,8 +34,9 @@ class App extends Component {
   constructor () {
     super()
     this.handleMouseMove = this.handleMouseMove.bind(this)
-    this.globalAnimation = { globalX: 0, globalY: 0 }
-    window.globalAnimation = this.globalAnimation
+    this.handleDeviceMotion = this.handleDeviceMotion.bind(this)
+    this.windowHeight = window.innerHeight
+    this.windowWidth = window.innerWidth
   }
 
   componentWillMount () {
@@ -43,20 +45,37 @@ class App extends Component {
 
   componentDidMount () {
     window.addEventListener('mousemove', _throttle(this.handleMouseMove, 100))
+    window.addEventListener('devicemotion', _throttle(this.handleDeviceMotion, 100))
   }
 
   componentWillUnmount () {
     window.removeEventListener('mousemove', this.handleMouseMove)
+    window.removeEventListener('devicemotion', this.handleDeviceMotion)
+  }
+
+  handleDeviceMotion (e) {
+    if (this.anim) this.anim.pause()
+    const mouseX = e.acceleration.x * 1000
+    const mouseY = e.acceleration.y * 1000
+    const x = -((mouseX / this.windowWidth) - 0.5) * 10
+    const y = -((mouseY / this.windowHeight) - 0.5) * 10
+    this.anim = anime({
+      targets: '.animate-translate.animate-translate-mobile',
+      duration: 400,
+      easing: 'easeOutCubic',
+      scale: 1.05,
+      translateX: x, // -0.5 -> 0.5
+      translateY: y // -0.5 -> 0.5
+    })
   }
 
   handleMouseMove (e) {
     if (this.anim) this.anim.pause()
     const mouseX = e.clientX
     const mouseY = e.clientY
-    const h = window.innerHeight
-    const w = window.innerWidth
-    const x = -((mouseX / w) - 0.5) * 10
-    const y = -((mouseY / h) - 0.5) * 10
+    const x = -((mouseX / this.windowWidth) - 0.5) * 10
+    const y = -((mouseY / this.windowHeight) - 0.5) * 10
+
     this.anim = anime({
       targets: '.animate-translate',
       duration: 400,
