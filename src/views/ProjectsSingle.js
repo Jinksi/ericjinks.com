@@ -13,6 +13,7 @@ const Header = styled(Section)`
   position: relative;
   mix-blend-mode: lighten;
   height: 35vw;
+  min-height: 25rem;
   max-height: 80vh;
   display: flex;
   align-items: center;
