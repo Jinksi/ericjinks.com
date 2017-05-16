@@ -9,7 +9,6 @@ const Projects = ({ globalX, globalY }) => (
   <Page>
     <Section thin>
       <Container>
-        <p>Some of the projects I have worked or am working on.</p>
         { projectsList.map(project => (
           <Card
             key={project.title}
@@ -18,6 +17,7 @@ const Projects = ({ globalX, globalY }) => (
             image={project.image}
             globalX={globalX}
             globalY={globalY}
+            brightness={project.brightness}
           />
         ))}
       </Container>

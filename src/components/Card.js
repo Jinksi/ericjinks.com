@@ -60,7 +60,7 @@ export default class Card extends Component {
   }
 
   render () {
-    const { to, title, image, globalX, globalY } = this.props
+    const { to, title, image, globalX, globalY, brightness } = this.props
     return (
       <CardWrap to={to}>
         <BackgroundImage
@@ -69,6 +69,7 @@ export default class Card extends Component {
           }}
           className='CardBackgroundImage'
           image={image}
+          opacity={brightness}
         />
         <CardInner className='CardInner' alignCenter justifyStart>
           <Title className='CardTitle'>
