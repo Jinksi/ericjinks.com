@@ -4,7 +4,7 @@ import arrival3 from './arrival-3.jpg'
 import arrival4 from './arrival-4.jpg'
 
 const content = `
-This is short animation featuring artwork from the third chapter of Shaun Tan's graphic novel, The Arrival - shauntan.net
+This is short animation featuring artwork from the third chapter of Shaun Tan's graphic novel, The Arrival - [shauntan.net](http://shauntan.net)
 
 I have created sound and music for the book, hoping to add movement and depth to the images. I aimed to create a soundtrack that is reflective of the book's visual style and shows the world from the character's point of view.
 

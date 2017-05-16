@@ -16,6 +16,7 @@ const CardWrap = styled(Link)`
   text-decoration: none;
   overflow: hidden;
 
+
   .CardBackgroundImage {
     filter: saturate(30%);
     transition: filter .1s ease-out;
