@@ -64,9 +64,6 @@ export default class Card extends Component {
     return (
       <CardWrap to={to}>
         <BackgroundImage
-          style={{
-            transform: `scale(1.1) translate(${-globalX * 5}px, ${-globalY * 5}px)`
-          }}
           className='CardBackgroundImage'
           image={image}
           opacity={brightness}
