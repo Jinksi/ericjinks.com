@@ -38,8 +38,8 @@ const SocialLink = styled.a`
 
 export default () => (
   <SocialsWrap>
-    <SocialLink target='_blank' href='https://github.com/Jinksi'><Github /></SocialLink>
-    <SocialLink target='_blank' href='https://twitter.com/jinksi'><Twitter /></SocialLink>
-    <SocialLink target='_blank' href='https://instagram.com/jinksi'><Instagram /></SocialLink>
+    <SocialLink href='https://github.com/Jinksi'><Github /></SocialLink>
+    <SocialLink href='https://twitter.com/jinksi'><Twitter /></SocialLink>
+    <SocialLink href='https://instagram.com/jinksi'><Instagram /></SocialLink>
   </SocialsWrap>
 )

@@ -66,7 +66,7 @@ class Projects extends Component {
           <Container>
             {project.external && (
               <p>
-                <Button href={project.external} target='_blank'>View</Button>
+                <Button href={project.external}>View</Button>
               </p>
             )}
             <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
