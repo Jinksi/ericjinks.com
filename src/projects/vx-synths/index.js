@@ -1,7 +1,7 @@
 import chime from './chime.jpg'
 
 const content = `
-Generative musical & visual synthesizers in WebVR.
+Generative musical & visual synthesizers built for the browser.
 
 Work in progress...
 `
