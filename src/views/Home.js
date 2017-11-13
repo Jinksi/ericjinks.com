@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
 
@@ -31,10 +32,21 @@ export default props => (
                 ericjinks@gmail.com
               </a>
             </p>
-            <h3>Interests</h3>
-            - JavaScript - React - Node - GraphQL - REST - HTML - CSS -
-            Serverless architecture - Progressive Web Apps - Headless CMS -
-            Service Workers - WebVR - WebAudio
+            <h3>Interests &amp; Skills</h3>
+            <List>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Node</li>
+              <li>GraphQL</li>
+              <li>REST</li>
+              <li>HTML &amp; CSS</li>
+              <li>CSS-in-JS</li>
+              <li>Serverless architecture</li>
+              <li>Progressive Web Apps</li>
+              <li>Headless CMS</li>
+              <li>Service Workers</li>
+              <li>WebVR, WebAudio &amp; WebGL</li>
+            </List>
           </Col>
         </Flex>
       </Container>
@@ -42,3 +54,14 @@ export default props => (
     <Helmet title='About' />
   </Page>
 )
+
+const List = styled.ul`
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  list-style: none;
+
+  @media (min-width: 500px) {
+    columns: 3;
+  }
+`
