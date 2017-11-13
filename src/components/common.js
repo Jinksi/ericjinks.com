@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { color } from '../globalStyles'
 
 export const Absolute = styled.div`
@@ -36,9 +36,14 @@ export const Container = styled.div`
   width: 90vw;
 `
 
+export const TextContainer = styled.div`
+  max-width: 600px;
+  width: 100%;
+`
+
 export const Flex = styled.div`
   display: flex;
-  flex-direction: ${props => props.column ? 'column' : 'row'};
+  flex-direction: ${props => (props.column ? 'column' : 'row')};
   justify-content: ${props => {
     if (props.justifyCenter) return 'center'
     if (props.justifyEnd) return 'flex-end'
@@ -52,8 +57,8 @@ export const Flex = styled.div`
     if (props.alignStretch) return 'stretch'
     return 'center'
   }};
-  height: ${props => props.fill ? '100%' : 'auto'};
-  width: ${props => props.fill ? '100%' : 'auto'};
+  height: ${props => (props.fill ? '100%' : 'auto')};
+  width: ${props => (props.fill ? '100%' : 'auto')};
 `
 
 export const Col = styled(Flex)`
@@ -68,7 +73,7 @@ export const BackgroundImage = styled(Absolute)`
   background-position: center;
   background-image: url(${props => props.image});
   opacity: ${props => props.opacity || 1};
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 `
 
 export const Tip = styled.span`
