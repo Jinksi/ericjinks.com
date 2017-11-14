@@ -12,6 +12,9 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
+    "glob": "^7.1.2",
+    "gray-matter": "^3.1.1",
+    "lodash": "^4.17.4",
     "react-scripts": "^1.0.17",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3"
@@ -31,8 +34,10 @@
     "webfontloader": "^1.6.27"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot && cp build/200.html build/404.html",
+    "start": "npm run prepare && react-scripts start",
+    "build": "npm run prepare && react-scripts build && react-snapshot && cp build/200.html build/404.html",
+    "prepare": "npm run parse-content",
+    "parse-content": "node ./functions/parse-content.js",
     "test": "standard | snazzy && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

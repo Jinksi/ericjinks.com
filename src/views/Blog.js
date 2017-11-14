@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import Card from '../components/Card'
 import { Section, Container, TextContainer } from '../components/common'
+import { getPostSlug } from '../utils'
 
 export default ({ posts }) => (
   <Page>
@@ -15,7 +16,7 @@ export default ({ posts }) => (
               <Card
                 bordered
                 key={`blog-${post.date}`}
-                to={`/blog${post.slug}/`}
+                to={`/blog${getPostSlug(post)}`}
                 {...post}
               />
             ))}

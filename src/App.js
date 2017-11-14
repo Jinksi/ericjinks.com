@@ -16,64 +16,16 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
+import data from './data.json'
 
 const siteTitle = 'Eric Jinks'
 
-const posts = [
-  {
-    title: 'This is a blog post',
-    date: 'Wed Nov 15 2017 07:10:05 GMT+1000 (AEST)',
-    excerpt: `Let's discuss the meaning of life, the universe, and everything.`,
-    slug: `/2017/11/this-is-a-blog-post`,
-    content: `## Hello
-This is a paragraph in Markdown.
-
-- list
-- item
-
-\`code snippet\`
-    `
-  }
-]
-
-const routes = [
-  {
-    title: 'About',
-    path: '/',
-    component: Home,
-    exact: true
-  },
-  {
-    title: 'Projects',
-    path: '/projects/',
-    component: Projects,
-    exact: true
-  },
-  {
-    title: 'Blog',
-    path: '/blog/',
-    component: Blog,
-    exact: true,
-    props: {
-      posts
-    }
-  },
-  {
-    title: 'Contact',
-    path: '/contact/',
-    component: Contact,
-    exact: true
-  }
-]
-
 class App extends Component {
-  constructor () {
-    super()
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-    this.handleDeviceMotion = this.handleDeviceMotion.bind(this)
-    this.windowHeight = window.innerHeight
-    this.windowWidth = window.innerWidth
+  state = {
+    data
   }
+  windowHeight = window.innerHeight
+  windowWidth = window.innerWidth
 
   componentWillMount () {
     import('./netlifyIdentity')
@@ -93,7 +45,13 @@ class App extends Component {
     window.removeEventListener('devicemotion', this.handleDeviceMotion)
   }
 
-  handleDeviceMotion (e) {
+  getDocument = (collection, name) =>
+    this.state.data[collection] &&
+    this.state.data[collection].filter(page => page.name === name)[0]
+
+  getDocuments = collection => this.state.data[collection]
+
+  handleDeviceMotion = e => {
     if (this.anim) this.anim.pause()
     const mouseX = e.acceleration.x * 1000
     const mouseY = e.acceleration.y * 1000
@@ -109,7 +67,7 @@ class App extends Component {
     })
   }
 
-  handleMouseMove (e) {
+  handleMouseMove = e => {
     if (this.anim) this.anim.pause()
     const mouseX = e.clientX
     const mouseY = e.clientY
@@ -127,6 +85,37 @@ class App extends Component {
   }
 
   render () {
+    const posts = this.getDocuments('posts')
+    const routes = [
+      {
+        title: 'About',
+        path: '/',
+        component: Home,
+        exact: true
+      },
+      {
+        title: 'Projects',
+        path: '/projects/',
+        component: Projects,
+        exact: true
+      },
+      {
+        title: 'Blog',
+        path: '/blog/',
+        component: Blog,
+        exact: true,
+        props: {
+          posts: this.getDocuments('posts')
+        }
+      },
+      {
+        title: 'Contact',
+        path: '/contact/',
+        component: Contact,
+        exact: true
+      }
+    ]
+
     return (
       <Router>
         <ScrollToTop>

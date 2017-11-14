@@ -6,6 +6,7 @@ import Page from '../components/Page'
 import Meta from '../components/Meta'
 import MarkdownContent from '../components/MarkdownContent'
 import NoMatch from '../views/NoMatch'
+import { getPostSlug } from '../utils'
 
 import {
   Title,
@@ -29,7 +30,7 @@ const Header = styled(Section)`
 `
 
 export default ({ match, posts }) => {
-  const post = posts.find(post => post.slug.includes(match.params.id))
+  const post = posts.find(post => getPostSlug(post).includes(match.params.id))
   if (!post) return <NoMatch />
   const { title, date, image, content } = post
   return (

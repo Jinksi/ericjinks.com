@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import _format from 'date-fns/format'
+import { displayDate } from '../utils'
 
 const Meta = styled.h3`
   font-weight: 200;
@@ -9,7 +9,7 @@ const Meta = styled.h3`
 
 export default ({ date, children }) => {
   if (date) {
-    children = _format(new Date(date), 'MMMM Do, YYYY')
+    children = displayDate(date)
   }
   return <Meta>{children}</Meta>
 }
