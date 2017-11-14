@@ -12,7 +12,12 @@ export default ({ posts }) => (
         <TextContainer>
           {posts &&
             posts.map(post => (
-              <Card bordered key={`blog-${post.date}`} {...post} to='/' />
+              <Card
+                bordered
+                key={`blog-${post.date}`}
+                to={`/blog${post.slug}`}
+                {...post}
+              />
             ))}
         </TextContainer>
       </Container>

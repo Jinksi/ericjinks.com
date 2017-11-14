@@ -10,6 +10,7 @@ import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
 import Contact from './views/Contact'
 import Blog from './views/Blog'
+import BlogSingle from './views/BlogSingle'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -21,8 +22,17 @@ const siteTitle = 'Eric Jinks'
 const posts = [
   {
     title: 'This is a blog post',
-    date: new Date().toString(),
-    excerpt: `Let's discuss the meaning of life, the universe, and everything.`
+    date: 'Wed Nov 15 2017 07:10:05 GMT+1000 (AEST)',
+    excerpt: `Let's discuss the meaning of life, the universe, and everything.`,
+    slug: `/2017/11/this-is-a-blog-post`,
+    content: `## Hello
+This is a paragraph in Markdown.
+
+- list
+- item
+
+\`code snippet\`
+    `
   }
 ]
 
@@ -130,6 +140,10 @@ class App extends Component {
                   render={() => <Component {...props} />}
                 />
               ))}
+              <Route
+                path='/blog/:id+'
+                render={route => <BlogSingle {...route} posts={posts} />}
+              />
               <Route
                 path='/:id'
                 render={route => <ProjectsSingle {...route} />}

@@ -2,11 +2,18 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Page from '../components/Page'
-import marked from 'marked'
+import MarkdownContent from '../components/MarkdownContent'
 import projectsList from '../projects/projectsList'
 import NoMatch from '../views/NoMatch'
 
-import { Title, Flex, Container, Section, BackgroundImage, Button } from '../components/common'
+import {
+  Title,
+  Flex,
+  Container,
+  Section,
+  BackgroundImage,
+  Button
+} from '../components/common'
 
 const Header = styled(Section)`
   overflow: hidden;
@@ -35,8 +42,7 @@ class Projects extends Component {
     window.removeEventListener('mousemove', this.handleMouseMove)
   }
 
-  handleMouseMove () {
-  }
+  handleMouseMove () {}
 
   render () {
     const match = this.props.match
@@ -50,7 +56,9 @@ class Projects extends Component {
             style={{
               transform: `scale(1.1)`
             }}
-            innerRef={el => { this.headerBG = el }}
+            innerRef={el => {
+              this.headerBG = el
+            }}
             image={project.image}
           />
           <Container>
@@ -69,12 +77,10 @@ class Projects extends Component {
                 <Button href={project.external}>View</Button>
               </p>
             )}
-            <div dangerouslySetInnerHTML={{__html: marked(project.content)}} />
+            <MarkdownContent source={project.content} />
           </Container>
         </Section>
-        <Helmet
-          title={project.title}
-        />
+        <Helmet title={project.title} />
       </Page>
     )
   }

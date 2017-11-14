@@ -1,9 +1,9 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import _format from 'date-fns/format'
 
 import { Title, Flex, BackgroundImage } from './common'
+import Meta from '../components/Meta'
 import { color } from '../globalStyles'
 
 export default ({ to, title, image, brightness, date, excerpt, bordered }) => (
@@ -18,7 +18,7 @@ export default ({ to, title, image, brightness, date, excerpt, bordered }) => (
         <div className='background' />
         <span className='animate-translate'>{title}</span>
       </Title>
-      {date && <Meta>{_format(new Date(date), 'MMMM Do, YYYY')}</Meta>}
+      {date && <Meta date={date} />}
       {excerpt && <Excerpt>{excerpt}</Excerpt>}
     </CardInner>
   </CardWrap>
@@ -58,9 +58,5 @@ const CardInner = styled(Flex)`
   ${Title} {
     margin: 0;
   }
-`
-const Meta = styled.h3`
-  font-weight: 200;
-  margin-bottom: 1rem;
 `
 const Excerpt = styled.div``
