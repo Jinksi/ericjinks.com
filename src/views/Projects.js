@@ -9,20 +9,18 @@ const Projects = () => (
   <Page>
     <Section thin>
       <Container>
-        { projectsList.map(project => (
+        {projectsList.map(project => (
           <Card
             key={project.title}
             title={project.title}
-            to={`/${project.id}`}
+            to={`/${project.id}/`}
             image={project.image}
             brightness={project.brightness}
           />
         ))}
       </Container>
     </Section>
-    <Helmet
-      title='Projects'
-    />
+    <Helmet title='Projects' />
   </Page>
 )
 

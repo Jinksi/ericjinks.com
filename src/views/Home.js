@@ -35,7 +35,7 @@ export default props => (
               </p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
-                <Link to='/contact'>Contact</Link> page or send me an email at{' '}
+                <Link to='/contact/'>Contact</Link> page or send me an email at{' '}
                 <a
                   target='_blank'
                   rel='noopener noreferrer'

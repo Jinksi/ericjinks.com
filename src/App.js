@@ -45,13 +45,13 @@ const routes = [
   },
   {
     title: 'Projects',
-    path: '/projects',
+    path: '/projects/',
     component: Projects,
     exact: true
   },
   {
     title: 'Blog',
-    path: '/blog',
+    path: '/blog/',
     component: Blog,
     exact: true,
     props: {
@@ -60,7 +60,7 @@ const routes = [
   },
   {
     title: 'Contact',
-    path: '/contact',
+    path: '/contact/',
     component: Contact,
     exact: true
   }

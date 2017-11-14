@@ -15,7 +15,7 @@ export default ({ posts }) => (
               <Card
                 bordered
                 key={`blog-${post.date}`}
-                to={`/blog${post.slug}`}
+                to={`/blog${post.slug}/`}
                 {...post}
               />
             ))}
