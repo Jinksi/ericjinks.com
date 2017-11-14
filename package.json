@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "animejs": "^2.0.2",
+    "date-fns": "^1.29.0",
     "marked": "^0.3.6",
     "polished": "^1.9.0",
     "react": "^16.1.1",

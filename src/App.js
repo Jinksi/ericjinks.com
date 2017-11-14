@@ -9,6 +9,7 @@ import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
 import Contact from './views/Contact'
+import Blog from './views/Blog'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -16,6 +17,15 @@ import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
 
 const siteTitle = 'Eric Jinks'
+
+const posts = [
+  {
+    title: 'This is a blog post',
+    date: new Date().toString(),
+    excerpt: `Let's discuss the meaning of life, the universe, and everything.`
+  }
+]
+
 const routes = [
   {
     title: 'About',
@@ -28,6 +38,15 @@ const routes = [
     path: '/projects',
     component: Projects,
     exact: true
+  },
+  {
+    title: 'Blog',
+    path: '/blog',
+    component: Blog,
+    exact: true,
+    props: {
+      posts
+    }
   },
   {
     title: 'Contact',
@@ -104,8 +123,12 @@ class App extends Component {
             <Helmet titleTemplate={`${siteTitle} | %s`} />
             <Nav routes={routes} />
             <Switch>
-              {routes.map(({ component: Component, ...route }, i) => (
-                <Route {...route} key={i} render={() => <Component />} />
+              {routes.map(({ component: Component, props, ...route }, i) => (
+                <Route
+                  {...route}
+                  key={i}
+                  render={() => <Component {...props} />}
+                />
               ))}
               <Route
                 path='/:id'
