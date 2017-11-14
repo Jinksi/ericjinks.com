@@ -36,6 +36,7 @@ const CardWrap = styled(Link)`
   padding: ${props => (props.bordered ? '3.5rem 2rem' : '12.5rem 0')};
   border: ${props =>
     props.bordered ? `1px solid ${color.secondary}` : 'none'};
+  margin-bottom: ${props => (props.bordered ? `2.5rem` : 'none')};
 
   .CardBackgroundImage {
     filter: saturate(30%);
