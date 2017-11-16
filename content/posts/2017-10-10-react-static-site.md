@@ -199,7 +199,7 @@ export default Home
 
 We now see our `<PageHeader />` rendered on our home page!
 
-![PageHeader](PageHeader.png)
+![PageHeader](/images/uploads/PageHeader.png)
 
 Let's add another component to hold the page content,
 `src/components/PageContent.js`:
@@ -376,7 +376,7 @@ export default App
 
 Our site now has navigation and routes! 🎉
 
-![React Router](react-router.gif)
+![React Router](/images/uploads/react-router.gif)
 
 Now we need to update the document `<head>` when our routes change. For this
 job, we use react-helmet.
@@ -423,7 +423,7 @@ export default Home
 
 Go ahead and do the same for `src/views/About.js`, with a unique `<title>`.
 
-![react-helmet](react-helmet.gif)
+![react-helmet](/images/uploads/react-helmet.gif)
 
 Ok, we are nearly there, time to render this whole thing out to static html!
 
