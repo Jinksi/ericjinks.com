@@ -28,7 +28,8 @@ class App extends Component {
   windowWidth = window.innerWidth
 
   componentWillMount () {
-    import('./netlifyIdentity')
+    // Causing non-fatal JS error, disabled for now
+    // import('./netlifyIdentity')
     globalStyles()
   }
 
