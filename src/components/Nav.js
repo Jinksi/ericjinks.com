@@ -4,12 +4,10 @@ import { Container, Flex } from './common'
 import NavLink from './NavLink'
 import SocialLinks from './SocialLinks'
 
-export default (props) => (
+export default props => (
   <Container>
-    <Flex alignCenter>
-      {props.routes.map((route, i) => (
-        <NavLink key={i} {...route} />
-      ))}
+    <Flex alignCenter wrap>
+      {props.routes.map((route, i) => <NavLink key={i} {...route} />)}
       <SocialLinks />
     </Flex>
   </Container>

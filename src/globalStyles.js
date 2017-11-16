@@ -94,6 +94,10 @@ export default () => injectGlobal`
     background: ${color.code};
     padding: 0.2em 0.4em;
     font-size: 85%;
+    overflow: auto;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   pre {
