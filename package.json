@@ -17,7 +17,8 @@
     "lodash": "^4.17.4",
     "react-scripts": "^1.0.17",
     "snazzy": "^7.0.0",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "sw-precache": "^5.2.0"
   },
   "dependencies": {
     "animejs": "^2.0.2",
