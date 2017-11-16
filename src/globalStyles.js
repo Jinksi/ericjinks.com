@@ -14,7 +14,7 @@ export const color = {
   secondary: 'hsl(40, 28%, 95%)',
   black: '#272121',
   highlight: 'hsl(350, 70%, 40%)',
-  code: 'rgba(255, 255, 255, 0.1)'
+  code: 'rgba(255, 255, 255, 0.05)'
 }
 
 export default () => injectGlobal`
@@ -97,13 +97,18 @@ export default () => injectGlobal`
   }
 
   pre {
-    background:  ${color.code};
+    background: ${color.code};
     padding: 1rem;
     word-wrap: normal;
     overflow: auto;
 
+    &[class*="language-"] {
+      background:  ${color.code};
+    }
+
     code {
       background: none;
+      padding: 0;
     }
   }
 
