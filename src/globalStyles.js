@@ -13,7 +13,8 @@ export const color = {
   primary: 'hsl(40, 28%, 100%)',
   secondary: 'hsl(40, 28%, 95%)',
   black: '#272121',
-  highlight: 'hsl(350, 70%, 40%)'
+  highlight: 'hsl(350, 70%, 40%)',
+  code: 'rgba(255, 255, 255, 0.05)'
 }
 
 export default () => injectGlobal`
@@ -67,7 +68,7 @@ export default () => injectGlobal`
   }
 
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     mix-blend-mode: lighten;
   }
@@ -86,6 +87,32 @@ export default () => injectGlobal`
       width: 100%;
       height: 100%;
       mix-blend-mode: lighten;
+    }
+  }
+
+  code {
+    background: ${color.code};
+    padding: 0.2em 0.4em;
+    font-size: 85%;
+    overflow: auto;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  pre {
+    background: ${color.code};
+    padding: 1rem;
+    word-wrap: normal;
+    overflow: auto;
+
+    &[class*="language-"] {
+      background:  ${color.code};
+    }
+
+    code {
+      background: none;
+      padding: 0;
     }
   }
 

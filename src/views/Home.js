@@ -35,27 +35,31 @@ export default props => (
               </p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
-                <Link to='/contact'>Contact</Link> page or send me an email at{' '}
-                <a target='_blank' href='mailto:ericjinks@gmail.com'>
+                <Link to='/contact/'>Contact</Link> page or send me an email at{' '}
+                <a
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  href='mailto:ericjinks@gmail.com'
+                >
                   ericjinks@gmail.com
                 </a>
               </p>
-              <h3>Interests &amp; Skills</h3>
-              <List>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Node</li>
-                <li>GraphQL</li>
-                <li>REST</li>
-                <li>HTML &amp; CSS</li>
-                <li>CSS-in-JS</li>
-                <li>Serverless architecture</li>
-                <li>Progressive Web Apps</li>
-                <li>Headless CMS</li>
-                <li>Service Workers</li>
-                <li>WebVR, WebAudio &amp; WebGL</li>
-              </List>
             </TextContainer>
+            <h3>Interests &amp; Skills</h3>
+            <List>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Node</li>
+              <li>GraphQL</li>
+              <li>HTML &amp; CSS</li>
+              <li>CSS-in-JS</li>
+              <li>Serverless</li>
+              <li>Progressive Web Apps</li>
+              <li>JAMstack</li>
+              <li>Headless CMS</li>
+              <li>Service Workers</li>
+              <li>WebVR, WebAudio &amp; WebGL</li>
+            </List>
           </Col>
         </Flex>
       </Container>

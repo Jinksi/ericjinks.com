@@ -9,44 +9,27 @@ import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
 import Contact from './views/Contact'
+import Blog from './views/Blog'
+import BlogSingle from './views/BlogSingle'
 import NoMatch from './views/NoMatch'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
+import data from './data.json'
 
 const siteTitle = 'Eric Jinks'
-const routes = [
-  {
-    title: 'About',
-    path: '/',
-    component: Home,
-    exact: true
-  },
-  {
-    title: 'Projects',
-    path: '/projects',
-    component: Projects,
-    exact: true
-  },
-  {
-    title: 'Contact',
-    path: '/contact',
-    component: Contact,
-    exact: true
-  }
-]
 
 class App extends Component {
-  constructor () {
-    super()
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-    this.handleDeviceMotion = this.handleDeviceMotion.bind(this)
-    this.windowHeight = window.innerHeight
-    this.windowWidth = window.innerWidth
+  state = {
+    data
   }
+  windowHeight = window.innerHeight
+  windowWidth = window.innerWidth
 
   componentWillMount () {
+    // Causing non-fatal JS error, disabled for now
+    // import('./netlifyIdentity')
     globalStyles()
   }
 
@@ -63,7 +46,13 @@ class App extends Component {
     window.removeEventListener('devicemotion', this.handleDeviceMotion)
   }
 
-  handleDeviceMotion (e) {
+  getDocument = (collection, name) =>
+    this.state.data[collection] &&
+    this.state.data[collection].filter(page => page.name === name)[0]
+
+  getDocuments = collection => this.state.data[collection]
+
+  handleDeviceMotion = e => {
     if (this.anim) this.anim.pause()
     const mouseX = e.acceleration.x * 1000
     const mouseY = e.acceleration.y * 1000
@@ -79,7 +68,7 @@ class App extends Component {
     })
   }
 
-  handleMouseMove (e) {
+  handleMouseMove = e => {
     if (this.anim) this.anim.pause()
     const mouseX = e.clientX
     const mouseY = e.clientY
@@ -97,6 +86,37 @@ class App extends Component {
   }
 
   render () {
+    const posts = this.getDocuments('posts')
+    const routes = [
+      {
+        title: 'About',
+        path: '/',
+        component: Home,
+        exact: true
+      },
+      {
+        title: 'Projects',
+        path: '/projects/',
+        component: Projects,
+        exact: true
+      },
+      {
+        title: 'Blog',
+        path: '/blog/',
+        component: Blog,
+        exact: true,
+        props: {
+          posts: this.getDocuments('posts')
+        }
+      },
+      {
+        title: 'Contact',
+        path: '/contact/',
+        component: Contact,
+        exact: true
+      }
+    ]
+
     return (
       <Router>
         <ScrollToTop>
@@ -104,9 +124,17 @@ class App extends Component {
             <Helmet titleTemplate={`${siteTitle} | %s`} />
             <Nav routes={routes} />
             <Switch>
-              {routes.map(({ component: Component, ...route }, i) => (
-                <Route {...route} key={i} render={() => <Component />} />
+              {routes.map(({ component: Component, props, ...route }, i) => (
+                <Route
+                  {...route}
+                  key={i}
+                  render={() => <Component {...props} />}
+                />
               ))}
+              <Route
+                path='/blog/:id+'
+                render={route => <BlogSingle {...route} posts={posts} />}
+              />
               <Route
                 path='/:id'
                 render={route => <ProjectsSingle {...route} />}
