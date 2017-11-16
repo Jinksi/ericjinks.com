@@ -122,7 +122,6 @@ export default () => injectGlobal`
   }
 
   .animate-translate {
-    position: relative;
     display: block;
   }
 `
