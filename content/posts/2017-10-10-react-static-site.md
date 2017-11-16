@@ -2,7 +2,6 @@
 title: Creating static websites with React, Part 1
 excerpt: Let's create a lightning-fast, offline-first static website with React
 date: 2017-10-10T09:00:00+10:00
-image: https://source.unsplash.com/800x800
 ---
 
 _Why static?_\
