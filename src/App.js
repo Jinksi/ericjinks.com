@@ -5,6 +5,7 @@ import anime from 'animejs'
 import _throttle from 'lodash/throttle'
 
 import ScrollToTop from './components/ScrollToTop'
+import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
 import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
@@ -119,7 +120,9 @@ class App extends Component {
 
     return (
       <Router>
-        <ScrollToTop>
+        <div>
+          <ScrollToTop />
+          <ServiceWorkerNotifications reloadOnUpdate />
           <PageWrap>
             <Helmet titleTemplate={`${siteTitle} | %s`} />
             <Nav routes={routes} />
@@ -143,7 +146,7 @@ class App extends Component {
             </Switch>
             <Footer />
           </PageWrap>
-        </ScrollToTop>
+        </div>
       </Router>
     )
   }
