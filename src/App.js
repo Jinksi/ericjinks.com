@@ -6,6 +6,7 @@ import _throttle from 'lodash/throttle'
 
 import ScrollToTop from './components/ScrollToTop'
 import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
+import SocialMeta from './components/SocialMeta'
 import Home from './views/Home'
 import Projects from './views/Projects'
 import ProjectsSingle from './views/ProjectsSingle'
@@ -18,8 +19,6 @@ import Footer from './components/Footer'
 import globalStyles from './globalStyles'
 import { PageWrap } from './components/common'
 import data from './data.json'
-
-const siteTitle = 'Eric Jinks'
 
 class App extends Component {
   state = {
@@ -118,11 +117,26 @@ class App extends Component {
       }
     ]
 
+    const {
+      siteTitle,
+      siteUrl,
+      siteDescription,
+      socialMediaCard
+    } = this.getDocument('settings', 'global')
+
     return (
       <Router>
         <div>
           <ScrollToTop />
           <ServiceWorkerNotifications reloadOnUpdate />
+          <SocialMeta
+            title={siteTitle}
+            url={siteUrl}
+            description={siteDescription}
+            absoluteImageUrl={socialMediaCard && socialMediaCard.image && siteUrl + socialMediaCard.image}
+            twitterCreatorAccount={socialMediaCard && socialMediaCard.twitterCreatorAccount}
+            twitterSiteAccount={socialMediaCard && socialMediaCard.twitterSiteAccount}
+          />
           <PageWrap>
             <Helmet titleTemplate={`${siteTitle} | %s`} />
             <Nav routes={routes} />
