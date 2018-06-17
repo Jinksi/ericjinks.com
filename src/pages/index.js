@@ -13,7 +13,7 @@ import {
   Col
 } from '../components/common'
 
-export default props => (
+export default () => (
   <Page>
     <Section thin>
       <Container skinny>
