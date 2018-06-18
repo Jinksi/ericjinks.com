@@ -61,7 +61,7 @@ export default ({ data: { post } }) => {
       </Header>
       <Section thin>
         <Container>
-          <TextContainer>
+          <TextContainer style={{ margin: 'auto' }}>
             <MarkdownContent source={content} />
           </TextContainer>
         </Container>

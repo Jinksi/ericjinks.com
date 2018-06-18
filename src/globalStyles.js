@@ -19,7 +19,7 @@ export const color = {
 
 export default () => injectGlobal`
   ${normalize()}
-  
+
   html{
     box-sizing: border-box;
     font-size: 62.5%;
@@ -50,7 +50,7 @@ export default () => injectGlobal`
     color: inherit;
 
     &:hover, &:focus{
-      color: ${color.primary};
+      color: inherit;
     }
   }
 

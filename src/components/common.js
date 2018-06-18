@@ -45,7 +45,6 @@ export const Container = styled.div`
 
 export const TextContainer = styled.div`
   max-width: 600px;
-  margin: auto;
   width: 100%;
 `
 
