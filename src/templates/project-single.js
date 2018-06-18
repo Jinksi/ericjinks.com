@@ -79,7 +79,7 @@ class Project extends Component {
         </Header>
         <Section>
           <Container>
-            {project.external && (
+            {project.frontmatter.external && (
               <p>
                 <Button href={project.frontmatter.external}>View</Button>
               </p>
@@ -109,8 +109,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        # date(formatString: "MMMM DD, YYYY")
         date
+        external
         image {
           childImageSharp {
             resize(width: 1800) {
