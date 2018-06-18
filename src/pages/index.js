@@ -10,17 +10,17 @@ import {
   Container,
   TextContainer,
   Flex,
-  Col
+  Col,
 } from '../components/common'
 
-export default () => (
+export default props => (
   <Page>
     <Section thin>
       <Container skinny>
         <Flex alignCenter>
           <Col>
             <Title>
-              <div className='background animate-translate animate-translate-mobile' />
+              <div className="background animate-translate animate-translate-mobile" />
               <span>Eric Jinks</span>
             </Title>
             <TextContainer>
@@ -35,11 +35,11 @@ export default () => (
               </p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
-                <Link to='/contact/'>Contact</Link> page or send me an email at{' '}
+                <Link to="/contact/">Contact</Link> page or send me an email at{' '}
                 <a
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  href='mailto:ericjinks@gmail.com'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="mailto:ericjinks@gmail.com"
                 >
                   ericjinks@gmail.com
                 </a>
@@ -64,7 +64,7 @@ export default () => (
         </Flex>
       </Container>
     </Section>
-    <Helmet title='About' />
+    <Helmet title="About" />
   </Page>
 )
 

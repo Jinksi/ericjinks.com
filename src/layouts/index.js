@@ -66,7 +66,9 @@ class Template extends React.Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, location } = this.props
+    const whiteTheme = location.pathname.indexOf('/blog/20') === 0
+
     const { title: siteTitle } = _get(this, 'props.data.site.siteMetadata')
 
     const routes = [
@@ -93,7 +95,7 @@ class Template extends React.Component {
     ]
 
     return (
-      <PageWrap>
+      <PageWrap whiteTheme={whiteTheme}>
         <Helmet titleTemplate={`${siteTitle} | %s`}>
           <link
             rel="apple-touch-icon"
@@ -120,7 +122,7 @@ class Template extends React.Component {
           <meta name="theme-color" content="#212121" />
         </Helmet>
 
-        <Nav routes={routes} />
+        <Nav routes={routes} white={whiteTheme} />
 
         {children()}
 

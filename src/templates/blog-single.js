@@ -19,7 +19,6 @@ import {
 const Header = styled(Section)`
   overflow: hidden;
   position: relative;
-  mix-blend-mode: lighten;
   height: ${props => (props.image ? '35vw' : 'auto')};
   min-height: 25rem;
   max-height: 80vh;
@@ -35,7 +34,8 @@ export default ({ data: { post } }) => {
   } = post
 
   return (
-    <Page>
+    <Page white>
+      <Helmet title={title} />
       <Header image={!!image}>
         {image && (
           <BackgroundImage
@@ -50,8 +50,8 @@ export default ({ data: { post } }) => {
           />
         )}
         <Container>
-          <Flex column alignStart>
-            <Title>
+          <Flex column alignCenter>
+            <Title white>
               <div className="background animate-translate animate-translate-mobile" />
               <span>{title}</span>
             </Title>
@@ -66,7 +66,6 @@ export default ({ data: { post } }) => {
           </TextContainer>
         </Container>
       </Section>
-      <Helmet title={title} />
     </Page>
   )
 }
