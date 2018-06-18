@@ -12,11 +12,34 @@ import { getPostSlug } from '../utils'
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  display: flex;
-  align-items: center;
+  display: block;
+
+  .readmore {
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      transition: all 0.2s ease-out;
+    }
+  }
+
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 1px solid transparent;
+    display: inline-flex;
+    transition: all 0.2s ease-out;
+  }
 
   &:hover {
-    text-decoration: underline;
+    h2 {
+      border-bottom-color: currentColor;
+    }
+
+    .readmore {
+      svg {
+        transform: translateX(0.5rem);
+      }
+    }
   }
 `
 
@@ -35,11 +58,11 @@ export default ({ data }) => {
                 <div style={{ margin: '0 auto 5rem auto' }}>
                   <StyledLink to={post.fields.slug}>
                     <h2>{post.frontmatter.title}</h2>
-                  </StyledLink>
-                  <Meta date={post.frontmatter.date} />
-                  <p>{post.frontmatter.excerpt}</p>
-                  <StyledLink to={post.fields.slug}>
-                    Read <ArrowRight style={{ height: '0.9em' }} />
+                    <Meta date={post.frontmatter.date} />
+                    <p>{post.frontmatter.excerpt}</p>
+                    <div className="readmore">
+                      Read <ArrowRight style={{ height: '0.9em' }} />
+                    </div>
                   </StyledLink>
                 </div>
               ))}
