@@ -1,12 +1,11 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import _get from 'lodash/get'
 
 import Page from '../components/Page'
 import Meta from '../components/Meta'
 import MarkdownContent from '../components/MarkdownContent'
-import NoMatch from '../views/NoMatch'
-import { getPostSlug } from '../utils'
 
 import {
   Title,
@@ -14,7 +13,7 @@ import {
   Container,
   Section,
   BackgroundImage,
-  TextContainer
+  TextContainer,
 } from '../components/common'
 
 const Header = styled(Section)`
@@ -29,18 +28,20 @@ const Header = styled(Section)`
   justify-content: flex-start;
 `
 
-export default ({ match, posts }) => {
-  const post = posts.find(post => getPostSlug(post).includes(match.params.id))
-  if (!post) return <NoMatch />
-  const { title, date, image, content } = post
+export default ({ data: { post } }) => {
+  const {
+    frontmatter: { title, date, image },
+    rawMarkdownBody: content,
+  } = post
+
   return (
     <Page>
       <Header image={!!image}>
         {image && (
           <BackgroundImage
-            className='animate-translate animate-translate-mobile'
+            className="animate-translate animate-translate-mobile"
             style={{
-              transform: `scale(1.1)`
+              transform: `scale(1.1)`,
             }}
             innerRef={el => {
               this.headerBG = el
@@ -51,7 +52,7 @@ export default ({ match, posts }) => {
         <Container>
           <Flex column alignStart>
             <Title>
-              <div className='background animate-translate animate-translate-mobile' />
+              <div className="background animate-translate animate-translate-mobile" />
               <span>{title}</span>
             </Title>
             <Meta date={date} />
@@ -69,3 +70,22 @@ export default ({ match, posts }) => {
     </Page>
   )
 }
+
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+
+    post: markdownRemark(fields: { slug: { eq: $slug } }) {
+      rawMarkdownBody
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+      }
+    }
+  }
+`

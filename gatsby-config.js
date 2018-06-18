@@ -7,8 +7,8 @@ module.exports = {
     socialMediaCard: {
       image: '/images/uploads/card-og.jpg',
       twitterCreatorAccount: '@Jinksi',
-      twitterSiteAccount: '@Jinksi'
-    }
+      twitterSiteAccount: '@Jinksi',
+    },
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
@@ -16,8 +16,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
-        name: 'pages'
-      }
+        name: 'pages',
+      },
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -26,31 +26,33 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590
-            }
+              maxWidth: 700,
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`
-            }
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
           },
-          'gatsby-remark-prismjs',
+          // 'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants'
-        ]
-      }
+          'gatsby-remark-smartypants',
+        ],
+      },
     },
+    'gatsby-transformer-javascript-frontmatter',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // trackingId: `ADD YOUR TRACKING ID HERE`,
-      }
+      },
     },
     `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`
-  ]
+    `gatsby-plugin-react-helmet`,
+  ],
 }

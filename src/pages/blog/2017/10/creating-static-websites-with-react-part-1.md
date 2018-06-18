@@ -29,26 +29,26 @@ I also have a more complete, opinionated framework which I use called
 
 ## What we will use to achieve this
 
-* [Create-React-App](https://github.com/facebookincubator/create-react-app)
+- [Create-React-App](https://github.com/facebookincubator/create-react-app)
 
   This is a great start for any React project, allowing us to get stuck into
   writing code quickly, without having to install or configure build tools.
 
-* [Styled Components](https://www.styled-components.com/)
+- [Styled Components](https://www.styled-components.com/)
 
   I highly recommend using this CSS-in-JS solution for React. Allows us to write
   our CSS in our React components using Sass-style syntax.
 
-* [React-Router](https://github.com/ReactTraining/react-router)
+- [React-Router](https://github.com/ReactTraining/react-router)
 
   We'll use this to create our routes, enabling site navigation with urls, like
   a normal website 😅.
 
-* [React-Helmet](https://github.com/nfl/react-helmet)
+- [React-Helmet](https://github.com/nfl/react-helmet)
 
   A simple way of updating our sites `<head>`. Think `<title>` and meta tags.
 
-* [React-Snapshot](https://github.com/geelen/react-snapshot)
+- [React-Snapshot](https://github.com/geelen/react-snapshot)
 
   To pre-render our app out to static html, allowing JavaScript-less support and
   making our site feel extra speedy. This is our version of a static-site
@@ -442,7 +442,7 @@ React-snapshot will crawl all of the links that it finds in our app, rendering
 and saving html files as it goes. We only need to make a couple of changes to
 our code for this to happen:
 
-1. `src/index.js`:
+1.  `src/index.js`:
 
 ```jsx
 import React from 'react'
@@ -457,11 +457,11 @@ render(<App />, document.getElementById('root'))
 registerServiceWorker()
 ```
 
-2. `package.json`:
+2.  `package.json`:
 
 Change `build` script to `"react-scripts build && react-snapshot"`
 
-3. `public/index.html`
+3.  `public/index.html`
 
 Remove the following `<noscript>` message:
 

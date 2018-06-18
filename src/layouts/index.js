@@ -67,7 +67,7 @@ class Template extends React.Component {
 
   render() {
     const { children } = this.props
-    const { siteTitle } = _get(this, 'props.data.site.siteMetadata')
+    const { title: siteTitle } = _get(this, 'props.data.site.siteMetadata')
 
     const routes = [
       {

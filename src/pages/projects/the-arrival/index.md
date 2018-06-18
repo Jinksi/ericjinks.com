@@ -1,9 +1,11 @@
-import arrival1 from './arrival-1.jpg'
-import arrival2 from './arrival-2.jpg'
-import arrival3 from './arrival-3.jpg'
-import arrival4 from './arrival-4.jpg'
+---
+title: The Arrival
+image: './arrival-3.jpg'
+brightness: 0.6
+external: 'https://vimeo.com/36180836'
+date: 2015-01-01
+---
 
-const content = `
 This is short animation featuring artwork from the third chapter of Shaun Tan's graphic novel, The Arrival - [shauntan.net](http://shauntan.net)
 
 I have created sound and music for the book, hoping to add movement and depth to the images. I aimed to create a soundtrack that is reflective of the book's visual style and shows the world from the character's point of view.
@@ -18,17 +20,7 @@ Sound used is both my own field recording and foley work as well as sound librar
   </div>
 </p>
 
-![The Arrival – Shaun Tan](${arrival2})
-![The Arrival – Shaun Tan](${arrival1})
-![The Arrival – Shaun Tan](${arrival3})
-![The Arrival – Shaun Tan](${arrival4})
-`
-
-export default {
-  id: 'the-arrival',
-  title: `The Arrival`,
-  image: arrival3,
-  brightness: 0.6,
-  external: 'https://vimeo.com/36180836',
-  content: content.trim()
-}
+![The Arrival – Shaun Tan](./arrival-2.jpg)
+![The Arrival – Shaun Tan](./arrival-1.jpg)
+![The Arrival – Shaun Tan](./arrival-3.jpg)
+![The Arrival – Shaun Tan](./arrival-4.jpg)

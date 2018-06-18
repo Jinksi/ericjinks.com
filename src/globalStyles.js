@@ -6,7 +6,7 @@ export const font = {
   system: `-apple-system, BlinkMacSystemFont,
    "Segoe UI", "Roboto", "Oxygen",
    "Ubuntu", "Cantarell", "Fira Sans",
-   "Droid Sans", "Helvetica Neue", sans-serif`
+   "Droid Sans", "Helvetica Neue", sans-serif`,
 }
 
 export const color = {
@@ -14,7 +14,7 @@ export const color = {
   secondary: 'hsl(40, 28%, 95%)',
   black: '#272121',
   highlight: 'hsl(350, 70%, 40%)',
-  code: 'rgba(255, 255, 255, 0.05)'
+  code: 'rgba(255, 255, 255, 0.05)',
 }
 
 export default () => injectGlobal`
@@ -70,7 +70,7 @@ export default () => injectGlobal`
   img {
     max-width: 100%;
     height: auto;
-    mix-blend-mode: lighten;
+    ${'' /* mix-blend-mode: lighten; */}
   }
 
   .embed-container {
