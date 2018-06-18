@@ -67,7 +67,7 @@ class Template extends React.Component {
 
   render() {
     const { children, location } = this.props
-    const whiteTheme = location.pathname.indexOf('/blog/20') === 0
+    const whiteTheme = location.pathname.indexOf('/blog') === 0
 
     const { title: siteTitle } = _get(this, 'props.data.site.siteMetadata')
 

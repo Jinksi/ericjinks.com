@@ -62,6 +62,7 @@ export default () => injectGlobal`
   h1, h2, h3, h4, h5 ,h6{
     margin: 0;
     margin-bottom: 1em;
+    margin-top: 1em;
 
     &:last-child {
       margin-bottom: 0;

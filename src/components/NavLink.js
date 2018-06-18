@@ -11,7 +11,7 @@ const NavLink = styled.span`
     display: block;
     font-weight: 400;
     transition: color 0.2s, border-color 0.2s;
-    color: ${props => (props.active ? color.primary : 'inherit')};
+    color: inherit;
     text-decoration: none;
     border: 1px solid transparent;
     border-bottom-color: ${props =>
@@ -20,7 +20,7 @@ const NavLink = styled.span`
     &:hover,
     &:active,
     &:focus {
-      color: ${props => (props.active ? color.primary : 'inherit')};
+      color: inherit;
     }
   }
 

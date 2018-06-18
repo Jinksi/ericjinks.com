@@ -18,7 +18,6 @@ import {
 } from '../components/common'
 
 export default ({ data: { post, jsPost }, ...props }) => {
-  console.log(props)
   const {
     frontmatter: { title, date, image },
     rawMarkdownBody: content,

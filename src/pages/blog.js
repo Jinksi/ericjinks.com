@@ -1,12 +1,24 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
+import Link from 'gatsby-link'
 import _get from 'lodash/get'
-import URL from 'url-parse'
+import ArrowRight from 'react-feather/dist/icons/arrow-right'
 
 import Page from '../components/Page'
-import Card from '../components/Card'
+import Meta from '../components/Meta'
 import { Section, Container, TextContainer } from '../components/common'
 import { getPostSlug } from '../utils'
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
 
 export default ({ data }) => {
   let jsPosts = _get(data, 'jsPosts.edges', [])
@@ -14,19 +26,22 @@ export default ({ data }) => {
   let posts = [...jsPosts, ...mdPosts].map(edge => ({ ...edge.node }))
 
   return (
-    <Page>
+    <Page white>
       <Section thin>
         <Container skinny>
-          <TextContainer>
+          <TextContainer style={{ padding: '5rem 0' }}>
             {posts &&
               posts.map(post => (
-                <Card
-                  key={`blog-${post.frontmatter.title}`}
-                  to={post.fields.slug}
-                  title={post.frontmatter.title}
-                  excerpt={post.frontmatter.excerpt}
-                  date={post.frontmatter.date}
-                />
+                <div style={{ margin: '0 auto 5rem auto' }}>
+                  <StyledLink to={post.fields.slug}>
+                    <h2>{post.frontmatter.title}</h2>
+                  </StyledLink>
+                  <Meta date={post.frontmatter.date} />
+                  <p>{post.frontmatter.excerpt}</p>
+                  <StyledLink to={post.fields.slug}>
+                    Read <ArrowRight style={{ height: '0.9em' }} />
+                  </StyledLink>
+                </div>
               ))}
           </TextContainer>
         </Container>
