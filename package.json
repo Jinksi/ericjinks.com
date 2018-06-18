@@ -14,6 +14,7 @@
     "gatsby-plugin-offline": "^1.0.15",
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gatsby-plugin-sharp": "^1.6.42",
+    "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-remark-copy-linked-files": "^1.5.31",
     "gatsby-remark-images": "^1.5.61",
     "gatsby-remark-prismjs": "^1.2.24",
