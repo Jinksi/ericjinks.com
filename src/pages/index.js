@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
-import { Link } from 'react-router-dom'
+import Link from 'gatsby-link'
 
 import Page from '../components/Page'
 import {

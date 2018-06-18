@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import Link from 'gatsby-link'
 
 import { Title, Flex, BackgroundImage } from './common'
 import Meta from '../components/Meta'
@@ -9,14 +9,14 @@ import { color } from '../globalStyles'
 export default ({ to, title, image, brightness, date, excerpt, bordered }) => (
   <CardWrap to={to} bordered={bordered}>
     <BackgroundImage
-      className='CardBackgroundImage'
+      className="CardBackgroundImage"
       image={image}
       opacity={brightness}
     />
-    <CardInner className='CardInner' column alignStart justifyCenter>
-      <Title className='CardTitle'>
-        <div className='background' />
-        <span className='animate-translate'>{title}</span>
+    <CardInner className="CardInner" column alignStart justifyCenter>
+      <Title className="CardTitle">
+        <div className="background" />
+        <span className="animate-translate">{title}</span>
       </Title>
       {date && <Meta date={date} />}
       {excerpt && <Excerpt>{excerpt}</Excerpt>}
