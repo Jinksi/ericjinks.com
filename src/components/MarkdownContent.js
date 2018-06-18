@@ -11,9 +11,9 @@ export default class MarkdownContent extends Component {
 
   render = () => (
     <Marked
-      source={this.props.source}
+      source={this.props.source || this.props.children}
       renderers={{
-        Image
+        Image,
       }}
     />
   )

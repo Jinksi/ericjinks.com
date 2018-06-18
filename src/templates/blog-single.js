@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import _get from 'lodash/get'
 
 import Page from '../components/Page'
-import Meta from '../components/Meta'
+
 import MarkdownContent from '../components/MarkdownContent'
+import PostHeader from '../components/PostHeader'
 
 import {
   Title,
@@ -16,49 +17,18 @@ import {
   TextContainer,
 } from '../components/common'
 
-const Header = styled(Section)`
-  overflow: hidden;
-  position: relative;
-  height: ${props => (props.image ? '35vw' : 'auto')};
-  min-height: 25rem;
-  max-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-`
-
-export default ({ data: { post } }) => {
+export default ({ data: { post, jsPost }, ...props }) => {
+  console.log(props)
   const {
     frontmatter: { title, date, image },
     rawMarkdownBody: content,
-  } = post
+  } =
+    post || jsPost
 
   return (
     <Page white>
       <Helmet title={title} />
-      <Header image={!!image}>
-        {image && (
-          <BackgroundImage
-            className="animate-translate animate-translate-mobile"
-            style={{
-              transform: `scale(1.1)`,
-            }}
-            innerRef={el => {
-              this.headerBG = el
-            }}
-            image={image}
-          />
-        )}
-        <Container>
-          <Flex column alignCenter>
-            <Title white>
-              <div className="background animate-translate animate-translate-mobile" />
-              <span>{title}</span>
-            </Title>
-            <Meta date={date} />
-          </Flex>
-        </Container>
-      </Header>
+      <PostHeader image={image} title={title} date={date} />
       <Section thin>
         <Container>
           <TextContainer style={{ margin: 'auto' }}>
@@ -81,6 +51,13 @@ export const pageQuery = graphql`
 
     post: markdownRemark(fields: { slug: { eq: $slug } }) {
       rawMarkdownBody
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+      }
+    }
+
+    jsPost: javascriptFrontmatter(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
