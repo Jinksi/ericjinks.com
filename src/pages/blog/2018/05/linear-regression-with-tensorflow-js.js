@@ -49,8 +49,10 @@ export default () => (
             </a>, ready for inference or further retraining of the model.
           </p>
           <p>
-            To get my head around the API, I jumped in to create a "Hello World"
-            Linear Regression model.
+            To get my head around the API, I created a “hello world” linear
+            regression model. In the canvas below, as you click to add points
+            the linear regression model will train on the new coordinates over
+            time, visualised by the predicted line.
           </p>
         </TextContainer>
         <TFLinearRegression />
