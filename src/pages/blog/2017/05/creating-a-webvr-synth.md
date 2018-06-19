@@ -1,6 +1,6 @@
 ---
 title: Creating a WebVR musical instrument using A-Frame & Tone.js
-excerpt: Let's create a lightning-fast, offline-first static website with React
+excerpt: Audio synthesis in WebVR
 date: 2017-05-15
 ---
 
