@@ -24,14 +24,9 @@ export default props => (
               <span>Eric Jinks</span>
             </Title>
             <TextContainer>
-              <p>I am a web developer from the Gold Coast, Australia.</p>
               <p>
-                My professional focus is on creating modern, performant websites
-                &amp; apps using JavaScript and Serverless architecture.
-              </p>
-              <p>
-                You'll also find me experimenting with sound design, music,
-                JavaScript, WebGL, WebVR and WebAudio.
+                I am a software engineer / web developer from the Gold Coast,
+                Australia.
               </p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
@@ -48,17 +43,11 @@ export default props => (
             <h3>Interests &amp; Skills</h3>
             <List>
               <li>JavaScript</li>
-              <li>React</li>
-              <li>Node</li>
-              <li>GraphQL</li>
-              <li>HTML &amp; CSS</li>
-              <li>CSS-in-JS</li>
-              <li>Serverless</li>
-              <li>Progressive Web Apps</li>
-              <li>JAMstack</li>
-              <li>Headless CMS</li>
-              <li>Service Workers</li>
+              <li>Machine Learning</li>
+              <li>Serverless Architecture</li>
               <li>WebVR, WebAudio &amp; WebGL</li>
+              <li>Creative Coding</li>
+              <li>Music &amp; Sound Design</li>
             </List>
           </Col>
         </Flex>
