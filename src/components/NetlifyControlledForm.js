@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { stringify } from 'qs'
 import { color } from '../globalStyles'
 
-const fetch = window.fetch
-
 class Form extends Component {
   state = {
     name: '',
@@ -15,12 +13,12 @@ class Form extends Component {
     disabled: false,
     alert: '',
     action: '/contact/',
-    'form-name': 'Contact'
+    'form-name': 'Contact',
   }
 
   form = null
 
-  componentDidMount () {
+  componentDidMount() {
     Array.from(document.querySelectorAll('.Form .Input')).forEach(input => {
       input.addEventListener('invalid', () => {
         console.log(input)
@@ -40,11 +38,11 @@ class Form extends Component {
       message: this.state.message,
       subject: this.state.subject,
       _gotcha: this.state._gotcha,
-      'form-name': this.state['form-name']
+      'form-name': this.state['form-name'],
     }
     this.setState({ disabled: true })
     fetch(this.state.action + '?' + stringify(data), {
-      method: 'POST'
+      method: 'POST',
     })
       .then(res => {
         if (res.ok) {
@@ -61,7 +59,7 @@ class Form extends Component {
           email: '',
           message: '',
           subject: `New Submission from ${this.props.siteTitle}!`,
-          _gotcha: ''
+          _gotcha: '',
         })
       })
       .catch(err => {
@@ -69,83 +67,83 @@ class Form extends Component {
         this.setState({
           disabled: false,
           alert:
-            '❗️ There is a problem, your message has not been sent, please try contacting us via email'
+            '❗️ There is a problem, your message has not been sent, please try contacting us via email',
         })
       })
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-  render () {
+  render() {
     return (
       <StyledForm
         name={this.state['form-name']}
         ref={form => {
           this.form = form
         }}
-        className='Form'
+        className="Form"
         action={this.state.action}
         onSubmit={this.handleSubmit}
-        data-netlify=''
-        data-netlify-honeypot='_gotcha'
+        data-netlify=""
+        data-netlify-honeypot="_gotcha"
       >
         {this.state.alert && <Alert>{this.state.alert}</Alert>}
-        <Label className='Label'>
+        <Label className="Label">
           <Input
             value={this.state.name}
             onChange={this.handleChange}
-            className='Input'
-            type='text'
-            placeholder='Your Name'
-            name='name'
+            className="Input"
+            type="text"
+            placeholder="Your Name"
+            name="name"
             required
             disabled={this.state.disabled ? 'disabled' : ''}
           />
           <LineGroup />
         </Label>
-        <Label className='Label'>
+        <Label className="Label">
           <Input
             value={this.state.email}
             onChange={this.handleChange}
-            className='Input'
-            type='email'
-            placeholder='Your Email'
-            name='email'
+            className="Input"
+            type="email"
+            placeholder="Your Email"
+            name="email"
             required
             disabled={this.state.disabled ? 'disabled' : ''}
           />
           <LineGroup />
         </Label>
-        <Label className='Label'>
+        <Label className="Label">
           <Textarea
             value={this.state.message}
             onChange={this.handleChange}
-            className='Input'
-            placeholder='Message'
-            name='message'
-            rows='10'
+            className="Input"
+            placeholder="Message"
+            name="message"
+            rows="10"
             required
             disabled={this.state.disabled ? 'disabled' : ''}
           />
           <LineGroup />
         </Label>
         <Input
-          type='text'
-          name='_gotcha'
+          type="text"
+          name="_gotcha"
           style={{ display: 'none' }}
           value={this.state._gotcha}
           onChange={this.handleChange}
         />
-        <Input type='hidden' name='subject' value={this.state.subject} />
-        <Input type='hidden' name='form-name' value={this.state['form-name']} />
+        <Input type="hidden" name="subject" value={this.state.subject} />
+        <Input type="hidden" name="form-name" value={this.state['form-name']} />
         <Button
-          className='button'
-          type='submit'
-          value='Send'
+          className="button"
+          type="submit"
+          value="Send"
           disabled={this.state.disabled ? 'disabled' : ''}
         />
       </StyledForm>
@@ -156,11 +154,11 @@ class Form extends Component {
 export default Form
 
 const LineGroup = () => (
-  <Line className='Line' viewBox='0 0 40 2' preserveAspectRatio='none'>
-    <path d='M0 1 L40 1' />
-    <path d='M0 1 L40 1' className='focus' />
-    <path d='M0 1 L40 1' className='invalid' />
-    <path d='M0 1 L40 1' className='valid' />
+  <Line className="Line" viewBox="0 0 40 2" preserveAspectRatio="none">
+    <path d="M0 1 L40 1" />
+    <path d="M0 1 L40 1" className="focus" />
+    <path d="M0 1 L40 1" className="invalid" />
+    <path d="M0 1 L40 1" className="valid" />
   </Line>
 )
 

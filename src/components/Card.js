@@ -1,22 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import Link from 'gatsby-link'
 
 import { Title, Flex, BackgroundImage } from './common'
 import Meta from '../components/Meta'
 import { color } from '../globalStyles'
 
-export default ({ to, title, image, brightness, date, excerpt, bordered }) => (
-  <CardWrap to={to} bordered={bordered}>
+export default ({
+  to,
+  title,
+  image,
+  brightness,
+  date,
+  excerpt,
+  bordered,
+  white,
+}) => (
+  <CardWrap to={to} bordered={bordered} white={white}>
     <BackgroundImage
-      className='CardBackgroundImage'
+      className="CardBackgroundImage"
       image={image}
       opacity={brightness}
     />
-    <CardInner className='CardInner' column alignStart justifyCenter>
-      <Title className='CardTitle'>
-        <div className='background' />
-        <span className='animate-translate'>{title}</span>
+    <CardInner className="CardInner" column alignStart justifyCenter>
+      <Title className="CardTitle" white={white}>
+        <div className="background" />
+        <span className="animate-translate">{title}</span>
       </Title>
       {date && <Meta date={date} />}
       {excerpt && <Excerpt>{excerpt}</Excerpt>}
@@ -30,13 +39,14 @@ const transition = `
 const CardWrap = styled(Link)`
   position: relative;
   display: block;
-  mix-blend-mode: lighten;
+  mix-blend-mode: ${props => (props.white ? 'multiply' : 'lighten')};
   text-decoration: none;
   overflow: hidden;
   padding: ${props => (props.bordered ? '3.5rem 2rem' : '12.5rem 0')};
   border: ${props =>
     props.bordered ? `1px solid ${color.secondary}` : 'none'};
   margin-bottom: ${props => (props.bordered ? `2.5rem` : 'none')};
+  ${props => props.white && `color: white`};
 
   .CardBackgroundImage {
     filter: saturate(30%);

@@ -6,7 +6,7 @@ export const font = {
   system: `-apple-system, BlinkMacSystemFont,
    "Segoe UI", "Roboto", "Oxygen",
    "Ubuntu", "Cantarell", "Fira Sans",
-   "Droid Sans", "Helvetica Neue", sans-serif`
+   "Droid Sans", "Helvetica Neue", sans-serif`,
 }
 
 export const color = {
@@ -14,11 +14,12 @@ export const color = {
   secondary: 'hsl(40, 28%, 95%)',
   black: '#272121',
   highlight: 'hsl(350, 70%, 40%)',
-  code: 'rgba(255, 255, 255, 0.05)'
+  code: 'hsl(0, 9%, 14%)',
 }
 
 export default () => injectGlobal`
   ${normalize()}
+
   html{
     box-sizing: border-box;
     font-size: 62.5%;
@@ -49,7 +50,7 @@ export default () => injectGlobal`
     color: inherit;
 
     &:hover, &:focus{
-      color: ${color.primary};
+      color: inherit;
     }
   }
 
@@ -61,6 +62,7 @@ export default () => injectGlobal`
   h1, h2, h3, h4, h5 ,h6{
     margin: 0;
     margin-bottom: 1em;
+    margin-top: 1em;
 
     &:last-child {
       margin-bottom: 0;
@@ -70,7 +72,7 @@ export default () => injectGlobal`
   img {
     max-width: 100%;
     height: auto;
-    mix-blend-mode: lighten;
+    ${'' /* mix-blend-mode: lighten; */}
   }
 
   .embed-container {
@@ -91,7 +93,7 @@ export default () => injectGlobal`
   }
 
   code {
-    background: ${color.code};
+    background: whitesmoke;
     padding: 0.2em 0.4em;
     font-size: 85%;
     overflow: auto;
@@ -106,19 +108,17 @@ export default () => injectGlobal`
     word-wrap: normal;
     overflow: auto;
 
-    &[class*="language-"] {
-      background:  ${color.code};
-    }
-
     code {
       background: none;
-      padding: 0;
+      color: #ABB2BF;
+      padding: 2rem;
     }
-  }
 
-  ::selection{
-    background: ${color.primary};
-    opacity: 1;
+    &[class*="language-"] {
+      background:  ${color.code};
+      margin: 4rem auto;
+    }
+
   }
 
   .animate-translate {

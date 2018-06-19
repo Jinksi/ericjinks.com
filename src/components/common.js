@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { color } from '../globalStyles'
 
 export const Absolute = styled.div`
@@ -19,6 +19,13 @@ export const PageWrap = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  ${props =>
+    props.whiteTheme &&
+    css`
+      color: ${color.black};
+      background: white;
+    `};
 `
 
 export const Section = styled.section`
@@ -89,7 +96,7 @@ export const H1 = styled.h1`
 export const Title = styled.h1`
   position: relative;
   font-size: 3rem;
-  color: ${color.black};
+  color: ${props => (props.white ? '#ffffff' : color.black)};
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -102,7 +109,7 @@ export const Title = styled.h1`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${color.secondary};
+    background-color: ${props => (props.white ? color.black : color.secondary)};
   }
 
   span {
