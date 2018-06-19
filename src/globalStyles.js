@@ -121,11 +121,6 @@ export default () => injectGlobal`
 
   }
 
-  ::selection{
-    background: ${color.primary};
-    opacity: 1;
-  }
-
   .animate-translate {
     display: block;
   }
