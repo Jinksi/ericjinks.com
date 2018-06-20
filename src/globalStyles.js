@@ -106,7 +106,7 @@ export default () => injectGlobal`
   code {
     background: whitesmoke;
     padding: 0.2em 0.4em;
-    font-size: 85%;
+    font-size: 85% !important;
     overflow: auto;
     max-width: 100%;
     display: inline-block;
