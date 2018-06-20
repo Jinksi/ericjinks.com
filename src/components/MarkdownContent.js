@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Marked from 'react-markdown'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-python'
 import 'prism-theme-one-dark/prism-onedark.css'
 
 export default class MarkdownContent extends Component {
