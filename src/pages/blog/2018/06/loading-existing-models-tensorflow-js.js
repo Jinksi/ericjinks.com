@@ -1,7 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
-import _get from 'lodash/get'
 
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
@@ -15,7 +13,7 @@ import {
   TextContainer,
 } from '../../../../components/common'
 
-import TFLinearRegression from '../../../../components/ml/TFCNNDemo'
+import TFLinearRegression from '../../../../components/ml/TFCNNDemo.js'
 
 export const frontmatter = {
   title: 'Loading existing models with TensorFlow.js',
@@ -69,10 +67,8 @@ const predict = async imageSource => {
     return { classificationName, classificationData, confidence, duration }
   }
 }
-\`\`\`
-  `,
+\`\`\``,
   c: `
-
 ### The pre-trained model source
 \`\`\`python
 # Convolutional Neural Network
@@ -145,7 +141,7 @@ print(f'Saved file: {filename}')
 
 See the [TensorFlow.js docs](https://js.tensorflow.org/tutorials/import-keras.html) for more info.
 Example photos by [Mia Phoy](https://unsplash.com/photos/okEVQ7r3JPg) and [Freddie Marriage](https://unsplash.com/photos/iYQC9xWMvw4).
-  `,
+`,
 }
 
 export default () => (
