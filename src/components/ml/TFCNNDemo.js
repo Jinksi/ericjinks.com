@@ -19,16 +19,18 @@ export default class LinearRegression extends React.Component {
     this.initTf()
   }
 
-  initTf = async () => {
-    this.model = await tf.loadModel('/model-2018-06-17-21-37/model.json')
+  initTf = () => {
+    tf.loadModel('/model-2018-06-17-21-37/model.json').then(model => {
+      this.model = model
+    })
   }
 
-  predict = async imageSource =>
+  predict = imageSource =>
     tf.tidy(() => {
       const img = document.createElement('img')
       img.src = imageSource
       // wait for image to load
-      img.onload = async () => {
+      img.onload = () => {
         // convert image into tensor3d (width, height, rgb)
         const imageData = tf.fromPixels(img)
         // resize to 128x128, enforcing float32
@@ -43,17 +45,19 @@ export default class LinearRegression extends React.Component {
         // make prediction
         const timeStart = new Date()
         const prediction = model.predict(predictme)
-        const classificationData = await prediction.data()
-        const timeEnd = new Date()
-        const classificationName = classificationData[0] > 0.5 ? 'Dog' : 'Cat'
-        const confidence =
-          Math.round(Math.abs(classificationData[0] - 0.5) * 2 * 100) + '%'
-        return {
-          classificationName,
-          classificationData,
-          confidence,
-          duration: timeEnd - timeStart,
-        }
+        prediction.data().then(classificationData => {
+          const timeEnd = new Date()
+          const classificationName = classificationData[0] > 0.5 ? 'Dog' : 'Cat'
+          const confidence =
+            Math.round(Math.abs(classificationData[0] - 0.5) * 2 * 100) + '%'
+
+          return {
+            classificationName,
+            classificationData,
+            confidence,
+            duration: timeEnd - timeStart,
+          }
+        })
       }
     })
 
@@ -84,7 +88,7 @@ export default class LinearRegression extends React.Component {
     })
   }
 
-  addFileToQueue = async file => {
+  addFileToQueue = file => {
     const reader = new FileReader()
     reader.onload = e => {
       this.setState({
