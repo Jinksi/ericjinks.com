@@ -1,5 +1,5 @@
 import { injectGlobal } from 'styled-components'
-import { normalize } from 'polished'
+import 'modern-normalize/modern-normalize.css'
 
 export const font = {
   primary: `'PT Mono', sans-serif`,
@@ -18,8 +18,6 @@ export const color = {
 }
 
 export default () => injectGlobal`
-  ${normalize()}
-
   html{
     box-sizing: border-box;
     font-size: 62.5%;
@@ -46,6 +44,10 @@ export default () => injectGlobal`
     box-sizing: border-box;
   }
 
+  strong {
+    font-weight: 600;
+  }
+
   a{
     color: inherit;
 
@@ -57,6 +59,15 @@ export default () => injectGlobal`
   p {
     margin-top: 0;
     margin-bottom: 1em;
+  }
+
+  figcaption {
+    background: whitesmoke;
+    display: block;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 0.5em;
+    margin-bottom: 4rem;
   }
 
   h1, h2, h3, h4, h5 ,h6{

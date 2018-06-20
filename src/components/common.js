@@ -46,6 +46,12 @@ export const Container = styled.div`
 export const TextContainer = styled.div`
   max-width: 600px;
   width: 100%;
+  ${props =>
+    props.auto &&
+    css`
+      margin-left: auto;
+      margin-right: auto;
+    `};
 `
 
 export const Flex = styled.div`
