@@ -21,6 +21,7 @@ export default ({ image, title, date }) => {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    text-align: center;
   `
 
   return (
