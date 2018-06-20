@@ -43,7 +43,7 @@ To run a prediction on new image data, we make use of the \`tf.fromPixels()\` me
 Using this we can draw image data from sources such as file uploads, streaming video from webcams / device cameras and HTML canvas elements.
 In this demo, you can add use and example image or upload you own.
 
-\`\`\`
+\`\`\`js
 const predict = async imageSource => {
   const img = document.createElement('img')
   img.src = imageSource

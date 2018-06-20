@@ -4,25 +4,33 @@ import Uppy from 'uppy/lib/core'
 import DragDrop from 'uppy/lib/plugins/DragDrop'
 import 'uppy/dist/uppy.css'
 
+import Loading from '../Loading'
 import dogImage from './TFCNNDemo/dog.jpg'
 import catImage from './TFCNNDemo/cat.jpg'
 
 export default class LinearRegression extends React.Component {
   state = {
     predictionQueue: [],
+    predictions: [],
+    loading: true,
+    error: null,
   }
 
   model = null
 
   componentDidMount() {
-    this.initUppy()
     this.initTf()
   }
 
   initTf = () => {
-    tf.loadModel('/model-2018-06-17-21-37/model.json').then(model => {
-      this.model = model
-    })
+    tf.loadModel('/model-2018-06-17-21-37/model.json')
+      .then(model => {
+        this.model = model
+        this.setState({ loading: false }, this.initUppy)
+      })
+      .catch(error => {
+        this.setState({ error: 'Failed to load model', loading: false })
+      })
   }
 
   predict = imageSource =>
@@ -39,24 +47,29 @@ export default class LinearRegression extends React.Component {
           'float32'
         )
         // normalise pixel values by dividing by 255
-        const normalised = tf.div(newImage, tf.fill([128, 128, 3], 255))
+        const normalised = tf.div(resized, tf.fill([128, 128, 3], 255))
         // expand to a 4d tensor (width, height, channels, n images)
         const expanded = tf.cast(tf.expandDims(normalised), 'float32')
         // make prediction
         const timeStart = new Date()
-        const prediction = model.predict(predictme)
+        const prediction = this.model.predict(expanded)
         prediction.data().then(classificationData => {
           const timeEnd = new Date()
           const classificationName = classificationData[0] > 0.5 ? 'Dog' : 'Cat'
           const confidence =
             Math.round(Math.abs(classificationData[0] - 0.5) * 2 * 100) + '%'
 
-          return {
-            classificationName,
-            classificationData,
-            confidence,
-            duration: timeEnd - timeStart,
-          }
+          this.setState(prevState => ({
+            predictions: [
+              ...prevState.predictions,
+              {
+                classificationName,
+                classificationData,
+                confidence,
+                duration: timeEnd - timeStart,
+              },
+            ],
+          }))
         })
       }
     })
@@ -66,9 +79,9 @@ export default class LinearRegression extends React.Component {
       debug: true,
       autoProceed: true,
       restrictions: {
-        maxFileSize: 1000000,
-        maxNumberOfFiles: 1,
-        minNumberOfFiles: 1,
+        maxFileSize: 5000000,
+        // maxNumberOfFiles: 1,
+        // minNumberOfFiles: 1,
         allowedFileTypes: ['image/*'],
       },
     })
@@ -76,37 +89,44 @@ export default class LinearRegression extends React.Component {
         target: '.TFCNNDemoUppy',
         width: '100%',
         height: '100%',
-        note: 'Cat or Dog?',
+        note:
+          'Images are not uploaded to a server, they are processed in the browser',
         locale: {},
       })
       .on('file-added', file => this.addFileToQueue(file.data))
   }
 
   addImageToQueue = image => {
-    this.setState({
-      predictionQueue: [...this.state.predictionQueue, image],
-    })
+    this.setState(
+      {
+        predictionQueue: [...this.state.predictionQueue, image],
+      },
+      () => this.predict(image)
+    )
   }
 
   addFileToQueue = file => {
     const reader = new FileReader()
     reader.onload = e => {
-      this.setState({
-        predictionQueue: [...this.state.predictionQueue, reader.result],
-      })
+      this.setState(
+        {
+          predictionQueue: [...this.state.predictionQueue, reader.result],
+        },
+        () => this.predict(reader.result)
+      )
     }
     reader.readAsDataURL(file)
   }
 
   render() {
     const { style = {}, ...props } = this.props
-    const { predictionQueue } = this.state
+    const { predictions, predictionQueue, loading, error } = this.state
 
     const Img = ({ src, ...props }) => (
       <img
         src={src}
         style={{
-          width: 'calc(50% - 1rem)',
+          width: 'calc(25% - 1rem)',
           margin: '0.5rem',
           cursor: 'pointer',
         }}
@@ -119,15 +139,53 @@ export default class LinearRegression extends React.Component {
         style={{ margin: '5rem auto', textAlign: 'center', ...style }}
         {...props}
       >
-        <h3>Demo work in progress... 😅</h3>
-        <p>Select an example image for prediction</p>
-        <div style={{ opacity: 0.5, pointerEvents: 'none' }}>
-          <Img src={catImage} />
-          <Img src={dogImage} />
-          {predictionQueue.map(src => <Img src={src} />)}
-          <div className="TFCNNDemoOutput" />
-          <div className="TFCNNDemoUppy" />
-        </div>
+        <p>
+          A convolutional neural network trained to classify an image as either
+          a <em>Dog</em> or a <em>Cat</em>. Select an example image for
+          prediction or upload your own.
+        </p>
+        {error && <code style={{ marginBottom: '2rem' }}>Error: {error}</code>}
+        {loading ? (
+          <Loading text="Loading the model" style={{ margin: '2rem auto' }} />
+        ) : (
+          <div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {predictionQueue.map((src, index) => {
+                const { classificationName, confidence, duration } =
+                  predictions[index] || {}
+                return (
+                  <div
+                    style={{
+                      width: 'calc(50% - 1rem)',
+                      margin: '2rem 0.5rem',
+                    }}
+                  >
+                    <div
+                      style={{
+                        backgroundImage: `url(${src})`,
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        height: '200px',
+                        marginBottom: '1rem',
+                      }}
+                    />
+                    <div style={{}}>
+                      <strong>{classificationName}</strong>
+                    </div>
+                    <div>Confidence: {confidence || '...'}</div>
+                    <div>Duration: {duration + 'ms' || '...'}</div>
+                  </div>
+                )
+              })}
+            </div>
+            <Img src={catImage} />
+            <Img src={dogImage} />
+
+            <div className="TFCNNDemoOutput" />
+            <div className="TFCNNDemoUppy" />
+          </div>
+        )}
       </div>
     )
   }
