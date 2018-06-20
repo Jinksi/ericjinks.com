@@ -86,7 +86,6 @@ export default class LinearRegression extends React.Component {
   }
 
   addFileToQueue = async file => {
-    9
     const reader = new FileReader()
     reader.onload = e => {
       this.setState({
