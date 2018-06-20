@@ -18,15 +18,16 @@ import {
 } from '../components/common'
 
 export default ({ data: { post, jsPost }, ...props }) => {
+  if (!post) post = jsPost
   const {
     frontmatter: { title, date, image },
     rawMarkdownBody: content,
-  } =
-    post || jsPost
-
+  } = post
   return (
     <Page white>
-      <Helmet title={title} />
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <PostHeader image={image} title={title} date={date} />
       <Section thin>
         <Container>

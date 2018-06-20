@@ -50,6 +50,7 @@ export default ({ data }) => {
 
   return (
     <Page white>
+      <Helmet title="Blog" />
       <Section thin>
         <Container skinny>
           <TextContainer style={{ padding: '5rem 0' }}>
@@ -69,7 +70,6 @@ export default ({ data }) => {
           </TextContainer>
         </Container>
       </Section>
-      <Helmet title="Blog" />
     </Page>
   )
 }

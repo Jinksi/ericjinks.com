@@ -15,6 +15,7 @@ import {
 
 export default props => (
   <Page>
+    <Helmet title="About" />
     <Section thin>
       <Container skinny>
         <Flex alignCenter>
@@ -53,7 +54,6 @@ export default props => (
         </Flex>
       </Container>
     </Section>
-    <Helmet title="About" />
   </Page>
 )
 
