@@ -146,7 +146,10 @@ export default class LinearRegression extends React.Component {
         </p>
         {error && <code style={{ marginBottom: '2rem' }}>Error: {error}</code>}
         {loading ? (
-          <Loading text="Loading the model" style={{ margin: '2rem auto' }} />
+          <Loading
+            text="Loading the model (~26MB)"
+            style={{ margin: '2rem auto' }}
+          />
         ) : (
           <div>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
