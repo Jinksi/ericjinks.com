@@ -76,7 +76,8 @@ export default class LinearRegression extends React.Component {
     this.x_vals = []
     this.y_vals = []
     this.points = []
-    const options = { width: 600, height: 400 }
+    const w = Math.min(window.innerWidth * 0.9, 600)
+    const options = { width: w, height: 400 }
     const colours = ['#272727']
     this.two = new Two(options).appendTo(this.canvas)
     const { two } = this
