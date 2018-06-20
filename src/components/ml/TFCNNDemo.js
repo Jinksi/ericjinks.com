@@ -17,7 +17,6 @@ export default class LinearRegression extends React.Component {
   componentDidMount() {
     this.initUppy()
     this.initTf()
-    console.log(catImage)
   }
 
   initTf = async () => {
