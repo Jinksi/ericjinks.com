@@ -78,6 +78,7 @@ export const pageQuery = graphql`
   query blogIndexQuery {
     jsPosts: allJavascriptFrontmatter(
       filter: { fields: { slug: { glob: "/blog/**" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
