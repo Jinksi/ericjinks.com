@@ -158,6 +158,7 @@ export default class LinearRegression extends React.Component {
                   predictions[index] || {}
                 return (
                   <div
+                    key={src + index}
                     style={{
                       width: 'calc(50% - 1rem)',
                       margin: '2rem 0.5rem',
@@ -177,7 +178,7 @@ export default class LinearRegression extends React.Component {
                       <strong>{classificationName}</strong>
                     </div>
                     <div>Confidence: {confidence || '...'}</div>
-                    <div>Duration: {duration + 'ms' || '...'}</div>
+                    <div>Duration: {duration ? duration + 'ms' : '...'}</div>
                   </div>
                 )
               })}
