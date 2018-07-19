@@ -9,7 +9,7 @@ class Form extends Component {
     email: '',
     message: '',
     subject: `New Submission from ${this.props.siteTitle}!`,
-    _gotcha: '',
+    comments: '',
     disabled: false,
     alert: '',
     action: '/contact/',
@@ -37,7 +37,7 @@ class Form extends Component {
       email: this.state.email,
       message: this.state.message,
       subject: this.state.subject,
-      _gotcha: this.state._gotcha,
+      comments: this.state.comments,
       'form-name': this.state['form-name'],
     }
     this.setState({ disabled: true })
@@ -59,7 +59,7 @@ class Form extends Component {
           email: '',
           message: '',
           subject: `New Submission from ${this.props.siteTitle}!`,
-          _gotcha: '',
+          comments: '',
         })
       })
       .catch(err => {
@@ -89,7 +89,7 @@ class Form extends Component {
         action={this.state.action}
         onSubmit={this.handleSubmit}
         data-netlify=""
-        data-netlify-honeypot="_gotcha"
+        data-netlify-honeypot="comments"
       >
         {this.state.alert && <Alert>{this.state.alert}</Alert>}
         <Label className="Label">
@@ -133,9 +133,9 @@ class Form extends Component {
         </Label>
         <Input
           type="text"
-          name="_gotcha"
+          name="comments"
           style={{ display: 'none' }}
-          value={this.state._gotcha}
+          value={this.state.comments}
           onChange={this.handleChange}
         />
         <Input type="hidden" name="subject" value={this.state.subject} />
