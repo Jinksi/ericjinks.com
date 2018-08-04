@@ -26,8 +26,7 @@ export default props => (
             </Title>
             <TextContainer>
               <p>
-                I am a software engineer / web developer from the Gold Coast,
-                Australia.
+                I am a software engineer from the Gold Coast, Australia.
               </p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
@@ -43,9 +42,7 @@ export default props => (
             </TextContainer>
             <h3>Interests &amp; Skills</h3>
             <List>
-              <li>JavaScript</li>
               <li>Machine Learning</li>
-              <li>Serverless Architecture</li>
               <li>WebVR, WebAudio &amp; WebGL</li>
               <li>Creative Coding</li>
               <li>Music &amp; Sound Design</li>
