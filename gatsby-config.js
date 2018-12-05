@@ -10,7 +10,6 @@ module.exports = {
       twitterSiteAccount: '@Jinksi',
     },
   },
-  pathPrefix: '/gatsby-starter-blog',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
