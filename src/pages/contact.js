@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import { Section, Container, TextContainer } from '../components/common'
 import NetlifyControlledForm from '../components/NetlifyControlledForm'
+import EnquiryFormSimpleAjax from '../components/EnquiryFormSimpleAjax'
 
 export default props => (
   <Page>
@@ -14,24 +15,26 @@ export default props => (
             If you would like to collaborate on a new project or just want to
             get in touch, use the form below.
           </p>
+          ''
           <p>
             Alternatively, send me an email at{' '}
             <a
-              target='_blank'
-              rel='noopener noreferrer'
-              href='mailto:ericjinks@gmail.com'
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:ericjinks@gmail.com"
             >
               ericjinks@gmail.com
-            </a>.
+            </a>
+            .
             <br />
             You can also find me on{' '}
-            <a href='https://github.com/Jinksi'>Github</a> or{' '}
-            <a href='https://twitter.com/jinksi'>Twitter</a>.
+            <a href="https://github.com/Jinksi">Github</a> or{' '}
+            <a href="https://twitter.com/jinksi">Twitter</a>.
           </p>
-          <NetlifyControlledForm siteTitle='ericjinks.com' />
+          <EnquiryFormSimpleAjax siteTitle="ericjinks.com" />
         </TextContainer>
       </Container>
     </Section>
-    <Helmet title='Contact' />
+    <Helmet title="Contact" />
   </Page>
 )
