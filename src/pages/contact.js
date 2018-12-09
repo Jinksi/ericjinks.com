@@ -15,7 +15,6 @@ export default props => (
             If you would like to collaborate on a new project or just want to
             get in touch, use the form below.
           </p>
-          ''
           <p>
             Alternatively, send me an email at{' '}
             <a
