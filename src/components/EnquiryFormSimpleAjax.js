@@ -4,8 +4,6 @@ import { serialize } from 'dom-form-serializer'
 
 import './EnquiryForm.css'
 
-const fetch = window.fetch
-
 class Form extends React.Component {
   static defaultProps = {
     name: 'Contact',
@@ -28,9 +26,10 @@ class Form extends React.Component {
     const form = e.target
     const data = serialize(form)
     this.setState({ disabled: true })
-    fetch(form.action + '?' + stringify(data), {
-      method: 'POST',
-    })
+    window
+      .fetch(form.action + '?' + stringify(data), {
+        method: 'POST',
+      })
       .then(res => {
         if (res.ok) {
           console.log(res)
