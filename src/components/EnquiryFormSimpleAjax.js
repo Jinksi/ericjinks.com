@@ -6,7 +6,7 @@ import './EnquiryForm.css'
 
 class Form extends React.Component {
   static defaultProps = {
-    name: 'Contact',
+    name: 'Contact-Test',
     subject: '', // optional subject of the notification email
     action: '',
     successMessage: 'Thanks for your enquiry',
