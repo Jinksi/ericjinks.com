@@ -100,6 +100,7 @@ class Form extends React.Component {
         <input type="text" name="_gotcha" className="_gotcha" />
         {!!subject && <input type="hidden" name="subject" value={subject} />}
         <input type="hidden" name="form-name" value={name} />
+        <div data-netlify-recaptcha />
         <input
           className="Button EnquiryForm--SubmitButton"
           type="submit"
