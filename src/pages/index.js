@@ -25,26 +25,26 @@ export default props => (
               <span>Eric Jinks</span>
             </Title>
             <TextContainer>
+              <p>I am a software engineer from the Gold Coast, Australia.</p>
               <p>
-                I am a software engineer from the Gold Coast, Australia.
-              </p>
-              <p>
-                If you'd like to get in touch, head over to the{' '}
-                <Link to="/contact/">Contact</Link> page or send me an email at{' '}
+                If you'd like to get in touch, send me an email at{' '}
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="mailto:ericjinks@gmail.com"
                 >
                   ericjinks@gmail.com
-                </a>
+                </a>{' '}
+                or find me on <a href="https://github.com/Jinksi">Github</a> or{' '}
+                <a href="https://twitter.com/jinksi">Twitter</a>
               </p>
             </TextContainer>
             <h3>Interests &amp; Skills</h3>
             <List>
-              <li>Machine Learning</li>
+              <li>WebDev</li>
               <li>WebVR, WebAudio &amp; WebGL</li>
               <li>Creative Coding</li>
+              <li>Machine Learning</li>
               <li>Music &amp; Sound Design</li>
             </List>
           </Col>
