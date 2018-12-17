@@ -146,6 +146,7 @@ class Form extends Component {
           value="Send"
           disabled={this.state.disabled ? 'disabled' : ''}
         />
+        <div data-netlify-recaptcha />
       </StyledForm>
     )
   }

@@ -1,0 +1,96 @@
+.EnquiryForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 500px;
+  margin: 2.5rem 0;
+}
+
+.EnquiryForm > * + * {
+  margin-top: 1.5rem;
+}
+
+.EnquiryForm--Label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.EnquiryForm--Input {
+  font-family: inherit;
+  font-weight: inherit;
+  flex-grow: 1;
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  border: none;
+  padding: 0.5em 0;
+  line-height: 1;
+  transition: border-color 0.2s;
+  resize: none;
+  background: transparent;
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.EnquiryForm--Input:focus {
+  outline: none;
+  border-bottom-color: currentColor;
+}
+
+.EnquiryForm--Input[disabled],
+.EnquiryForm--SubmitButton[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: progress;
+}
+
+.EnquiryForm--Input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.EnquiryForm--Alert {
+  background: transparent;
+  width: 100%;
+  padding: 2rem;
+  color: hsl(40, 28%, 100%);
+  border: 1px solid hsl(40, 28%, 100%);
+  text-align: center;
+}
+
+._gotcha {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
+
+.EnquiryForm--SubmitButton {
+  background: hsl(40, 28%, 95%);
+  color: #272121;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 1px solid hsl(40, 28%, 95%);
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.EnquiryForm--SubmitButton:hover,
+.EnquiryForm--SubmitButton:focus {
+  color: white;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.EnquiryForm--SubmitButton[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: progress;
+}
