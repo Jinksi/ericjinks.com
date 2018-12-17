@@ -25,9 +25,7 @@ export default props => (
               <span>Eric Jinks</span>
             </Title>
             <TextContainer>
-              <p>
-                I am a software engineer from the Gold Coast, Australia.
-              </p>
+              <p>I am a software engineer from the Gold Coast, Australia.</p>
               <p>
                 If you'd like to get in touch, head over to the{' '}
                 <Link to="/contact/">Contact</Link> page or send me an email at{' '}
@@ -42,9 +40,10 @@ export default props => (
             </TextContainer>
             <h3>Interests &amp; Skills</h3>
             <List>
-              <li>Machine Learning</li>
+              <li>WebDev</li>
               <li>WebVR, WebAudio &amp; WebGL</li>
               <li>Creative Coding</li>
+              <li>Machine Learning</li>
               <li>Music &amp; Sound Design</li>
             </List>
           </Col>
