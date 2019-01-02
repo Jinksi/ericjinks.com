@@ -8,7 +8,6 @@ import {
   Container,
   Section,
   BackgroundImage,
-  TextContainer,
 } from '../components/common'
 
 export default ({ image, title, date }) => {

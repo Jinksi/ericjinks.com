@@ -2,8 +2,8 @@ const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const blogSingle = path.resolve('./src/templates/blog-single.js')
@@ -66,8 +66,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   })
 }
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
 
   if (`MarkdownRemark JavascriptFrontmatter`.includes(node.internal.type)) {
     const value = createFilePath({ node, getNode })
@@ -75,6 +75,21 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
       name: `slug`,
       node,
       value,
+    })
+  }
+}
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /two.js/,
+            use: loaders.null(),
+          },
+        ],
+      },
     })
   }
 }

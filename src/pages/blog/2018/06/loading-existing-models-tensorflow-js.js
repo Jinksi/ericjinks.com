@@ -1,15 +1,13 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import Layout from './../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
 
 import {
-  Title,
-  Flex,
   Container,
   Section,
-  BackgroundImage,
   TextContainer,
 } from '../../../../components/common'
 
@@ -144,8 +142,8 @@ Example photos by [Mia Phoy](https://unsplash.com/photos/okEVQ7r3JPg) and [Fredd
 `,
 }
 
-export default () => (
-  <div>
+export default ({ location }) => (
+  <Layout location={location}>
     <Helmet title={frontmatter.title} />
     <PostHeader
       image={frontmatter.image}
@@ -163,5 +161,5 @@ export default () => (
         </TextContainer>
       </Container>
     </Section>
-  </div>
+  </Layout>
 )

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 
 import { Title, Flex, BackgroundImage } from './common'
 import Meta from '../components/Meta'

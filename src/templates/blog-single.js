@@ -1,47 +1,42 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
-import _get from 'lodash/get'
+import { graphql } from 'gatsby'
 
 import Page from '../components/Page'
+import Layout from '../components/layout'
 
 import MarkdownContent from '../components/MarkdownContent'
 import PostHeader from '../components/PostHeader'
 
-import {
-  Title,
-  Flex,
-  Container,
-  Section,
-  BackgroundImage,
-  TextContainer,
-} from '../components/common'
+import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ data: { post, jsPost }, ...props }) => {
+export default ({ location, data: { post, jsPost }, ...props }) => {
   if (!post) post = jsPost
   const {
     frontmatter: { title, date, image },
     rawMarkdownBody: content,
   } = post
   return (
-    <Page white>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
-      <PostHeader image={image} title={title} date={date} />
-      <Section thin>
-        <Container>
-          <TextContainer style={{ margin: 'auto' }}>
-            <MarkdownContent source={content} />
-          </TextContainer>
-        </Container>
-      </Section>
-    </Page>
+    <Layout location={location}>
+      <Page white>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
+        <PostHeader image={image} title={title} date={date} />
+        <Section thin>
+          <Container>
+            <TextContainer style={{ margin: 'auto' }}>
+              <MarkdownContent source={content} />
+            </TextContainer>
+          </Container>
+        </Section>
+      </Page>
+    </Layout>
   )
 }
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query($slug: String!) {
     site {
       siteMetadata {
         title
