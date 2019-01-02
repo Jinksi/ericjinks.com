@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import Page from '../components/Page'
 import {
   Title,

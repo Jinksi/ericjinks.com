@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import Page from '../components/Page'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 import MarkdownContent from '../components/MarkdownContent'
 import PostHeader from '../components/PostHeader'

@@ -5,7 +5,7 @@ import { Link, graphql } from 'gatsby'
 import _get from 'lodash/get'
 import ArrowRight from 'react-feather/dist/icons/arrow-right'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import Page from '../components/Page'
 import Meta from '../components/Meta'
 import { Section, Container, TextContainer } from '../components/common'
