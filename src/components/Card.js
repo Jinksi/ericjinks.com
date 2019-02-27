@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import GatsbyImage from 'gatsby-image'
-import _get from 'lodash/get'
+
 import { Link } from 'gatsby'
 
-import { Title, Flex, BackgroundImage } from './common'
+import { Title, Flex } from './common'
+import BackgroundImage from './BackgroundImage'
 import Meta from '../components/Meta'
 import { color } from '../globalStyles'
 
@@ -19,21 +19,11 @@ export default ({
   white,
 }) => (
   <CardWrap to={to} bordered={bordered} white={white}>
-    <BackgroundImage className="CardBackgroundImage" opacity={brightness}>
-      {_get(image, 'sizes') && (
-        <GatsbyImage
-          {...image}
-          style={{
-            position: 'absolute',
-            width: 'auto',
-            height: 'auto',
-          }}
-          imgStyle={{
-            objectFit: 'cover',
-          }}
-        />
-      )}
-    </BackgroundImage>
+    <BackgroundImage
+      className="CardBackgroundImage"
+      opacity={brightness}
+      image={image}
+    />
     <CardInner className="CardInner" column alignStart justifyCenter>
       <Title className="CardTitle" white={white}>
         <div className="background" />

@@ -7,14 +7,8 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Page from '../components/Page'
 
-import {
-  Title,
-  Flex,
-  Container,
-  Section,
-  BackgroundImage,
-  Button,
-} from '../components/common'
+import { Title, Flex, Container, Section, Button } from '../components/common'
+import BackgroundImage from '../components/BackgroundImage'
 
 const Header = styled(Section)`
   overflow: hidden;
@@ -54,7 +48,7 @@ class Project extends Component {
       location,
       data: { project },
     } = this.props
-    const image = _get(project, 'frontmatter.image.childImageSharp.resize.src')
+    const image = _get(project, 'frontmatter.image.childImageSharp')
 
     return (
       <Layout location={location}>
@@ -117,8 +111,8 @@ export const pageQuery = graphql`
         external
         image {
           childImageSharp {
-            resize(width: 1800) {
-              src
+            fluid(quality: 75) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

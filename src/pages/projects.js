@@ -74,8 +74,8 @@ export const pageQuery = graphql`
             date
             image {
               childImageSharp {
-                sizes(quality: 75) {
-                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
+                fluid(quality: 75) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
