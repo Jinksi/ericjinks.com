@@ -75,7 +75,7 @@ export default class LinearRegression extends React.Component {
     })
 
   initUppy = () => {
-    const uppy = Uppy({
+    Uppy({
       debug: true,
       autoProceed: true,
       restrictions: {
@@ -125,12 +125,14 @@ export default class LinearRegression extends React.Component {
     const Img = ({ src, ...props }) => (
       <img
         src={src}
+        alt={'Example'}
         style={{
           width: 'calc(25% - 1rem)',
           margin: '0.5rem',
           cursor: 'pointer',
         }}
         onClick={() => this.addImageToQueue(src)}
+        {...props}
       />
     )
 
@@ -183,8 +185,8 @@ export default class LinearRegression extends React.Component {
                 )
               })}
             </div>
-            <Img src={catImage} />
-            <Img src={dogImage} />
+            <Img src={catImage} alt="Cat Image" />
+            <Img src={dogImage} alt="Dog Image" />
 
             <div className="TFCNNDemoOutput" />
             <div className="TFCNNDemoUppy" />

@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import _get from 'lodash/get'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/Layout'
 import Page from '../components/Page'
-import MarkdownContent from '../components/MarkdownContent'
 
-import {
-  Title,
-  Flex,
-  Container,
-  Section,
-  BackgroundImage,
-  Button,
-} from '../components/common'
+import { Title, Flex, Container, Section, Button } from '../components/common'
+import BackgroundImage from '../components/BackgroundImage'
 
 const Header = styled(Section)`
   overflow: hidden;
@@ -50,46 +45,49 @@ class Project extends Component {
 
   render() {
     const {
+      location,
       data: { project },
     } = this.props
-    const image = _get(project, 'frontmatter.image.childImageSharp.resize.src')
+    const image = _get(project, 'frontmatter.image.childImageSharp')
 
     return (
-      <Page>
-        <Helmet title={project.frontmatter.title} />
-        <Header>
-          <BackgroundImage
-            className="animate-translate animate-translate-mobile"
-            style={{
-              transform: `scale(1.1)`,
-            }}
-            innerRef={el => {
-              this.headerBG = el
-            }}
-            image={image}
-          />
-          <Container>
-            <Flex>
-              <Title>
-                <div className="background animate-translate animate-translate-mobile" />
-                <span>{project.frontmatter.title}</span>
-              </Title>
-            </Flex>
-          </Container>
-        </Header>
-        <Section>
-          <Container>
-            {project.frontmatter.external && (
-              <p>
-                <Button href={project.frontmatter.external}>View</Button>
-              </p>
-            )}
-            {project.html && (
-              <div dangerouslySetInnerHTML={{ __html: project.html }} />
-            )}
-          </Container>
-        </Section>
-      </Page>
+      <Layout location={location}>
+        <Page>
+          <Helmet title={project.frontmatter.title} />
+          <Header>
+            <BackgroundImage
+              className="animate-translate animate-translate-mobile"
+              style={{
+                transform: `scale(1.1)`,
+              }}
+              innerRef={el => {
+                this.headerBG = el
+              }}
+              image={image}
+            />
+            <Container>
+              <Flex>
+                <Title>
+                  <div className="background animate-translate animate-translate-mobile" />
+                  <span>{project.frontmatter.title}</span>
+                </Title>
+              </Flex>
+            </Container>
+          </Header>
+          <Section>
+            <Container>
+              {project.frontmatter.external && (
+                <p>
+                  <Button href={project.frontmatter.external}>View</Button>
+                </p>
+              )}
+              {project.html && (
+                <div dangerouslySetInnerHTML={{ __html: project.html }} />
+              )}
+            </Container>
+          </Section>
+        </Page>
+      </Layout>
     )
   }
 }
@@ -97,7 +95,7 @@ class Project extends Component {
 export default Project
 
 export const pageQuery = graphql`
-  query ProjectPostBySlug($slug: String!) {
+  query($slug: String!) {
     site {
       siteMetadata {
         title
@@ -113,8 +111,8 @@ export const pageQuery = graphql`
         external
         image {
           childImageSharp {
-            resize(width: 1800) {
-              src
+            fluid(maxWidth: 2400, quality: 75) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

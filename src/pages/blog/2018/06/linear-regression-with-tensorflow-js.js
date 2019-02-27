@@ -1,17 +1,13 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
-import _get from 'lodash/get'
 
+import Layout from '../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
 
 import {
-  Title,
-  Flex,
   Container,
   Section,
-  BackgroundImage,
   TextContainer,
 } from '../../../../components/common'
 
@@ -105,8 +101,8 @@ Head to the [Tensorflow.js docs](https://js.tensorflow.org/) for more info.
   `,
 }
 
-export default () => (
-  <div>
+export default ({ location }) => (
+  <Layout location={location}>
     <Helmet title={frontmatter.title} />
     <PostHeader
       image={frontmatter.image}
@@ -127,7 +123,8 @@ export default () => (
             browser. Existing models compiled with TensorFlow or Keras can be{' '}
             <a href="https://js.tensorflow.org/tutorials/import-keras.html">
               converted and imported by TensorFlow.js
-            </a>, ready for inference or further retraining of the model.
+            </a>
+            , ready for inference or further retraining of the model.
           </p>
           <p>
             To get my head around the API, I created a “hello world” linear
@@ -146,5 +143,5 @@ export default () => (
         </TextContainer>
       </Container>
     </Section>
-  </div>
+  </Layout>
 )

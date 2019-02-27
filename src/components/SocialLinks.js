@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { color } from '../globalStyles'
 
 export const Github = () => (
   <svg

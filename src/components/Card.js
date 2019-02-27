@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
 
-import { Title, Flex, BackgroundImage } from './common'
+import { Link } from 'gatsby'
+
+import { Title, Flex } from './common'
+import BackgroundImage from './BackgroundImage'
 import Meta from '../components/Meta'
 import { color } from '../globalStyles'
 
@@ -19,8 +21,8 @@ export default ({
   <CardWrap to={to} bordered={bordered} white={white}>
     <BackgroundImage
       className="CardBackgroundImage"
-      image={image}
       opacity={brightness}
+      image={image}
     />
     <CardInner className="CardInner" column alignStart justifyCenter>
       <Title className="CardTitle" white={white}>

@@ -91,8 +91,8 @@ export default class LinearRegression extends React.Component {
     const rect = two.makeRectangle(width / 2, height / 2, width, height)
     rect.stroke = colours[0]
 
-    const addPointRandom = () =>
-      this.addpoint(Math.random() * width, Math.random() * height)
+    // const addPointRandom = () =>
+    //   this.addpoint(Math.random() * width, Math.random() * height)
 
     const line = two.makeLine(
       0,

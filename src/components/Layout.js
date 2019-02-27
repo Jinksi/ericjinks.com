@@ -1,20 +1,16 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import _get from 'lodash/get'
-import Link from 'gatsby-link'
+import { StaticQuery, graphql } from 'gatsby'
 import anime from 'animejs'
+import _get from 'lodash/get'
 import _throttle from 'lodash/throttle'
 
-import globalStyles from '../globalStyles'
+import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
 
 class Template extends React.Component {
-  componentWillMount() {
-    globalStyles()
-  }
-
   componentDidMount() {
     if (typeof window !== undefined) {
       window.addEventListener('mousemove', _throttle(this.handleMouseMove, 100))
@@ -68,9 +64,6 @@ class Template extends React.Component {
   render() {
     const { children, location } = this.props
     const whiteTheme = location.pathname.indexOf('/blog') === 0
-
-    const { title: siteTitle } = _get(this, 'props.data.site.siteMetadata')
-
     const routes = [
       {
         title: 'About',
@@ -90,51 +83,61 @@ class Template extends React.Component {
     ]
 
     return (
-      <PageWrap whiteTheme={whiteTheme}>
-        <Helmet titleTemplate={`${siteTitle} | %s`}>
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#212121" />
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <meta name="apple-mobile-web-app-title" content="Eric Jinks" />
-          <meta name="application-name" content="Eric Jinks" />
-          <meta name="theme-color" content="#212121" />
-        </Helmet>
+      <StaticQuery
+        query={graphql`
+          {
+            site {
+              siteMetadata {
+                title
+              }
+            }
+          }
+        `}
+        render={data => (
+          <PageWrap whiteTheme={whiteTheme}>
+            <Helmet
+              titleTemplate={`${_get(data, 'site.siteMetadata.title')} | %s`}
+            >
+              <link
+                rel="apple-touch-icon"
+                sizes="180x180"
+                href="/apple-touch-icon.png"
+              />
+              <link
+                rel="icon"
+                type="image/png"
+                sizes="32x32"
+                href="/favicon-32x32.png"
+              />
+              <link
+                rel="icon"
+                type="image/png"
+                sizes="16x16"
+                href="/favicon-16x16.png"
+              />
+              <link rel="manifest" href="/manifest.json" />
+              <link
+                rel="mask-icon"
+                href="/safari-pinned-tab.svg"
+                color="#212121"
+              />
+              <link rel="shortcut icon" href="/favicon.ico" />
+              <meta name="apple-mobile-web-app-title" content="Eric Jinks" />
+              <meta name="application-name" content="Eric Jinks" />
+              <meta name="theme-color" content="#212121" />
+            </Helmet>
 
-        <Nav routes={routes} white={whiteTheme} />
+            <Nav routes={routes} white={whiteTheme} />
 
-        {children()}
+            {children}
 
-        <Footer />
-      </PageWrap>
+            <Footer />
+            <GlobalStyle />
+          </PageWrap>
+        )}
+      />
     )
   }
 }
 
 export default Template
-
-export const pageQuery = graphql`
-  query IndexLayoutQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

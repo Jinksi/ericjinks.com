@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import 'modern-normalize/modern-normalize.css'
 
 export const font = {
@@ -17,8 +17,8 @@ export const color = {
   code: 'hsl(0, 9%, 14%)',
 }
 
-export default () => injectGlobal`
-  html{
+export default createGlobalStyle`
+  html {
     box-sizing: border-box;
     font-size: 62.5%;
     background: ${color.black};
