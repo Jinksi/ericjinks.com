@@ -44,7 +44,7 @@ export const Container = styled.div`
 `
 
 export const TextContainer = styled.div`
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
   ${props =>
     props.auto &&
@@ -52,6 +52,12 @@ export const TextContainer = styled.div`
       margin-left: auto;
       margin-right: auto;
     `};
+  @media (min-width: 800px) {
+    & > pre[class*='language-'] {
+      margin-left: -7vw;
+      margin-right: -7vw;
+    }
+  }
 `
 
 export const Flex = styled.div`
