@@ -64,8 +64,6 @@ class Template extends React.Component {
   render() {
     const { children, location } = this.props
     const whiteTheme = location.pathname.indexOf('/blog') === 0
-    console.log(location.pathname)
-    console.log(whiteTheme)
     const routes = [
       {
         title: 'About',

@@ -125,6 +125,7 @@ export default class LinearRegression extends React.Component {
     const Img = ({ src, ...props }) => (
       <img
         src={src}
+        alt={'Example'}
         style={{
           width: 'calc(25% - 1rem)',
           margin: '0.5rem',
