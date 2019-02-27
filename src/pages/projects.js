@@ -14,7 +14,7 @@ const Projects = ({ location, data }) => {
     ...node,
     frontmatter: {
       ...node.frontmatter,
-      image: _get(node, 'frontmatter.image.childImageSharp.resize.src'),
+      image: _get(node, 'frontmatter.image.childImageSharp'),
     },
   }))
 
@@ -74,8 +74,8 @@ export const pageQuery = graphql`
             date
             image {
               childImageSharp {
-                resize(width: 1200) {
-                  src
+                sizes(quality: 75) {
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }

@@ -94,6 +94,13 @@ export const BackgroundImage = styled(Absolute)`
   background-image: url(${props => props.image});
   opacity: ${props => props.opacity || 1};
   transition: opacity 0.5s ease;
+
+  .gatsby-image-wrapper {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 `
 
 export const Tip = styled.span`
