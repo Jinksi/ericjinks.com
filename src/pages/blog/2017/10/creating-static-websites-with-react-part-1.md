@@ -4,11 +4,11 @@ excerpt: Let's create a lightning-fast, offline-first static website with React
 date: 2017-10-10T09:00:00+10:00
 ---
 
-_Why static?_\
+_Why static?_  
 Creating a static website will offer improved performance, higher security, lower
 cost of hosting & scaling, and a better developer experience.
 
-_Why React?_\
+_Why React?_  
 You may have looked at a couple of [static site generators](https://www.staticgen.com/)
 and become a victim of [overchoice](Overchoice). You already know or wish to learn
 JavaScript and use it rather than a new templating language.
@@ -22,8 +22,8 @@ without JavaScript and can be deployed on a CDN. It can be used as a framework
 for future projects, kinda like a static-site generator. We'll be using
 open-source React components/libraries to get us there.
 
-See the result at: <https://react-static-site.netlify.com>.\
-If you want to see the resulting code, [check out the Github repo](https://github.com/Jinksi/react-static-site).\
+See the result at: <https://react-static-site.netlify.com>.  
+If you want to see the resulting code, [check out the Github repo](https://github.com/Jinksi/react-static-site).  
 I also have a more complete, opinionated framework which I use called
 [HyperStatic](https://github.com/Jinksi/hyperstatic)
 
