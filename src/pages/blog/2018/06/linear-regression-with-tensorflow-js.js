@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Layout from '../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
+import SocialMeta from '../../../../components/SocialMeta'
 
 import {
   Container,
@@ -103,7 +104,7 @@ Head to the [Tensorflow.js docs](https://js.tensorflow.org/) for more info.
 
 export default ({ location }) => (
   <Layout location={location}>
-    <Helmet title={frontmatter.title} />
+    <SocialMeta title={frontmatter.title} pathname={location.pathname} />
     <PostHeader
       image={frontmatter.image}
       title={frontmatter.title}

@@ -8,6 +8,7 @@ import ArrowRight from 'react-feather/dist/icons/arrow-right'
 import Layout from '../components/Layout'
 import Page from '../components/Page'
 import Meta from '../components/Meta'
+import SocialMeta from '../components/SocialMeta'
 import { Section, Container, TextContainer } from '../components/common'
 
 const StyledLink = styled(Link)`
@@ -50,8 +51,8 @@ export default ({ location, data }) => {
 
   return (
     <Layout location={location}>
+      <SocialMeta title={'Blog'} pathname={location.pathname} />
       <Page white>
-        <Helmet title="Blog" />
         <Section thin>
           <Container skinny>
             <TextContainer style={{ padding: '5rem 0' }}>

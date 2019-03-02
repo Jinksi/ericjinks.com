@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Page from '../components/Page'
 import Card from '../components/Card'
+import SocialMeta from '../components/SocialMeta'
 import { Container, Section } from '../components/common'
 
 const Projects = ({ location, data }) => {
@@ -20,6 +21,7 @@ const Projects = ({ location, data }) => {
 
   return (
     <Layout location={location}>
+      <SocialMeta title={'Projects'} pathname={location.pathname} />
       <Page>
         <Section thin>
           <Container>
@@ -34,7 +36,6 @@ const Projects = ({ location, data }) => {
             ))}
           </Container>
         </Section>
-        <Helmet title="Projects" />
       </Page>
     </Layout>
   )

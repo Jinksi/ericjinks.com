@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 
 import Layout from '../components/Layout'
 import Page from '../components/Page'
+import SocialMeta from '../components/SocialMeta'
 import {
   Title,
   Section,
@@ -16,7 +17,7 @@ import {
 export default ({ location }) => (
   <Layout location={location}>
     <Page>
-      <Helmet title="About" />
+      <SocialMeta title={'About'} />
       <Section thin>
         <Container skinny>
           <Flex alignCenter>

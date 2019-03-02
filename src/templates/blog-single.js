@@ -6,6 +6,7 @@ import Page from '../components/Page'
 import Layout from '../components/Layout'
 
 import MarkdownContent from '../components/MarkdownContent'
+import SocialMeta from '../components/SocialMeta'
 import PostHeader from '../components/PostHeader'
 
 import { Container, Section, TextContainer } from '../components/common'
@@ -18,10 +19,8 @@ export default ({ location, data: { post, jsPost }, ...props }) => {
   } = post
   return (
     <Layout location={location}>
+      <SocialMeta title={title} pathname={location.pathname} />
       <Page white>
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
         <PostHeader image={image} title={title} date={date} />
         <Section thin>
           <Container>

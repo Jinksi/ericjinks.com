@@ -9,6 +9,7 @@ import Page from '../components/Page'
 
 import { Title, Flex, Container, Section, Button } from '../components/common'
 import BackgroundImage from '../components/BackgroundImage'
+import SocialMeta from '../components/SocialMeta'
 
 const Header = styled(Section)`
   overflow: hidden;
@@ -27,8 +28,11 @@ const Project = ({ location, data: { project } }) => {
 
   return (
     <Layout location={location}>
+      <SocialMeta
+        title={project.frontmatter.title}
+        pathname={location.pathname}
+      />
       <Page>
-        <Helmet title={project.frontmatter.title} />
         <Header>
           <BackgroundImage
             className="animate-translate animate-translate-mobile"

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Layout from './../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
+import SocialMeta from '../../../../components/SocialMeta'
 
 import {
   Container,
@@ -144,7 +145,7 @@ Example photos by [Mia Phoy](https://unsplash.com/photos/okEVQ7r3JPg) and [Fredd
 
 export default ({ location }) => (
   <Layout location={location}>
-    <Helmet title={frontmatter.title} />
+    <SocialMeta title={frontmatter.title} pathname={location.pathname} />
     <PostHeader
       image={frontmatter.image}
       title={frontmatter.title}
