@@ -6,7 +6,7 @@ import SocialLinks from './SocialLinks'
 
 export default props => (
   <Container>
-    <Flex alignCenter wrap>
+    <Flex alignCenter flexWrap>
       {props.routes.map((route, i) => <NavLink key={i} {...route} />)}
       <SocialLinks />
     </Flex>

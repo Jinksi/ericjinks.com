@@ -57,7 +57,7 @@ export default ({ location, data }) => {
             <TextContainer style={{ padding: '5rem 0' }}>
               {posts &&
                 posts.map(post => (
-                  <div style={{ margin: '0 auto 5rem auto' }}>
+                  <div style={{ margin: '0 auto 5rem auto' }} key={post.id}>
                     <StyledLink to={post.fields.slug}>
                       <h2>{post.frontmatter.title}</h2>
                       <Meta date={post.frontmatter.date} />
@@ -84,6 +84,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          id
           fields {
             slug
           }
@@ -101,6 +102,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          id
           fields {
             slug
           }

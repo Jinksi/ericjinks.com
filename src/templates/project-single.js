@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import _get from 'lodash/get'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -22,74 +22,45 @@ const Header = styled(Section)`
   justify-content: flex-start;
 `
 
-class Project extends Component {
-  constructor(props) {
-    super(props)
-    this.headerBG = null
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-  }
+const Project = ({ location, data: { project } }) => {
+  const image = _get(project, 'frontmatter.image.childImageSharp')
 
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('mousemove', this.handleMouseMove)
-    }
-  }
-
-  componentWillUnmount() {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('mousemove', this.handleMouseMove)
-    }
-  }
-
-  handleMouseMove() {}
-
-  render() {
-    const {
-      location,
-      data: { project },
-    } = this.props
-    const image = _get(project, 'frontmatter.image.childImageSharp')
-
-    return (
-      <Layout location={location}>
-        <Page>
-          <Helmet title={project.frontmatter.title} />
-          <Header>
-            <BackgroundImage
-              className="animate-translate animate-translate-mobile"
-              style={{
-                transform: `scale(1.1)`,
-              }}
-              innerRef={el => {
-                this.headerBG = el
-              }}
-              image={image}
-            />
-            <Container>
-              <Flex>
-                <Title>
-                  <div className="background animate-translate animate-translate-mobile" />
-                  <span>{project.frontmatter.title}</span>
-                </Title>
-              </Flex>
-            </Container>
-          </Header>
-          <Section>
-            <Container>
-              {project.frontmatter.external && (
-                <p>
-                  <Button href={project.frontmatter.external}>View</Button>
-                </p>
-              )}
-              {project.html && (
-                <div dangerouslySetInnerHTML={{ __html: project.html }} />
-              )}
-            </Container>
-          </Section>
-        </Page>
-      </Layout>
-    )
-  }
+  return (
+    <Layout location={location}>
+      <Page>
+        <Helmet title={project.frontmatter.title} />
+        <Header>
+          <BackgroundImage
+            className="animate-translate animate-translate-mobile"
+            style={{
+              transform: `scale(1.1)`,
+            }}
+            image={image}
+          />
+          <Container>
+            <Flex>
+              <Title>
+                <div className="background animate-translate animate-translate-mobile" />
+                <span>{project.frontmatter.title}</span>
+              </Title>
+            </Flex>
+          </Container>
+        </Header>
+        <Section>
+          <Container>
+            {project.frontmatter.external && (
+              <p>
+                <Button href={project.frontmatter.external}>View</Button>
+              </p>
+            )}
+            {project.html && (
+              <div dangerouslySetInnerHTML={{ __html: project.html }} />
+            )}
+          </Container>
+        </Section>
+      </Page>
+    </Layout>
+  )
 }
 
 export default Project

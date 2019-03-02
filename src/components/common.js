@@ -78,7 +78,7 @@ export const Flex = styled.div`
   }};
   height: ${props => (props.fill ? '100%' : 'auto')};
   width: ${props => (props.fill ? '100%' : 'auto')};
-  flex-wrap: ${props => (props.wrap ? 'wrap' : 'wrap')};
+  flex-wrap: ${props => (props.flexWrap ? 'wrap' : 'wrap')};
 `
 
 export const Col = styled(Flex)`

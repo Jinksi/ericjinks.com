@@ -31,9 +31,6 @@ export default ({ image, title, date }) => {
           style={{
             transform: `scale(1.1)`,
           }}
-          innerRef={el => {
-            this.headerBG = el
-          }}
           image={image}
         />
       )}
