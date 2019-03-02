@@ -30,11 +30,16 @@ const SocialMeta = ({
     }
   `)
 
+  const lang = 'en'
   absoluteImageUrl = absoluteImageUrl || siteMetadata.socialMediaCard.image
   url = pathname ? siteMetadata.siteUrl + pathname : siteMetadata.siteUrl
 
   return (
-    <Helmet>
+    <Helmet
+      htmlAttributes={{
+        lang,
+      }}
+    >
       <title>{title || siteMetadata.title}</title>
       <meta
         name="description"
