@@ -54,7 +54,10 @@ const Project = ({ location, data: { project } }) => {
               </p>
             )}
             {project.html && (
-              <div dangerouslySetInnerHTML={{ __html: project.html }} />
+              <div
+                className="ContentContainer"
+                dangerouslySetInnerHTML={{ __html: project.html }}
+              />
             )}
           </Container>
         </Section>

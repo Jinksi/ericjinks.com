@@ -21,11 +21,18 @@ export const PageWrap = styled.div`
   flex-direction: column;
 
   ${props =>
-    props.whiteTheme &&
-    css`
-      color: ${color.black};
-      background: white;
-    `};
+    props.whiteTheme
+      ? css`
+          color: ${color.black};
+          background: white;
+        `
+      : css`
+          .ContentContainer {
+            picture {
+              mix-blend-mode: lighten;
+            }
+          }
+        `};
 `
 
 export const Section = styled.section`
