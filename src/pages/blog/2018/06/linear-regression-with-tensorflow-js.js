@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Helmet from 'react-helmet'
+import loadable from '@loadable/component'
 
 import Layout from '../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
@@ -10,9 +11,12 @@ import {
   Container,
   Section,
   TextContainer,
+  FancyButton,
 } from '../../../../components/common'
 
-import TFLinearRegression from '../../../../components/ml/TFLinearRegression'
+const TFLinearRegression = loadable(() =>
+  import('../../../../components/ml/TFLinearRegression')
+)
 
 export const frontmatter = {
   title: 'Linear Regression with TensorFlow.js',
@@ -102,47 +106,62 @@ Head to the [Tensorflow.js docs](https://js.tensorflow.org/) for more info.
   `,
 }
 
-export default ({ location }) => (
-  <Layout location={location}>
-    <SocialMeta title={frontmatter.title} pathname={location.pathname} />
-    <PostHeader
-      image={frontmatter.image}
-      title={frontmatter.title}
-      date={frontmatter.date}
-    />
-    <Section thin>
-      <Container>
-        <TextContainer auto style={{ marginBottom: '4rem' }}>
-          <p>
-            Recently, Google released{' '}
-            <a href="https://js.tensorflow.org/">TensorFlow.js</a> which is
-            JavaScript (browser & node) version of the open source machine
-            learning framework, <a href="https://tensorflow.org">TensorFlow</a>.
-          </p>
-          <p>
-            TensorFlow.js allows us to build, train and deploy ML models in the
-            browser. Existing models compiled with TensorFlow or Keras can be{' '}
-            <a href="https://js.tensorflow.org/tutorials/import-keras.html">
-              converted and imported by TensorFlow.js
-            </a>
-            , ready for inference or further retraining of the model.
-          </p>
-          <p>
-            To get my head around the API, I created a “hello world” linear
-            regression model. In the canvas below, as you click to add points,
-            the linear regression model will be fit to the new data, visualised
-            by the prediction line (using{' '}
-            <a href="https://two.js.org/">Two.js</a>).
-          </p>
-        </TextContainer>
+export default ({ location }) => {
+  const [showTFComponent, setShowTFComponent] = useState(false)
+  return (
+    <Layout location={location}>
+      <SocialMeta title={frontmatter.title} pathname={location.pathname} />
+      <PostHeader
+        image={frontmatter.image}
+        title={frontmatter.title}
+        date={frontmatter.date}
+      />
+      <Section thin>
+        <Container>
+          <TextContainer auto style={{ marginBottom: '4rem' }}>
+            <p>
+              Recently, Google released{' '}
+              <a href="https://js.tensorflow.org/">TensorFlow.js</a> which is
+              JavaScript (browser & node) version of the open source machine
+              learning framework,{' '}
+              <a href="https://tensorflow.org">TensorFlow</a>.
+            </p>
+            <p>
+              TensorFlow.js allows us to build, train and deploy ML models in
+              the browser. Existing models compiled with TensorFlow or Keras can
+              be{' '}
+              <a href="https://js.tensorflow.org/tutorials/import-keras.html">
+                converted and imported by TensorFlow.js
+              </a>
+              , ready for inference or further retraining of the model.
+            </p>
+            <p>
+              To get my head around the API, I created a “hello world” linear
+              regression model. In the canvas below, as you click to add points,
+              the linear regression model will be fit to the new data,
+              visualised by the prediction line (using{' '}
+              <a href="https://two.js.org/">Two.js</a>).
+            </p>
+          </TextContainer>
 
-        <TFLinearRegression />
+          {showTFComponent ? (
+            <TFLinearRegression />
+          ) : (
+            <TextContainer auto>
+              <FancyButton dark onClick={() => setShowTFComponent(true)}>
+                Click to load example
+              </FancyButton>
+            </TextContainer>
+          )}
 
-        <TextContainer auto>
-          <figcaption>Click the canvas to add points</figcaption>
-          <MarkdownContent source={mdBlocks.a} />
-        </TextContainer>
-      </Container>
-    </Section>
-  </Layout>
-)
+          <TextContainer auto>
+            {showTFComponent && (
+              <figcaption>Click the canvas to add points</figcaption>
+            )}
+            <MarkdownContent source={mdBlocks.a} />
+          </TextContainer>
+        </Container>
+      </Section>
+    </Layout>
+  )
+}

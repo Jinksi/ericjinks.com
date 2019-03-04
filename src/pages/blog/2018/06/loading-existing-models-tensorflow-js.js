@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Helmet from 'react-helmet'
+import loadable from '@loadable/component'
 
 import Layout from './../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
@@ -10,9 +11,12 @@ import {
   Container,
   Section,
   TextContainer,
+  FancyButton,
 } from '../../../../components/common'
 
-import TFLinearRegression from '../../../../components/ml/TFCNNDemo.js'
+const TFCNNDemo = loadable(() =>
+  import('../../../../components/ml/TFCNNDemo.js')
+)
 
 export const frontmatter = {
   title: 'Loading existing models with TensorFlow.js',
@@ -143,24 +147,33 @@ Example photos by [Mia Phoy](https://unsplash.com/photos/okEVQ7r3JPg) and [Fredd
 `,
 }
 
-export default ({ location }) => (
-  <Layout location={location}>
-    <SocialMeta title={frontmatter.title} pathname={location.pathname} />
-    <PostHeader
-      image={frontmatter.image}
-      title={frontmatter.title}
-      date={frontmatter.date}
-    />
-    <Section thin>
-      <Container>
-        <TextContainer auto>
-          <TFLinearRegression />
+export default ({ location }) => {
+  const [showTFComponent, setShowTFComponent] = useState(false)
+  return (
+    <Layout location={location}>
+      <SocialMeta title={frontmatter.title} pathname={location.pathname} />
+      <PostHeader
+        image={frontmatter.image}
+        title={frontmatter.title}
+        date={frontmatter.date}
+      />
+      <Section thin>
+        <Container>
+          <TextContainer auto>
+            {showTFComponent ? (
+              <TFCNNDemo />
+            ) : (
+              <FancyButton dark onClick={() => setShowTFComponent(true)}>
+                Click to load example (~26MB)
+              </FancyButton>
+            )}
 
-          <MarkdownContent source={mdBlocks.a} />
+            <MarkdownContent source={mdBlocks.a} />
 
-          <MarkdownContent source={mdBlocks.c} />
-        </TextContainer>
-      </Container>
-    </Section>
-  </Layout>
-)
+            <MarkdownContent source={mdBlocks.c} />
+          </TextContainer>
+        </Container>
+      </Section>
+    </Layout>
+  )
+}

@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { color } from '../globalStyles'
 
@@ -146,7 +147,7 @@ export const Title = styled.h1`
 export const Button = styled.a`
   background: ${color.secondary};
   color: ${color.black};
-  mix-blend-mode: lighten;
+  mix-blend-mode: ${props => (props.dark ? 'normal' : 'lighten')};
   padding: 0rem 1rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -157,3 +158,21 @@ export const Button = styled.a`
     opacity: 0.9;
   }
 `
+
+export const FancyButton = ({ children, ...props }) => {
+  const FancyButton = styled(Button)`
+    display: block;
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    border: 1px solid ${color.black};
+    background: white;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 3rem;
+  `
+  return <FancyButton {...props}>{children}</FancyButton>
+}
