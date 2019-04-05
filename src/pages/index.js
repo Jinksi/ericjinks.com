@@ -41,14 +41,6 @@ export default ({ location }) => (
                   or <a href="https://twitter.com/jinksi">Twitter</a>
                 </p>
               </TextContainer>
-              <h3>Interests &amp; Skills</h3>
-              <List>
-                <li>WebDev</li>
-                <li>WebVR, WebAudio &amp; WebGL</li>
-                <li>Creative Coding</li>
-                <li>Machine Learning</li>
-                <li>Music &amp; Sound Design</li>
-              </List>
             </Col>
           </Flex>
         </Container>
