@@ -11,25 +11,6 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
 
-const Overlay = styled.div`
-  display: none;
-  @supports (mix-blend-mode: overlay) {
-    display: block;
-    mix-blend-mode: overlay;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: linear-gradient(
-      120deg,
-      hsla(300, 100%, 30%, 0.35) 0%,
-      hsla(350, 100%, 50%, 0.35) 100%
-    );
-  }
-`
 class Template extends React.Component {
   componentDidMount() {
     if (typeof window !== undefined) {
@@ -115,7 +96,6 @@ class Template extends React.Component {
         `}
         render={data => (
           <PageWrap whiteTheme={whiteTheme}>
-            <Overlay />
             <Helmet
               titleTemplate={`${_get(data, 'site.siteMetadata.title')} | %s`}
             >
