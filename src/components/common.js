@@ -60,8 +60,12 @@ export const TextContainer = styled.div`
       margin-left: auto;
       margin-right: auto;
     `};
-  @media (min-width: 800px) {
-    & > pre[class*='language-'] {
+  & > pre[class*='language-'] {
+    background: ${color.code};
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 800px) {
       margin-left: -7vw;
       margin-right: -7vw;
     }
