@@ -14,7 +14,7 @@ export const color = {
   secondary: 'hsl(40, 28%, 95%)',
   black: '#272121',
   highlight: 'hsl(350, 70%, 40%)',
-  code: 'hsl(0, 9%, 14%)',
+  code: '#282c34',
 }
 
 export default createGlobalStyle`
@@ -124,14 +124,10 @@ export default createGlobalStyle`
       padding: 2rem;
     }
 
-    &[class*="language-"] {
-      background:  ${color.code};
-      margin: 4rem auto;
-    }
-
   }
 
   .animate-translate {
     display: block;
   }
+
 `

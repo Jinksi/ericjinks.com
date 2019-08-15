@@ -1,8 +1,8 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { Link, graphql } from 'gatsby'
 import _get from 'lodash/get'
+import _sortBy from 'lodash/sortBy'
 import ArrowRight from 'react-feather/dist/icons/arrow-right'
 
 import Layout from '../components/Layout'
@@ -47,7 +47,10 @@ const StyledLink = styled(Link)`
 export default ({ location, data }) => {
   let jsPosts = _get(data, 'jsPosts.edges', [])
   let mdPosts = _get(data, 'mdPosts.edges', [])
-  let posts = [...jsPosts, ...mdPosts].map(edge => ({ ...edge.node }))
+  let posts = _sortBy(
+    [...jsPosts, ...mdPosts].map(edge => ({ ...edge.node })),
+    'frontmatter.date'
+  ).reverse()
 
   return (
     <Layout location={location}>
@@ -100,6 +103,7 @@ export const pageQuery = graphql`
 
     mdPosts: allMarkdownRemark(
       filter: { fields: { slug: { glob: "/blog/**" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
