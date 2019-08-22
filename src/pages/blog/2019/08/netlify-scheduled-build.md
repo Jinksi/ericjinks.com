@@ -38,4 +38,4 @@ The easiest way to setup a scheduled build hook trigger that I have come across 
 
 3. Open the Actions tab in you GitHub repo to watch the workflow trigger as per your cron schedule. 🎉
 
-I hope this is useful to you! If you have and questions, I've created an example repository that uses GitHub Actions to build every 15mins: [github.com/Jinksi/netlify-build-github-actions](https://github.com/Jinksi/netlify-build-github-actions). Feel free to open an issue there or send me a message on [twitter](https://twitter.com/Jinksi).
+I hope this is useful to you! If you have any questions, I've created an example repository that uses GitHub Actions to build every 15mins: [github.com/Jinksi/netlify-build-github-actions](https://github.com/Jinksi/netlify-build-github-actions). Feel free to open an issue there or send me a message on [twitter](https://twitter.com/Jinksi).
