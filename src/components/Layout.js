@@ -97,7 +97,7 @@ class Template extends React.Component {
         render={data => (
           <PageWrap whiteTheme={whiteTheme}>
             <Helmet
-              titleTemplate={`${_get(data, 'site.siteMetadata.title')} | %s`}
+              titleTemplate={`%s — ${_get(data, 'site.siteMetadata.title')}`}
             >
               <link
                 rel="apple-touch-icon"
