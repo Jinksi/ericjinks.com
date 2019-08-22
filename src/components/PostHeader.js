@@ -10,7 +10,7 @@ import {
   BackgroundImage,
 } from '../components/common'
 
-export default ({ image, title, date }) => {
+export default ({ image, title, date, author }) => {
   const Header = styled(Section)`
     overflow: hidden;
     position: relative;
@@ -40,7 +40,7 @@ export default ({ image, title, date }) => {
             <div className="background animate-translate animate-translate-mobile" />
             <span>{title}</span>
           </Title>
-          <Meta date={date} />
+          <Meta date={date} author={author} />
         </Flex>
       </Container>
     </Header>
