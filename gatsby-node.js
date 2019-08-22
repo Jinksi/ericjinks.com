@@ -76,6 +76,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value,
     })
+
+    // https://github.com/kentcdodds/kentcdodds.com/blob/9149d6bde95e1694f8957cf978ba58faa2b27d9b/gatsby-node.js#L404-L411
+    createNodeField({
+      name: 'editLink',
+      node,
+      value: `https://github.com/Jinksi/ericjinks.com/edit/master${node.fileAbsolutePath.replace(
+        __dirname,
+        ''
+      )}`,
+    })
   }
 }
 
