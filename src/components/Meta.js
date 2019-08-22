@@ -7,9 +7,12 @@ const Meta = styled.h3`
   margin-bottom: 1rem;
 `
 
-export default ({ date, children }) => {
-  if (date) {
-    children = displayDate(date)
-  }
-  return <Meta>{children}</Meta>
+export default ({ date, author }) => {
+  return (
+    <Meta>
+      {author}
+      {author && date && ' — '}
+      {!!date && displayDate(date)}
+    </Meta>
+  )
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Helmet from 'react-helmet'
 import loadable from '@loadable/component'
 
 import Layout from './../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
 import SocialMeta from '../../../../components/SocialMeta'
+import PostFooter from '../../../../components/PostFooter'
 
 import {
   Container,
@@ -147,8 +147,9 @@ Example photos by [Mia Phoy](https://unsplash.com/photos/okEVQ7r3JPg) and [Fredd
 `,
 }
 
-export default ({ location }) => {
+export default ({ location, jsPost }) => {
   const [showTFComponent, setShowTFComponent] = useState(false)
+  console.log(location.pathname)
   return (
     <Layout location={location}>
       <SocialMeta title={frontmatter.title} pathname={location.pathname} />
@@ -174,6 +175,11 @@ export default ({ location }) => {
           </TextContainer>
         </Container>
       </Section>
+      <PostFooter
+        // editLink={editLink}
+        slug={location.pathname}
+        title={frontmatter.title}
+      />
     </Layout>
   )
 }

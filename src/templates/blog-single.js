@@ -1,5 +1,4 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import Page from '../components/Page'
@@ -8,27 +7,38 @@ import Layout from '../components/Layout'
 import MarkdownContent from '../components/MarkdownContent'
 import SocialMeta from '../components/SocialMeta'
 import PostHeader from '../components/PostHeader'
+import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ location, data: { post, jsPost }, ...props }) => {
+export default ({ location, data: { post, jsPost, site }, ...props }) => {
   if (!post) post = jsPost
   const {
-    frontmatter: { title, date, image },
+    frontmatter: { title, author, date, image },
+    fields: { slug, editLink },
     rawMarkdownBody: content,
   } = post
+
+  const { author: siteAuthor } = site.siteMetadata
+
   return (
     <Layout location={location}>
       <SocialMeta title={title} pathname={location.pathname} />
       <Page white>
-        <PostHeader image={image} title={title} date={date} />
+        <PostHeader
+          image={image}
+          title={title}
+          date={date}
+          author={author || siteAuthor}
+        />
         <Section thin>
           <Container>
-            <TextContainer style={{ margin: 'auto' }}>
+            <TextContainer auto>
               <MarkdownContent source={content} />
             </TextContainer>
           </Container>
         </Section>
+        <PostFooter editLink={editLink} slug={slug} title={title} />
       </Page>
     </Layout>
   )
@@ -45,6 +55,10 @@ export const pageQuery = graphql`
 
     post: markdownRemark(fields: { slug: { eq: $slug } }) {
       rawMarkdownBody
+      fields {
+        slug
+        editLink
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -55,6 +69,10 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+      }
+      fields {
+        slug
+        editLink
       }
     }
   }

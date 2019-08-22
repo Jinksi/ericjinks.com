@@ -117,6 +117,8 @@ export default createGlobalStyle`
     padding: 1rem;
     word-wrap: normal;
     overflow: auto;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    border-radius: 2px;
 
     code {
       background: none;
@@ -124,6 +126,19 @@ export default createGlobalStyle`
       padding: 2rem;
     }
 
+  }
+
+  blockquote {
+    background: whitesmoke;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 2px;
+    margin: 3rem auto;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .animate-translate {

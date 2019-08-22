@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Helmet from 'react-helmet'
 import loadable from '@loadable/component'
 
 import Layout from '../../../../components/Layout'
 import MarkdownContent from './../../../../components/MarkdownContent'
 import PostHeader from '../../../../components/PostHeader'
 import SocialMeta from '../../../../components/SocialMeta'
+import PostFooter from '../../../../components/PostFooter'
 
 import {
   Container,
@@ -162,6 +162,11 @@ export default ({ location }) => {
           </TextContainer>
         </Container>
       </Section>
+      <PostFooter
+        // editLink={editLink}
+        slug={location.pathname}
+        title={frontmatter.title}
+      />
     </Layout>
   )
 }
