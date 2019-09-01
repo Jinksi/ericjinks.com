@@ -1,7 +1,7 @@
 ---
 title: Serverless R functions with Cloud Run
 excerpt: Using serverless containers to deploy scalable R functions.
-date: 2019-08-20
+date: 2019-09-2
 ---
 
 # Serverless R with Cloud Run
