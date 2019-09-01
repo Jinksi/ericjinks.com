@@ -4,8 +4,6 @@ excerpt: Using serverless containers to deploy scalable R functions.
 date: 2019-09-02
 ---
 
-# Serverless R with Cloud Run
-
 > [Cloud Run with R – Hello World (GitHub)](https://github.com/Jinksi/cloudrun-helloworld-r)
 
 If you're a JavaScript developer, using [serverless functions](https://en.wikipedia.org/wiki/Serverless_computing) can be a great way to create auto-scaling, cost-effective APIs. [Any](https://www.netlify.com/products/functions/) [cloud](https://cloud.google.com/functions/) [provider](https://azure.microsoft.com/en-us/services/functions/) who can host serverless functions will support JS and probably has solid workflows, allowing you to write the code and simply `git push` to deploy.
