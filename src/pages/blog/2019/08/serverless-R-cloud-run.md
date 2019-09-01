@@ -176,5 +176,5 @@ Thanks for reading! I hope I've helped to show you how to get started running se
 ## More info:
 
 - [Cloud Run with R – Hello World (GitHub)](https://github.com/Jinksi/cloudrun-helloworld-r)
-- [Cloud Run docs](https://cloud.google.com/run/docs/continuous-deployment)
+- [Cloud Run docs](https://cloud.google.com/run/docs/)
 - [plumber](https://www.rplumber.io)
