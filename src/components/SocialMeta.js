@@ -45,7 +45,7 @@ const SocialMeta = ({
         name="description"
         content={description || siteMetadata.description}
       />
-      <meta property="og:title" content={`${siteMetadata.title} | ${title}`} />
+      <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta
