@@ -14,7 +14,7 @@ import { Container, Section, TextContainer } from '../components/common'
 export default ({ location, data: { post, jsPost, site }, ...props }) => {
   if (!post) post = jsPost
   const {
-    frontmatter: { title, author, date, image, cardimage },
+    frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
     rawMarkdownBody: content,
   } = post
@@ -27,6 +27,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
         title={title}
         pathname={location.pathname}
         absoluteImageUrl={cardimage && cardimage.publicURL}
+        description={excerpt}
       />
       <Page white>
         <PostHeader
@@ -66,6 +67,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        excerpt
         cardimage {
           publicURL
         }
