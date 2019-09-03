@@ -14,7 +14,7 @@ import { Container, Section, TextContainer } from '../components/common'
 export default ({ location, data: { post, jsPost, site }, ...props }) => {
   if (!post) post = jsPost
   const {
-    frontmatter: { title, author, date, image },
+    frontmatter: { title, author, date, image, cardimage },
     fields: { slug, editLink },
     rawMarkdownBody: content,
   } = post
@@ -23,10 +23,14 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
 
   return (
     <Layout location={location}>
-      <SocialMeta title={title} pathname={location.pathname} />
+      <SocialMeta
+        title={title}
+        pathname={location.pathname}
+        absoluteImageUrl={cardimage && cardimage.publicURL}
+      />
       <Page white>
         <PostHeader
-          image={image}
+          image={image && image.childImageSharp}
           title={title}
           date={date}
           author={author || siteAuthor}
@@ -62,6 +66,16 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        cardimage {
+          publicURL
+        }
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2400, quality: 75) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     }
 

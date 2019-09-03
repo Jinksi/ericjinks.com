@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import GatsbyImage from 'gatsby-image'
 
 import Meta from '../components/Meta'
 import {
@@ -7,14 +8,13 @@ import {
   Flex,
   Container,
   Section,
-  BackgroundImage,
+  TextContainer,
 } from '../components/common'
 
 export default ({ image, title, date, author }) => {
   const Header = styled(Section)`
     overflow: hidden;
     position: relative;
-    height: ${props => (props.image ? '35vw' : 'auto')};
     min-height: 25rem;
     max-height: 80vh;
     display: flex;
@@ -25,16 +25,12 @@ export default ({ image, title, date, author }) => {
 
   return (
     <Header image={!!image}>
-      {image && (
-        <BackgroundImage
-          className="animate-translate animate-translate-mobile"
-          style={{
-            transform: `scale(1.1)`,
-          }}
-          image={image}
-        />
-      )}
       <Container>
+        {image && (
+          <TextContainer auto>
+            <GatsbyImage {...image} />
+          </TextContainer>
+        )}
         <Flex column alignCenter>
           <Title white>
             <div className="background animate-translate animate-translate-mobile" />
