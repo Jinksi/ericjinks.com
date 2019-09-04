@@ -72,11 +72,6 @@ class Template extends React.Component {
         exact: true,
       },
       {
-        title: 'Projects',
-        path: '/projects/',
-        exact: true,
-      },
-      {
         title: 'Blog',
         path: '/blog/',
         exact: true,
