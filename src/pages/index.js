@@ -16,7 +16,7 @@ import {
 export default ({ location }) => (
   <Layout location={location}>
     <Page>
-      <SocialMeta title={'Eric Jinks'} />
+      <SocialMeta />
       <Section thin>
         <Container skinny>
           <Flex alignCenter>

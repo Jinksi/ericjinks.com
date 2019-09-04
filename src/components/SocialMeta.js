@@ -36,6 +36,9 @@ const SocialMeta = ({
     siteMetadata.siteUrl
   )
   url = pathname ? siteMetadata.siteUrl + pathname : siteMetadata.siteUrl
+  title = title ? `${title} — ${siteMetadata.title}` : siteMetadata.title
+
+  console.log(title)
 
   return (
     <Helmet
@@ -43,7 +46,7 @@ const SocialMeta = ({
         lang,
       }}
     >
-      <title>{title || siteMetadata.title}</title>
+      <title>{title}</title>
       <meta
         name="description"
         content={description || siteMetadata.description}
