@@ -38,8 +38,6 @@ const SocialMeta = ({
   url = pathname ? siteMetadata.siteUrl + pathname : siteMetadata.siteUrl
   title = title ? `${title} — ${siteMetadata.title}` : siteMetadata.title
 
-  console.log(title)
-
   return (
     <Helmet
       htmlAttributes={{
