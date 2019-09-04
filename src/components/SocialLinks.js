@@ -74,8 +74,5 @@ export default () => (
     <SocialLink aria-label="Twitter" href="https://twitter.com/jinksi">
       <Twitter />
     </SocialLink>
-    <SocialLink aria-label="Instagram" href="https://instagram.com/jinksi">
-      <Instagram />
-    </SocialLink>
   </SocialsWrap>
 )
