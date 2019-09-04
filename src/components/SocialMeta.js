@@ -31,7 +31,10 @@ const SocialMeta = ({
   `)
 
   const lang = 'en'
-  absoluteImageUrl = absoluteImageUrl || siteMetadata.socialMediaCard.image
+  absoluteImageUrl = new URL(
+    absoluteImageUrl || siteMetadata.socialMediaCard.image,
+    siteMetadata.siteUrl
+  )
   url = pathname ? siteMetadata.siteUrl + pathname : siteMetadata.siteUrl
 
   return (
@@ -55,6 +58,14 @@ const SocialMeta = ({
       {absoluteImageUrl && (
         <meta property="og:image" content={absoluteImageUrl} />
       )}
+      {absoluteImageUrl && (
+        <meta property="twitter:image" content={absoluteImageUrl} />
+      )}
+      <meta
+        name="twitter:description"
+        content={description || siteMetadata.description}
+      />
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:site"
