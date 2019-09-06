@@ -1,23 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TwitterShareButton, FacebookShareButton } from 'react-share'
+import { TwitterShareButton } from 'react-share'
 import Twitter from 'react-feather/dist/icons/twitter'
-import Facebook from 'react-feather/dist/icons/facebook'
 
-const ShareWrap = styled.div`
+const ShareWrap = styled.blockquote`
   width: 100%;
+  font-size: 0.9em;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  justify-content: center;
 
-  * {
-    margin: 0 0.8rem;
-  }
-
-  .SocialMediaShareButton {
+  .TwitterShareButton {
+    display: inline;
     text-decoration: underline;
     cursor: pointer;
+    margin-left: 0.5rem;
   }
 
   @media (max-width: 450px) {
@@ -30,31 +27,28 @@ const Icon = styled.div`
   width: 1em;
   height: 1em;
   vertical-align: middle;
-  margin-right: 0.3em;
+  margin-right: 0.8em;
+  flex-shrink: 0;
 `
 
 const TwitterIcon = Icon.withComponent(Twitter)
-const FacebookIcon = Icon.withComponent(Facebook)
 
 const Share = ({ url, title, twitterHandle }) => (
   <ShareWrap>
-    <span>Share article:</span>
-    <TwitterShareButton
-      url={url}
-      title={title}
-      via={twitterHandle.split('@').join('')}
-    >
-      <TwitterIcon className="Share--Icon" />
-      Twitter
-    </TwitterShareButton>
-    <FacebookShareButton
-      url={url}
-      quote={title}
-      via={twitterHandle.split('@').join('')}
-    >
-      <FacebookIcon />
-      Facebook
-    </FacebookShareButton>
+    <TwitterIcon className="Share--Icon" />
+    <div>
+      <span>
+        If you liked this article and think others should read it, please
+      </span>
+      <TwitterShareButton
+        className="TwitterShareButton"
+        url={url}
+        title={title}
+        via={twitterHandle.split('@').join('')}
+      >
+        share it on Twitter.
+      </TwitterShareButton>
+    </div>
   </ShareWrap>
 )
 
