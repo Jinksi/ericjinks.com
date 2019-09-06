@@ -36,13 +36,14 @@ const SocialMeta = ({
     siteMetadata.siteUrl
   )
   url = pathname ? siteMetadata.siteUrl + pathname : siteMetadata.siteUrl
-  title = title ? `${title} — ${siteMetadata.title}` : siteMetadata.title
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
+      titleTemplate={`%s — ${siteMetadata.title}`}
+      defaultTitle={siteMetadata.title}
     >
       <title>{title}</title>
       <meta

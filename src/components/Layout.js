@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import anime from 'animejs'
 import _get from 'lodash/get'
@@ -91,9 +90,8 @@ class Template extends React.Component {
         `}
         render={data => (
           <PageWrap whiteTheme={whiteTheme}>
-            <Helmet
-              titleTemplate={`%s — ${_get(data, 'site.siteMetadata.title')}`}
-            >
+            <Helmet>
+              <title>{_get(data, 'site.siteMetadata.title')}</title>
               <link
                 rel="apple-touch-icon"
                 sizes="180x180"
