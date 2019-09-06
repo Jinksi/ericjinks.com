@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 import loadable from '@loadable/component'
 
-import Layout from './../../../../components/Layout'
-import MarkdownContent from './../../../../components/MarkdownContent'
-import PostHeader from '../../../../components/PostHeader'
-import SocialMeta from '../../../../components/SocialMeta'
-import PostFooter from '../../../../components/PostFooter'
+import Layout from '../../../components/Layout'
+import MarkdownContent from '../../../components/MarkdownContent'
+import PostHeader from '../../../components/PostHeader'
+import SocialMeta from '../../../components/SocialMeta'
+import PostFooter from '../../../components/PostFooter'
 
 import {
   Container,
   Section,
   TextContainer,
   FancyButton,
-} from '../../../../components/common'
+} from '../../../components/common'
 
-const TFCNNDemo = loadable(() =>
-  import('../../../../components/ml/TFCNNDemo.js')
-)
+const TFCNNDemo = loadable(() => import('../../../components/ml/TFCNNDemo.js'))
 
 export const frontmatter = {
   title: 'Loading existing models with TensorFlow.js',

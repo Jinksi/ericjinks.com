@@ -4,3 +4,7 @@
 /caligulas-horse-gift-to-afterthought/ /projects/caligulas-horse-gift-to-afterthought/
 /blog/2018/05/linear-regression-with-tensorflow-js/ /blog/2018/06/linear-regression-with-tensorflow-js/
 /contact/ /
+
+/blog/2017/:month/* /blog/2017/:splat
+/blog/2018/:month/* /blog/2018/:splat
+/blog/2019/:month/* /blog/2019/:splat
