@@ -1,5 +1,4 @@
 import React from 'react'
-import { useStaticQuery } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Page from '../components/Page'
@@ -16,18 +15,6 @@ import {
 import { isWhiteTheme } from '../utils'
 
 export default ({ location }) => {
-  const { profilePic } = useStaticQuery(graphql`
-    query {
-      profilePic: file(relativePath: { eq: "eric.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
   const whiteTheme = isWhiteTheme({ location })
 
   return (
@@ -38,11 +25,7 @@ export default ({ location }) => {
           <Container skinny>
             <Flex alignCenter>
               <Col>
-                <ProfilePic
-                  image={profilePic.childImageSharp}
-                  whiteTheme={whiteTheme}
-                  size={125}
-                />
+                <ProfilePic whiteTheme={whiteTheme} size={125} />
                 <Title>
                   <div className="background animate-translate animate-translate-mobile" />
                   <span>Eric Jinks</span>

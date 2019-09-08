@@ -9,6 +9,7 @@ import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
+import { isWhiteTheme } from '../utils'
 
 class Template extends React.Component {
   componentDidMount() {
@@ -63,7 +64,7 @@ class Template extends React.Component {
 
   render() {
     const { children, location } = this.props
-    const whiteTheme = location.pathname.indexOf('/blog') === 0
+    const whiteTheme = isWhiteTheme({ location })
     const routes = [
       {
         title: 'About',

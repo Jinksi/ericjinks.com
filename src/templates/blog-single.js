@@ -35,6 +35,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
           title={title}
           date={date}
           author={author || siteAuthor}
+          location={location}
         />
         <Section thin>
           <Container>

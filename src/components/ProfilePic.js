@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useStaticQuery } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import BackgroundImage from './BackgroundImage'
@@ -18,8 +18,21 @@ const ProfilePic = styled.div`
     `}
 `
 
-export default ({ image, whiteTheme = false, size = 150 }) => (
-  <ProfilePic className="ProfilePic" whiteTheme={whiteTheme} size={size}>
-    <BackgroundImage image={image} />
-  </ProfilePic>
-)
+export default ({ whiteTheme = false, size = 150 }) => {
+  const { profilePic } = useStaticQuery(graphql`
+    query {
+      profilePic: file(relativePath: { eq: "eric.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+  return (
+    <ProfilePic className="ProfilePic" whiteTheme={whiteTheme} size={size}>
+      <BackgroundImage image={profilePic.childImageSharp} />
+    </ProfilePic>
+  )
+}
