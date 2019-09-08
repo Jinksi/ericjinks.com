@@ -11,7 +11,7 @@ import {
   TextContainer,
 } from '../components/common'
 
-export default ({ image, title, date, author }) => {
+export default ({ location, image, title, date, author }) => {
   const Header = styled(Section)`
     overflow: hidden;
     position: relative;
@@ -36,7 +36,7 @@ export default ({ image, title, date, author }) => {
             <div className="background animate-translate animate-translate-mobile" />
             <span>{title}</span>
           </Title>
-          <Meta date={date} author={author} />
+          <Meta date={date} author={author} location={location} />
         </Flex>
       </Container>
     </Header>

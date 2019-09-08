@@ -23,6 +23,7 @@ export const frontmatter = {
   excerpt: ``,
   category: 'Machine Learning',
   date: `2018-06-02`,
+  author: 'Eric Jinks',
 }
 
 const mdBlocks = {
@@ -115,6 +116,8 @@ export default ({ location }) => {
         image={frontmatter.image}
         title={frontmatter.title}
         date={frontmatter.date}
+        author={frontmatter.author}
+        location={location}
       />
       <Section thin>
         <Container>

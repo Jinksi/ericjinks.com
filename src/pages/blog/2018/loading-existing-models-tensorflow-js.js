@@ -21,6 +21,7 @@ export const frontmatter = {
   excerpt: `A pre-trained CNN ready for inference in the browser`,
   category: 'Machine Learning',
   date: `2018-06-18`,
+  author: 'Eric Jinks',
 }
 
 const mdBlocks = {
@@ -155,6 +156,8 @@ export default ({ location, jsPost }) => {
         image={frontmatter.image}
         title={frontmatter.title}
         date={frontmatter.date}
+        author={frontmatter.author}
+        location={location}
       />
       <Section thin>
         <Container>
