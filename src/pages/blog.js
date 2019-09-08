@@ -7,9 +7,10 @@ import ArrowRight from 'react-feather/dist/icons/arrow-right'
 
 import Layout from '../components/Layout'
 import Page from '../components/Page'
-import Meta from '../components/Meta'
 import SocialMeta from '../components/SocialMeta'
 import { Section, Container, TextContainer } from '../components/common'
+
+import { displayDate } from '../utils'
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -29,6 +30,11 @@ const StyledLink = styled(Link)`
     border-bottom: 1px solid transparent;
     display: inline-flex;
     transition: all 0.2s ease-out;
+  }
+
+  .date {
+    font-weight: 200;
+    margin-bottom: 1rem;
   }
 
   &:hover {
@@ -64,7 +70,9 @@ export default ({ location, data }) => {
                   <div style={{ margin: '0 auto 5rem auto' }} key={post.id}>
                     <StyledLink to={post.fields.slug}>
                       <h2>{post.frontmatter.title}</h2>
-                      <Meta date={post.frontmatter.date} />
+                      <h3 className="date">
+                        {displayDate(post.frontmatter.date)}
+                      </h3>
                       <p>{post.frontmatter.excerpt}</p>
                       <div className="readmore">
                         Read <ArrowRight style={{ height: '0.9em' }} />
