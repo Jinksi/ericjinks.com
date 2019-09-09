@@ -14,9 +14,10 @@ const NavLink = styled(Link)`
     props.active ? 'currentColor' : 'transparent'};
 
   &:hover,
-  &:active,
+  &.active,
   &:focus {
     color: inherit;
+    text-decoration: underline;
   }
 
   & + * {
@@ -25,18 +26,7 @@ const NavLink = styled(Link)`
 `
 
 export default ({ path, exact, ...props }) => (
-  <NavLink
-    to={path}
-    getProps={({ isCurrent }) => {
-      // the object returned here is passed to the
-      // anchor element's props
-      return {
-        active: {
-          color: isCurrent,
-        },
-      }
-    }}
-  >
+  <NavLink to={path} activeClassName="active" partiallyActive={path !== '/'}>
     {props.title}
   </NavLink>
 )
