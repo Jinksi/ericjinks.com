@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Layout from '../components/Layout'
 import Page from '../components/Page'
@@ -13,6 +14,14 @@ import {
   Col,
 } from '../components/common'
 import { isWhiteTheme } from '../utils'
+import PostList from '../components/PostList'
+import Wave from '../components/Wave'
+
+const HeadSection = styled(Section)`
+  padding-bottom: 0;
+  padding-top: 7rem;
+  position: relative;
+`
 
 export default ({ location }) => {
   const whiteTheme = isWhiteTheme({ location })
@@ -21,7 +30,7 @@ export default ({ location }) => {
     <Layout location={location}>
       <Page>
         <SocialMeta />
-        <Section thin>
+        <HeadSection>
           <Container skinny>
             <Flex alignCenter>
               <Col>
@@ -50,7 +59,11 @@ export default ({ location }) => {
               </Col>
             </Flex>
           </Container>
-        </Section>
+        </HeadSection>
+      </Page>
+      <Wave />
+      <Page white>
+        <PostList postCount={3} />
       </Page>
     </Layout>
   )

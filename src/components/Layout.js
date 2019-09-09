@@ -67,7 +67,7 @@ class Template extends React.Component {
     const whiteTheme = isWhiteTheme({ location })
     const routes = [
       {
-        title: 'About',
+        title: 'Eric Jinks',
         path: '/',
         exact: true,
       },

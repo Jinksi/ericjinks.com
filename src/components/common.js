@@ -16,10 +16,14 @@ export const Relative = styled.div`
 `
 
 export const PageWrap = styled.div`
-  padding: 10vh 0;
+  padding: 3rem 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 450px) {
+    padding: 10vh 0;
+  }
 
   ${props =>
     props.whiteTheme
@@ -163,20 +167,36 @@ export const Button = styled.a`
   }
 `
 
-export const FancyButton = ({ children, ...props }) => {
-  const FancyButton = styled(Button)`
-    display: block;
-    width: 100%;
-    height: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem auto;
-    border: 1px solid ${color.black};
-    background: white;
-    cursor: pointer;
-    text-align: center;
-    margin-bottom: 3rem;
-  `
-  return <FancyButton {...props}>{children}</FancyButton>
-}
+export const OutlinedButton = styled(Button)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
+  border: 1px solid ${color.black};
+  background: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s ease;
+
+  &:hover,
+  &:focus {
+    background: ${color.black};
+    color: white;
+  }s
+`
+export const FancyButton = styled(Button)`
+  display: block;
+  width: 100%;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  border: 1px solid ${color.black};
+  background: white;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 3rem;
+`
