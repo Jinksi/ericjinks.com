@@ -33,7 +33,7 @@
     "gatsby-transformer-sharp": "^2.1.10",
     "gray-matter": "^3.1.1",
     "loaders.css": "^0.1.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "modern-normalize": "^0.5.0",
     "polished": "^2.3.1",
     "prettier": "^1.12.0",
