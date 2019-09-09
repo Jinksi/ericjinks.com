@@ -16,10 +16,14 @@ export const Relative = styled.div`
 `
 
 export const PageWrap = styled.div`
-  padding: 10vh 0;
+  padding: 3rem 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 450px) {
+    padding: 10vh 0;
+  }
 
   ${props =>
     props.whiteTheme
