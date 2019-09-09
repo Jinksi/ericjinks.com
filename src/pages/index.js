@@ -61,7 +61,7 @@ export default ({ location }) => {
       </Page>
       <Wave />
       <Page white>
-        <PostList />
+        <PostList postCount={3} />
       </Page>
     </Layout>
   )

@@ -71,11 +71,11 @@ class Template extends React.Component {
         path: '/',
         exact: true,
       },
-      // {
-      //   title: 'Blog',
-      //   path: '/blog/',
-      //   exact: true,
-      // },
+      {
+        title: 'Blog',
+        path: '/blog/',
+        exact: true,
+      },
     ]
 
     return (

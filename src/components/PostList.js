@@ -5,8 +5,12 @@ import _get from 'lodash/get'
 import _sortBy from 'lodash/sortBy'
 import ArrowRight from 'react-feather/dist/icons/arrow-right'
 
-import Page from '../components/Page'
-import { Section, Container, TextContainer } from '../components/common'
+import {
+  Section,
+  Container,
+  TextContainer,
+  OutlinedButton,
+} from '../components/common'
 import { displayDate } from '../utils'
 
 const StyledLink = styled(Link)`
@@ -46,8 +50,9 @@ const StyledLink = styled(Link)`
     }
   }
 `
+const MoreButton = OutlinedButton.withComponent(Link)
 
-export default () => {
+export default ({ postCount }) => {
   const data = useStaticQuery(graphql`
     query {
       jsPosts: allJavascriptFrontmatter(
@@ -95,6 +100,11 @@ export default () => {
     [...jsPosts, ...mdPosts].map(edge => ({ ...edge.node })),
     'frontmatter.date'
   ).reverse()
+
+  if (postCount) {
+    posts = posts.slice(0, postCount)
+  }
+
   return (
     <Section thin>
       <Container skinny>
@@ -112,6 +122,9 @@ export default () => {
                 </StyledLink>
               </div>
             ))}
+          <MoreButton to="/blog">
+            More Posts <ArrowRight style={{ height: '0.9em' }} />
+          </MoreButton>
         </TextContainer>
       </Container>
     </Section>
