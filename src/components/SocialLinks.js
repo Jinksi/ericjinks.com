@@ -42,7 +42,7 @@ export const Instagram = () => (
 )
 
 const SocialsWrap = styled.div`
-  margin-left: auto;
+  margin-left: 2rem;
   display: flex;
 `
 
