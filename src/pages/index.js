@@ -20,6 +20,7 @@ import Wave from '../components/Wave'
 const HeadSection = styled(Section)`
   padding-bottom: 0;
   padding-top: 7rem;
+  position: relative;
 `
 
 export default ({ location }) => {
