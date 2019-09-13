@@ -23,7 +23,7 @@ export default ({ whiteTheme = false, size = 150 }) => {
     query {
       profilePic: file(relativePath: { eq: "eric.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 150) {
+          fluid(maxWidth: 300, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
