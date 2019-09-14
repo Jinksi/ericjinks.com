@@ -1,5 +1,4 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import _get from 'lodash/get'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'

@@ -1,6 +1,5 @@
 import React from 'react'
 import _get from 'lodash/get'
-import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
