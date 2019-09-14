@@ -22,21 +22,28 @@ export default ({ whiteTheme = false, size = 150 }) => {
   const { profilePic } = useStaticQuery(graphql`
     query {
       profilePic: file(relativePath: { eq: "eric.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 300, quality: 100) {
+        large: childImageSharp {
+          fluid(maxWidth: 300, quality: 75) {
             ...GatsbyImageSharpFluid_withWebp_noBase64
+          }
+        }
+        small: childImageSharp {
+          fluid(maxWidth: 100, quality: 75) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
   `)
+  // Use large or small image src, depending on size prop
+  const childImageSharp = size >= 100 ? profilePic.large : profilePic.small
   return (
     <ProfilePic
       className="ProfilePic"
       whiteTheme={whiteTheme}
       size={size}
       alt="Eric Jinks"
-      {...profilePic.childImageSharp}
+      {...childImageSharp}
     />
   )
 }
