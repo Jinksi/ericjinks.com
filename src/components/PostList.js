@@ -121,7 +121,7 @@ export default ({ postCount }) => {
               </div>
             ))}
           {slicedPosts.length !== posts.length && (
-            <MoreButton to="/blog">
+            <MoreButton to="/blog/">
               More Posts <ArrowRight style={{ height: '0.9em' }} />
             </MoreButton>
           )}
