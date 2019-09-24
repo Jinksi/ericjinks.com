@@ -10,7 +10,7 @@ cost of hosting & scaling, and a better developer experience.
 
 _Why React?_  
 You may have looked at a couple of [static site generators](https://www.staticgen.com/)
-and become a victim of [overchoice](Overchoice). You already know or wish to learn
+and become a victim of [overchoice](https://en.wikipedia.org/wiki/Overchoice). You already know or wish to learn
 JavaScript and use it rather than a new templating language.
 
 I'll show you the basics of how I create a static website using React.
