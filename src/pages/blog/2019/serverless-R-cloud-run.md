@@ -102,7 +102,7 @@ There are a couple of ways we can do this, the [Cloud Run Docs](https://cloud.go
 
 If you want to get a clone of my hello world example deployed on Cloud Run quickly, click this Cloud Run Button:
 
-[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/Jinksi/cloudrun-helloworld-r.git)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/Jinksi/cloudrun-helloworld-r.git)
 
 > Take a look at the [Cloud Run Button repo](https://github.com/GoogleCloudPlatform/cloud-run-button) to create your own.
 
