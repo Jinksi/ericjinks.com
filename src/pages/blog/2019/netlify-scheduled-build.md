@@ -14,7 +14,7 @@ The easiest way to setup a scheduled build hook trigger that I have come across 
 
    > (Settings > Build & Deploy > Continuous Deployment > Build hooks)
 
-2. In your GitHub repo, create a `main.yml` file in a `.github/workflow` directory:
+2. In your GitHub repo, create a `main.yml` file in a `.github/workflows` directory:
 
    ```yaml
    # .github/workflows/main.yml
