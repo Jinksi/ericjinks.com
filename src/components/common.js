@@ -9,19 +9,28 @@ export const Absolute = styled.div`
   bottom: 0;
 `
 
+export const Fixed = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+`
+
 export const Relative = styled.div`
   position: relative;
   z-index: 0;
 `
 
 export const PageWrap = styled.div`
-  padding: 3rem 0;
+  padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 
   @media (min-width: 450px) {
-    padding: 10vh 0;
+    padding: 10vh 0 0 0;
   }
 
   ${props =>

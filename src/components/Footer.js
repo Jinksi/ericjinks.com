@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Wave from './Wave'
 import { Container } from './common'
 
 const Footer = styled.footer`
   margin-top: auto;
+  min-height: 50vh;
 `
 
 const FooterInner = styled(Container)`
@@ -15,7 +17,7 @@ const FooterInner = styled(Container)`
 
 export default () => (
   <Footer>
-    <FooterInner>
-    </FooterInner>
+    <Wave flip />
+    <FooterInner></FooterInner>
   </Footer>
 )

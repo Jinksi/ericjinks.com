@@ -2418,14 +2418,14 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000980, can
   version "1.0.30000989"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000989.tgz#b9193e293ccf7e4426c5245134b8f2a56c0ac4b9"
 
-canvas-sketch@^0.2.0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/canvas-sketch/-/canvas-sketch-0.2.1.tgz#2e2b0d4c4b08ba0d21bc8f46a4adf27ab2a249ba"
+canvas-sketch@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/canvas-sketch/-/canvas-sketch-0.7.3.tgz#282aea761f1088c36cebcc878227dc3f902d45ae"
+  integrity sha512-EXZtiPxRS9Cb2IPsHTgeoS3o2IdKjmMDxE+a8O8W9vbKd33kcOxqrWFxQsUCRucBcB5v08CIu2CuX1W+/iAhgQ==
   dependencies:
     convert-length "^1.0.1"
     dateformat "^3.0.3"
     deep-equal "^1.0.1"
-    defined "^1.0.0"
     get-canvas-context "^1.0.2"
     is-class "0.0.5"
     is-dom "^1.0.9"
@@ -8155,6 +8155,11 @@ p-try@^1.0.0:
 p-try@^2.0.0, p-try@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
+
+p5@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p5/-/p5-1.0.0.tgz#d27c77c1c11450ede27af4614a5d24470ffab0c4"
+  integrity sha512-SYYc6NSHA/mMoF00SdI39FmhifMWl0B74/Bg3T793v+KOAWgXsBfr7snv9cjHFqpcmjtJMuZSOoA55qAETCu1w==
 
 package-json@^4.0.0:
   version "4.0.1"
