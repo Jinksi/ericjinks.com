@@ -28,7 +28,7 @@ const P5 = ({ sketch = exampleSketch }) => {
       function initialiseP5(p) {
         p.setup = () => {
           p.createCanvas(width, height)
-          p.frameRate(60)
+          p.frameRate(30)
           p.pixelDensity(window.devicePixelRatio)
           p.background(21)
         }

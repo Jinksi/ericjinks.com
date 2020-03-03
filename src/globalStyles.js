@@ -21,7 +21,7 @@ export default createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background: ${color.black};
+    background: black;
   }
 
   body {

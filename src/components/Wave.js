@@ -12,11 +12,13 @@ const Wave = styled.div`
   overflow: hidden;
   margin: -25px 0;
   mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+
   ${props =>
     props.flip &&
     css`
-      transform: rotate(180deg);
-    `}
+      transform: translate3d(0, 0, 0) rotate(180deg);
+    `};
 `
 
 export default ({ flip = false }) => (

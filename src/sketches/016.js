@@ -1,5 +1,5 @@
 export default p => {
-  let blur = 0.3 // 0-1
+  let blur = 0.1 // 0-1
   let gems = []
   let wind
   let windStrength = 0.2
