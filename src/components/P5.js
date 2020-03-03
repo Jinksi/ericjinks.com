@@ -20,26 +20,30 @@ const exampleSketch = p => {
 
 const P5 = ({ sketch = exampleSketch }) => {
   const containerRef = useRef()
+  const p = useRef()
+
   useEffect(() => {
-    const { width, height } = containerRef.current.getBoundingClientRect()
-    function initialiseP5(p) {
-      p.setup = () => {
-        p.createCanvas(width, height)
-        p.frameRate(60)
-        p.pixelDensity(window.devicePixelRatio)
-        p.background(21)
+    if (typeof window !== undefined) {
+      const { width, height } = containerRef.current.getBoundingClientRect()
+      function initialiseP5(p) {
+        p.setup = () => {
+          p.createCanvas(width, height)
+          p.frameRate(60)
+          p.pixelDensity(window.devicePixelRatio)
+          p.background(21)
+        }
+        p.windowResized = () => {
+          p.resizeCanvas(p.windowWidth, p.windowHeight)
+        }
+        sketch(p)
       }
-      p.windowResized = () => {
-        p.resizeCanvas(p.windowWidth, p.windowHeight)
-      }
-      sketch(p)
+
+      p.current = new p5(initialiseP5, containerRef.current)
     }
 
-    const p = new p5(initialiseP5, containerRef.current)
-
     return () => {
-      if (p.canvas) {
-        p.remove()
+      if (p.current) {
+        p.current.remove()
       }
     }
   }, [sketch])
