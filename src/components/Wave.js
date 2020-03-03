@@ -15,7 +15,7 @@ const Wave = styled.div`
   ${props =>
     props.flip &&
     css`
-      transform: scaleY(-100%) scaleX(-100%);
+      transform: rotate(180deg);
     `}
 `
 
