@@ -21,14 +21,13 @@ export default createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background: ${color.black};
+    background: black;
   }
 
   body {
     font-family: ${font.system};
     min-height: 100vh;
     position: relative;
-    background: ${color.black};
     color: ${color.secondary};
     font-size: 1.8em;
     font-weight: 300;

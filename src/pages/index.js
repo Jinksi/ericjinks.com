@@ -12,6 +12,7 @@ import {
   TextContainer,
   Flex,
   Col,
+  Relative,
 } from '../components/common'
 import { isWhiteTheme } from '../utils'
 import PostList from '../components/PostList'
@@ -31,34 +32,37 @@ export default ({ location }) => {
       <Page>
         <SocialMeta />
         <HeadSection>
-          <Container skinny>
-            <Flex alignCenter>
-              <Col>
-                <ProfilePic whiteTheme={whiteTheme} size={125} />
-                <Title>
-                  <div className="background animate-translate animate-translate-mobile" />
-                  <span>Eric Jinks</span>
-                </Title>
-                <TextContainer>
-                  <p>
-                    I am a software engineer from the Gold Coast, Australia.
-                  </p>
-                  <p>
-                    If you'd like to get in touch, send me an email at{' '}
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="mailto:ericjinks@gmail.com"
-                    >
-                      ericjinks@gmail.com
-                    </a>{' '}
-                    or find me on <a href="https://github.com/Jinksi">Github</a>{' '}
-                    or <a href="https://twitter.com/jinksi">Twitter</a>
-                  </p>
-                </TextContainer>
-              </Col>
-            </Flex>
-          </Container>
+          <Relative>
+            <Container skinny>
+              <Flex alignCenter>
+                <Col>
+                  <ProfilePic whiteTheme={whiteTheme} size={125} />
+                  <Title>
+                    <div className="background animate-translate animate-translate-mobile" />
+                    <span>Eric Jinks</span>
+                  </Title>
+                  <TextContainer>
+                    <p>
+                      I am a software engineer from the Gold Coast, Australia.
+                    </p>
+                    <p>
+                      If you'd like to get in touch, send me an email at{' '}
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="mailto:ericjinks@gmail.com"
+                      >
+                        ericjinks@gmail.com
+                      </a>{' '}
+                      or find me on{' '}
+                      <a href="https://github.com/Jinksi">Github</a> or{' '}
+                      <a href="https://twitter.com/jinksi">Twitter</a>
+                    </p>
+                  </TextContainer>
+                </Col>
+              </Flex>
+            </Container>
+          </Relative>
         </HeadSection>
       </Page>
       <Wave />
