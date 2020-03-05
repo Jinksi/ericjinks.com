@@ -8,10 +8,11 @@ import _throttle from 'lodash/throttle'
 import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { PageWrap, Fixed } from '../components/common'
+import { PageWrap } from '../components/common'
 import { isWhiteTheme } from '../utils'
-import sketch016 from '../sketches/016'
-const P5 = React.lazy(() => import('../components/P5'))
+const BackgroundSketch = React.lazy(() =>
+  import('../components/BackgroundSketch')
+)
 
 class Template extends React.Component {
   componentDidMount() {
@@ -67,7 +68,6 @@ class Template extends React.Component {
   render() {
     const { children, location } = this.props
     const whiteTheme = isWhiteTheme({ location })
-    const isSSR = typeof window === 'undefined'
     const routes = [
       {
         title: 'Eric Jinks',
@@ -95,13 +95,9 @@ class Template extends React.Component {
         render={data => (
           <Fragment>
             <PageWrap whiteTheme={whiteTheme}>
-              <Fixed>
-                {!isSSR && (
-                  <React.Suspense fallback={<div />}>
-                    <P5 sketch={sketch016} />
-                  </React.Suspense>
-                )}
-              </Fixed>
+              <React.Suspense fallback={<div />}>
+                <BackgroundSketch />
+              </React.Suspense>
               <Helmet>
                 <title>{_get(data, 'site.siteMetadata.title')}</title>
                 <link

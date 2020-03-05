@@ -8,3 +8,5 @@ export const getPostSlug = ({ date, title }) =>
 
 export const isWhiteTheme = ({ location }) =>
   location.pathname.indexOf('/blog') === 0
+
+export const isSSR = typeof window === 'undefined'
