@@ -9,7 +9,7 @@ import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
-import { isWhiteTheme } from '../utils'
+import { isWhiteTheme, isSSR } from '../utils'
 const BackgroundSketch = React.lazy(() =>
   import('../components/BackgroundSketch')
 )
@@ -95,9 +95,11 @@ class Template extends React.Component {
         render={data => (
           <Fragment>
             <PageWrap whiteTheme={whiteTheme}>
-              <React.Suspense fallback={<div />}>
-                <BackgroundSketch />
-              </React.Suspense>
+              {!isSSR && (
+                <React.Suspense fallback={<div />}>
+                  <BackgroundSketch />
+                </React.Suspense>
+              )}
               <Helmet>
                 <title>{_get(data, 'site.siteMetadata.title')}</title>
                 <link
