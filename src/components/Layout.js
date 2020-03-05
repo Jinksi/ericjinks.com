@@ -95,11 +95,6 @@ class Template extends React.Component {
         render={data => (
           <Fragment>
             <PageWrap whiteTheme={whiteTheme}>
-              {!isSSR && (
-                <React.Suspense fallback={<div />}>
-                  <BackgroundSketch />
-                </React.Suspense>
-              )}
               <Helmet>
                 <title>{_get(data, 'site.siteMetadata.title')}</title>
                 <link
@@ -130,6 +125,12 @@ class Template extends React.Component {
                 <meta name="application-name" content="Eric Jinks" />
                 <meta name="theme-color" content="#212121" />
               </Helmet>
+
+              {!isSSR && (
+                <React.Suspense fallback={null}>
+                  <BackgroundSketch />
+                </React.Suspense>
+              )}
 
               <Nav routes={routes} white={whiteTheme} />
 
