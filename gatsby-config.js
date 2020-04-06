@@ -54,12 +54,6 @@ module.exports = {
     'gatsby-transformer-javascript-frontmatter',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
     `gatsby-plugin-feed`,
     `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-react-helmet`,
