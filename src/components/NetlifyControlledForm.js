@@ -248,8 +248,8 @@ const Alert = styled.p`
   background: transparent;
   width: 100%;
   padding: 2rem;
-  color: ${color.primary};
-  border: 1px solid ${color.primary};
+  color: ${color.background};
+  border: 1px solid ${color.background};
 `
 const Button = styled.input`
   background: ${color.secondary};

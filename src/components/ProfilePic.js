@@ -12,13 +12,13 @@ const ProfilePic = styled(GatsbyImage)`
   overflow: hidden;
 
   ${props =>
-    !props.whiteTheme &&
+    props.blend &&
     css`
       mix-blend-mode: lighten;
     `}
 `
 
-export default ({ whiteTheme = false, size = 150 }) => {
+export default ({ blend = false, size = 150 }) => {
   const { profilePic } = useStaticQuery(graphql`
     query {
       profilePic: file(relativePath: { eq: "eric.jpg" }) {
@@ -40,7 +40,7 @@ export default ({ whiteTheme = false, size = 150 }) => {
   return (
     <ProfilePic
       className="ProfilePic"
-      whiteTheme={whiteTheme}
+      blend={blend}
       size={size}
       alt="Eric Jinks"
       {...childImageSharp}

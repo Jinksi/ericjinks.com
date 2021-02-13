@@ -32,7 +32,7 @@ export default ({ location, image, title, date, author }) => {
           </TextContainer>
         )}
         <Flex column alignCenter>
-          <Title white>
+          <Title inverted>
             <div className="background animate-translate animate-translate-mobile" />
             <span>{title}</span>
           </Title>

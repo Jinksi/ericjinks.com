@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { useTheme } from '../hooks'
+
 export const Github = () => (
   <svg
     width="1em"
@@ -49,41 +51,113 @@ export const DevBadge = () => (
   </svg>
 )
 
-const SocialsWrap = styled.div`
+export const MoonIcon = () => (
+  <svg
+    role="image"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="feather feather-moon"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+)
+
+export const SunIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="feather feather-sun"
+  >
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+)
+
+const NavIconButtonsWrap = styled.div`
   margin-left: auto;
   display: flex;
 `
 
-const SocialLink = styled.a`
+const IconButton = styled.button`
+  border: 0;
+  background: none;
   text-decoration: none;
   padding: 0.5rem;
   width: 3rem;
   height: 3rem;
   color: inherit;
-  &:hover,
-  &:focus {
-    color: inherit;
-  }
+  cursor: pointer;
+  transition: all 0.1s ease;
+
   + * {
     margin-left: 1rem;
   }
+
   svg {
     display: block;
     width: 100%;
     height: 100%;
   }
-`
 
-export default () => (
-  <SocialsWrap>
-    <SocialLink aria-label="Github" href="https://github.com/Jinksi">
-      <Github />
-    </SocialLink>
-    <SocialLink aria-label="Twitter" href="https://twitter.com/jinksi">
-      <Twitter />
-    </SocialLink>
-    <SocialLink aria-label="Dev.to" href="https://dev.to/jinksi">
-      <DevBadge />
-    </SocialLink>
-  </SocialsWrap>
-)
+  &:hover,
+  &:focus {
+    color: var(--color-highlight);
+    /* transform: scale(1.3) translateY(-1px); */
+
+    svg {
+      fill: var(--color-highlight);
+      stroke: var(--color-highlight);
+    }
+  }
+`
+const IconLink = IconButton.withComponent('a')
+
+const ToggleThemeButton = () => {
+  const { theme, toggleTheme } = useTheme()
+  const isDarkMode = theme === 'dark'
+  const label = isDarkMode ? 'Light Mode' : 'Dark Mode'
+  const Icon = isDarkMode ? SunIcon : MoonIcon
+  return (
+    <IconButton role="button" aria-label={label} onClick={toggleTheme}>
+      <Icon />
+    </IconButton>
+  )
+}
+
+export default () => {
+  return (
+    <NavIconButtonsWrap>
+      <ToggleThemeButton />
+      <IconLink aria-label="Github" href="https://github.com/Jinksi">
+        <Github />
+      </IconLink>
+      <IconLink aria-label="Twitter" href="https://twitter.com/jinksi">
+        <Twitter />
+      </IconLink>
+      <IconLink aria-label="Dev.to" href="https://dev.to/jinksi">
+        <DevBadge />
+      </IconLink>
+    </NavIconButtonsWrap>
+  )
+}

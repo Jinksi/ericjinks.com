@@ -25,8 +25,8 @@ const NavLink = styled(Link)`
   }
 `
 
-export default ({ path, exact, ...props }) => (
+export default ({ path, title }) => (
   <NavLink to={path} activeClassName="active" partiallyActive={path !== '/'}>
-    {props.title}
+    {title}
   </NavLink>
 )

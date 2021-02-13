@@ -18,6 +18,22 @@ export const color = {
 }
 
 export default createGlobalStyle`
+  :root {
+    --green: #50E597;
+    --white: hsl(40, 28%, 100%);
+    --black: #181818;
+    --blackTransparent: rgba(24, 24, 24, 0.8);
+    --lightGrey: whitesmoke;
+    --lightBlack: #282c34;
+    /* default to light theme */
+    --color-text: var(--black);
+    --color-lightGrey: var(--lightGrey);
+    --color-background: var(--white);
+    --color-highlight: var(--green);
+    --color-code: var(--lightBlack);
+  }
+  
+
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -28,14 +44,23 @@ export default createGlobalStyle`
     font-family: ${font.system};
     min-height: 100vh;
     position: relative;
-    color: ${color.secondary};
+    color: var(--color-text);
     font-size: 1.8em;
     font-weight: 300;
     letter-spacing: .01em;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.5s ease;
   }
+
+  body[data-theme='dark'] {
+    --color-text: var(--white);
+    --color-lightGrey: var(--lightBlack);
+    --color-background: var(--black);
+}
+  body[data-theme='light'] {
+    --color-text: var(--black);
+    --color-background: var(--white);
+}
 
   *,
   *:before,
@@ -102,7 +127,7 @@ export default createGlobalStyle`
   }
 
   code {
-    background: whitesmoke;
+    background: var(--color-lightGrey);
     padding: 0.2em 0.4em;
     font-size: 85% !important;
     overflow: auto;
@@ -112,7 +137,7 @@ export default createGlobalStyle`
   }
 
   pre {
-    background: ${color.code};
+    background: var(--color-code);
     padding: 1rem;
     word-wrap: normal;
     overflow: auto;
@@ -128,7 +153,7 @@ export default createGlobalStyle`
   }
 
   blockquote {
-    background: whitesmoke;
+    background: var(--color-lightGrey);
     padding: 2rem;
     width: 100%;
     border-radius: 2px;

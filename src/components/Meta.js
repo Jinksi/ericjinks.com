@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { displayDate, isWhiteTheme } from '../utils'
+import { displayDate } from '../utils'
 
 import ProfilePic from './ProfilePic'
 
@@ -27,11 +27,10 @@ const Meta = styled.h3`
   }
 `
 
-export default ({ location, date, author }) => {
-  const whiteTheme = location && isWhiteTheme({ location })
+export default ({ date, author }) => {
   return (
     <Meta>
-      {author && <ProfilePic size={45} whiteTheme={whiteTheme} />}
+      {author && <ProfilePic size={45} />}
       {author && <span>{author}</span>}
       {author && date && <Sep> — </Sep>}
       {!!date && <span>{displayDate(date)}</span>}

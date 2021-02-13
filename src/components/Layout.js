@@ -9,7 +9,8 @@ import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
-import { isWhiteTheme, isSSR } from '../utils'
+import { isSSR } from '../utils'
+
 const BackgroundSketch = React.lazy(() =>
   import('../components/BackgroundSketch')
 )
@@ -67,7 +68,7 @@ class Template extends React.Component {
 
   render() {
     const { children, location } = this.props
-    const whiteTheme = isWhiteTheme({ location })
+    const isHome = location.pathname === '/'
     const routes = [
       {
         title: 'Eric Jinks',
@@ -94,7 +95,7 @@ class Template extends React.Component {
         `}
         render={data => (
           <Fragment>
-            <PageWrap whiteTheme={whiteTheme}>
+            <PageWrap transparent={isHome}>
               <Helmet>
                 <title>{_get(data, 'site.siteMetadata.title')}</title>
                 <link
@@ -132,7 +133,7 @@ class Template extends React.Component {
                 </React.Suspense>
               )}
 
-              <Nav routes={routes} white={whiteTheme} />
+              <Nav routes={routes} inverted={isHome} />
 
               {children}
 

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { color } from '../globalStyles'
 
 export const Absolute = styled.div`
   position: absolute;
@@ -28,24 +27,12 @@ export const PageWrap = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: ${props =>
+    props.transparent ? `rgba(0,0,0,0)` : `var(--color-background)`};
 
   @media (min-width: 450px) {
     padding: 10vh 0 0 0;
   }
-
-  ${props =>
-    props.whiteTheme
-      ? css`
-          color: ${color.black};
-          background: white;
-        `
-      : css`
-          .ContentContainer {
-            picture {
-              mix-blend-mode: lighten;
-            }
-          }
-        `};
 `
 
 export const Section = styled.section`
@@ -73,7 +60,7 @@ export const TextContainer = styled.div`
       margin-right: auto;
     `};
   & > pre[class*='language-'] {
-    background: ${color.code};
+    background: var(--color-code);
     margin-top: 4rem;
     margin-bottom: 4rem;
 
@@ -133,13 +120,14 @@ export const Tip = styled.span`
 
 export const H1 = styled.h1`
   font-weight: 200;
-  color: ${color.primary};
+  color: var(--color-text);
 `
 
 export const Title = styled.h1`
   position: relative;
   font-size: 3rem;
-  color: ${props => (props.white ? '#ffffff' : color.black)};
+  color: ${props =>
+    props.inverted ? `var(--color-background)` : `var(--color-text)`};
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -152,7 +140,8 @@ export const Title = styled.h1`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${props => (props.white ? color.black : color.secondary)};
+    background-color: ${props =>
+      props.inverted ? `var(--color-text)` : `var(--color-background)`};
   }
 
   span {
@@ -161,8 +150,8 @@ export const Title = styled.h1`
 `
 
 export const Button = styled.a`
-  background: ${color.secondary};
-  color: ${color.black};
+  background: var(--color-text);
+  color: var(--color-background);
   mix-blend-mode: ${props => (props.dark ? 'normal' : 'lighten')};
   padding: 0rem 1rem;
   text-transform: uppercase;
@@ -170,7 +159,7 @@ export const Button = styled.a`
 
   &:hover,
   &:focus {
-    color: ${color.black};
+    color: var(--color-background);
     opacity: 0.9;
   }
 `
@@ -181,8 +170,8 @@ export const OutlinedButton = styled(Button)`
   justify-content: center;
   padding: 1rem 2rem;
   margin: 1rem auto;
-  border: 1px solid ${color.black};
-  background: white;
+  border: 1px solid currentColor;
+  background: var(--color-background);
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -190,10 +179,11 @@ export const OutlinedButton = styled(Button)`
 
   &:hover,
   &:focus {
-    background: ${color.black};
-    color: white;
-  }s
+    background: var(--color-text);
+    color: var(--color-background);
+  }
 `
+
 export const FancyButton = styled(Button)`
   display: block;
   width: 100%;
@@ -202,7 +192,7 @@ export const FancyButton = styled(Button)`
   align-items: center;
   justify-content: center;
   margin: 1rem auto;
-  border: 1px solid ${color.black};
+  border: 1px solid var(--color-text);
   background: white;
   cursor: pointer;
   text-align: center;
