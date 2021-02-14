@@ -7,8 +7,6 @@ import NavIconButtons from './NavIconButtons'
 
 const NavWrap = styled.div`
   color: ${props => (props.inverted ? `var(--white)` : `var(--color-text);`)};
-  background: ${props =>
-    props.inverted ? `transparent` : `var(--color-background);`};
 `
 
 const Nav = ({ routes, inverted }) => (
