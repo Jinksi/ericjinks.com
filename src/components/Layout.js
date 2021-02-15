@@ -4,12 +4,15 @@ import { StaticQuery, graphql } from 'gatsby'
 import anime from 'animejs'
 import _get from 'lodash/get'
 import _throttle from 'lodash/throttle'
+import 'modern-normalize/modern-normalize.css'
+import '@fontsource/fira-code/400.css'
 
-import GlobalStyle from '../globalStyles'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { PageWrap } from '../components/common'
 import { isSSR } from '../utils'
+
+import '../globalStyle.scss'
 
 const BackgroundSketch = React.lazy(() =>
   import('../components/BackgroundSketch')
@@ -136,8 +139,6 @@ class Template extends React.Component {
               <Nav routes={routes} inverted={isHome} />
 
               {children}
-
-              <GlobalStyle />
             </PageWrap>
             <Footer />
           </Fragment>

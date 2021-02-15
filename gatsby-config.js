@@ -58,6 +58,7 @@ module.exports = {
     `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {

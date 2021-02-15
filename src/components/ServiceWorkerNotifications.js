@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { color } from '../globalStyles'
 
 const Notification = styled.div`
   position: fixed;
@@ -8,19 +7,19 @@ const Notification = styled.div`
   left: 0;
   right: 0;
   text-align: center;
-  background: ${color.primary};
-  color: white;
+  background: var(--color-text);
+  color: var(--color-background);
   padding: 1rem;
   min-height: 5rem;
   transition: transform 0.1s ease-in-out;
   transform: translateY(${props => (props.message ? '0' : '100%')});
 `
 const CloseButton = styled.button.attrs({
-  children: 'x'
+  children: 'x',
 })`
   border: none;
-  background: white;
-  color: ${color.primary};
+  background: var(--color-background);
+  color: var(--color-text);
   border-radius: 100%;
   width: 2.5rem;
   height: 2.5rem;
@@ -44,11 +43,11 @@ export default class ServiceWorkerNotifications extends Component {
     ready: false,
     updated: false,
     offline: false,
-    reloadOnUpdate: true
+    reloadOnUpdate: true,
   }
 
   state = {
-    message: null
+    message: null,
   }
 
   componentDidMount = () => {
@@ -91,7 +90,7 @@ export default class ServiceWorkerNotifications extends Component {
     this.setState({ message: null })
   }
 
-  render () {
+  render() {
     this.props.reloadOnUpdate && this.reloadIfUpdated()
     return this.state.message ? (
       <Notification message={this.state.message}>
