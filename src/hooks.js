@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import createPersistedState from 'use-persisted-state'
 import { isSSR } from './utils'
 
@@ -31,5 +31,7 @@ export const useTheme = () => {
 
   const toggleTheme = () => setTheme(nextTheme)
 
-  return { theme, toggleTheme }
+  const isDarkTheme = useMemo(() => theme === 'dark', [theme])
+
+  return { theme, toggleTheme, isDarkTheme }
 }
