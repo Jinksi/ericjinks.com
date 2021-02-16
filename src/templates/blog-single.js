@@ -11,8 +11,7 @@ import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ location, data: { post, jsPost, site }, ...props }) => {
-  if (!post) post = jsPost
+export default ({ location, data: { post, site } }) => {
   const {
     frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
@@ -79,17 +78,6 @@ export const pageQuery = graphql`
             }
           }
         }
-      }
-    }
-
-    jsPost: javascriptFrontmatter(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-      }
-      fields {
-        slug
-        editLink
       }
     }
   }

@@ -55,25 +55,6 @@ const MoreButton = OutlinedButton.withComponent(Link)
 export default ({ postCount }) => {
   const data = useStaticQuery(graphql`
     query {
-      jsPosts: allJavascriptFrontmatter(
-        filter: { fields: { slug: { glob: "/blog/**" } } }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            id
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-              excerpt
-              date
-            }
-          }
-        }
-      }
-
       mdPosts: allMdx(
         filter: { fields: { slug: { glob: "/blog/**" } } }
         sort: { fields: [frontmatter___date], order: DESC }
@@ -94,10 +75,9 @@ export default ({ postCount }) => {
       }
     }
   `)
-  let jsPosts = _get(data, 'jsPosts.edges', [])
   let mdPosts = _get(data, 'mdPosts.edges', [])
   let posts = _sortBy(
-    [...jsPosts, ...mdPosts].map(edge => ({ ...edge.node })),
+    [...mdPosts].map(edge => ({ ...edge.node })),
     'frontmatter.date'
   ).reverse()
 

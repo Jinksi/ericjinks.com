@@ -52,7 +52,6 @@ module.exports = {
         ],
       },
     },
-    'gatsby-transformer-javascript-frontmatter',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-feed`,

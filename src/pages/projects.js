@@ -44,22 +44,6 @@ export default Projects
 
 export const pageQuery = graphql`
   {
-    jsProjects: allJavascriptFrontmatter(
-      filter: { fields: { slug: { glob: "/projects/**" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-          }
-        }
-      }
-    }
-
     mdProjects: allMdx(
       filter: { fields: { slug: { glob: "/projects/**" } } }
       sort: { fields: [frontmatter___date], order: DESC }

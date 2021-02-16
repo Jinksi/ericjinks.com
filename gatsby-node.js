@@ -37,10 +37,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create blog posts pages.
-        const posts = [
-          ...result.data.allMdx.edges,
-          // ...result.data.allJavascriptFrontmatter.edges,
-        ]
+        const posts = [...result.data.allMdx.edges]
 
         _.each(posts, (post, index) => {
           const previous =
@@ -49,10 +46,11 @@ exports.createPages = ({ graphql, actions }) => {
 
           const path = post.node.fields.slug
           let component = blogSingle
-          if (path.startsWith('/project')) {
-            component = projectSingle
-          }
 
+          // skip projects
+          if (path.startsWith('/project')) {
+            return null
+          }
           createPage({
             path,
             component,
