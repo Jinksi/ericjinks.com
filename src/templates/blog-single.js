@@ -11,7 +11,7 @@ import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ location, data: { post, site } }) => {
+const BlogSinglePage = ({ location, data: { post, site } }) => {
   const {
     frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
@@ -82,3 +82,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export default BlogSinglePage

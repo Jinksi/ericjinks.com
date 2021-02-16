@@ -32,7 +32,7 @@ const HomeTitle = styled(Title)`
   }
 `
 
-export default ({ location }) => {
+const HomePage = ({ location }) => {
   return (
     <Layout location={location}>
       <SocialMeta />
@@ -77,3 +77,5 @@ export default ({ location }) => {
     </Layout>
   )
 }
+
+export default HomePage

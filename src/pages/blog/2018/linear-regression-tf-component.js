@@ -7,7 +7,7 @@ const TFLinearRegression = loadable(() =>
   import('../../../components/ml/TFLinearRegression')
 )
 
-export default ({ location }) => {
+const DemoComponent =  ({ location }) => {
   const [showTFComponent, setShowTFComponent] = useState(false)
   return (
     <>
@@ -25,3 +25,5 @@ export default ({ location }) => {
     </>
   )
 }
+
+export default DemoComponent

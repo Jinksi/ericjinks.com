@@ -5,7 +5,7 @@ import { FancyButton } from '../../../components/common'
 
 const TFCNNDemo = loadable(() => import('../../../components/ml/TFCNNDemo.js'))
 
-export default () => {
+const DemoComponent = () => {
   const [showTFComponent, setShowTFComponent] = useState(false)
   return (
     <>
@@ -19,3 +19,5 @@ export default () => {
     </>
   )
 }
+
+export default DemoComponent
