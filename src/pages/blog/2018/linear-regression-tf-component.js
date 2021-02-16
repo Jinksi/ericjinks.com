@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import loadable from '@loadable/component'
 
-import { TextContainer, FancyButton } from '../../../components/common'
+import { FancyButton } from '../../../components/common'
 
 const TFLinearRegression = loadable(() =>
   import('../../../components/ml/TFLinearRegression')
@@ -12,13 +12,15 @@ export default ({ location }) => {
   return (
     <>
       {showTFComponent ? (
-        <TFLinearRegression />
+        <>
+          <TFLinearRegression />
+          <br />
+          <figcaption>Click the canvas to add points</figcaption>
+        </>
       ) : (
-        <TextContainer auto>
-          <FancyButton onClick={() => setShowTFComponent(true)}>
-            Click to load example
-          </FancyButton>
-        </TextContainer>
+        <FancyButton onClick={() => setShowTFComponent(true)}>
+          Click to load example
+        </FancyButton>
       )}
     </>
   )
