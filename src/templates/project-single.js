@@ -80,8 +80,8 @@ export const pageQuery = graphql`
       }
     }
 
-    project: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    project: mdx(fields: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         title
         date

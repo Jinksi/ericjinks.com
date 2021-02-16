@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Marked from 'react-markdown'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-python'
@@ -14,12 +14,13 @@ export default class MarkdownContent extends Component {
   componentDidMount = () => Prism.highlightAll()
 
   render = () => (
-    <Marked
-      source={this.props.source || this.props.children}
+    <MDXRenderer
       renderers={{
         Image,
       }}
-    />
+    >
+      {this.props.body}
+    </MDXRenderer>
   )
 }
 

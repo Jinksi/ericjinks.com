@@ -16,7 +16,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
   const {
     frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
-    rawMarkdownBody: content,
+    body,
   } = post
 
   const { author: siteAuthor } = site.siteMetadata
@@ -40,7 +40,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
         <Section thin>
           <Container>
             <TextContainer auto>
-              <MarkdownContent source={content} />
+              <MarkdownContent body={body} />
             </TextContainer>
           </Container>
         </Section>
@@ -59,8 +59,8 @@ export const pageQuery = graphql`
       }
     }
 
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
-      rawMarkdownBody
+    post: mdx(fields: { slug: { eq: $slug } }) {
+      body
       fields {
         slug
         editLink

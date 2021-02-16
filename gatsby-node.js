@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allMarkdownRemark(
+            allMdx(
               sort: { fields: [frontmatter___date], order: DESC }
               limit: 1000
             ) {
@@ -38,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         const posts = [
-          ...result.data.allMarkdownRemark.edges,
+          ...result.data.allMdx.edges,
           // ...result.data.allJavascriptFrontmatter.edges,
         ]
 
@@ -49,7 +49,9 @@ exports.createPages = ({ graphql, actions }) => {
 
           const path = post.node.fields.slug
           let component = blogSingle
-          if (path.startsWith('/project')) component = projectSingle
+          if (path.startsWith('/project')) {
+            component = projectSingle
+          }
 
           createPage({
             path,
@@ -69,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (`MarkdownRemark JavascriptFrontmatter`.includes(node.internal.type)) {
+  if (`allMdx JavascriptFrontmatter`.includes(node.internal.type)) {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,

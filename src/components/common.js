@@ -152,7 +152,6 @@ export const Title = styled.h1`
 export const Button = styled.a`
   background: var(--color-text);
   color: var(--color-background);
-  mix-blend-mode: ${props => (props.dark ? 'normal' : 'lighten')};
   padding: 0rem 1rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -193,8 +192,15 @@ export const FancyButton = styled(Button)`
   justify-content: center;
   margin: 1rem auto;
   border: 1px solid var(--color-text);
-  background: white;
+  background: var(--color-background);
+  color: var(--color-text);
   cursor: pointer;
   text-align: center;
   margin-bottom: 3rem;
+
+  &:hover,
+  &:focus {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
 `

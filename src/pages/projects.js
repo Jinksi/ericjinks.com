@@ -60,7 +60,7 @@ export const pageQuery = graphql`
       }
     }
 
-    mdProjects: allMarkdownRemark(
+    mdProjects: allMdx(
       filter: { fields: { slug: { glob: "/projects/**" } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {

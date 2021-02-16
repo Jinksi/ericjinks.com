@@ -74,7 +74,7 @@ export default ({ postCount }) => {
         }
       }
 
-      mdPosts: allMarkdownRemark(
+      mdPosts: allMdx(
         filter: { fields: { slug: { glob: "/blog/**" } } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
