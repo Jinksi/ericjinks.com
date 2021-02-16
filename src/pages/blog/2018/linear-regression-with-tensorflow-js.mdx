@@ -18,7 +18,7 @@ To get my head around the API, I created a “hello world” linear regression m
 
 <TFLinearRegression />
 
-### Variables
+## Variables
 
 As the points are added to the canvas, our model will attempt to learn the coefficients _m_ and _b_ of the function: _y = mx + b_. We initialise each with a random number.
 
@@ -30,7 +30,7 @@ const m = tf.variable(tf.scalar(Math.random())) // slope
 const b = tf.variable(tf.scalar(Math.random())) // y intercept
 ```
 
-### Predict function
+## Predict function
 
 We create the linear equation using TensorFlow.js math operations. The `tf.tidy()` function will clear any tensors we create inside this function to avoid memory leaks.
 
@@ -45,7 +45,7 @@ const predict = x =>
   })
 ```
 
-### Training the model
+## Training the model
 
 With the initial random coefficient values, our prediction line will not fit our data at all. To train the model to learn ideal values for the coefficients, we will create the following:
 
