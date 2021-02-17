@@ -25,10 +25,13 @@ const Wave = styled.div`
 
 export default ({ flip = false }) => {
   const { isDarkTheme } = useTheme()
-  const backgroundColor = isDarkTheme
-    ? `transparent`
-    : `var(--color-background)`
-  const waveColor = isDarkTheme ? `transparent` : `#000`
+
+  const backgroundColor = `var(--color-background)`
+  const waveColor = `#000`
+
+  if (isDarkTheme) {
+    return null
+  }
 
   return (
     <Wave flip={flip} dark={isDarkTheme}>
