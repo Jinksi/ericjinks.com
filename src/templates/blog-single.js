@@ -11,12 +11,11 @@ import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ location, data: { post, jsPost, site }, ...props }) => {
-  if (!post) post = jsPost
+const BlogSingleTemplate = ({ location, data: { post, site } }) => {
   const {
     frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
-    rawMarkdownBody: content,
+    body,
   } = post
 
   const { author: siteAuthor } = site.siteMetadata
@@ -40,7 +39,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
         <Section thin>
           <Container>
             <TextContainer auto>
-              <MarkdownContent source={content} />
+              <MarkdownContent body={body} />
             </TextContainer>
           </Container>
         </Section>
@@ -50,7 +49,7 @@ export default ({ location, data: { post, jsPost, site }, ...props }) => {
   )
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     site {
       siteMetadata {
@@ -59,8 +58,8 @@ export const pageQuery = graphql`
       }
     }
 
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
-      rawMarkdownBody
+    post: mdx(fields: { slug: { eq: $slug } }) {
+      body
       fields {
         slug
         editLink
@@ -69,28 +68,19 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         excerpt
-        cardimage {
-          publicURL
-        }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2400, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-
-    jsPost: javascriptFrontmatter(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-      }
-      fields {
-        slug
-        editLink
+        # cardimage {
+        #   publicURL
+        # }
+        # image {
+        #   childImageSharp {
+        #     fluid(maxWidth: 2400, quality: 75) {
+        #       ...GatsbyImageSharpFluid_withWebp
+        #     }
+        #   }
+        # }
       }
     }
   }
 `
+
+export default BlogSingleTemplate

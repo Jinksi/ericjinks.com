@@ -5,7 +5,7 @@ import Page from '../components/Page'
 import SocialMeta from '../components/SocialMeta'
 import PostList from '../components/PostList'
 
-export default ({ location }) => {
+const BlogListPage = ({ location }) => {
   return (
     <Layout location={location}>
       <SocialMeta title={'Blog'} pathname={location.pathname} />
@@ -15,3 +15,5 @@ export default ({ location }) => {
     </Layout>
   )
 }
+
+export default BlogListPage

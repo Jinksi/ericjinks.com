@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components'
 import GatsbyImage from 'gatsby-image'
 
 const ProfilePic = styled(GatsbyImage)`
-  height: ${props => props.size}px;
-  width: ${props => props.size}px;
+  height: ${(props) => props.size}px;
+  width: ${(props) => props.size}px;
   position: relative;
   border-radius: 50%;
   display: block;
   overflow: hidden;
 
-  ${props =>
+  ${(props) =>
     props.blend &&
     css`
       mix-blend-mode: lighten;

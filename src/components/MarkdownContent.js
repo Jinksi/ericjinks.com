@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Marked from 'react-markdown'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-python'
@@ -9,17 +9,20 @@ import 'prismjs/components/prism-docker'
 import 'prismjs/components/prism-r'
 import 'prism-theme-one-dark/prism-onedark.css'
 
-export default class MarkdownContent extends Component {
-  // syntax highlighting on mount
-  componentDidMount = () => Prism.highlightAll()
+const MarkdownContent = ({ body }) => {
+  useEffect(() => {
+    // syntax highlighting on mount
+    Prism.highlightAll()
+  }, [body])
 
-  render = () => (
-    <Marked
-      source={this.props.source || this.props.children}
+  return (
+    <MDXRenderer
       renderers={{
         Image,
       }}
-    />
+    >
+      {body}
+    </MDXRenderer>
   )
 }
 
@@ -27,3 +30,5 @@ const Image = styled.img`
   max-width: 100%;
   height: auto;
 `
+
+export default MarkdownContent
