@@ -16,7 +16,6 @@
     "dom-form-serializer": "^1.0.7",
     "gatsby": "^2.32.3",
     "gatsby-image": "^2.0.30",
-    "gatsby-plugin-feed": "^2.0.11",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-mdx": "^1.10.0",
     "gatsby-plugin-nprogress": "^2.0.7",
