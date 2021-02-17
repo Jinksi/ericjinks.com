@@ -27,7 +27,7 @@ const HeadSection = styled(Section)`
 const HomeTitle = styled(Title)`
   color: var(--black);
 
-  .background {
+  .Title--bg1 {
     background-color: var(--white);
   }
 `
@@ -43,10 +43,7 @@ const HomePage = ({ location }) => {
             <Flex alignCenter>
               <Col>
                 <ProfilePic size={125} />
-                <HomeTitle>
-                  <div className="background animate-translate animate-translate-mobile" />
-                  <span>Eric Jinks</span>
-                </HomeTitle>
+                <HomeTitle>Eric Jinks</HomeTitle>
                 <TextContainer>
                   <p>
                     I am a software engineer from the Gold Coast, Australia.

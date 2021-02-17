@@ -28,7 +28,7 @@ const BlogSingleTemplate = ({ location, data: { post, site } }) => {
         absoluteImageUrl={cardimage && cardimage.publicURL}
         description={excerpt}
       />
-      <Page white>
+      <Page>
         <PostHeader
           image={image && image.childImageSharp}
           title={title}

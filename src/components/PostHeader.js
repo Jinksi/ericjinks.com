@@ -11,18 +11,18 @@ import {
   TextContainer,
 } from '../components/common'
 
-export default ({ location, image, title, date, author }) => {
-  const Header = styled(Section)`
-    overflow: hidden;
-    position: relative;
-    min-height: 25rem;
-    max-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-  `
+const Header = styled(Section)`
+  overflow: hidden;
+  position: relative;
+  min-height: 25rem;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+`
 
+export default ({ location, image, title, date, author }) => {
   return (
     <Header image={!!image}>
       <Container>
@@ -32,9 +32,8 @@ export default ({ location, image, title, date, author }) => {
           </TextContainer>
         )}
         <Flex column alignCenter>
-          <Title inverted>
-            <div className="background animate-translate animate-translate-mobile" />
-            <span>{title}</span>
+          <Title inverted animateTranslate animateTranslateMobile>
+            {title}
           </Title>
           <Meta date={date} author={author} location={location} />
         </Flex>

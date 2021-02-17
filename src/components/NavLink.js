@@ -14,9 +14,12 @@ const NavLink = styled(Link)`
     props.active ? 'currentColor' : 'transparent'};
 
   &:hover,
-  &.active,
   &:focus {
-    color: inherit;
+    color: var(--color-highlight);
+    text-decoration: underline;
+  }
+
+  &.active {
     text-decoration: underline;
   }
 

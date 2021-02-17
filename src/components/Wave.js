@@ -17,23 +17,10 @@ const Wave = styled.div`
   transition: none;
 
   ${props =>
-    props.dark &&
-    css`
-      transform: translate3d(0, 0, 0) rotate(180deg);
-    `}
-
-  ${props =>
     props.flip &&
     css`
       transform: translate3d(0, 0, 0) rotate(180deg);
     `};
-
-  ${props =>
-    props.dark &&
-    props.flip &&
-    css`
-      transform: translate3d(0, 0, 0);
-    `}
 `
 
 export default ({ flip = false }) => {
@@ -41,7 +28,7 @@ export default ({ flip = false }) => {
   const backgroundColor = isDarkTheme
     ? `transparent`
     : `var(--color-background)`
-  const waveColor = isDarkTheme ? `var(--color-background)` : `#000`
+  const waveColor = isDarkTheme ? `transparent` : `#000`
 
   return (
     <Wave flip={flip} dark={isDarkTheme}>

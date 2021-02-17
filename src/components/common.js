@@ -1,4 +1,7 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
+import cn from 'classnames'
+import { useTheme } from '../hooks'
 
 export const Absolute = styled.div`
   position: absolute;
@@ -22,18 +25,23 @@ export const Relative = styled.div`
   z-index: 0;
 `
 
-export const PageWrap = styled.div`
+const PageWrapStyled = styled.div`
   padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: ${props =>
-    props.transparent ? `rgba(0,0,0,0)` : `var(--color-background)`};
+    props.transparent ? `transparent` : `var(--color-background)`};
 
   @media (min-width: 450px) {
     padding: 10vh 0 0 0;
   }
 `
+
+export const PageWrap = ({ transparent, ...props }) => {
+  const { isDarkTheme } = useTheme()
+  return <PageWrapStyled {...props} transparent={transparent || isDarkTheme} />
+}
 
 export const Section = styled.section`
   width: 100%;
@@ -123,7 +131,7 @@ export const H1 = styled.h1`
   color: var(--color-text);
 `
 
-export const Title = styled.h1`
+export const TitleStyled = styled.h1`
   position: relative;
   font-size: 3rem;
   color: ${props =>
@@ -134,7 +142,7 @@ export const Title = styled.h1`
   padding: 0rem 1rem;
   line-height: 1;
 
-  .background {
+  .Title--bg1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -148,6 +156,25 @@ export const Title = styled.h1`
     position: relative;
   }
 `
+
+export const Title = ({
+  animateTranslate = true,
+  animateTranslateMobile = true,
+  children,
+  className = '',
+  ...props
+}) => {
+  const bgClassnames = {
+    'animate-translate': animateTranslate,
+    'animate-translate-mobile': animateTranslateMobile,
+  }
+  return (
+    <TitleStyled className={className} {...props}>
+      <div className={cn('Title--bg1', bgClassnames)} />
+      <span>{children}</span>
+    </TitleStyled>
+  )
+}
 
 export const Button = styled.a`
   background: var(--color-text);

@@ -1,6 +1,8 @@
 :root {
   --green: #50e597;
   --white: hsl(40, 28%, 100%);
+  --red: #ff3d3d;
+  --cyan: cyan;
   --black: #181818;
   --blackTransparent: rgba(24, 24, 24, 0.8);
   --lightGrey: whitesmoke;
@@ -44,6 +46,10 @@ body[data-theme='dark'] {
 body[data-theme='light'] {
   --color-text: var(--black);
   --color-background: var(--white);
+}
+
+::selection {
+  background-color: var(--color-highlight);
 }
 
 *,

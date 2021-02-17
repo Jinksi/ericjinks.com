@@ -1,5 +1,16 @@
-import styled from 'styled-components'
+import React from 'react'
+import { useTheme } from '../hooks'
 
-export default styled.div`
-  background: var(--color-background);
-`
+const Page = props => {
+  const { isDarkTheme } = useTheme()
+  return (
+    <div
+      style={{
+        background: isDarkTheme ? 'transparent' : 'var(--color-background)',
+      }}
+      {...props}
+    />
+  )
+}
+
+export default Page

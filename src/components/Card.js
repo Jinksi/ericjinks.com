@@ -14,9 +14,8 @@ const Card = ({ to, title, image, brightness, date, excerpt, bordered }) => (
       image={image}
     />
     <CardInner className="CardInner" column alignStart justifyCenter>
-      <Title className="CardTitle">
-        <div className="background" />
-        <span className="animate-translate">{title}</span>
+      <Title className="CardTitle" animateTranslate>
+        {title}
       </Title>
       {date && <Meta date={date} />}
       {excerpt && <Excerpt>{excerpt}</Excerpt>}
