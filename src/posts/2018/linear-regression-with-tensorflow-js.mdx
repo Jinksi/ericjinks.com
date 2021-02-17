@@ -35,7 +35,7 @@ const b = tf.variable(tf.scalar(Math.random())) // y intercept
 We create the linear equation using TensorFlow.js math operations. The `tf.tidy()` function will clear any tensors we create inside this function to avoid memory leaks.
 
 ```js
-const predict = x =>
+const predict = (x) =>
   tf.tidy(() => {
     // Create a vector of x values
     const xVector = tf.tensor1d(x)
@@ -55,11 +55,7 @@ With the initial random coefficient values, our prediction line will not fit our
 
 ```js
 // loss function: mean squared error
-const loss = (yPred, y) =>
-  yPred
-    .sub(y)
-    .square()
-    .mean()
+const loss = (yPred, y) => yPred.sub(y).square().mean()
 
 // optimiser: stochastic gradient descent
 const learningRate = 0.5
@@ -83,7 +79,7 @@ After each training loop, I have added a line with the predicted _y_ values for 
 // getting values from tensors is async
 predict([-1, 1])
   .data()
-  .then(yVals => {
+  .then((yVals) => {
     // plot the Two.js line on the canvas
     two.makeLine(
       -1 * width, // x1

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import loadable from '@loadable/component'
 
-import { FancyButton } from '../../../components/common'
+import { FancyButton } from '../../components/common'
 
-const TFCNNDemo = loadable(() => import('../../../components/ml/TFCNNDemo.js'))
+const TFCNNDemo = loadable(() => import('../../components/ml/TFCNNDemo.js'))
 
 const DemoComponent = () => {
   const [showTFComponent, setShowTFComponent] = useState(false)

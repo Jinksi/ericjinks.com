@@ -6,7 +6,7 @@ date: 2018-06-18
 author: Eric Jinks
 ---
 
-import TFCNNDemo from './loading-existing-models-component'
+import TFCNNDemo from './loading-existing-models-component.js'
 
 A useful feature of [TensorFlow.js](https://js.tensorflow.org/) is the ability to convert and load pre-existing models developed in python with Keras or TensorFlow for browser use.
 This gives us potential improvements in performance for end-users by making use of their device GPU to conduct the inference without network bottlenecks.
@@ -30,7 +30,7 @@ Using this we can draw image data from sources such as file uploads, streaming v
 In this demo, you can add use and example image or upload you own.
 
 ```js
-const predict = async imageSource => {
+const predict = async (imageSource) => {
   const img = document.createElement('img')
   img.src = imageSource
 

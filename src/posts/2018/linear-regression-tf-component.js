@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import loadable from '@loadable/component'
 
-import { FancyButton } from '../../../components/common'
+import { FancyButton } from '../../components/common'
 
 const TFLinearRegression = loadable(() =>
-  import('../../../components/ml/TFLinearRegression')
+  import('../../components/ml/TFLinearRegression')
 )
 
-const DemoComponent =  ({ location }) => {
+const DemoComponent = ({ location }) => {
   const [showTFComponent, setShowTFComponent] = useState(false)
   return (
     <>

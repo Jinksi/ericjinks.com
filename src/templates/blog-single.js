@@ -11,7 +11,7 @@ import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-const BlogSinglePage = ({ location, data: { post, site } }) => {
+const BlogSingleTemplate = ({ location, data: { post, site } }) => {
   const {
     frontmatter: { title, author, date, image, cardimage, excerpt },
     fields: { slug, editLink },
@@ -49,7 +49,7 @@ const BlogSinglePage = ({ location, data: { post, site } }) => {
   )
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     site {
       siteMetadata {
@@ -68,19 +68,19 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         excerpt
-        cardimage {
-          publicURL
-        }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2400, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+        # cardimage {
+        #   publicURL
+        # }
+        # image {
+        #   childImageSharp {
+        #     fluid(maxWidth: 2400, quality: 75) {
+        #       ...GatsbyImageSharpFluid_withWebp
+        #     }
+        #   }
+        # }
       }
     }
   }
 `
 
-export default BlogSinglePage
+export default BlogSingleTemplate
