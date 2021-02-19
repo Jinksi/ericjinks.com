@@ -27,7 +27,7 @@ const HeadSection = styled(Section)`
 const HomeTitle = styled(AnimatedTitle)`
   color: var(--black);
 
-  .Title--bg1 {
+  .Title--bg:nth-child(3) {
     background-color: var(--white);
   }
 `

@@ -20,7 +20,7 @@ export const TitleStyled = styled.h1`
     left: 0;
     right: 0;
     bottom: 0;
-    mix-blend-mode: add;
+    mix-blend-mode: normal;
   }
 
   .Title--bg:nth-child(1) {
