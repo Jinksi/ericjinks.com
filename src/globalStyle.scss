@@ -1,7 +1,8 @@
 :root {
   --green: #50e597;
   --white: hsl(40, 28%, 100%);
-  --red: #ff3d3d;
+  --red: tomato;
+  --orange: orange;
   --cyan: cyan;
   --black: #181818;
   --blackTransparent: rgba(24, 24, 24, 0.8);
@@ -12,6 +13,8 @@
   --color-lightGrey: var(--lightGrey);
   --color-background: var(--white);
   --color-highlight: var(--green);
+  --color-highlightB: var(--red);
+  --color-highlightC: var(--orange);
   --color-code: var(--lightBlack);
 
   --font-code: 'Fira Code', monospace;

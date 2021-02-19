@@ -24,10 +24,10 @@ export const TitleStyled = styled.h1`
   }
 
   .Title--bg:nth-child(1) {
-    background-color: var(--red);
+    background-color: var(--color-highlightB);
   }
   .Title--bg:nth-child(2) {
-    background-color: var(--green);
+    background-color: var(--color-highlight);
   }
 
   .Title--bg:nth-child(3) {

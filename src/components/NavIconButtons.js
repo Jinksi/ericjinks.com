@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { motion } from 'framer-motion'
 import { useTheme } from '../hooks'
 
 export const Github = () => (
@@ -99,7 +99,7 @@ const NavIconButtonsWrap = styled.div`
   display: flex;
 `
 
-const IconButton = styled.button`
+const IconButton = styled(motion.button)`
   border: 0;
   background: none;
   text-decoration: none;
@@ -118,44 +118,65 @@ const IconButton = styled.button`
     display: block;
     width: 100%;
     height: 100%;
-  }
-
-  &:hover,
-  &:focus {
-    color: var(--color-highlight);
-    /* transform: scale(1.3) translateY(-1px); */
-
-    svg {
-      fill: var(--color-highlight);
-      stroke: var(--color-highlight);
-    }
+    fill: currentColor;
+    stroke: currentColor;
   }
 `
-const IconLink = IconButton.withComponent('a')
+const IconLink = IconButton.withComponent(motion.a)
 
-const ToggleThemeButton = () => {
+const ToggleThemeButton = props => {
   const { theme, toggleTheme } = useTheme()
   const isDarkMode = theme === 'dark'
   const label = isDarkMode ? 'Light Mode' : 'Dark Mode'
   const Icon = isDarkMode ? SunIcon : MoonIcon
   return (
-    <IconButton role="button" aria-label={label} onClick={toggleTheme}>
+    <IconButton
+      role="button"
+      aria-label={label}
+      onClick={toggleTheme}
+      {...props}
+    >
       <Icon />
     </IconButton>
   )
 }
 
 export default () => {
+  const motionProps = {
+    initial: { color: `inherit` },
+    whileHover: {
+      scale: 1.2,
+      color: `var(--color-highlight)`,
+      transition: { duration: 0.05 },
+    },
+    whileTap: {
+      scale: 0.8,
+      color: `var(--color-highlightC)`,
+      transition: { duration: 0.05 },
+    },
+  }
   return (
     <NavIconButtonsWrap>
-      <ToggleThemeButton />
-      <IconLink aria-label="Github" href="https://github.com/Jinksi">
+      <ToggleThemeButton {...motionProps} />
+      <IconLink
+        {...motionProps}
+        aria-label="Github"
+        href="https://github.com/Jinksi"
+      >
         <Github />
       </IconLink>
-      <IconLink aria-label="Twitter" href="https://twitter.com/jinksi">
+      <IconLink
+        {...motionProps}
+        aria-label="Twitter"
+        href="https://twitter.com/jinksi"
+      >
         <Twitter />
       </IconLink>
-      <IconLink aria-label="Dev.to" href="https://dev.to/jinksi">
+      <IconLink
+        {...motionProps}
+        aria-label="Dev.to"
+        href="https://dev.to/jinksi"
+      >
         <DevBadge />
       </IconLink>
     </NavIconButtonsWrap>
