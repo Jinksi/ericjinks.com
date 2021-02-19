@@ -58,6 +58,7 @@
   },
   "scripts": {
     "start": "gatsby develop",
+    "dev": "gatsby develop -H 0.0.0.0 -p 8000",
     "build": "gatsby build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
