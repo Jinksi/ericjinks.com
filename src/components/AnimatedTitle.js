@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useMouse, useMotion } from 'react-use'
+import { useMouse, useWindowScroll } from 'react-use'
 
 export const TitleStyled = styled.h1`
   position: relative;
@@ -43,8 +43,8 @@ export const TitleStyled = styled.h1`
 const AnimatedTitle = ({ children, className = '', ...props }) => {
   const ref = React.useRef(null)
   const { docX, docY } = useMouse(ref)
+  const { y: scrollYProgress } = useWindowScroll()
   const [translate, setTranslate] = useState({ x: 0, y: 0 })
-  const motionState = useMotion()
 
   const handleMouseMove = () => {
     // handleMouseMove
@@ -53,18 +53,13 @@ const AnimatedTitle = ({ children, className = '', ...props }) => {
     setTranslate({ x, y })
   }
 
-  const handleDeviceMotion = () => {
-    const motionX = motionState.acceleration?.x * 1000
-    const motionY = motionState.acceleration?.y * 1000
-    if (motionX !== null && motionY !== null) {
-      const x = -(motionX / window.innerWidth - 0.5) * 10
-      const y = -(motionY / window.innerHeight - 0.5) * 10
-      setTranslate({ x, y })
-    }
+  const handleScroll = () => {
+    const y = -scrollYProgress / 50
+    setTranslate(prev => ({ x: prev.x, y }))
   }
 
   useEffect(handleMouseMove, [docX, docY])
-  useEffect(handleDeviceMotion, [motionState])
+  useEffect(handleScroll, [scrollYProgress])
 
   const spring = {
     type: 'spring',

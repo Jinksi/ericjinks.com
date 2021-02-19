@@ -9,7 +9,7 @@ const BlogListPage = ({ location }) => {
   return (
     <Layout location={location}>
       <SocialMeta title={'Blog'} pathname={location.pathname} />
-      <Page white>
+      <Page>
         <PostList />
       </Page>
     </Layout>
