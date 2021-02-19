@@ -3,13 +3,8 @@ import styled from 'styled-components'
 import GatsbyImage from 'gatsby-image'
 
 import Meta from '../components/Meta'
-import {
-  Title,
-  Flex,
-  Container,
-  Section,
-  TextContainer,
-} from '../components/common'
+import AnimatedTitle from './AnimatedTitle'
+import { Flex, Container, Section, TextContainer } from '../components/common'
 
 const Header = styled(Section)`
   overflow: hidden;
@@ -32,9 +27,7 @@ export default ({ location, image, title, date, author }) => {
           </TextContainer>
         )}
         <Flex column alignCenter>
-          <Title inverted animateTranslate animateTranslateMobile>
-            {title}
-          </Title>
+          <AnimatedTitle inverted>{title}</AnimatedTitle>
           <Meta date={date} author={author} location={location} />
         </Flex>
       </Container>

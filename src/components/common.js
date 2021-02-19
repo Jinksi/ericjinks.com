@@ -131,51 +131,6 @@ export const H1 = styled.h1`
   color: var(--color-text);
 `
 
-export const TitleStyled = styled.h1`
-  position: relative;
-  font-size: 3rem;
-  color: ${props =>
-    props.inverted ? `var(--color-background)` : `var(--color-text)`};
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0rem 1rem;
-  line-height: 1;
-
-  .Title--bg1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${props =>
-      props.inverted ? `var(--color-text)` : `var(--color-background)`};
-  }
-
-  span {
-    position: relative;
-  }
-`
-
-export const Title = ({
-  animateTranslate = true,
-  animateTranslateMobile = true,
-  children,
-  className = '',
-  ...props
-}) => {
-  const bgClassnames = {
-    'animate-translate': animateTranslate,
-    'animate-translate-mobile': animateTranslateMobile,
-  }
-  return (
-    <TitleStyled className={className} {...props}>
-      <div className={cn('Title--bg1', bgClassnames)} />
-      <span>{children}</span>
-    </TitleStyled>
-  )
-}
-
 export const Button = styled.a`
   background: var(--color-text);
   color: var(--color-background);

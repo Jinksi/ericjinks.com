@@ -6,7 +6,6 @@ import Page from '../components/Page'
 import SocialMeta from '../components/SocialMeta'
 import ProfilePic from '../components/ProfilePic'
 import {
-  Title,
   Section,
   Container,
   TextContainer,
@@ -16,6 +15,7 @@ import {
 } from '../components/common'
 import PostList from '../components/PostList'
 import Wave from '../components/Wave'
+import AnimatedTitle from '../components/AnimatedTitle'
 
 const HeadSection = styled(Section)`
   padding-bottom: 0;
@@ -24,7 +24,7 @@ const HeadSection = styled(Section)`
   color: var(--white);
 `
 
-const HomeTitle = styled(Title)`
+const HomeTitle = styled(AnimatedTitle)`
   color: var(--black);
 
   .Title--bg1 {

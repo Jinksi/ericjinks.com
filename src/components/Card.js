@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import { Title, Flex } from './common'
+import { Flex } from './common'
+import AnimatedTitle from './AnimatedTitle'
 import BackgroundImage from './BackgroundImage'
 import Meta from '../components/Meta'
 
@@ -14,9 +15,7 @@ const Card = ({ to, title, image, brightness, date, excerpt, bordered }) => (
       image={image}
     />
     <CardInner className="CardInner" column alignStart justifyCenter>
-      <Title className="CardTitle" animateTranslate>
-        {title}
-      </Title>
+      <AnimatedTitle className="CardTitle">{title}</AnimatedTitle>
       {date && <Meta date={date} />}
       {excerpt && <Excerpt>{excerpt}</Excerpt>}
     </CardInner>
