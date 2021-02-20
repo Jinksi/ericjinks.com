@@ -54,8 +54,9 @@ const AnimatedTitle = ({ children, className = '', ...props }) => {
   }
 
   const handleScroll = () => {
-    const y = -scrollYProgress / 50
-    setTranslate(prev => ({ x: prev.x, y }))
+    const y = -scrollYProgress / 200
+    const x = -scrollYProgress / 600
+    setTranslate(prev => ({ x, y }))
   }
 
   useEffect(handleMouseMove, [docX, docY])
