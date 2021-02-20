@@ -1,6 +1,7 @@
 :root {
   --green: #50e597;
   --white: hsl(40, 28%, 100%);
+  --offWhite: #e9e9e9;
   --red: #ff6347;
   --orange: #ffa500;
   --cyan: #00ffff;
@@ -29,6 +30,16 @@ html {
   background: black;
 }
 
+body[data-theme='dark'] {
+  --color-text: var(--offWhite);
+  --color-lightGrey: var(--lightBlack);
+  --color-background: var(--black);
+}
+body[data-theme='light'] {
+  --color-text: var(--black);
+  --color-background: var(--white);
+}
+
 body {
   font-family: var(--font-system);
   min-height: 100vh;
@@ -39,16 +50,6 @@ body {
   letter-spacing: 0.01em;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-}
-
-body[data-theme='dark'] {
-  --color-text: var(--white);
-  --color-lightGrey: var(--lightBlack);
-  --color-background: var(--black);
-}
-body[data-theme='light'] {
-  --color-text: var(--black);
-  --color-background: var(--white);
 }
 
 ::selection {
