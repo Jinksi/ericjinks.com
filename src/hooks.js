@@ -30,8 +30,6 @@ export const useTheme = () => {
   }, [theme])
 
   const toggleTheme = () => setTheme(nextTheme)
-  const isDarkTheme = theme === 'dark'
-  console.log({ isDarkTheme })
 
-  return { theme, toggleTheme, isDarkTheme }
+  return { theme, toggleTheme }
 }

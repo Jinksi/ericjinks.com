@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 import { useMouse } from 'react-use'
 
-import { useTheme } from '../hooks'
-
 export const Absolute = styled.div`
   position: absolute;
   top: 0;
@@ -27,7 +25,7 @@ export const Relative = styled.div`
   z-index: 0;
 `
 
-const PageWrapStyled = styled.main`
+export const PageWrap = styled.main`
   padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
@@ -35,15 +33,14 @@ const PageWrapStyled = styled.main`
   background: ${props =>
     props.transparent ? `transparent` : `var(--color-background)`};
 
+  [data-theme='dark'] & {
+    background: transparent;
+  }
+
   @media (min-width: 450px) {
     padding: 10vh 0 0 0;
   }
 `
-
-export const PageWrap = ({ transparent, ...props }) => {
-  const { isDarkTheme } = useTheme()
-  return <PageWrapStyled {...props} transparent={transparent || isDarkTheme} />
-}
 
 export const Section = styled.section`
   width: 100%;
