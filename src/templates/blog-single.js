@@ -37,7 +37,7 @@ const BlogSingleTemplate = ({ location, data: { post, site } }) => {
           absoluteImageUrl={cardimage && cardimage.publicURL}
           description={excerpt}
         />
-        <Page>
+        <Page style={{ paddingTop: 40 }}>
           <PostHeader
             image={image && image.childImageSharp}
             title={title}

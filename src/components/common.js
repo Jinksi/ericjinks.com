@@ -126,9 +126,17 @@ export const Tip = styled.span`
 `
 
 export const H1 = styled.h1`
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.2;
   position: relative;
+
+  @media (min-width: 450px) {
+    font-size: 3.5rem;
+  }
+
+  @media (min-width: 880px) {
+    font-size: 4rem;
+  }
 `
 
 const MotionH1 = H1.withComponent(motion.h1)
