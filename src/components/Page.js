@@ -1,13 +1,11 @@
-import styled, { css } from 'styled-components'
-import { color } from '../globalStyles'
+import styled from 'styled-components'
 
-export default styled.div`
-  ${props => {
-    if (props.white) {
-      return css`
-        color: ${color.black};
-        background-color: ${color.primary};
-      `
-    }
-  }};
+const Page = styled.div`
+  background: var(--color-background);
+
+  [data-theme='dark'] & {
+    background: transparent;
+  }
 `
+
+export default Page

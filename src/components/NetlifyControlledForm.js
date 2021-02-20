@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { stringify } from 'qs'
-import { color } from '../globalStyles'
 
 class Form extends Component {
   state = {
@@ -196,7 +195,7 @@ const Line = styled.svg`
   }
 
   & .focus {
-    stroke: ${color.secondary};
+    stroke: var(--color-background);
   }
 
   & .valid {
@@ -248,12 +247,12 @@ const Alert = styled.p`
   background: transparent;
   width: 100%;
   padding: 2rem;
-  color: ${color.primary};
-  border: 1px solid ${color.primary};
+  color: var(--color-background);
+  border: 1px solid var(--color-background);
 `
 const Button = styled.input`
-  background: ${color.secondary};
-  color: ${color.black};
+  background: var(--color-background);
+  color: var(--color-text);
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 400;
@@ -261,7 +260,7 @@ const Button = styled.input`
   font-size: 1.4rem;
   display: inline-block;
   padding: 1rem 2rem;
-  border: 1px solid ${color.secondary};
+  border: 1px solid var(--color-text);
   transition: all 0.1s ease;
   cursor: pointer;
 

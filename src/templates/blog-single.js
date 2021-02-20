@@ -11,46 +11,56 @@ import PostFooter from '../components/PostFooter'
 
 import { Container, Section, TextContainer } from '../components/common'
 
-export default ({ location, data: { post, jsPost, site }, ...props }) => {
-  if (!post) post = jsPost
+const BlogSingleTemplate = ({ location, data: { post, site } }) => {
   const {
-    frontmatter: { title, author, date, image, cardimage, excerpt },
+    frontmatter: {
+      title,
+      author,
+      date,
+      dateFormatted,
+      image,
+      cardimage,
+      excerpt,
+    },
     fields: { slug, editLink },
-    rawMarkdownBody: content,
+    body,
   } = post
 
   const { author: siteAuthor } = site.siteMetadata
 
   return (
     <Layout location={location}>
-      <SocialMeta
-        title={title}
-        pathname={location.pathname}
-        absoluteImageUrl={cardimage && cardimage.publicURL}
-        description={excerpt}
-      />
-      <Page white>
-        <PostHeader
-          image={image && image.childImageSharp}
+      <article>
+        <SocialMeta
           title={title}
-          date={date}
-          author={author || siteAuthor}
-          location={location}
+          pathname={location.pathname}
+          absoluteImageUrl={cardimage && cardimage.publicURL}
+          description={excerpt}
         />
-        <Section thin>
-          <Container>
-            <TextContainer auto>
-              <MarkdownContent source={content} />
-            </TextContainer>
-          </Container>
-        </Section>
-        <PostFooter editLink={editLink} slug={slug} title={title} />
-      </Page>
+        <Page style={{ paddingTop: 40 }}>
+          <PostHeader
+            image={image && image.childImageSharp}
+            title={title}
+            date={date}
+            dateFormatted={dateFormatted}
+            author={author || siteAuthor}
+            location={location}
+          />
+          <Section thin>
+            <Container>
+              <TextContainer auto>
+                <MarkdownContent body={body} />
+              </TextContainer>
+            </Container>
+          </Section>
+          <PostFooter editLink={editLink} slug={slug} title={title} />
+        </Page>
+      </article>
     </Layout>
   )
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     site {
       siteMetadata {
@@ -59,38 +69,30 @@ export const pageQuery = graphql`
       }
     }
 
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
-      rawMarkdownBody
+    post: mdx(fields: { slug: { eq: $slug } }) {
+      body
       fields {
         slug
         editLink
       }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date: date(formatString: "YYYY-MM-DD")
+        dateFormatted: date(formatString: "MMMM DD, YYYY")
         excerpt
-        cardimage {
-          publicURL
-        }
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2400, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
-    }
-
-    jsPost: javascriptFrontmatter(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-      }
-      fields {
-        slug
-        editLink
+        # cardimage {
+        #   publicURL
+        # }
+        # image {
+        #   childImageSharp {
+        #     fluid(maxWidth: 2400, quality: 75) {
+        #       ...GatsbyImageSharpFluid_withWebp
+        #     }
+        #   }
+        # }
       }
     }
   }
 `
+
+export default BlogSingleTemplate

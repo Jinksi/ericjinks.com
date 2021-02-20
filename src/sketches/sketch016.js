@@ -3,11 +3,12 @@ import Vector from './vector'
 
 export default () => {
   let gems = []
+  const maxGems = 100
   let wind
   let windStrength = 0.11
   let windDynamics = 0.003
   let gemSlow = 0.05
-  let gridSize = 100
+  let gridSize = 150
   let blur = 0.3
 
   class Gem {
@@ -90,7 +91,9 @@ export default () => {
         for (let j = 0; j < height; j += gridSize) {
           const x = random.range(i - gridSize, i + gridSize)
           const y = random.range(j - gridSize, j + gridSize)
-          gems.push(new Gem(x, y))
+          if (gems.length < maxGems) {
+            gems.push(new Gem(x, y))
+          }
         }
       }
     }

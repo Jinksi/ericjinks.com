@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { color } from '../globalStyles'
 
 const rotate360 = keyframes`
   from {
@@ -29,35 +28,35 @@ const Side = styled.div`
   position: absolute;
   width: ${cubeSize * 2}vw;
   height: ${cubeSize * 2}vw;
-  border: 1px dashed ${color.secondary};
+  border: 1px dashed var(--color-text);
   display: flex;
   justify-content: center;
   align-items: center;
-  &:nth-child(1){
+  &:nth-child(1) {
     transform: translateZ(-${cubeSize}vw) rotateY(180deg);
   }
-  &:nth-child(2){
+  &:nth-child(2) {
     transform: rotateY(-270deg) translateX(${cubeSize}vw);
     transform-origin: top right;
   }
-  &:nth-child(3){
+  &:nth-child(3) {
     transform: rotateY(270deg) translateX(-${cubeSize}vw);
     transform-origin: center left;
   }
-  &:nth-child(4){
+  &:nth-child(4) {
     transform: rotateX(-90deg) translateY(-${cubeSize}vw);
     transform-origin: top center;
   }
-  &:nth-child(5){
+  &:nth-child(5) {
     transform: rotateX(90deg) translateY(${cubeSize}vw);
     transform-origin: bottom center;
   }
-  &:nth-child(6){
+  &:nth-child(6) {
     transform: translateZ(${cubeSize}vw);
   }
 `
 
-export default (props) => (
+export default props => (
   <Wrap>
     <Cube>
       <Side front>{props.text}</Side>

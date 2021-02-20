@@ -4,25 +4,27 @@ import GatsbyImage from 'gatsby-image'
 
 import Meta from '../components/Meta'
 import {
-  Title,
   Flex,
   Container,
   Section,
   TextContainer,
+  H1,
 } from '../components/common'
 
-export default ({ location, image, title, date, author }) => {
-  const Header = styled(Section)`
-    overflow: hidden;
-    position: relative;
-    min-height: 25rem;
-    max-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-  `
+const SectionStyled = styled(Section)`
+  overflow: hidden;
+  position: relative;
+  min-height: 25rem;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+`
 
+const Header = SectionStyled.withComponent('header')
+
+export default ({ location, image, title, date, dateFormatted, author }) => {
   return (
     <Header image={!!image}>
       <Container>
@@ -32,11 +34,13 @@ export default ({ location, image, title, date, author }) => {
           </TextContainer>
         )}
         <Flex column alignCenter>
-          <Title white>
-            <div className="background animate-translate animate-translate-mobile" />
-            <span>{title}</span>
-          </Title>
-          <Meta date={date} author={author} location={location} />
+          <H1 inverted>{title}</H1>
+          <Meta
+            date={date}
+            dateFormatted={dateFormatted}
+            author={author}
+            location={location}
+          />
         </Flex>
       </Container>
     </Header>

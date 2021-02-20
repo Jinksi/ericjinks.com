@@ -7,6 +7,8 @@ import Github from 'react-feather/dist/icons/github'
 import Share from './Share'
 import { Container, Section, TextContainer } from './common'
 
+const FooterSection = Section.withComponent('footer')
+
 const Icon = styled.div`
   width: 1em;
   height: 1em;
@@ -16,7 +18,7 @@ const Icon = styled.div`
 const TwitterIcon = Icon.withComponent(Twitter)
 const GithubIcon = Icon.withComponent(Github)
 
-const PostFooterWrap = styled.div`
+const PostFooterWrap = styled.footer`
   text-align: right;
   display: flex;
   justify-content: flex-end;
@@ -64,7 +66,7 @@ const PostFooter = ({ slug, editLink, title }) => {
   if (!slug) return null
 
   return (
-    <Section thin>
+    <FooterSection thin>
       <Container>
         <TextContainer auto>
           <PostFooterWrap>
@@ -97,7 +99,7 @@ const PostFooter = ({ slug, editLink, title }) => {
           />
         </TextContainer>
       </Container>
-    </Section>
+    </FooterSection>
   )
 }
 

@@ -1,5 +1,7 @@
+import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { color } from '../globalStyles'
+import { motion } from 'framer-motion'
+import { useMouse } from 'react-use'
 
 export const Absolute = styled.div`
   position: absolute;
@@ -23,29 +25,21 @@ export const Relative = styled.div`
   z-index: 0;
 `
 
-export const PageWrap = styled.div`
+export const PageWrap = styled.main`
   padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: ${props =>
+    props.transparent ? `transparent` : `var(--color-background)`};
+
+  [data-theme='dark'] & {
+    background: transparent;
+  }
 
   @media (min-width: 450px) {
     padding: 10vh 0 0 0;
   }
-
-  ${props =>
-    props.whiteTheme
-      ? css`
-          color: ${color.black};
-          background: white;
-        `
-      : css`
-          .ContentContainer {
-            picture {
-              mix-blend-mode: lighten;
-            }
-          }
-        `};
 `
 
 export const Section = styled.section`
@@ -73,7 +67,7 @@ export const TextContainer = styled.div`
       margin-right: auto;
     `};
   & > pre[class*='language-'] {
-    background: ${color.code};
+    background: var(--color-code);
     margin-top: 4rem;
     margin-bottom: 4rem;
 
@@ -132,45 +126,90 @@ export const Tip = styled.span`
 `
 
 export const H1 = styled.h1`
-  font-weight: 200;
-  color: ${color.primary};
-`
-
-export const Title = styled.h1`
-  position: relative;
   font-size: 3rem;
-  color: ${props => (props.white ? '#ffffff' : color.black)};
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0rem 1rem;
-  line-height: 1;
+  line-height: 1.2;
+  position: relative;
 
-  .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${props => (props.white ? color.black : color.secondary)};
+  @media (min-width: 450px) {
+    font-size: 3.5rem;
   }
 
-  span {
-    position: relative;
+  @media (min-width: 880px) {
+    font-size: 4rem;
   }
 `
 
+const MotionH1 = H1.withComponent(motion.h1)
+
+export const AnimatedH1 = ({ children }) => {
+  const ref = React.useRef(null)
+  const { docX, docY } = useMouse(ref)
+  const [translate, setTranslate] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = () => {
+    // handleMouseMove
+    const x = -(docX / window.innerWidth) * 0.5
+    const y = -(docY / window.innerHeight) * 2
+    setTranslate({ x, y })
+  }
+
+  useEffect(handleMouseMove, [docX, docY])
+
+  const animateA = {
+    x: translate.x * 10,
+    y: translate.y * 25,
+    scale: 1.2,
+  }
+  const animateB = {
+    x: translate.x * 10,
+    y: translate.y * 30,
+    scale: 1.225,
+  }
+  const spring = {
+    type: 'spring',
+    damping: 10,
+    stiffness: 200,
+    duration: 1,
+  }
+  const shadowStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    opacity: 0.1,
+    mixBlendMode: 'soft-light',
+  }
+
+  return (
+    <span style={{ position: 'relative' }} ref={ref}>
+      <MotionH1
+        animate={animateB}
+        style={{ ...shadowStyle, color: `var(--color-highlightB)` }}
+        transition={spring}
+      >
+        {children}t
+      </MotionH1>
+      <MotionH1
+        animate={animateA}
+        style={{ ...shadowStyle, color: `var(--color-highlight)` }}
+        transition={spring}
+      >
+        {children}
+      </MotionH1>
+
+      <MotionH1>{children}</MotionH1>
+    </span>
+  )
+}
 export const Button = styled.a`
-  background: ${color.secondary};
-  color: ${color.black};
-  mix-blend-mode: ${props => (props.dark ? 'normal' : 'lighten')};
+  background: var(--color-text);
+  color: var(--color-background);
   padding: 0rem 1rem;
   text-transform: uppercase;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    color: ${color.black};
+    color: var(--color-background);
     opacity: 0.9;
   }
 `
@@ -181,8 +220,8 @@ export const OutlinedButton = styled(Button)`
   justify-content: center;
   padding: 1rem 2rem;
   margin: 1rem auto;
-  border: 1px solid ${color.black};
-  background: white;
+  border: 1px solid currentColor;
+  background: var(--color-background);
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -190,10 +229,11 @@ export const OutlinedButton = styled(Button)`
 
   &:hover,
   &:focus {
-    background: ${color.black};
-    color: white;
-  }s
+    background: var(--color-text);
+    color: var(--color-background);
+  }
 `
+
 export const FancyButton = styled(Button)`
   display: block;
   width: 100%;
@@ -202,9 +242,16 @@ export const FancyButton = styled(Button)`
   align-items: center;
   justify-content: center;
   margin: 1rem auto;
-  border: 1px solid ${color.black};
-  background: white;
+  border: 1px solid var(--color-text);
+  background: var(--color-background);
+  color: var(--color-text);
   cursor: pointer;
   text-align: center;
   margin-bottom: 3rem;
+
+  &:hover,
+  &:focus {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
 `

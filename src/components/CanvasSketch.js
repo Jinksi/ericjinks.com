@@ -5,6 +5,7 @@ const settings = {
   animate: true,
   pixelRatio: window.devicePixelRatio,
   fps: 30,
+  playbackRate: 'throttle',
 }
 
 // Start the sketch

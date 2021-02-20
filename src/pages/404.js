@@ -6,7 +6,7 @@ import Page from '../components/Page'
 import Cube from '../components/Cube'
 import SocialMeta from '../components/SocialMeta'
 
-export default ({ location }) => (
+const NotFound = ({ location }) => (
   <Layout location={location}>
     <SocialMeta title="404 – Page Not Found" />
     <Page>
@@ -18,3 +18,5 @@ export default ({ location }) => (
     </Page>
   </Layout>
 )
+
+export default NotFound
