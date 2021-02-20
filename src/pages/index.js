@@ -17,12 +17,14 @@ import PostList from '../components/PostList'
 import Wave from '../components/Wave'
 import AnimatedTitle from '../components/AnimatedTitle'
 
-const HeadSection = styled(Section)`
+const SectionStyled = styled(Section)`
   padding-bottom: 0;
   padding-top: 7rem;
   position: relative;
   color: var(--white);
 `
+
+const HeadSection = SectionStyled.withComponent('header')
 
 const HomeTitle = styled(AnimatedTitle)`
   color: var(--black);

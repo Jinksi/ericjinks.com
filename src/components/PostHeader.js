@@ -11,7 +11,7 @@ import {
   H1,
 } from '../components/common'
 
-const Header = styled(Section)`
+const SectionStyled = styled(Section)`
   overflow: hidden;
   position: relative;
   min-height: 25rem;
@@ -22,7 +22,9 @@ const Header = styled(Section)`
   text-align: center;
 `
 
-export default ({ location, image, title, date, author }) => {
+const Header = SectionStyled.withComponent('header')
+
+export default ({ location, image, title, date, dateFormatted, author }) => {
   return (
     <Header image={!!image}>
       <Container>
@@ -33,7 +35,12 @@ export default ({ location, image, title, date, author }) => {
         )}
         <Flex column alignCenter>
           <H1 inverted>{title}</H1>
-          <Meta date={date} author={author} location={location} />
+          <Meta
+            date={date}
+            dateFormatted={dateFormatted}
+            author={author}
+            location={location}
+          />
         </Flex>
       </Container>
     </Header>

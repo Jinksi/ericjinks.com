@@ -27,13 +27,13 @@ const Meta = styled.h3`
   }
 `
 
-export default ({ date, author }) => {
+export default ({ date, dateFormatted, author }) => {
   return (
     <Meta>
       {author && <ProfilePic size={45} />}
       {author && <span>{author}</span>}
       {author && date && <Sep> — </Sep>}
-      {!!date && <span>{displayDate(date)}</span>}
+      {!!date && <time dateTime={date}>{displayDate(dateFormatted)}</time>}
     </Meta>
   )
 }

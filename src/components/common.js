@@ -27,7 +27,7 @@ export const Relative = styled.div`
   z-index: 0;
 `
 
-const PageWrapStyled = styled.div`
+const PageWrapStyled = styled.main`
   padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
@@ -181,7 +181,7 @@ export const AnimatedH1 = ({ children }) => {
         style={{ ...shadowStyle, color: `var(--color-highlightB)` }}
         transition={spring}
       >
-        {children}
+        {children}t
       </MotionH1>
       <MotionH1
         animate={animateA}

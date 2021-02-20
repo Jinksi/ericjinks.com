@@ -13,7 +13,15 @@ import { Container, Section, TextContainer } from '../components/common'
 
 const BlogSingleTemplate = ({ location, data: { post, site } }) => {
   const {
-    frontmatter: { title, author, date, image, cardimage, excerpt },
+    frontmatter: {
+      title,
+      author,
+      date,
+      dateFormatted,
+      image,
+      cardimage,
+      excerpt,
+    },
     fields: { slug, editLink },
     body,
   } = post
@@ -22,29 +30,32 @@ const BlogSingleTemplate = ({ location, data: { post, site } }) => {
 
   return (
     <Layout location={location}>
-      <SocialMeta
-        title={title}
-        pathname={location.pathname}
-        absoluteImageUrl={cardimage && cardimage.publicURL}
-        description={excerpt}
-      />
-      <Page>
-        <PostHeader
-          image={image && image.childImageSharp}
+      <article>
+        <SocialMeta
           title={title}
-          date={date}
-          author={author || siteAuthor}
-          location={location}
+          pathname={location.pathname}
+          absoluteImageUrl={cardimage && cardimage.publicURL}
+          description={excerpt}
         />
-        <Section thin>
-          <Container>
-            <TextContainer auto>
-              <MarkdownContent body={body} />
-            </TextContainer>
-          </Container>
-        </Section>
-        <PostFooter editLink={editLink} slug={slug} title={title} />
-      </Page>
+        <Page>
+          <PostHeader
+            image={image && image.childImageSharp}
+            title={title}
+            date={date}
+            dateFormatted={dateFormatted}
+            author={author || siteAuthor}
+            location={location}
+          />
+          <Section thin>
+            <Container>
+              <TextContainer auto>
+                <MarkdownContent body={body} />
+              </TextContainer>
+            </Container>
+          </Section>
+          <PostFooter editLink={editLink} slug={slug} title={title} />
+        </Page>
+      </article>
     </Layout>
   )
 }
@@ -66,7 +77,8 @@ export const query = graphql`
       }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date: date(formatString: "YYYY-MM-DD")
+        dateFormatted: date(formatString: "MMMM DD, YYYY")
         excerpt
         # cardimage {
         #   publicURL
