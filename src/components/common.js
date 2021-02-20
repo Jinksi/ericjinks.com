@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
+import { useMouse } from 'react-use'
+
 import { useTheme } from '../hooks'
 
 export const Absolute = styled.div`
@@ -126,10 +129,72 @@ export const Tip = styled.span`
 `
 
 export const H1 = styled.h1`
-  font-weight: 200;
-  color: var(--color-text);
+  font-size: 4rem;
+  line-height: 1.2;
+  position: relative;
 `
 
+const MotionH1 = H1.withComponent(motion.h1)
+
+export const AnimatedH1 = ({ children }) => {
+  const ref = React.useRef(null)
+  const { docX, docY } = useMouse(ref)
+  const [translate, setTranslate] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = () => {
+    // handleMouseMove
+    const x = -(docX / window.innerWidth) * 0.5
+    const y = -(docY / window.innerHeight) * 2
+    setTranslate({ x, y })
+  }
+
+  useEffect(handleMouseMove, [docX, docY])
+
+  const animateA = {
+    x: translate.x * 10,
+    y: translate.y * 25,
+    scale: 1.2,
+  }
+  const animateB = {
+    x: translate.x * 10,
+    y: translate.y * 30,
+    scale: 1.225,
+  }
+  const spring = {
+    type: 'spring',
+    damping: 10,
+    stiffness: 200,
+    duration: 1,
+  }
+  const shadowStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    opacity: 0.1,
+    mixBlendMode: 'soft-light',
+  }
+
+  return (
+    <span style={{ position: 'relative' }} ref={ref}>
+      <MotionH1
+        animate={animateB}
+        style={{ ...shadowStyle, color: `var(--color-highlightB)` }}
+        transition={spring}
+      >
+        {children}
+      </MotionH1>
+      <MotionH1
+        animate={animateA}
+        style={{ ...shadowStyle, color: `var(--color-highlight)` }}
+        transition={spring}
+      >
+        {children}
+      </MotionH1>
+
+      <MotionH1>{children}</MotionH1>
+    </span>
+  )
+}
 export const Button = styled.a`
   background: var(--color-text);
   color: var(--color-background);
