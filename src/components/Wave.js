@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { useTheme } from '../hooks'
 
 const Svg = styled.svg`
   height: auto;
@@ -16,6 +15,10 @@ const Wave = styled.div`
   transform: translate3d(0, 0, 0);
   transition: none;
 
+  [data-theme='dark'] & {
+    display: none;
+  }
+
   ${props =>
     props.flip &&
     css`
@@ -24,17 +27,11 @@ const Wave = styled.div`
 `
 
 export default ({ flip = false }) => {
-  const { isDarkTheme } = useTheme()
-
   const backgroundColor = `var(--color-background)`
   const waveColor = `#000`
 
-  if (isDarkTheme) {
-    return null
-  }
-
   return (
-    <Wave flip={flip} dark={isDarkTheme}>
+    <Wave flip={flip}>
       <Svg
         width="1440"
         height="197"
