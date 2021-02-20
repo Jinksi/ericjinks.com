@@ -20,7 +20,7 @@ const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/'
   const routes = [
     {
-      title: 'Eric Jinks',
+      title: 'Home',
       path: '/',
       exact: true,
     },
