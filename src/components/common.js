@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import cn from 'classnames'
 import { useTheme } from '../hooks'
 
 export const Absolute = styled.div`
