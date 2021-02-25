@@ -53,7 +53,7 @@ export const DevBadge = () => (
 
 export const MoonIcon = () => (
   <svg
-    role="image"
+    role="img"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
