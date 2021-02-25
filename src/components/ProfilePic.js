@@ -17,12 +17,12 @@ export default ({ size = 150, alt = 'Eric Jinks' }) => {
     query {
       profilePic: file(relativePath: { eq: "eric.jpg" }) {
         large: childImageSharp {
-          fluid(maxWidth: 300, quality: 75) {
+          fluid(maxWidth: 125, quality: 75) {
             ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
         small: childImageSharp {
-          fluid(maxWidth: 100, quality: 75) {
+          fluid(maxWidth: 45, quality: 75) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
