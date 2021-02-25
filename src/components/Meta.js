@@ -7,9 +7,11 @@ import ProfilePic from './ProfilePic'
 const Sep = styled.span`
   display: none;
 `
-const Meta = styled.h3`
+const Meta = styled.div`
+  font-size: 2.1rem;
   font-weight: 200;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;

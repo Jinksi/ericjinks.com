@@ -6,19 +6,19 @@ date: 2017-05-15
 
 Web browsers are incredibly powerful today and have APIs for VR devices, 3D rendering, audio synthesis and MIDI I/O. On top of this, the Open Source community has built libraries to enhance these APIs and to help us get ideas out easier. I've been exploring Virtual Reality as a new medium for interacting and experiencing audio/visual art using WebVR. This tutorial will show you the basics of getting up and running with audio synthesis in WebVR.
 
-#### A-Frame
+### A-Frame
 
 [A-Frame](https://aframe.io) is a Virtual Reality framework for the web, built by the Mozilla VR Team. A-Frame handles the 3D and WebVR boilerplate required to get running across platforms including mobile, desktop, Vive, and Rift.
 
 We will use A-Frame to create the VR scene and interface of our instrument.
 
-#### Tone.js
+### Tone.js
 
 [Tone.js](https://tonejs.github.io) is a WebAudio framework for creating interactive music in the browser. Tone's API is designed to be familiar to musicians, allowing control of note pitch & duration, timeline controls ( playback & bpm ), sequencing and audio routing. It also provides DSP modules to build your own synthesizers, effects, and complex control signals.
 
 We'll use Tone to control the audio of our instrument, including the synthesizer, effects and routing.
 
-#### What we will be making
+### What we will be making
 
 We’re going to keep it simple and create a sort of 'Hello World' of A-Frame + Tone.js. We'll make rings that will each play a note, triggered on cursor hover. We’ll create our own A-Frame component that will contain our Tone.js logic.
 
@@ -29,30 +29,33 @@ To start with, we’ll to set up a HTML page and import both A-Frame and Tone.js
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>WebVR Musical Instrument</title>
+    <!-- A-Frame CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.min.js"
+      charset="utf-8"
+    ></script>
+    <!-- Tone.js CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.10.0/Tone.min.js"
+      charset="utf-8"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>WebVR Musical Instrument</title>
-  <!-- A-Frame CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.min.js" charset="utf-8"></script>
-  <!-- Tone.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.10.0/Tone.min.js" charset="utf-8"></script>
-</head>
-
-<body>
-  <!-- A-Frame scene -->
-  <a-scene antialias="true">
-    <!-- plain white background -->
-    <a-sky color="white"></a-sky>
-    <!-- our scene's camera -->
-    <a-camera position="0 0 4" user-height="0" wasd-controls="enabled: false">
-      <!-- cursor with fuse enabled, allowing us to detect when it hovers over an entity -->
-      <a-cursor fuse="true"></a-cursor>
-    </a-camera>
-
-  </a-scene>
-</body>
-
+  <body>
+    <!-- A-Frame scene -->
+    <a-scene antialias="true">
+      <!-- plain white background -->
+      <a-sky color="white"></a-sky>
+      <!-- our scene's camera -->
+      <a-camera position="0 0 4" user-height="0" wasd-controls="enabled: false">
+        <!-- cursor with fuse enabled, allowing us to detect when it hovers over an entity -->
+        <a-cursor fuse="true"></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
 </html>
 ```
 
@@ -77,10 +80,11 @@ The `synth` attribute references our synth component, which we will get to short
     color="#212121"
     segments-theta="64"
   ></a-ring>
-<a-entity>
+  <a-entity></a-entity
+></a-entity>
 ```
 
-#### Visual feedback
+### Visual feedback
 
 Now we want the ring to react when the cursor hovers over it. There are more than a few ways to achieve this, but the simplest is to add an `<a-animation>` that will begin when we hover over the ring.
 
@@ -111,12 +115,18 @@ Our synth is going to be a custom A-Frame component. This will live in a `synth-
 
 ```html
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>WebVR Musical Instrument</title>
   <!-- A-Frame CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.min.js" charset="utf-8"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.5.0/aframe.min.js"
+    charset="utf-8"
+  ></script>
   <!-- Tone.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.10.0/Tone.min.js" charset="utf-8"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.10.0/Tone.min.js"
+    charset="utf-8"
+  ></script>
   <!-- Our Synth Component -->
   <script src="synth-component.js" charset="utf-8"></script>
 </head>
@@ -143,7 +153,7 @@ synth.triggerAttackRelease('C3', '8n')
 
 In your browser, the note should play on load.
 
-#### Connecting to A-Frame
+### Connecting to A-Frame
 
 Now to tie it in to A-Frame, we will create an A-Frame component using `AFRAME.registerComponent()`. We attach a component to an entity and pass arguments using the component name as an attribute e.g. `<a-ring synth="note: A4" />`. Find more about components in the [A-Frame docs](https://aframe.io/docs/0.5.0/core/component.html).
 
@@ -165,27 +175,27 @@ AFRAME.registerComponent('synth', {
       default: '8n',
     },
   },
-  init: function() {
+  init: function () {
     // setup the fusing/hover event listener
     // this.el refers to the entity
     this.el.addEventListener('fusing', this.trigger.bind(this))
   },
-  trigger: function() {
+  trigger: function () {
     // trigger a note on the synth
     // this.data refers to the arguments defined
     synth.triggerAttackRelease(this.data.note, this.data.duration)
   },
-  update: function() {},
-  tick: function() {},
-  remove: function() {},
-  pause: function() {},
-  play: function() {},
+  update: function () {},
+  tick: function () {},
+  remove: function () {},
+  pause: function () {},
+  play: function () {},
 })
 ```
 
 Now our ring entity will play a note when the cursor hovers over. Try changing the note or duration: `<a-ring synth="note: A4; duration: 1n" />` (_1n_ is a whole note).
 
-#### Adding effects
+### Adding effects
 
 Tone.js comes with [heaps](https://tonejs.github.io/docs/) of built-in audio effects. Let's route the synth through a lowpass filter and send it to a delay effect.
 
@@ -222,13 +232,37 @@ Let's add more rings to our instrument. Inside our `#interface` entity, we'll ad
 
 ```html
 <!-- Ring 2 -->
-<a-ring synth="note: E4" radius-inner="0.8" radius-outer="1.2" color="#212121" segments-theta="64">
-  <a-animation begin="fusing" attribute="opacity" dur="500" from="0.5" to="1"></a-animation>
+<a-ring
+  synth="note: E4"
+  radius-inner="0.8"
+  radius-outer="1.2"
+  color="#212121"
+  segments-theta="64"
+>
+  <a-animation
+    begin="fusing"
+    attribute="opacity"
+    dur="500"
+    from="0.5"
+    to="1"
+  ></a-animation>
 </a-ring>
 
 <!-- Ring 3 -->
-<a-ring synth="note: F3" radius-inner="1.4" radius-outer="1.8" color="#212121" segments-theta="64">
-  <a-animation begin="fusing" attribute="opacity" dur="500" from="0.5" to="1"></a-animation>
+<a-ring
+  synth="note: F3"
+  radius-inner="1.4"
+  radius-outer="1.8"
+  color="#212121"
+  segments-theta="64"
+>
+  <a-animation
+    begin="fusing"
+    attribute="opacity"
+    dur="500"
+    from="0.5"
+    to="1"
+  ></a-animation>
 </a-ring>
 ```
 
