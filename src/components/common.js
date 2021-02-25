@@ -25,7 +25,7 @@ export const Relative = styled.div`
   z-index: 0;
 `
 
-export const PageWrap = styled.main`
+export const PageWrap = styled.div`
   padding: 3rem 0 0 0;
   min-height: 100vh;
   display: flex;
