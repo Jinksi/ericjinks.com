@@ -59,7 +59,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === 'Mdx') {
     let slug = createFilePath({ node, getNode })
-    slug = '/blog' + slug
+    const fileRelativePath = node.fileAbsolutePath.replace(
+      __dirname + '/src',
+      ''
+    )
+    const isBlogPost = fileRelativePath.startsWith('/posts/')
+
+    if (isBlogPost) {
+      slug = '/blog' + slug
+    }
+
     createNodeField({
       node,
       name: `slug`,
