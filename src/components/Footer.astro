@@ -1,13 +1,27 @@
 ---
-const today = new Date();
+import GithubIcon from './ui/GithubIcon.astro'
 ---
 
 <footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+  <div class="inner">
+    <GithubIcon />
+    <a href="https://github.com/jinksi/ericjinks.com"> View source on GitHub</a>
+  </div>
 </footer>
 <style>
-	footer {
-		padding: 25px;
-		text-align: center;
-	}
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .inner {
+    font-size: 0.9em;
+    padding: 10rem;
+    text-align: center;
+    color: var(--offWhite);
+  }
+
+  a {
+    margin-left: 0.2em;
+  }
 </style>

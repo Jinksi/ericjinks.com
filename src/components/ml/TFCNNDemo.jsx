@@ -4,7 +4,7 @@ import Uppy from 'uppy/lib/core'
 import DragDrop from 'uppy/lib/plugins/DragDrop'
 import 'uppy/dist/uppy.css'
 
-import Loading from '../Loading'
+import Loading from '../ui/Loading'
 import dogImage from './TFCNNDemo/dog.jpg'
 import catImage from './TFCNNDemo/cat.jpg'
 
@@ -24,16 +24,16 @@ export default class LinearRegression extends React.Component {
 
   initTf = () => {
     tf.loadModel('/model-2018-06-17-21-37/model.json')
-      .then(model => {
+      .then((model) => {
         this.model = model
         this.setState({ loading: false }, this.initUppy)
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error: 'Failed to load model', loading: false })
       })
   }
 
-  predict = imageSource =>
+  predict = (imageSource) =>
     tf.tidy(() => {
       const img = document.createElement('img')
       img.src = imageSource
@@ -53,13 +53,13 @@ export default class LinearRegression extends React.Component {
         // make prediction
         const timeStart = new Date()
         const prediction = this.model.predict(expanded)
-        prediction.data().then(classificationData => {
+        prediction.data().then((classificationData) => {
           const timeEnd = new Date()
           const classificationName = classificationData[0] > 0.5 ? 'Dog' : 'Cat'
           const confidence =
             Math.round(Math.abs(classificationData[0] - 0.5) * 2 * 100) + '%'
 
-          this.setState(prevState => ({
+          this.setState((prevState) => ({
             predictions: [
               ...prevState.predictions,
               {
@@ -89,14 +89,13 @@ export default class LinearRegression extends React.Component {
         target: '.TFCNNDemoUppy',
         width: '100%',
         height: '100%',
-        note:
-          'Images are not uploaded to a server, they are processed in the browser',
+        note: 'Images are not uploaded to a server, they are processed in the browser',
         locale: {},
       })
-      .on('file-added', file => this.addFileToQueue(file.data))
+      .on('file-added', (file) => this.addFileToQueue(file.data))
   }
 
-  addImageToQueue = image => {
+  addImageToQueue = (image) => {
     this.setState(
       {
         predictionQueue: [...this.state.predictionQueue, image],
@@ -105,9 +104,9 @@ export default class LinearRegression extends React.Component {
     )
   }
 
-  addFileToQueue = file => {
+  addFileToQueue = (file) => {
     const reader = new FileReader()
-    reader.onload = e => {
+    reader.onload = (e) => {
       this.setState(
         {
           predictionQueue: [...this.state.predictionQueue, reader.result],

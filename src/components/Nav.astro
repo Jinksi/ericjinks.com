@@ -1,0 +1,43 @@
+---
+import NavLink from './NavLink.astro'
+import AnimatedTitle from './ui/AnimatedTitle'
+import { SITE_TITLE } from '../config'
+import NavIconButtons from './NavIconButtons'
+---
+
+<header>
+  <nav class="container">
+    <a href="/">
+      <AnimatedTitle client:idle>
+        {SITE_TITLE}
+      </AnimatedTitle>
+    </a>
+    &emsp; &emsp;
+
+    <NavLink href="/">Home</NavLink>
+    <NavLink href="/blog">Blog</NavLink>
+    <NavIconButtons client:idle />
+  </nav>
+</header>
+
+<style>
+  header {
+    padding: 3rem 0 0 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 450px) {
+    header {
+      padding: 10vh 0 0 0;
+    }
+  }
+</style>

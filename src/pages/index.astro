@@ -1,6 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
+import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 ---
@@ -11,7 +11,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title={SITE_TITLE} />
+    <Header title={SITE_TITLE} />z
     <main>
       <h1>🧑‍🚀 Hello, Astronaut!</h1>
       <p>
@@ -30,7 +30,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
       <ul>
         <li>Edit this page in <code>src/pages/index.astro</code></li>
         <li>
-          Edit the site header items in <code>src/components/Header.astro</code>
+          Edit the site header items in <code>src/components/Nav.astro</code>
         </li>
         <li>
           Add your name to the footer in <code>src/components/Footer.astro</code
@@ -60,5 +60,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
       </p>
     </main>
     <Footer />
+
+    <style></style>
   </body>
 </html>
