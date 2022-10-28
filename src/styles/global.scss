@@ -24,17 +24,18 @@
     sans-serif;
 }
 
-html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-  background: black;
+// Default styles
+body {
+  --color-text: var(--offWhite);
+  --color-lightGrey: var(--lightBlack);
+  --color-background: var(--black);
 }
 
 @media (prefers-color-scheme: light) {
   body {
     --color-text: var(--black);
-		--color-background: var(--white);
-	}
+    --color-background: var(--white);
+  }
   // .shiki.dark-plus {
   //   display: none;
   // }
@@ -51,8 +52,15 @@ html {
   // }
 }
 
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  background: var(--color-background);
+}
+
 body {
   font-family: var(--font-system);
+  background: var(--color-background);
   min-height: 100vh;
   position: relative;
   color: var(--color-text);
@@ -180,10 +188,49 @@ blockquote {
   }
 }
 
+section {
+  width: 100%;
+  padding: 5rem 0;
+
+  &.thick {
+    padding: 10rem 0;
+  }
+
+  &.thin {
+    padding: 2.5rem 0;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1111px;
+  width: 90vw;
+}
+
+.textContainer {
+  max-width: 700px;
+  width: 100%;
+
+  &.auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & > pre[class*='language-'] {
+    background: var(--color-code);
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 800px) {
+      margin-left: -7vw;
+      margin-right: -7vw;
+    }
+  }
+}
 
 .Button {
-	appearance: none;
-	background: var(--color-text);
+  appearance: none;
+  background: var(--color-text);
   color: var(--color-background);
   padding: 0rem 1rem;
   text-transform: uppercase;
@@ -197,7 +244,7 @@ blockquote {
 }
 
 .OutlinedButton {
-	@extend .Button;
+  @extend .Button;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -218,7 +265,7 @@ blockquote {
 }
 
 .FancyButton {
-	@extend .Button;
+  @extend .Button;
   display: block;
   width: 100%;
   height: 15rem;
@@ -237,5 +284,5 @@ blockquote {
   &:focus {
     background: var(--color-text);
     color: var(--color-background);
-	}
+  }
 }
