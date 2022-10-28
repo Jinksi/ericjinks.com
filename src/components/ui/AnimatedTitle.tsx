@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useMouse, useWindowScroll } from 'react-use'
+import { useMouse, useWindowScroll, useWindowSize } from 'react-use'
 
 import styles from './AnimatedTitle.module.css'
 
 const AnimatedTitle = ({
   children,
   className = '',
+  smallScreenContent = '',
   ...props
 }: {
   children: React.ReactNode
   className?: string
+  smallScreenContent?: string
 }) => {
   const ref = React.useRef(null)
   const { docX, docY } = useMouse(ref)
   const { y: scrollYProgress } = useWindowScroll()
   const [translate, setTranslate] = useState({ x: 0, y: 0 })
+  const { width } = useWindowSize()
 
   const handleMouseMove = () => {
     // handleMouseMove
@@ -59,7 +62,7 @@ const AnimatedTitle = ({
         animate={animate}
         transition={{ ...spring, stiffness: 200 }}
       />
-      <span>{children}</span>
+      <span>{width > 500 ? children : smallScreenContent || children}</span>
     </h1>
   )
 }

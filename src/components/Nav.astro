@@ -1,15 +1,15 @@
 ---
 import NavLink from './NavLink.astro'
 import AnimatedTitle from './ui/AnimatedTitle'
-import { SITE_TITLE } from '../config'
+import { SITE_TITLE_COMPACT } from '../config'
 import NavIconButtons from './NavIconButtons'
 ---
 
 <header>
   <nav class="container">
     <a href="/">
-      <AnimatedTitle client:idle>
-        {SITE_TITLE}
+      <AnimatedTitle client:idle smallScreenContent={SITE_TITLE_COMPACT}>
+        {SITE_TITLE_COMPACT}
       </AnimatedTitle>
     </a>
     &emsp; &emsp;
