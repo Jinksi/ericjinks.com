@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useMouse, useWindowScroll, useWindowSize } from 'react-use'
+import useMouse from 'react-use/lib/useMouse'
+import useWindowScroll from 'react-use/lib/useWindowScroll'
+import useWindowSize from 'react-use/lib/useWindowSize'
 
 import styles from './AnimatedTitle.module.css'
+
+type Props = {
+  children: React.ReactNode
+  className?: string
+  smallScreenContent?: string
+}
 
 const AnimatedTitle = ({
   children,
   className = '',
   smallScreenContent = '',
   ...props
-}: {
-  children: React.ReactNode
-  className?: string
-  smallScreenContent?: string
-}) => {
+}: Props) => {
   const ref = React.useRef(null)
   const { docX, docY } = useMouse(ref)
   const { y: scrollYProgress } = useWindowScroll()
@@ -67,4 +71,10 @@ const AnimatedTitle = ({
   )
 }
 
-export default AnimatedTitle
+export default (props: Props) => {
+  if (typeof window === 'undefined') {
+    return <h1 className={styles.Title} {...props} />
+  } else {
+    return <AnimatedTitle {...props} />
+  }
+}
