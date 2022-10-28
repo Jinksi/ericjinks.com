@@ -245,13 +245,14 @@ section {
 
 .OutlinedButton {
   @extend .Button;
+  background: var(--color-background);
+  color: var(--color-text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
   margin: 1rem auto;
   border: 1px solid currentColor;
-  background: var(--color-background);
   cursor: pointer;
   text-align: center;
   text-decoration: none;

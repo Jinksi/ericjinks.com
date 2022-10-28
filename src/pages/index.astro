@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import PostList from '../components/PostList.astro'
 ---
 
 <!DOCTYPE html>
@@ -30,6 +31,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
             or <a href="https://twitter.com/jinksi">Twitter</a>
           </p>
         </div>
+      </section>
+
+      <section class="thin">
+        <PostList postCount={3} />
       </section>
     </main>
 

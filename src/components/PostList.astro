@@ -1,0 +1,77 @@
+---
+const { postCount } = Astro.props
+
+const posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+)
+
+const slicedPosts = postCount ? posts.slice(0, postCount) : posts
+---
+
+<div class="textContainer">
+  {
+    slicedPosts &&
+      slicedPosts.map((post) => (
+        <div class="Post">
+          <a href={post.url}>
+            <h2>{post.frontmatter.title}</h2>
+            <h3 class="date">{post.frontmatter.date}</h3>
+            <p>{post.frontmatter.excerpt}</p>
+            <div class="readmore">
+              Read <span>→</span>
+            </div>
+          </a>
+        </div>
+      ))
+  }
+  {
+    slicedPosts.length !== posts.length && (
+      <a class="OutlinedButton" href="/blog/">
+        More Posts →
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .textContainer {
+    padding: 5rem 0;
+  }
+
+  .Post {
+    margin: 0 auto 5rem auto;
+    text-decoration: none;
+    display: block;
+  }
+
+  .readmore {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .readmore span {
+    transition: all 0.2s ease-out;
+    margin-left: 0.3em;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 1px solid transparent;
+    display: inline-flex;
+    transition: all 0.2s ease-out;
+  }
+
+  .date {
+    font-weight: 200;
+    margin-bottom: 1rem;
+  }
+
+  .Post:hover h2 {
+    border-bottom-color: currentColor;
+  }
+  .Post:hover .readmore span {
+    transform: translateX(0.5rem);
+  }
+</style>
