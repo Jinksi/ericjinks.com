@@ -2,8 +2,9 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 import PostList from '../components/PostList.astro'
+import { CanvasSketch } from '../components/CanvasSketch'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 ---
 
 <!DOCTYPE html>
@@ -33,6 +34,10 @@ import PostList from '../components/PostList.astro'
         </div>
       </section>
 
+      <div class="container sketch">
+        <CanvasSketch client:visible />
+      </div>
+
       <section class="thin">
         <PostList postCount={3} />
       </section>
@@ -43,6 +48,9 @@ import PostList from '../components/PostList.astro'
     <style>
       main {
         padding-top: 5rem;
+      }
+      .sketch {
+        position: relative;
       }
     </style>
   </body>

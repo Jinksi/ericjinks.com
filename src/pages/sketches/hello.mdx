@@ -1,0 +1,22 @@
+---
+layout: '../../layouts/Sketch.astro'
+title: Sketch 1
+description:
+category: Sketches
+pubDate: 2018-06-02
+---
+
+import Sketch1 from '../../components/sketches/1.tsx'
+import Sketch2 from '../../components/sketches/2.tsx'
+
+This is an MDX file.
+
+<Sketch1 client:visible />
+
+<section class='thick'>
+
+## This is the default sketch.
+
+<Sketch2 client:visible />
+
+</section>

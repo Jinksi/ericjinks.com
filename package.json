@@ -19,6 +19,7 @@
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
     "astro": "^1.5.3",
+    "canvas-sketch": "^0.7.6",
     "feather-icons": "^4.29.0",
     "framer-motion": "^7.6.2",
     "loaders.css": "^0.1.2",
