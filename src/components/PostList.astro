@@ -17,10 +17,10 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     slicedPosts &&
       slicedPosts.map(
         ({ url, frontmatter: { title, pubDate, description } }) => (
-          <div class="Post">
+          <div class="post">
             <a href={url}>
               <h2>{title}</h2>
-              <h3>
+              <h3 class="date">
                 <time datetime={pubDate}>{formatDate(pubDate)}</time>
               </h3>
               <p>{description}</p>
@@ -46,7 +46,7 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     padding: 5rem 0;
   }
 
-  .Post {
+  .post {
     margin: 0 auto 5rem auto;
     text-decoration: none;
     display: block;
@@ -73,15 +73,15 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     transition: all 0.2s ease-out;
   }
 
-  time {
+  .date {
     font-weight: 200;
     margin-bottom: 1rem;
   }
 
-  .Post:hover h2 {
+  .post:hover h2 {
     border-bottom-color: currentColor;
   }
-  .Post:hover .readmore span {
+  .post:hover .readmore span {
     transform: translateX(0.5rem);
   }
 </style>
