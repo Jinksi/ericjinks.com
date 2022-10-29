@@ -5,7 +5,7 @@
   --red: #ff6347;
   --orange: #ffa500;
   --cyan: #00ffff;
-  --black: #181818;
+  --black: #121212;
   --blackTransparent: rgba(24, 24, 24, 0.8);
   --lightGrey: #f5f5f5;
   --lightBlack: #282c34;
@@ -55,7 +55,7 @@ body {
 html {
   box-sizing: border-box;
   font-size: 62.5%;
-  background: #181818;
+  background: #121212;
 }
 
 body {
@@ -216,7 +216,7 @@ section {
     margin-right: auto;
   }
 
-  & > pre[class*='language-'] {
+  & > pre[class*='astro-code'] {
     background: var(--color-code);
     margin-top: 4rem;
     margin-bottom: 4rem;
