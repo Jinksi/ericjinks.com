@@ -1,4 +1,6 @@
 ---
+import { formatDate } from '../utils/dateUtils'
+
 const { postCount } = Astro.props
 
 const posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')).sort(
@@ -13,18 +15,22 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
 <div class="textContainer">
   {
     slicedPosts &&
-      slicedPosts.map((post) => (
-        <div class="Post">
-          <a href={post.url}>
-            <h2>{post.frontmatter.title}</h2>
-            <h3 class="date">{post.frontmatter.date}</h3>
-            <p>{post.frontmatter.excerpt}</p>
-            <div class="readmore">
-              Read <span>→</span>
-            </div>
-          </a>
-        </div>
-      ))
+      slicedPosts.map(
+        ({ url, frontmatter: { title, pubDate, description } }) => (
+          <div class="Post">
+            <a href={url}>
+              <h2>{title}</h2>
+              <h3>
+                <time datetime={pubDate}>{formatDate(pubDate)}</time>
+              </h3>
+              <p>{description}</p>
+              <div class="readmore">
+                Read <span>→</span>
+              </div>
+            </a>
+          </div>
+        )
+      )
   }
   {
     slicedPosts.length !== posts.length && (
@@ -46,6 +52,10 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     display: block;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .readmore {
     display: inline-flex;
     align-items: center;
@@ -63,7 +73,7 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     transition: all 0.2s ease-out;
   }
 
-  .date {
+  time {
     font-weight: 200;
     margin-bottom: 1rem;
   }
