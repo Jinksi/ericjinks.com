@@ -8,6 +8,7 @@ export interface Props {
   content: {
     title: string
     description: string
+    author?: string
     pubDate?: string
     category?: string
     updatedDate?: string
@@ -17,7 +18,7 @@ export interface Props {
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  content: { title, description, author, pubDate, updatedDate, heroImage },
 } = Astro.props
 ---
 
@@ -40,20 +41,99 @@ const {
     <Header />
     <main>
       <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        {pubDate && <time datetime={pubDate}>{formatDate(pubDate)}</time>}
-        {
-          updatedDate && (
-            <div>
-              Last updated on <time>{formatDate(updatedDate)}</time>
+        <header>
+          <div class="container">
+            {
+              heroImage && (
+                <div class="textContainer auto">
+                  <img width={720} height={360} src={heroImage} alt="" />
+                </div>
+              )
+            }
+            <div class="">
+              <h1>{title}</h1>
+              <div class="postmeta">
+                <!-- {author && <ProfilePic size={45} />} -->
+                {author && <span>{author}</span>}
+                {author && pubDate && <span class="sep"> — </span>}
+                {
+                  !!pubDate && (
+                    <time datetime={pubDate}>{formatDate(pubDate)}</time>
+                  )
+                }
+              </div>
             </div>
-          )
-        }
-        <hr />
-        <slot />
+          </div>
+        </header>
+
+        <section class="thin">
+          <div class="container">
+            <div class="textContainer auto">
+              <slot />
+            </div>
+          </div>
+        </section>
       </article>
     </main>
     <Footer />
+    <style>
+      article {
+        padding-top: 40px;
+      }
+      header {
+        overflow: hidden;
+        position: relative;
+        min-height: 25rem;
+        max-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+        position: relative;
+      }
+
+      @media (min-width: 450px) {
+        h1 {
+          font-size: 3.5rem;
+        }
+      }
+      @media (min-width: 880px) {
+        h1 {
+          font-size: 4rem;
+        }
+      }
+      .post-meta {
+        font-size: 2.1rem;
+        font-weight: 200;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .post-meta-sep {
+        display: none;
+      }
+
+      @media (min-width: 500px) {
+        .post-meta {
+          flex-direction: row;
+        }
+
+        .post-meta > * + * {
+          margin-left: 0.7em;
+        }
+
+        .post-meta-sep {
+          display: inline-block;
+        }
+      }
+    </style>
   </body>
 </html>
