@@ -34,6 +34,7 @@ body {
 @media (prefers-color-scheme: light) {
   body {
     --color-text: var(--black);
+    --color-lightGrey: var(--lightGrey);
     --color-background: var(--white);
   }
   // .shiki.dark-plus {
@@ -170,8 +171,8 @@ pre {
   }
 }
 
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*='astro-code'],
+pre[class*='astro-code'] {
   font-family: var(--font-code) !important;
 }
 
