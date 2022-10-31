@@ -8,12 +8,17 @@ import styles from './AnimatedTitle.module.css'
 
 type Props = {
   children: React.ReactNode
+  animate?: boolean
   smallScreenContent?: string
+  damping?: number
+  stiffness?: number
 }
 
 const AnimatedTitle = ({
   children,
   smallScreenContent = '',
+  damping = 5,
+  stiffness = 200,
   ...props
 }: Props) => {
   const ref = React.useRef(null)
@@ -40,8 +45,8 @@ const AnimatedTitle = ({
 
   const spring = {
     type: 'spring',
-    damping: 5,
-    stiffness: 200,
+    damping,
+    stiffness,
     duration: 1,
   }
 
@@ -52,17 +57,17 @@ const AnimatedTitle = ({
       <motion.div
         className={styles.TitleBackground}
         animate={animate}
-        transition={{ ...spring, stiffness: 150, damping: 2 }}
+        transition={{ ...spring, stiffness: stiffness * 0.75, damping: 2 }}
       />
       <motion.div
         className={styles.TitleBackground}
         animate={animate}
-        transition={{ ...spring, stiffness: 100, damping: 2 }}
+        transition={{ ...spring, stiffness: stiffness * 0.5, damping: 2 }}
       />
       <motion.div
         className={styles.TitleBackground}
         animate={animate}
-        transition={{ ...spring, stiffness: 200 }}
+        transition={{ ...spring, stiffness: stiffness }}
       />
       <span>{width > 500 ? children : smallScreenContent || children}</span>
     </h1>
@@ -70,14 +75,16 @@ const AnimatedTitle = ({
 }
 
 export default (props: Props) => {
-  if (typeof window === 'undefined') {
+  const { animate = true, children } = props
+
+  if (typeof window === 'undefined' || !animate) {
     return (
       // Match the HTML structure of the client component
       <h1 className={styles.Title}>
         <div className={styles.TitleBackground}></div>
         <div className={styles.TitleBackground}></div>
         <div className={styles.TitleBackground}></div>
-        <span>{props.children}</span>
+        <span>{children}</span>
       </h1>
     )
   } else {

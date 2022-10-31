@@ -3,12 +3,18 @@ import NavLink from './NavLink.astro'
 import NavIconButtons from './NavIconButtons.astro'
 import AnimatedTitle from './ui/AnimatedTitle'
 import { SITE_TITLE_COMPACT } from '../config'
+const isHome = Astro.url.pathname === '/'
 ---
 
 <header>
   <nav class="container">
     <a href="/">
-      <AnimatedTitle client:idle smallScreenContent={SITE_TITLE_COMPACT}>
+      <AnimatedTitle
+        client:idle
+        animate={!isHome}
+        stiffness={20}
+        smallScreenContent={SITE_TITLE_COMPACT}
+      >
         {SITE_TITLE_COMPACT}
       </AnimatedTitle>
     </a>

@@ -33,7 +33,6 @@
 .TitleBackground:nth-child(2) {
   background-color: var(--color-highlight);
 }
-
 .TitleBackground:nth-child(3) {
   background-color: var(--color-background);
 }

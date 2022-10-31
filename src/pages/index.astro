@@ -3,8 +3,8 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import PostList from '../components/PostList.astro'
-import { CanvasSketch } from '../components/CanvasSketch'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import AnimatedTitle from '../components/ui/AnimatedTitle'
 ---
 
 <!DOCTYPE html>
@@ -16,29 +16,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
     <Header title={SITE_TITLE} />
 
     <main class="container skinny">
-      <section class="thick">
+      <section>
         <div class="textContainer">
-          <p>I am a software engineer from the Gold Coast, Australia.</p>
-          <p>
-            If you'd like to get in touch, send me an email at{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="mailto:ericjinks@gmail.com"
-            >
-              ericjinks@gmail.com
-            </a>{' '}
-            or find me on <a href="https://github.com/Jinksi">Github</a>{' '}
-            or <a href="https://twitter.com/jinksi">Twitter</a>
-          </p>
+          <AnimatedTitle client:idle stiffness={15}
+            >{SITE_DESCRIPTION}</AnimatedTitle
+          >
         </div>
-      </section>
-
-      <div class="container sketch">
-        <CanvasSketch client:visible />
-      </div>
-
-      <section class="thin">
         <PostList postCount={3} />
       </section>
     </main>
