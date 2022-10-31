@@ -8,13 +8,11 @@ import styles from './AnimatedTitle.module.css'
 
 type Props = {
   children: React.ReactNode
-  className?: string
   smallScreenContent?: string
 }
 
 const AnimatedTitle = ({
   children,
-  className = '',
   smallScreenContent = '',
   ...props
 }: Props) => {
@@ -73,7 +71,15 @@ const AnimatedTitle = ({
 
 export default (props: Props) => {
   if (typeof window === 'undefined') {
-    return <h1 className={styles.Title} {...props} />
+    return (
+      // Match the HTML structure of the client component
+      <h1 className={styles.Title}>
+        <div className={styles.TitleBackground}></div>
+        <div className={styles.TitleBackground}></div>
+        <div className={styles.TitleBackground}></div>
+        <span>{props.children}</span>
+      </h1>
+    )
   } else {
     return <AnimatedTitle {...props} />
   }
