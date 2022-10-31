@@ -1,8 +1,8 @@
 ---
 import NavLink from './NavLink.astro'
+import NavIconButtons from './NavIconButtons.astro'
 import AnimatedTitle from './ui/AnimatedTitle'
 import { SITE_TITLE_COMPACT } from '../config'
-import NavIconButtons from './NavIconButtons'
 ---
 
 <header>
@@ -16,7 +16,7 @@ import NavIconButtons from './NavIconButtons'
 
     <NavLink href="/">Home</NavLink>
     <NavLink href="/blog/">Blog</NavLink>
-    <NavIconButtons client:idle />
+    <NavIconButtons />
   </nav>
 </header>
 
