@@ -22,7 +22,7 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
             <h3 class="date">
               <time datetime={pubDate}>{formatDate(pubDate)}</time>
             </h3>
-            <p>{description}</p>
+            {description && <p>{description}</p>}
             <div class="readmore">
               Read <span>→</span>
             </div>
@@ -65,15 +65,23 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     border-bottom: 1px solid transparent;
     display: inline-flex;
     transition: all 0.2s ease-out;
+    line-height: 1.3;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
   }
 
   .date {
     font-weight: 200;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
+    margin-top: 0.6rem;
   }
 
   .post:hover h2 {
-    border-bottom-color: currentColor;
+    /* border-bottom-color: currentColor; */
+    text-decoration: underline;
   }
   .post:hover .readmore span {
     transform: translateX(0.5rem);
