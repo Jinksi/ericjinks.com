@@ -13,17 +13,11 @@ import AnimatedTitle from '../components/ui/AnimatedTitle'
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title={SITE_TITLE} />
-
+    <Header />
     <main class="container skinny">
-      <section>
-        <div class="textContainer">
-          <AnimatedTitle client:idle stiffness={15}
-            >{SITE_DESCRIPTION}</AnimatedTitle
-          >
-        </div>
-        <PostList postCount={3} />
-      </section>
+      <PostList postCount={3}>
+        <h2>Posts</h2>
+      </PostList>
     </main>
 
     <Footer />
