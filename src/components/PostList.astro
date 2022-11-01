@@ -5,8 +5,8 @@ const { postCount } = Astro.props
 
 const posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')).sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+    new Date(b.frontmatter.pubDate || b.frontmatter.updatedDate).valueOf() -
+    new Date(a.frontmatter.pubDate || a.frontmatter.updatedDate).valueOf()
 )
 
 const slicedPosts = postCount ? posts.slice(0, postCount) : posts
@@ -17,12 +17,25 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
   {
     slicedPosts &&
       slicedPosts.map(
-        ({ url, frontmatter: { title, pubDate, description } }) => (
+        ({
+          url,
+          frontmatter: {
+            title,
+            pubDate,
+            updatedDate,
+            description,
+            showDate = true,
+          },
+        }) => (
           <a href={url} class="post">
             <h3 class="title">{title}</h3>
-            <h4 class="date">
-              <time datetime={pubDate}>{formatDate(pubDate)}</time>
-            </h4>
+            {showDate && (
+              <h4 class="date">
+                <time datetime={updatedDate || pubDate}>
+                  {formatDate(updatedDate || pubDate)}
+                </time>
+              </h4>
+            )}
             {description && <p>{description}</p>}
             <div class="readmore">
               Read <span>→</span>

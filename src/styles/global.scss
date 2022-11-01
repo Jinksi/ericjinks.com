@@ -189,6 +189,19 @@ blockquote {
   }
 }
 
+hr {
+  margin: 7rem auto;
+  width: 50%;
+
+  &.thick {
+    margin: 10rem auto;
+  }
+
+  &.thin {
+    margin: 5rem auto;
+  }
+}
+
 section {
   width: 100%;
   padding: 5rem 0;

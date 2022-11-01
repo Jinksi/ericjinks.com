@@ -12,15 +12,24 @@ export interface Props {
     description: string
     author?: string
     pubDate?: string
-    category?: string
     updatedDate?: string
+    tags?: string
     heroImage?: string
     cardImage?: string
+    showDate?: boolean
   }
 }
 
 const {
-  content: { title, description, author, pubDate, updatedDate, heroImage },
+  content: {
+    title,
+    description,
+    author,
+    pubDate,
+    updatedDate,
+    showDate = true,
+    heroImage,
+  },
 } = Astro.props
 ---
 
@@ -49,7 +58,7 @@ const {
                 {author && <span>{author}</span>}
                 {author && pubDate && <span class="sep"> — </span>}
                 {
-                  !!pubDate && (
+                  showDate && !!pubDate && (
                     <time datetime={pubDate}>{formatDate(pubDate)}</time>
                   )
                 }
@@ -75,8 +84,6 @@ const {
       header {
         overflow: hidden;
         position: relative;
-        min-height: 25rem;
-        max-height: 80vh;
         display: flex;
         align-items: center;
         justify-content: flex-start;
