@@ -3,5 +3,4 @@
 
 export const SITE_TITLE = 'Eric Jinks'
 export const SITE_TITLE_COMPACT = 'EJ'
-export const SITE_DESCRIPTION =
-  'Software engineering / creative coding / generative art / music'
+export const SITE_DESCRIPTION = 'Software engineering / creative coding / music'
