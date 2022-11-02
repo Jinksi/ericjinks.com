@@ -4,7 +4,7 @@ import Uppy from 'uppy/lib/core'
 import DragDrop from 'uppy/lib/plugins/DragDrop'
 import 'uppy/dist/uppy.css'
 
-import Loading from '../ui/Loading'
+import Loading from '../react/Loading'
 import dogImage from './TFCNNDemo/dog.jpg'
 import catImage from './TFCNNDemo/cat.jpg'
 

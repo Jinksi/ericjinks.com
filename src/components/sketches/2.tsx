@@ -1,3 +1,3 @@
-import { CanvasSketch } from '../CanvasSketch'
+import { CanvasSketch } from '../react/CanvasSketch'
 
 export default () => <CanvasSketch />
