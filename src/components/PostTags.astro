@@ -1,0 +1,25 @@
+---
+const { tags } = Astro.props
+const formatTag = (tag: string) =>
+  tag.toLocaleLowerCase().trim().replace(/\s/g, '-')
+---
+
+<div class="post-tags">
+  {tags?.split(',').map((tag: string) => <span>#{formatTag(tag)}</span>)}
+</div>
+
+<style>
+  .post-tags {
+    font-size: 0.9em;
+    color: var(--color-highlight);
+    font-weight: 600;
+  }
+
+  .post-tags > * {
+    display: inline-block;
+  }
+
+  .post-tags > * + * {
+    margin-left: 0.7em;
+  }
+</style>

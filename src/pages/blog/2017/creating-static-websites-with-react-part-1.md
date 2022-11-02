@@ -3,6 +3,7 @@ layout: '../../../layouts/BlogPost.astro'
 title: Creating static websites with React, Part 1
 description: Let's create a lightning-fast, offline-first static website with React
 pubDate: 2017-10-10
+tags: React, JavaScript
 ---
 
 _Why static?_

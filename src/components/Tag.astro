@@ -1,0 +1,59 @@
+---
+import { formatTagUrlSafe } from '../utils/tags'
+
+let {
+  tag,
+  count,
+  asLinkElement = false,
+  isActive,
+}: {
+  tag?: string
+  count?: number
+  asLinkElement?: boolean
+  isActive?: boolean
+} = Astro.props
+const formatTag = (tag: string) =>
+  tag.toLocaleLowerCase().trim().replace(/\s/g, '-')
+tag = tag && formatTag(tag)
+---
+
+{
+  asLinkElement ? (
+    <a
+      href={`/tags/${formatTagUrlSafe(tag)}/`}
+      class="tag"
+      aria-selected={isActive}
+    >
+      #{tag}
+      {count && ` (${count})`}
+    </a>
+  ) : (
+    <span class="tag">
+      #{tag}
+      {count && ` (${count})`}
+    </span>
+  )
+}
+
+<style>
+  .tag {
+    display: inline-block;
+    padding: 0.05rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #f5f5f5;
+    color: var(--color-background);
+    text-decoration: none;
+    /* border: 1px solid; */
+    border-color: currentColor;
+    font-size: 0.9em;
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+  .tag:hover,
+  .tag:focus {
+    text-decoration: underline;
+  }
+  .tag[aria-selected='true'] {
+    color: var(--color-highlight);
+  }
+</style>

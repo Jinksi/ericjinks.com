@@ -4,6 +4,7 @@ title: Serverless R functions with Cloud Run
 description: Using serverless containers to deploy scalable R functions.
 pubDate: 2019-09-02
 cardImage?: './serverless-r-card.jpg'
+tags: R, Serverless
 ---
 
 > [Cloud Run with R – Hello World (GitHub)](https://github.com/Jinksi/cloudrun-helloworld-r)

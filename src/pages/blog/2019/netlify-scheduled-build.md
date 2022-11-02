@@ -3,6 +3,7 @@ layout: '../../../layouts/BlogPost.astro'
 title: Schedule your Netlify build with GitHub Actions
 description: If your build process is pulling in content from third-party services (e.g. Instagram, Youtube), scheduling a daily build & deploy can be an easy way to keep this content fresh.
 pubDate: 2019-08-16
+tags: CI/CD
 ---
 
 If you host a site on Netlify, you may know about [Build Hooks](https://www.netlify.com/docs/webhooks/#incoming-webhooks). By creating a build hook and sending a `POST` request to it, you trigger a new build & deploy for your site. If your build process is pulling in content from third-party services (e.g. Instagram, Youtube), scheduling a daily build & deploy can be an easy way to keep this content fresh.

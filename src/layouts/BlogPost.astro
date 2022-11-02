@@ -5,6 +5,7 @@ import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { formatDate } from '../utils/dateUtils'
 import { SITE_TITLE } from '../config'
+import PostTags from '../components/PostTags.astro'
 
 export interface Props {
   content: {
@@ -26,6 +27,7 @@ const {
     description,
     author,
     pubDate,
+    tags,
     updatedDate,
     showDate = true,
     heroImage,
@@ -53,6 +55,7 @@ const {
             }
             <div class="">
               <h1>{title}</h1>
+              <PostTags tags={tags} />
               <div class="postmeta">
                 <!-- {author && <ProfilePic size={45} />} -->
                 {author && <span>{author}</span>}

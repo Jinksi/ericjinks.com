@@ -1,19 +1,49 @@
 ---
 import { formatDate } from '../utils/dateUtils'
+import PostTags from './PostTags.astro'
+import Tags from './Tags.astro'
 
-const { postCount } = Astro.props
+export type Post = {
+  url: string
+  frontmatter: {
+    title?: string
+    pubDate?: string
+    updatedDate?: string
+    description?: string
+    showDate?: boolean
+    tags?: string
+  }
+}
 
-const posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate || b.frontmatter.updatedDate).valueOf() -
-    new Date(a.frontmatter.pubDate || a.frontmatter.updatedDate).valueOf()
-)
+interface Props {
+  posts?: Post[]
+  postCount?: number
+  activeTag?: string
+}
+
+let { posts, postCount, activeTag } = Astro.props
+
+if (!posts) {
+  posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')) as Post[]
+  posts = posts.sort(
+    (a, b) =>
+      new Date(
+        b.frontmatter.pubDate || b.frontmatter.updatedDate || ''
+      ).valueOf() -
+      new Date(
+        a.frontmatter.pubDate || a.frontmatter.updatedDate || ''
+      ).valueOf()
+  )
+}
 
 const slicedPosts = postCount ? posts.slice(0, postCount) : posts
 ---
 
 <div class="textContainer">
   <slot />
+  <section class="thin">
+    <Tags activeTag={activeTag} />
+  </section>
   {
     slicedPosts &&
       slicedPosts.map(
@@ -25,14 +55,17 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
             updatedDate,
             description,
             showDate = true,
+            tags,
           },
         }) => (
           <a href={url} class="post">
             <h3 class="title">{title}</h3>
+            <PostTags tags={tags} />
+
             {showDate && (
               <h4 class="date">
                 <time datetime={updatedDate || pubDate}>
-                  {formatDate(updatedDate || pubDate)}
+                  {formatDate(updatedDate || pubDate || '')}
                 </time>
               </h4>
             )}

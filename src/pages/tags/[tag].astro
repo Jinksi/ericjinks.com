@@ -1,0 +1,54 @@
+---
+import BaseHead from '../../components/BaseHead.astro'
+import Header from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro'
+import PostList, { Post } from '../../components/PostList.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
+import { formatTagUrlSafe } from '../../utils/tags'
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../blog/**/*.{md,mdx}')
+  // Replace url unsafe characters
+
+  const tags = posts
+    .flatMap((post) => {
+      return post.frontmatter.tags?.split(',').map(formatTagUrlSafe) ?? []
+    })
+    .filter(Boolean)
+
+  const uniqueTags = [...new Set(tags)]
+
+  return uniqueTags.map((tag) => ({
+    params: { tag },
+  }))
+}
+
+const { tag } = Astro.params
+let posts = (await Astro.glob('../blog/**/*.{md,mdx}')) as Post[]
+if (tag) {
+  posts = posts.filter((post) =>
+    post.frontmatter.tags
+      ?.split(',')
+      .map(formatTagUrlSafe)
+      .includes(tag.toString())
+  )
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${tag} – ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <div class="container">
+          <PostList posts={posts} activeTag={tag?.toString()} />
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

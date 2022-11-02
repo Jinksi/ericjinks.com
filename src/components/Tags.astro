@@ -1,0 +1,36 @@
+---
+import { formatTagUrlSafe } from '../utils/tags'
+import Tag from './Tag.astro'
+
+// Get tags from all posts
+const posts = await Astro.glob('../pages/blog/**/*.{md,mdx}')
+const formatTag = (tag: string) => tag.toLowerCase().trim()
+
+const tags = posts
+  .flatMap((post) => {
+    return post.frontmatter.tags?.split(',').map(formatTag) ?? []
+  })
+  .filter(Boolean)
+
+const countPerTag = tags.reduce((acc, tag) => {
+  acc[tag] = (acc[tag] || 0) + 1
+  return acc
+}, {} as Record<string, number>)
+
+// Get unique tags sorted by count then alphabetically
+const uniqueTags = [...new Set(tags)].sort(
+  (a, b) => countPerTag[b] - countPerTag[a] || a.localeCompare(b)
+)
+const { activeTag } = Astro.props
+---
+
+{
+  uniqueTags.map((tag) => (
+    <Tag
+      tag={tag}
+      count={countPerTag[tag]}
+      asLinkElement
+      isActive={activeTag === formatTagUrlSafe(tag)}
+    />
+  ))
+}

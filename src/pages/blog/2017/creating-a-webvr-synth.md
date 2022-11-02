@@ -3,6 +3,7 @@ layout: '../../../layouts/BlogPost.astro'
 title: Creating a WebVR musical instrument using A-Frame & Tone.js
 description: Audio synthesis in WebVR
 pubDate: 2017-05-15
+tags: Creative Coding
 ---
 
 Web browsers are incredibly powerful today and have APIs for VR devices, 3D rendering, audio synthesis and MIDI I/O. On top of this, the Open Source community has built libraries to enhance these APIs and to help us get ideas out easier. I've been exploring Virtual Reality as a new medium for interacting and experiencing audio/visual art using WebVR. This tutorial will show you the basics of getting up and running with audio synthesis in WebVR.
