@@ -1,0 +1,48 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+
+export interface Props {
+  title: string
+  description: string
+  author?: string
+  pubDate?: string
+  tags?: string
+  updatedDate?: string
+  heroImage?: string
+  cardImage?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <section>
+        <div class="container">
+          <canvas class="sketch-canvas"></canvas>
+          <slot />
+        </div>
+      </section>
+    </main>
+
+    <style>
+      canvas {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: block;
+      }
+    </style>
+
+    <Footer />
+  </body>
+</html>

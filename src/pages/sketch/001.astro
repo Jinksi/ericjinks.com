@@ -1,0 +1,17 @@
+---
+import SketchWrap from '../../layouts/SketchWrap.astro'
+---
+
+<SketchWrap title="Sketch in astro component" description="asdf">
+  <script>
+    import canvasSketch from 'canvas-sketch'
+    import sketch from '../../sketches/1'
+    import defaultSettings from '../../sketches/lib/defaultSettings.js'
+
+    canvasSketch(sketch.render, {
+      ...defaultSettings,
+      ...(sketch.settings || {}),
+      canvas: document.querySelector('.sketch-canvas') as HTMLCanvasElement,
+    })
+  </script>
+</SketchWrap>

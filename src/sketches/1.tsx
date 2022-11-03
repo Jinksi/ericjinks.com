@@ -1,4 +1,4 @@
-import { CanvasSketch, Sketch } from '../react/CanvasSketch'
+import { CanvasSketch, Sketch } from '../components/react/CanvasSketch'
 
 const sketch: Sketch = {
   settings: {
