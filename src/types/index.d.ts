@@ -12,7 +12,7 @@ declare global {
     settings?: {
       animate?: boolean
       fps?: number
-      dimensions?: [number, number]
+      dimensions?: number[]
       scaleToFit?: boolean
       scaleToView?: boolean
       resizeCanvas?: boolean
