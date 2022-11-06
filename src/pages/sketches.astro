@@ -1,0 +1,69 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+let sketches = (await Astro.glob('./sketch/**/*.{md,mdx}')).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+) as Post[]
+sketches = [...sketches, ...sketches, ...sketches, ...sketches]
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Sketches – ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <div class="container">
+          {
+            sketches.map((sketch) => (
+              <a
+                class="sketch-link"
+                href={sketch.url}
+                title={sketch.frontmatter.title}
+              >
+                <img
+                  src={sketch.frontmatter.previewImage}
+                  alt={sketch.frontmatter.title}
+                />
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+    <Footer />
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 1rem;
+      }
+      .sketch-link {
+        display: block;
+        transition: 0.1s ease;
+      }
+      .sketch-link:hover,
+      .sketch-link:focus {
+        opacity: 0.8;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    </style>
+  </body>
+</html>

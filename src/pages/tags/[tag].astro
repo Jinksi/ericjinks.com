@@ -2,7 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro'
 import Header from '../../components/Nav.astro'
 import Footer from '../../components/Footer.astro'
-import PostList, { Post } from '../../components/PostList.astro'
+import PostList from '../../components/PostList.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import { formatTagUrlSafe } from '../../utils/tags'
 
@@ -24,7 +24,8 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params
-let posts = (await Astro.glob('../blog/**/*.{md,mdx}')) as Post[]
+const allPosts = (await Astro.glob('../blog/**/*.{md,mdx}')) as Post[]
+let posts = [...allPosts]
 if (tag) {
   posts = posts.filter((post) =>
     post.frontmatter.tags
@@ -45,7 +46,11 @@ if (tag) {
     <main>
       <section>
         <div class="container">
-          <PostList posts={posts} activeTag={tag?.toString()} />
+          <PostList
+            allPosts={allPosts}
+            posts={posts}
+            activeTag={tag?.toString()}
+          />
         </div>
       </section>
     </main>

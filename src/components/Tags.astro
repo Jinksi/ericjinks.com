@@ -2,8 +2,12 @@
 import { formatTagUrlSafe } from '../utils/tags'
 import Tag from './Tag.astro'
 
+export type Props = {
+  posts: Post[]
+  activeTag?: string
+}
 // Get tags from all posts
-const posts = await Astro.glob('../pages/blog/**/*.{md,mdx}')
+const { posts, activeTag } = Astro.props
 const formatTag = (tag: string) => tag.toLowerCase().trim()
 
 const tags = posts
@@ -21,7 +25,6 @@ const countPerTag = tags.reduce((acc, tag) => {
 const uniqueTags = [...new Set(tags)].sort(
   (a, b) => countPerTag[b] - countPerTag[a] || a.localeCompare(b)
 )
-const { activeTag } = Astro.props
 ---
 
 {

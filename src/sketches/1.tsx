@@ -1,3 +1,4 @@
+import React from 'react'
 import { CanvasSketch, Sketch } from '../components/react/CanvasSketch'
 
 const sketch: Sketch = {

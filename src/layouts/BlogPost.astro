@@ -8,17 +8,7 @@ import { SITE_TITLE } from '../config'
 import PostTags from '../components/PostTags.astro'
 
 export interface Props {
-  content: {
-    title: string
-    description: string
-    author?: string
-    pubDate?: string
-    updatedDate?: string
-    tags?: string
-    heroImage?: string
-    cardImage?: string
-    showDate?: boolean
-  }
+  content: Post
 }
 
 const {

@@ -3,25 +3,15 @@ import { formatDate } from '../utils/dateUtils'
 import PostTags from './PostTags.astro'
 import Tags from './Tags.astro'
 
-export type Post = {
-  url: string
-  frontmatter: {
-    title?: string
-    pubDate?: string
-    updatedDate?: string
-    description?: string
-    showDate?: boolean
-    tags?: string
-  }
-}
-
 interface Props {
   posts?: Post[]
+  allPosts?: Post[]
   postCount?: number
   activeTag?: string
+  showTags?: boolean
 }
 
-let { posts, postCount, activeTag } = Astro.props
+let { posts, allPosts, postCount, activeTag, showTags = true } = Astro.props
 
 if (!posts) {
   posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')) as Post[]
@@ -41,9 +31,13 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
 
 <div class="textContainer">
   <slot />
-  <section class="thin">
-    <Tags activeTag={activeTag} />
-  </section>
+  {
+    showTags && (
+      <section class="thin">
+        <Tags posts={allPosts || posts} activeTag={activeTag} />
+      </section>
+    )
+  }
   {
     slicedPosts &&
       slicedPosts.map(

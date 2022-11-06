@@ -1,29 +1,6 @@
 import { useEffect, useRef } from 'react'
 import canvasSketch from 'canvas-sketch'
 
-// Start the sketch
-type SketchRenderProps = {
-  context: CanvasRenderingContext2D
-  width: number
-  height: number
-  time: number
-  settings: object
-  playhead: number
-}
-
-export type Sketch = {
-  render: () => (props: SketchRenderProps) => void
-  settings?: {
-    animate?: boolean
-    fps?: number
-    dimensions?: [number, number]
-    scaleToFit?: boolean
-    scaleToView?: boolean
-    resizeCanvas?: boolean
-    duration?: number
-  }
-}
-
 const defaultSettings: Sketch['settings'] = {
   animate: true,
   fps: 30,
@@ -60,7 +37,11 @@ const exampleSketch: Sketch = {
     },
 }
 
-export const CanvasSketch = ({ sketch = exampleSketch }) => {
+export const CanvasSketch = ({
+  sketch = exampleSketch,
+}: {
+  sketch?: Sketch
+}) => {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
