@@ -2,10 +2,11 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
+import { SITE_TITLE } from '../config'
 
 export interface Props {
   title: string
-  description: string
+  description?: string
   author?: string
   pubDate?: string
   tags?: string
@@ -19,7 +20,7 @@ const { title, description } = Astro.props
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={`${title} – ${SITE_TITLE}`} description={description} />
   </head>
 
   <body>
@@ -28,6 +29,8 @@ const { title, description } = Astro.props
     <main>
       <section>
         <div class="container">
+          <h1>{title}</h1>
+          {description && <p>{description}</p>}
           <canvas class="sketch-canvas"></canvas>
           <slot />
         </div>
@@ -40,6 +43,10 @@ const { title, description } = Astro.props
         width: 100%;
         position: relative;
         display: block;
+        margin: 5rem auto 0 auto;
+      }
+      div {
+        text-align: center;
       }
     </style>
 
