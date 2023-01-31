@@ -1,11 +1,12 @@
 ---
+import { CollectionEntry, getCollection } from 'astro:content'
 import { formatDate } from '../utils/dateUtils'
 import PostTags from './PostTags.astro'
 import Tags from './Tags.astro'
 
 interface Props {
-  posts?: Post[]
-  allPosts?: Post[]
+  posts?: CollectionEntry<'blog'>[]
+  allPosts?: CollectionEntry<'blog'>[]
   postCount?: number
   activeTag?: string
   showTags?: boolean
@@ -14,15 +15,10 @@ interface Props {
 let { posts, allPosts, postCount, activeTag, showTags = true } = Astro.props
 
 if (!posts) {
-  posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}')) as Post[]
-  posts = posts.sort(
+  posts = (await getCollection('blog')).sort(
     (a, b) =>
-      new Date(
-        b.frontmatter.pubDate || b.frontmatter.updatedDate || ''
-      ).valueOf() -
-      new Date(
-        a.frontmatter.pubDate || a.frontmatter.updatedDate || ''
-      ).valueOf()
+      new Date(b.data.pubDate || b.data.updatedDate || '').valueOf() -
+      new Date(a.data.pubDate || a.data.updatedDate || '').valueOf()
   )
 }
 
@@ -42,8 +38,8 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     slicedPosts &&
       slicedPosts.map(
         ({
-          url,
-          frontmatter: {
+          slug,
+          data: {
             title,
             pubDate,
             updatedDate,
@@ -52,14 +48,14 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
             tags,
           },
         }) => (
-          <a href={url} class="post">
+          <a href={`/blog/${slug}/`} class="post">
             <h3 class="title">{title}</h3>
             <PostTags tags={tags} />
 
             {showDate && (
               <h4 class="date">
-                <time datetime={updatedDate || pubDate}>
-                  {formatDate(updatedDate || pubDate || '')}
+                <time datetime={(updatedDate || pubDate).toDateString()}>
+                  {formatDate((updatedDate || pubDate || '').toString())}
                 </time>
               </h4>
             )}

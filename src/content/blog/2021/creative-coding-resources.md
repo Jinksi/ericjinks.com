@@ -1,8 +1,7 @@
 ---
-layout: '../../../layouts/BlogPost.astro'
 title: 'Creative Coding Resources'
-pubDate: '2021-09-06'
-updatedDate: '2022-11-01'
+pubDate: 2021-09-06
+updatedDate: 2022-11-01
 description: My collection of creative coding resources, including books, inspirational projects, code repositories and tools.
 showDate: false
 tags: Creative Coding, React, JavaScript

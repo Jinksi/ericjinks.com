@@ -3,14 +3,13 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import { getCollection } from 'astro:content'
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-let sketches = (await Astro.glob('./sketch/**/*.{md,mdx}')).sort(
+let sketches = (await getCollection('sketch')).sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
-) as Post[]
-sketches = [...sketches, ...sketches, ...sketches, ...sketches]
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+)
 ---
 
 <!DOCTYPE html>
@@ -30,13 +29,10 @@ sketches = [...sketches, ...sketches, ...sketches, ...sketches]
             sketches.map((sketch) => (
               <a
                 class="sketch-link"
-                href={sketch.url}
-                title={sketch.frontmatter.title}
+                href={`/sketch/${sketch.slug}/`}
+                title={sketch.data.title}
               >
-                <img
-                  src={sketch.frontmatter.previewImage}
-                  alt={sketch.frontmatter.title}
-                />
+                <img src={sketch.data.previewImage} alt={sketch.data.title} />
               </a>
             ))
           }

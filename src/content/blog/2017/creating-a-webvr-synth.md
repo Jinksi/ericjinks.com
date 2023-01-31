@@ -1,5 +1,4 @@
 ---
-layout: '../../../layouts/BlogPost.astro'
 title: Creating a WebVR musical instrument using A-Frame & Tone.js
 description: Audio synthesis in WebVR
 pubDate: 2017-05-15

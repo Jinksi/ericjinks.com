@@ -101,7 +101,7 @@ const sketch: Sketch['render'] = () => {
   }
 }
 
-export function HalfMoonGrid() {
+export default function HalfMoonGrid() {
   return (
     <CanvasSketch
       sketch={{

@@ -1,3 +1,5 @@
+import { CanvasSketch } from '../components/react/CanvasSketch'
+
 import random from 'canvas-sketch-util/random'
 import Vector from './lib/Vector'
 
@@ -115,4 +117,4 @@ const sketch = {
   },
 }
 
-export default sketch
+export default () => <CanvasSketch sketch={sketch} />

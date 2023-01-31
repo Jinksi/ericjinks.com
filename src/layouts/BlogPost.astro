@@ -6,21 +6,15 @@ import Footer from '../components/Footer.astro'
 import { formatDate } from '../utils/dateUtils'
 import { SITE_TITLE } from '../config'
 import PostTags from '../components/PostTags.astro'
+import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  content: Post
+  post: CollectionEntry<'blog'>
 }
 
 const {
-  content: {
-    title,
-    description,
-    author,
-    pubDate,
-    tags,
-    updatedDate,
-    showDate = true,
-    heroImage,
+  post: {
+    data: { title, description, pubDate, tags, updatedDate, showDate = true },
   },
 } = Astro.props
 ---
@@ -36,23 +30,15 @@ const {
       <article>
         <header>
           <div class="container">
-            {
-              heroImage && (
-                <div class="textContainer auto">
-                  <img width={720} height={360} src={heroImage} alt="" />
-                </div>
-              )
-            }
             <div class="">
               <h1>{title}</h1>
               <PostTags tags={tags} />
               <div class="postmeta">
-                <!-- {author && <ProfilePic size={45} />} -->
-                {author && <span>{author}</span>}
-                {author && pubDate && <span class="sep"> — </span>}
                 {
                   showDate && !!pubDate && (
-                    <time datetime={pubDate}>{formatDate(pubDate)}</time>
+                    <time datetime={pubDate.toDateString()}>
+                      {formatDate(pubDate.toString())}
+                    </time>
                   )
                 }
               </div>

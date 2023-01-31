@@ -3,22 +3,16 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE } from '../config'
+import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  content: {
-    title: string
-    description: string
-    author?: string
-    pubDate?: string
-    tags?: string
-    updatedDate?: string
-    heroImage?: string
-    cardImage?: string
-  }
+  sketch: CollectionEntry<'sketch'>
 }
 
 const {
-  content: { title, description, author, pubDate, updatedDate, heroImage },
+  sketch: {
+    data: { title, description },
+  },
 } = Astro.props
 ---
 

@@ -1,9 +1,10 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import { formatTagUrlSafe } from '../utils/tags'
 import Tag from './Tag.astro'
 
 export type Props = {
-  posts: Post[]
+  posts: CollectionEntry<'blog'>[]
   activeTag?: string
 }
 // Get tags from all posts
@@ -12,7 +13,7 @@ const formatTag = (tag: string) => tag.toLowerCase().trim()
 
 const tags = posts
   .flatMap((post) => {
-    return post.frontmatter.tags?.split(',').map(formatTag) ?? []
+    return post.data.tags?.split(',').map(formatTag) ?? []
   })
   .filter(Boolean)
 

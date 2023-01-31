@@ -1,5 +1,4 @@
 ---
-layout: '../../../layouts/BlogPost.astro'
 title: Schedule your Netlify build with GitHub Actions
 description: If your build process is pulling in content from third-party services (e.g. Instagram, Youtube), scheduling a daily build & deploy can be an easy way to keep this content fresh.
 pubDate: 2019-08-16

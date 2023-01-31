@@ -1,5 +1,4 @@
 ---
-layout: '../../../layouts/BlogPost.astro'
 title: Serverless R functions with Cloud Run
 description: Using serverless containers to deploy scalable R functions.
 pubDate: 2019-09-02

@@ -1,3 +1,5 @@
+import { CanvasSketch } from '../components/react/CanvasSketch'
+
 const sketch: Sketch = {
   settings: {
     // Enable an animation loop
@@ -36,4 +38,6 @@ const sketch: Sketch = {
     },
 }
 
-export default sketch
+export default function Sketch001() {
+  return <CanvasSketch sketch={sketch} />
+}

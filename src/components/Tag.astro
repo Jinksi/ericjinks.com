@@ -20,7 +20,7 @@ tag = tag && formatTag(tag)
 {
   asLinkElement ? (
     <a
-      href={`/tags/${formatTagUrlSafe(tag)}/`}
+      href={`/tags/${formatTagUrlSafe(tag || '')}/`}
       class="tag"
       aria-selected={isActive}
     >

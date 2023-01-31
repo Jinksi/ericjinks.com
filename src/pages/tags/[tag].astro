@@ -5,14 +5,15 @@ import Footer from '../../components/Footer.astro'
 import PostList from '../../components/PostList.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import { formatTagUrlSafe } from '../../utils/tags'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../blog/**/*.{md,mdx}')
-  // Replace url unsafe characters
+  const posts = await getCollection('blog')
 
+  // Replace url unsafe characters
   const tags = posts
     .flatMap((post) => {
-      return post.frontmatter.tags?.split(',').map(formatTagUrlSafe) ?? []
+      return post.data.tags?.split(',').map(formatTagUrlSafe) ?? []
     })
     .filter(Boolean)
 
@@ -24,14 +25,11 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params
-const allPosts = (await Astro.glob('../blog/**/*.{md,mdx}')) as Post[]
+const allPosts = await getCollection('blog')
 let posts = [...allPosts]
 if (tag) {
   posts = posts.filter((post) =>
-    post.frontmatter.tags
-      ?.split(',')
-      .map(formatTagUrlSafe)
-      .includes(tag.toString())
+    post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
   )
 }
 ---

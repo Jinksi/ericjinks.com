@@ -22,24 +22,6 @@ declare global {
 }
 
 declare global {
-  type Post = {
-    url: string
-    frontmatter: {
-      title: string
-      description?: string
-      author?: string
-      pubDate?: string
-      updatedDate?: string
-      tags?: string
-      heroImage?: string
-      previewImage?: string
-      cardImage?: string
-      showDate?: boolean
-    }
-  }
-}
-
-declare global {
   interface Window {
     sketch: Sketch | undefined
   }
