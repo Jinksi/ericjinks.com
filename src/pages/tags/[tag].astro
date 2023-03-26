@@ -26,18 +26,20 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params
 const allPosts = await getCollection('blog')
-let posts = [...allPosts]
-if (tag) {
-  posts = posts.filter((post) =>
-    post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
-  )
-}
+const posts = tag
+  ? allPosts.filter((post) =>
+      post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
+    )
+  : [...allPosts]
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={`${tag} – ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={`#${tag} – ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
   </head>
   <body>
     <Header />
