@@ -1,5 +1,5 @@
 ---
-import { formatTagUrlSafe } from '../utils/tags'
+import { formatTag, formatTagUrlSafe } from '../utils/tags'
 
 let {
   tag,
@@ -12,8 +12,7 @@ let {
   asLinkElement?: boolean
   isActive?: boolean
 } = Astro.props
-const formatTag = (tag: string) =>
-  tag.toLocaleLowerCase().trim().replace(/\s/g, '-')
+
 tag = tag && formatTag(tag)
 ---
 

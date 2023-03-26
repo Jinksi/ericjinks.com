@@ -1,7 +1,6 @@
 ---
 const { tags } = Astro.props
-const formatTag = (tag: string) =>
-  tag.toLocaleLowerCase().trim().replace(/\s/g, '-')
+import { formatTag } from '../utils/tags'
 ---
 
 <div class="post-tags">

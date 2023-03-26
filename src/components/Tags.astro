@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { formatTagUrlSafe } from '../utils/tags'
+import { formatTag, formatTagUrlSafe } from '../utils/tags'
 import Tag from './Tag.astro'
 
 export type Props = {
@@ -9,7 +9,6 @@ export type Props = {
 }
 // Get tags from all posts
 const { posts, activeTag } = Astro.props
-const formatTag = (tag: string) => tag.toLowerCase().trim()
 
 const tags = posts
   .flatMap((post) => {
