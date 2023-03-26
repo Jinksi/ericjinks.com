@@ -11,16 +11,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.15.2",
-    "@astrojs/react": "^2.0.2",
-    "@astrojs/rss": "^2.1.0",
-    "@astrojs/sitemap": "^1.0.1",
-    "@fontsource/fira-code": "^4.5.12",
+    "@astrojs/mdx": "^0.18.2",
+    "@astrojs/react": "^2.1.0",
+    "@astrojs/rss": "^2.3.1",
+    "@astrojs/sitemap": "^1.2.1",
+    "@fontsource/fira-code": "^4.5.13",
     "@tensorflow/tfjs": "^0.11.6",
-    "@types/react": "^18.0.23",
-    "@types/react-dom": "^18.0.7",
-    "astro": "^2.0.4",
-    "canvas-sketch": "^0.7.6",
+    "@types/react": "^18.0.29",
+    "@types/react-dom": "^18.0.11",
+    "astro": "^2.1.7",
+    "canvas-sketch": "^0.7.7",
     "canvas-sketch-util": "^1.10.0",
     "feather-icons": "^4.29.0",
     "framer-motion": "^7.6.2",
@@ -36,6 +36,6 @@
     "uppy": "^0.25.5"
   },
   "devDependencies": {
-    "sass": "^1.55.0"
+    "sass": "^1.60.0"
   }
 }
