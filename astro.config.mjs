@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap'
 // https://astro.build/config
 import react from '@astrojs/react'
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://ericjinks.com',
   integrations: [mdx(), sitemap(), react()],
   trailingSlash: 'always',
   markdown: {
