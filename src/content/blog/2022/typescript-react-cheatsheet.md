@@ -16,8 +16,8 @@ This React & TypeScript Cheatsheet is a quick reference for using TypeScript in 
 - [React Component Return Types](#react-component-return-types)
 - [React Hooks](#react-hooks)
   - [useState](#usestate)
-  - [useEffect](#useeffect)
   - [useReducer](#usereducer)
+  - [useRef](#useref)
 
 ---
 
@@ -220,42 +220,6 @@ const Counter: React.FC<Props> = ({ initialCount }) => {
 }
 ```
 
-### useEffect
-
-```tsx
-import React, { useEffect, useState } from 'react'
-
-interface Props {
-  userId: number
-}
-
-interface User {
-  id: number
-  name: string
-  // ...
-}
-
-const UserProfile: React.FC<Props> = ({ userId }) => {
-  const [user, setUser] = useState<User | null>(null)
-
-  useEffect(() => {
-    // Fetch user data and set user state
-  }, [userId])
-
-  return (
-    <div>
-      {user ? (
-        <div>
-          <h1>{user.name}</h1>
-        </div>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
-  )
-}
-```
-
 ### useReducer
 
 In this example, we will type a `useReducer` hook for a simple counter application.
@@ -324,4 +288,28 @@ const Counter: React.FC = () => {
 }
 
 export default Counter
+```
+
+### useRef
+
+```tsx
+import React, { useRef } from 'react'
+
+const TextInputWithFocusButton: React.FC = () => {
+  const inputEl = useRef<HTMLInputElement>(null)
+
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    if (inputEl.current) {
+      inputEl.current.focus()
+    }
+  }
+
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  )
+}
 ```
