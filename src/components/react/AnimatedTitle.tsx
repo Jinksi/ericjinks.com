@@ -14,7 +14,7 @@ type Props = {
   stiffness?: number
 }
 
-const AnimatedTitle = ({
+const AnimatedTitle: React.FC<Props> = ({
   children,
   smallScreenContent = '',
   damping = 5,
@@ -74,9 +74,7 @@ const AnimatedTitle = ({
   )
 }
 
-export default (props: Props) => {
-  const { animate = true, children } = props
-
+export default ({ animate = true, children, ...props }: Props) => {
   if (typeof window === 'undefined' || !animate) {
     return (
       // Match the HTML structure of the client component
@@ -88,6 +86,6 @@ export default (props: Props) => {
       </h1>
     )
   } else {
-    return <AnimatedTitle {...props} />
+    return <AnimatedTitle {...props}>{children}</AnimatedTitle>
   }
 }
