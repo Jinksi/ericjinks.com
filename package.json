@@ -11,31 +11,31 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.18.2",
-    "@astrojs/react": "^2.1.0",
-    "@astrojs/rss": "^2.3.1",
-    "@astrojs/sitemap": "^1.2.1",
-    "@fontsource/fira-code": "^4.5.13",
+    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/react": "^3.0.0",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@fontsource/fira-code": "^5.0.8",
     "@tensorflow/tfjs": "^0.11.6",
-    "@types/react": "^18.0.29",
-    "@types/react-dom": "^18.0.11",
-    "astro": "^2.1.7",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "astro": "^3.0.5",
     "canvas-sketch": "^0.7.7",
     "canvas-sketch-util": "^1.10.0",
-    "feather-icons": "^4.29.0",
+    "feather-icons": "^4.29.1",
     "framer-motion": "^7.6.2",
     "glslify": "^7.1.1",
     "loaders.css": "^0.1.2",
-    "modern-normalize": "^1.1.0",
+    "modern-normalize": "^2.0.0",
     "nice-color-palettes": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-use": "^17.4.0",
-    "two.js": "^0.8.10",
+    "two.js": "^0.8.11",
     "uppy": "^0.25.5"
   },
   "devDependencies": {
-    "sass": "^1.60.0"
+    "sass": "^1.66.1"
   }
 }
