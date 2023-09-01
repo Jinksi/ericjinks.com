@@ -5,8 +5,6 @@ import DragDrop from 'uppy/lib/plugins/DragDrop'
 import 'uppy/dist/uppy.css'
 
 import Loading from '../react/Loading'
-import dogImage from './TFCNNDemo/dog.jpg'
-import catImage from './TFCNNDemo/cat.jpg'
 
 export default class LinearRegression extends React.Component {
   state = {
@@ -184,8 +182,8 @@ export default class LinearRegression extends React.Component {
                 )
               })}
             </div>
-            <Img src={catImage} alt="Cat Image" />
-            <Img src={dogImage} alt="Dog Image" />
+            <Img src="/images/blog/dog.jpg" alt="Cat Image" />
+            <Img src="/images/blog/cat.jpg" alt="Dog Image" />
 
             <div className="TFCNNDemoOutput" />
             <div className="TFCNNDemoUppy" />
