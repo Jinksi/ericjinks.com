@@ -83,19 +83,26 @@ const starredRepos = data?.user.starredRepositories.edges.map(
             Most recent {numberToFetch} of {totalCount.toLocaleString()} starred
             repos. Last updated {latestBuildTime}.
           </p>
+
           {
             starredRepos?.map((repo: Repo) => (
-              <div>
-                <a href={repo.url}>{repo.nameWithOwner}</a>
-                {' | '}
-                <span>
-                  <span style={`color: ${repo.primaryLanguage?.color}`}>
-                    ⏺
+              <div class="repo">
+                <div class="repo-header">
+                  <span>
+                    <strong>
+                      <a href={repo.url}>{repo.nameWithOwner}</a>
+                    </strong>
                   </span>
-                  {repo.primaryLanguage?.name}
-                </span>
-                {' | '}
-                <span>★ {repo.stargazerCount.toLocaleString()}</span>
+
+                  <span
+                    class="language"
+                    style={`--language-color: ${repo.primaryLanguage?.color}`}
+                  >
+                    {repo.primaryLanguage?.name}
+                  </span>
+
+                  <span>★ {repo.stargazerCount.toLocaleString()}</span>
+                </div>
                 <p>{repo.description}</p>
               </div>
             ))
@@ -103,10 +110,38 @@ const starredRepos = data?.user.starredRepositories.edges.map(
         </div>
       </section>
     </main>
+
     <Footer />
+
     <style>
       main {
         padding-top: 5rem;
+      }
+
+      .repo-header {
+        & > * {
+          display: inline-block;
+          align-items: center;
+
+          &:not(:first-child) {
+            margin-left: 2rem;
+          }
+        }
+      }
+
+      .language {
+        display: inline-flex;
+        align-items: center;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 0.9rem;
+          height: 0.9rem;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+          background-color: var(--language-color);
+        }
       }
     </style>
   </body>
