@@ -18,19 +18,18 @@ import GithubIcon from './GithubIcon.astro'
     font-size: 0.9em;
     padding: 10rem;
     text-align: center;
-    color: var(--offWhite);
   }
 
   a {
     margin-left: 0.2em;
   }
 </style>
-<script >
+<script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
       for (let registration of registrations) {
-        registration.unregister();
+        registration.unregister()
       }
-    });
+    })
   }
 </script>
