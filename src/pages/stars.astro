@@ -1,13 +1,13 @@
 ---
-export const prerender = true
-if (import.meta.env.PROD) {
-  Astro.locals.runtime.setBuildersTtl(45)
-}
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import GitHubStars from '../components/GitHubStars.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+
+if (import.meta.env.PROD) {
+  Astro.locals.runtime?.setBuildersTtl(45)
+}
 ---
 
 <!doctype html>
