@@ -7,7 +7,9 @@ import GitHubStars from '../components/GitHubStars.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 
 if (import.meta.env.PROD) {
-  Astro.locals.runtime?.setBuildersTtl(45)
+  // Set the Netlify on-demand builders TTL for this page to 24 hours
+  // @ts-ignore
+  Astro.locals.runtime?.setBuildersTtl(86_400)
 }
 ---
 
