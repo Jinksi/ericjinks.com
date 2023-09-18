@@ -30,6 +30,7 @@
     "loaders.css": "^0.1.2",
     "modern-normalize": "^2.0.0",
     "nice-color-palettes": "^3.0.0",
+    "openai": "^4.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",

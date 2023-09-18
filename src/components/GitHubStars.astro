@@ -1,0 +1,159 @@
+---
+import OpenAI from 'openai'
+
+type Repo = {
+  nameWithOwner: string
+  url: string
+  stargazerCount: number
+  description: string
+  primaryLanguage: {
+    name: string
+    color: string
+  }
+}
+
+const numberToFetch = 100
+const token = import.meta.env.GH_TOKEN
+const query = `
+query($username: String!, $numberToFetch: Int = 100) {
+  user(login: $username) {
+    starredRepositories(first: $numberToFetch, orderBy: {
+      direction: DESC
+      field: STARRED_AT
+    }) {
+      totalCount
+      edges {
+        node {
+          nameWithOwner
+          url
+          stargazerCount
+          description
+          primaryLanguage {
+            name
+            color
+          }
+        }
+      }
+    }
+  }
+}`
+
+const response = await fetch('https://api.github.com/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `bearer ${token}`,
+  },
+  body: JSON.stringify({
+    query,
+    variables: {
+      username: 'jinksi',
+      numberToFetch,
+    },
+  }),
+})
+
+const { data } = await response.json()
+
+const totalCount = data?.user.starredRepositories.totalCount
+const starredRepos = data?.user.starredRepositories.edges.map(
+  ({ node }: { node: Repo }) => node
+)
+const starredReposString = starredRepos
+  .map(
+    (repo: Repo) =>
+      `${repo.nameWithOwner} ${repo.primaryLanguage} ${repo.description}`
+  )
+  .join('\n')
+
+// ChatGPT
+let chatResponseString: string | null = null
+try {
+  // const openai = new OpenAI({
+  //   apiKey: import.meta.env.OPENAI_API_KEY,
+  // })
+  // const chatResponse = await openai.chat.completions.create({
+  //   model: 'gpt-3.5-turbo',
+  //   messages: [
+  //     {
+  //       role: 'user',
+  //       content: `Based on the following list of Github stars, write a concise single-sentence summary:
+  //       ${starredReposString}`,
+  //     },
+  //   ],
+  //   temperature: 0.15,
+  //   max_tokens: 256,
+  //   top_p: 1,
+  //   frequency_penalty: 0,
+  //   presence_penalty: 0,
+  // })
+  // chatResponseString = chatResponse?.choices[0].message.content
+} catch (error) {
+  console.error(error)
+}
+
+const latestBuildTime = new Date().toLocaleDateString('en-GB', {
+  dateStyle: 'medium',
+})
+---
+
+<div>
+  <p>
+    Most recent {numberToFetch} of {totalCount.toLocaleString()} starred repos.
+    Last updated {latestBuildTime}.
+  </p>
+
+  {chatResponseString && <p>{chatResponseString}</p>}
+
+  {
+    starredRepos?.map((repo: Repo) => (
+      <div class="repo">
+        <div class="repo-header">
+          <span>
+            <strong>
+              <a href={repo.url}>{repo.nameWithOwner}</a>
+            </strong>
+          </span>
+
+          <span
+            class="language"
+            style={`--language-color: ${repo.primaryLanguage?.color}`}
+          >
+            {repo.primaryLanguage?.name}
+          </span>
+
+          <span>★ {repo.stargazerCount.toLocaleString()}</span>
+        </div>
+        <p>{repo.description}</p>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .repo-header {
+    & > * {
+      display: inline-block;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  .language {
+    display: inline-flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      background-color: var(--language-color);
+    }
+  }
+</style>

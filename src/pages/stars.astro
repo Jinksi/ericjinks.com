@@ -1,71 +1,10 @@
 ---
+export const prerender = false
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
+import GitHubStars from '../components/GitHubStars.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
-
-type Repo = {
-  nameWithOwner: string
-  url: string
-  stargazerCount: number
-  description: string
-  primaryLanguage: {
-    name: string
-    color: string
-  }
-}
-
-const latestBuildTime = new Date().toLocaleDateString('en-GB', {
-  dateStyle: 'medium',
-})
-
-const numberToFetch = 100
-const token = import.meta.env.GH_TOKEN
-const query = `
-query($username: String!, $numberToFetch: Int = 100) {
-  user(login: $username) {
-    starredRepositories(first: $numberToFetch, orderBy: {
-      direction: DESC
-      field: STARRED_AT
-    }) {
-      totalCount
-      edges {
-        node {
-          nameWithOwner
-          url
-          stargazerCount
-          description
-          primaryLanguage {
-            name
-            color
-          }
-        }
-      }
-    }
-  }
-}`
-
-const response = await fetch('https://api.github.com/graphql', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `bearer ${token}`,
-  },
-  body: JSON.stringify({
-    query,
-    variables: {
-      username: 'jinksi',
-      numberToFetch,
-    },
-  }),
-})
-
-const { data } = await response.json()
-
-const totalCount = data?.user.starredRepositories.totalCount
-const starredRepos = data?.user.starredRepositories.edges.map(
-  ({ node }: { node: Repo }) => node
-)
 ---
 
 <!doctype html>
@@ -79,34 +18,8 @@ const starredRepos = data?.user.starredRepositories.edges.map(
       <section>
         <div class="container skinny">
           <h2>Starred GitHub Repos</h2>
-          <p>
-            Most recent {numberToFetch} of {totalCount.toLocaleString()} starred
-            repos. Last updated {latestBuildTime}.
-          </p>
 
-          {
-            starredRepos?.map((repo: Repo) => (
-              <div class="repo">
-                <div class="repo-header">
-                  <span>
-                    <strong>
-                      <a href={repo.url}>{repo.nameWithOwner}</a>
-                    </strong>
-                  </span>
-
-                  <span
-                    class="language"
-                    style={`--language-color: ${repo.primaryLanguage?.color}`}
-                  >
-                    {repo.primaryLanguage?.name}
-                  </span>
-
-                  <span>★ {repo.stargazerCount.toLocaleString()}</span>
-                </div>
-                <p>{repo.description}</p>
-              </div>
-            ))
-          }
+          <GitHubStars />
         </div>
       </section>
     </main>
