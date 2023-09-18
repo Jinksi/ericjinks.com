@@ -18,5 +18,7 @@ export default defineConfig({
     }
   },
   output: "hybrid",
-  adapter: netlify()
+  adapter: netlify({
+    builders: true,
+  })
 });

@@ -1,5 +1,8 @@
 ---
-export const prerender = false
+export const prerender = true
+if (import.meta.env.PROD) {
+  Astro.locals.runtime.setBuildersTtl(45)
+}
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
