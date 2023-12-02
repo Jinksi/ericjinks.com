@@ -25,7 +25,10 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params
-const allPosts = await getCollection('blog')
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+)
 const posts = tag
   ? allPosts.filter((post) =>
       post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
@@ -33,7 +36,7 @@ const posts = tag
   : [...allPosts]
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead
