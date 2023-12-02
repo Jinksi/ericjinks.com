@@ -1,0 +1,65 @@
+---
+title: Use Day.js instead of Moment.js for less cognitive load and fewer bugs
+description: Immutability = less cognitive load, less bugs
+pubDate: 2023-12-02
+tags: javascript, typescript
+---
+
+import DayVsMoment from './_DayVsMoment.svelte';
+
+There are good reasons why you would choose to use [Day.js](https://day.js.org/) instead of [Moment.js](https://momentjs.com/) for date manipulation.
+
+- The smaller bundle size
+- TypeScript support out of the box
+- The fact that Moment.js is [no longer maintained](https://momentjs.com/docs/#/-project-status/)
+
+But the main reason that I'd recommend Day.js is that it's immutable. What does this look like in practice?
+
+Say you have a date for an event and you want to create a reminder one day before the event.
+With **Moment.js** you'd do something like this:
+
+```jsx
+// Moment.js
+const newYearsDay = moment('2024-01-01');
+const newYearsEve = newYearsDay.subtract(1, 'day');
+```
+
+At a glance, this looks fine – but what if we want to render both of these dates?
+
+```jsx
+// Moment.js
+<span>{newYearsDay.format('YYYY-MM-DD')}</span> // 2023-12-31 😱
+<span>{newYearsEve.format('YYYY-MM-DD')}</span> // 2023-12-31
+```
+
+Oh no! We've mutated the original date!
+This sort of bug is hard to spot and I've been a victim of this specifically with Moment.js a few times.
+
+Sure, you could use `clone()` to avoid this, but that's just more cognitive load.
+
+```jsx
+// Moment.js
+// Don't do this
+const newYearsEve = newYearsDay.subtract(1, 'day');
+// Do this instead
+const newYearsEve = newYearsDay.clone().subtract(1, 'day');
+```
+
+Let's use **Day.js** instead 😎.
+
+```jsx
+// Day.js
+const newYearsDay = dayjs('2024-01-01');
+const newYearsEve = newYearsDay.subtract(1, 'day');
+
+<span>{newYearsDay.format('YYYY-MM-DD')}</span> // 2024-01-01 👍
+<span>{newYearsEve.format('YYYY-MM-DD')}</span> // 2023-12-31
+```
+
+Much better! Now we can use the original date without worrying about mutating it or having to clone it.
+
+---
+
+*Here's a browser-rendered example comparing today and yesterday using both libraries:*
+
+<DayVsMoment client:visible />
