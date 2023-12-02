@@ -39,9 +39,7 @@ Sure, you could use `clone()` to avoid this, but that's just more cognitive load
 
 ```jsx
 // Moment.js
-// Don't do this
-const newYearsEve = newYearsDay.subtract(1, 'day');
-// Do this instead
+// Use clone() to avoid mutating the original date, if you remember to do so
 const newYearsEve = newYearsDay.clone().subtract(1, 'day');
 ```
 
@@ -60,6 +58,6 @@ Much better! Now we can use the original date without worrying about mutating it
 
 ---
 
-*Here's a browser-rendered example comparing today and yesterday using both libraries:*
+*Here's a browser-rendered example comparing both libraries, assuming the approach detailed above is used for both:*
 
 <DayVsMoment client:visible />
