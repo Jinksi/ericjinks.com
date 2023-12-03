@@ -1,14 +1,25 @@
 ---
+import { Icon } from 'astro-icon'
 interface Props {
   sourceHref: string
-  type: 'svelte' | 'react' | 'astro'
+  type: 'svelte' | 'react' | 'astro' | 'typescript' | 'javascript'
+}
+
+const icons = {
+  svelte: 'simple-icons:svelte',
+  react: 'simple-icons:react',
+  astro: 'simple-icons:astro',
+  typescript: 'simple-icons:typescript',
+  javascript: 'simple-icons:javascript',
 }
 
 const { sourceHref, type } = Astro.props
 ---
 
 <div class="HighlightBox">
-  <a class="source-link" href={sourceHref}>view source</a>
+  <a class="source-link" href={sourceHref} title={type}>
+    <Icon class="language-icon" name={icons[type]} /> view source
+  </a>
   <slot />
 </div>
 
@@ -17,7 +28,7 @@ const { sourceHref, type } = Astro.props
     position: relative;
     width: auto;
     border: 1px solid var(--color-highlight);
-    padding: 2rem;
+    padding: 3rem;
     margin: 4rem 0;
     border-radius: 2px;
     box-shadow: 0px 10px 20px 0px var(--color-highlight-semi-transparent);
@@ -36,21 +47,28 @@ const { sourceHref, type } = Astro.props
     top: 0;
     right: 0;
     padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     text-decoration: none;
-    color: var(--color-highlight);
+    color: var(--color-darkGrey);
     background-color: var(--color-lightGrey);
     border: 1px solid var(--color-highlight);
-    border-radius: 2px;
+    border-radius: 0 0 0 2px;
     border-right: 0;
     border-top: 0;
     font-weight: 700;
     font-family: var(--font-code);
+    display: flex;
+    align-items: center;
   }
 
   .source-link:hover,
   .source-link:focus {
-    color: var(--white);
+    color: var(--black);
     background-color: var(--color-highlight);
+  }
+
+  .language-icon {
+    height: 1.5em;
+    margin-right: 0.7em;
   }
 </style>
