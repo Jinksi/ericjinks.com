@@ -2,10 +2,11 @@
 title: Use Day.js instead of Moment.js for less cognitive load and fewer bugs
 description: Immutability = less cognitive load, less bugs
 pubDate: 2023-12-02
-tags: javascript, typescript
+tags: javascript, typescript, svelte
 ---
 
 import DayVsMoment from './_DayVsMoment.svelte';
+import HighlightBox from '../../../components/HighlightBox.astro';
 
 There are good reasons why you would choose to use [**Day.js**](https://day.js.org/) instead of [**Moment.js**](https://momentjs.com/) for date manipulation.
 
@@ -60,4 +61,8 @@ Much better! Now we can use the original date without worrying about mutating it
 
 *Here's a browser-rendered example comparing both libraries, assuming the approach detailed above is used for both:*
 
+<HighlightBox>
 <DayVsMoment client:visible />
+</HighlightBox>
+
+See Svelte component code [here](https://github.com/jinksi/ericjinks.com/blob/master/src/content/blog/2023/_DayVsMoment.svelte)
