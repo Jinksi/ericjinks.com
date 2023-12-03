@@ -1,9 +1,20 @@
+---
+interface Props {
+  sourceHref: string
+  type: 'svelte' | 'react' | 'astro'
+}
+
+const { sourceHref, type } = Astro.props
+---
+
 <div class="HighlightBox">
+  <a class="source-link" href={sourceHref}>view source</a>
   <slot />
 </div>
 
 <style>
   .HighlightBox {
+    position: relative;
     width: auto;
     border: 1px solid var(--color-highlight);
     padding: 2rem;
@@ -18,5 +29,28 @@
       margin-left: -7vw;
       margin-right: -7vw;
     }
+  }
+
+  .source-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--color-highlight);
+    background-color: var(--color-lightGrey);
+    border: 1px solid var(--color-highlight);
+    border-radius: 2px;
+    border-right: 0;
+    border-top: 0;
+    font-weight: 700;
+    font-family: var(--font-code);
+  }
+
+  .source-link:hover,
+  .source-link:focus {
+    color: var(--white);
+    background-color: var(--color-highlight);
   }
 </style>
