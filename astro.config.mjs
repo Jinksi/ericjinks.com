@@ -1,9 +1,9 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import react from '@astrojs/react';
-import svelte from "@astrojs/svelte";
-import netlify from "@astrojs/netlify/functions";
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import react from '@astrojs/react'
+import svelte from '@astrojs/svelte'
+import netlify from '@astrojs/netlify/functions'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,12 +13,22 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
-      langs: ['js', 'html', 'css', 'r', 'jsx', 'typescript', 'tsx', 'docker'],
-      theme: 'one-dark-pro'
-    }
+      langs: [
+        'js',
+        'html',
+        'css',
+        'r',
+        'jsx',
+        'typescript',
+        'tsx',
+        'docker',
+        'python',
+      ],
+      theme: 'one-dark-pro',
+    },
   },
-  output: "hybrid",
+  output: 'hybrid',
   adapter: netlify({
-    builders: true
-  })
-});
+    builders: true,
+  }),
+})
