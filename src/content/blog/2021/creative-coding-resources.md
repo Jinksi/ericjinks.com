@@ -71,16 +71,12 @@ Generative Artistry - [Podcast](https://generativeartistry.com/episodes/) & [Tut
 
 ### [CHROMATLAS](http://aleksandrajovanic.com/chromatlas/)
 
-import chromeAtlasImage from './creative-coding-resources/chrome-atlas.png'
-
-<img src='/images/blog/chrome-atlas.png' alt="CHROMATLAS" />
+![CHROMATLAS](./assets/chrome-atlas.png)
 
 “Chromatlas” is a generative art project that explores the aesthetics of scientific illustrations from the 18th and 19th centuries, commonly applied symbols, forms, and objects used in data visualization, as well as algorithms essential to generative art and creative coding.
 
 ### [Leaf Notes](https://mattdesl.svbtle.com/tendril-web-toy) | [Tendril | Design & Animation](https://tendril.ca/)
 
-import LeafNotesImage from './creative-coding-resources/leaf-notes.jpg'
-
-<img src='/images/blog/leaf-notes.jpg' alt="Leaf Notes" />
+![Leaf notes](./assets/leaf-notes.jpg)
 
 An Interactive Web Toy by Matt Deslauriers.
