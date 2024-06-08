@@ -1,25 +1,14 @@
 ---
-import { Icon } from 'astro-icon'
 interface Props {
   sourceHref: string
   type: 'svelte' | 'react' | 'astro' | 'typescript' | 'javascript'
-}
-
-const icons = {
-  svelte: 'simple-icons:svelte',
-  react: 'simple-icons:react',
-  astro: 'simple-icons:astro',
-  typescript: 'simple-icons:typescript',
-  javascript: 'simple-icons:javascript',
 }
 
 const { sourceHref, type } = Astro.props
 ---
 
 <div class="HighlightBox">
-  <a class="source-link" href={sourceHref} title={type}>
-    <Icon class="language-icon" name={icons[type]} /> view source
-  </a>
+  <a class="source-link" href={sourceHref} title={type}> view source</a>
   <slot />
 </div>
 
@@ -65,10 +54,5 @@ const { sourceHref, type } = Astro.props
   .source-link:focus {
     color: var(--black);
     background-color: var(--color-highlight);
-  }
-
-  .language-icon {
-    height: 1.5em;
-    margin-right: 0.7em;
   }
 </style>
