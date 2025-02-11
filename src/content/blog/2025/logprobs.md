@@ -2,7 +2,7 @@
 title: 'Estimating LLM classification confidence with log probabilities (logprobs)'
 pubDate: 2025-02-10
 description: Estimating the confidence of an LLM's classification using log probabilities.
-showDate: false
+showDate: true
 tags: ai
 ---
 
