@@ -6,9 +6,11 @@ showDate: true
 tags: ai
 ---
 
-When working with AI-powered classification, knowing _why_ a model makes a decision can be just as useful as the decision itself.
+When working with LLM-powered classification, knowing _why_ a model makes a decision can be just as useful as the decision itself.
 
-**Logprobs** (log probabilities) are the logarithm of the probability assigned to each token, derived from the **logits** (raw model outputs) after applying the **softmax** function. They help quantify model confidence, with higher logprobs (closer to zero) indicating greater certainty in a token’s selection.
+We can assess a model's classification confidence by examining the log probabilities (logprobs) of the tokens in its response. This indicates the probability of the model's response, which we can interpret as its confidence in the classification it made.
+
+> **Logprobs** (log probabilities) are the logarithm of the probability assigned to each token, derived from the **logits** (raw model outputs) after applying the **softmax** function. They help quantify model confidence, with higher logprobs (closer to zero) indicating greater certainty in a token’s selection.
 
 In this post, we’ll explore how to use [logprobs from the OpenAI API](https://platform.openai.com/docs/api-reference/chat/create) to measure model confidence of classification.
 
@@ -148,7 +150,7 @@ async function checkFruitVegHerb(input: string) {
 }
 ```
 
-### Making smarter decisions
+### Using confidence scores to improve classification workflow outcomes
 
 By utilising logprobs to estimate a classification confidence, we can adjust decision-making logic:
 
@@ -156,6 +158,4 @@ By utilising logprobs to estimate a classification confidence, we can adjust dec
 - **Confidence between 50-90%** → Show a warning for user verification
 - **Confidence < 50%** → Ask for clarification
 
-By incorporating logprobs into classification structured outputs, we make **classification systems more reliable** and **trustworthy**.
-
-Using **logprobs** when utilising LLM classification systems helps us gain a better understanding of the model’s **certainty**, which can be key to making **better AI-driven decisions**.
+Using logprobs in LLM classification systems enhances our understanding of the model's certainty. This insight is crucial for making classification systems more reliable and trustworthy.
