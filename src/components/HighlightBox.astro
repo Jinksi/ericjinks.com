@@ -2,12 +2,13 @@
 interface Props {
   sourceHref: string
   type: 'svelte' | 'react' | 'astro' | 'typescript' | 'javascript'
+  wide?: boolean
 }
 
-const { sourceHref, type } = Astro.props
+const { sourceHref, type, wide = true } = Astro.props
 ---
 
-<div class="HighlightBox">
+<div class={`HighlightBox ${wide ? 'wide' : ''}`}>
   <a class="source-link" href={sourceHref} title={type}> view source</a>
   <slot />
 </div>
@@ -20,11 +21,11 @@ const { sourceHref, type } = Astro.props
     padding: 3rem;
     margin: 4rem 0;
     border-radius: 2px;
-    box-shadow: 0px 10px 20px 0px var(--color-highlight-semi-transparent);
+    box-shadow: 0px 5px 10px 0px var(--color-highlight-semi-transparent);
     background-color: var(--color-highlight-almost-transparent);
   }
   @media (min-width: 800px) {
-    .HighlightBox {
+    .HighlightBox.wide {
       padding: 4rem;
       margin-left: -7vw;
       margin-right: -7vw;
@@ -48,11 +49,13 @@ const { sourceHref, type } = Astro.props
     font-family: var(--font-code);
     display: flex;
     align-items: center;
+    opacity: 0.5;
   }
 
   .source-link:hover,
   .source-link:focus {
     color: var(--black);
     background-color: var(--color-highlight);
+    opacity: 1;
   }
 </style>

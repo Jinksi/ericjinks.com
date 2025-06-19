@@ -1,0 +1,192 @@
+---
+title: 'Undo/redo state with event sourcing'
+pubDate: 2025-06-20
+description: Using event sourcing to implement undo/redo functionality.
+showDate: true
+tags: react, typescript, javascript
+---
+
+import EventSourcingUndoRedo from '../../../components/react/EventSourcingUndoRedo.tsx'
+import HighlightBox from '../../../components/HighlightBox.astro'
+
+In a recent technical interview, I was asked to implement undo/redo functionality for a canvas drawing app using _Event Sourcing_. I had never explored this concept before, so I am writing this post to learn about it and apply it in a React component.
+
+## So, what is Event Sourcing?
+
+Event sourcing is a state design pattern in which state is not stored directly. Instead, **all changes to state are captured as a sequence of immutable events**, and current state is reconstructed by replaying these events.
+
+In a basic sense, normal state management can be thought of as a single object:
+
+```tsx
+const state = {
+  x: 0,
+  y: 0,
+}
+
+const setPosition = (x: number, y: number) => {
+  state.x = x
+  state.y = y
+}
+
+// State update A
+setPosition(10, 20)
+
+// State update B
+setPosition(55, 75)
+
+// Accessing the current state
+state.x // 55
+state.y // 75
+```
+
+Event sourcing will instead manage state as a sequence of events:
+
+```tsx
+const events = []
+
+const setPosition = (x: number, y: number) => {
+  events.push({ type: 'setPosition', x, y })
+}
+
+// State update A
+setPosition(10, 20)
+
+// State update B
+setPosition(55, 75)
+
+// Events array includes the history of all state changes
+// [
+//   { type: 'setPosition', x: 10, y: 20 },
+//   { type: 'setPosition', x: 55, y: 75 },
+// ]
+
+// We can directly access the latest state object
+const state = events[events.length - 1]
+state.x // 55
+state.y // 75
+
+// Or we can derive the current state by replaying the events
+const state = events.reduce(
+  (acc, event) => {
+    if (event.type === 'setPosition') {
+      acc.x = event.x
+      acc.y = event.y
+    }
+    return acc
+  },
+  { x: 0, y: 0 }
+)
+```
+
+## What sort of things can we do with event sourcing?
+
+**Undo/Redo Functionality**
+
+Rather than storing full snapshots, you store user actions as events. Then we can undo or redo by moving the backward and forward in the event history.
+
+**Multi-user Collaboration**
+
+If multiple users edit shared state (e.g. Figma or Notion), recording user events provides a way to merge, reconcile, and audit edits.
+
+**Time-Travel Debugging**
+
+Tools like Redux DevTools implement a form of event sourcing. Actions (events) are stored and can be replayed to reproduce any application state.
+
+**Optimistic UI**
+
+You can immediately apply an event on the frontend (e.g. "CommentPosted") before the server confirms it, and reconcile later if needed.
+
+**Audit Trail & Replay**
+
+Some apps (e.g. finance, health) need traceable state histories. Event logs provide a complete, replayable, and auditable history of frontend interactions.
+
+---
+
+## Implementing undo/redo in a React component with event sourcing
+
+<HighlightBox
+  type="react"
+  sourceHref="https://github.com/jinksi/ericjinks.com/blob/main/src/components/react/EventSourcingUndoRedo.tsx"
+  wide={false}
+>
+  <EventSourcingUndoRedo client:load />
+</HighlightBox>
+
+The component above demonstrates event sourcing with undo/redo functionality. Here are the key parts:
+
+### 1. Event Types
+
+Events represent actions that can happen, similar to Redux actions:
+
+```tsx
+type CanvasAction = {
+  id: string
+  type: 'ADD_CIRCLE' | 'ADD_SQUARE'
+  x: number
+  y: number
+  size: number
+  color: string
+}
+```
+
+### 2. Event Store
+
+The store maintains both the event history and current position in that history:
+
+```tsx
+type EventStore = {
+  events: CanvasAction[]
+  historyIndex: number // Tracks where we are in the timeline
+}
+```
+
+### 3. Event Reducer
+
+Handles adding new events and navigating through history. If we're not at the end of the history, we truncate the future events, starting a new set of events from this point.
+
+```tsx
+const eventReducer = (
+  store: EventStore,
+  action: CanvasAction | UndoRedoAction
+) => {
+  switch (action.type) {
+    case 'ADD_CIRCLE':
+    case 'ADD_SQUARE':
+      // Truncate future events if we're not at the end (branching)
+      const truncatedEvents = store.events.slice(0, store.historyIndex)
+      return {
+        events: [...truncatedEvents, action],
+        historyIndex: store.historyIndex + 1,
+      }
+    case 'UNDO':
+      return { ...store, historyIndex: Math.max(0, store.historyIndex - 1) }
+    case 'REDO':
+      return {
+        ...store,
+        historyIndex: Math.min(store.events.length, store.historyIndex + 1),
+      }
+  }
+}
+```
+
+### 4. State Reconstruction
+
+Current state is derived by replaying events up to the current history index:
+
+```tsx
+const getStateFromEvents = (events: CanvasAction[], historyIndex: number) => {
+  const currentEvents = events.slice(0, historyIndex)
+  return currentEvents.map((event) => ({
+    id: event.id,
+    type: event.type === 'ADD_CIRCLE' ? 'circle' : 'square',
+    x: event.x,
+    y: event.y,
+    size: event.size,
+    color: event.color,
+  }))
+}
+```
+
+The key insight I used to implement this is that **undo/redo simply involves moving the history index backward and forward**, while the current state is always reconstructed from the events up to that index.
+
+This approach naturally handles complex scenarios like branching, which occurs when you undo several steps and then perform a new action.
