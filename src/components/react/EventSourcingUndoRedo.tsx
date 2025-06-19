@@ -201,16 +201,15 @@ const EventSourcingUndoRedo = () => {
         })}
       </svg>
 
-      <div
-        className="canvas-toolbar"
-        style={{ display: 'flex', gap: '10px', margin: '10px 0' }}
-      >
+      <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
         <button type="button" onClick={() => addShape('ADD_CIRCLE')}>
           Add Circle
         </button>
         <button type="button" onClick={() => addShape('ADD_SQUARE')}>
           Add Square
         </button>
+      </div>
+      <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
         <button type="button" onClick={undo} disabled={!canUndo}>
           ↩ Undo
         </button>
