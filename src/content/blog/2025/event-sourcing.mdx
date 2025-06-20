@@ -175,7 +175,7 @@ const eventReducer = (
 
 Current state is derived by reducing over the event list up to the current history index.
 
-In more complex systems, this process can be optimised using snapshots—periodic captures of state that reduce the number of events needing to be replayed.
+In more complex systems, this process can be optimised using snapshots, which are periodic captures of state that reduce the number of events needing to be replayed.
 
 ```tsx
 const getStateFromEvents = (events: CanvasAction[], historyIndex: number) => {
