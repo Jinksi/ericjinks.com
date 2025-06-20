@@ -1,7 +1,7 @@
 ---
 title: 'Undo/redo state with event sourcing'
 pubDate: 2025-06-20
-description: Using event sourcing to implement undo/redo functionality.
+description: Using event sourcing to implement undo/redo functionality in a React component.
 showDate: true
 tags: react, typescript, javascript
 ---
@@ -14,6 +14,8 @@ In a recent technical interview, I was asked to implement undo/redo functionalit
 ## So, what is Event Sourcing?
 
 Event sourcing is a state design pattern in which state is not stored directly. Instead, **all changes to state are captured as a sequence of immutable events**, and current state is reconstructed by replaying these events.
+
+The name "Event Sourcing" comes from the fact that **events are the source of truth** for the application's state. Rather than storing the current state directly, you "source" (derive) the state from a sequence of events.
 
 In a basic sense, normal state management can be thought of as a single object:
 
@@ -171,7 +173,9 @@ const eventReducer = (
 
 ### 4. State Reconstruction
 
-Current state is derived by replaying events up to the current history index:
+Current state is derived by reducing over the event list up to the current history index.
+
+In more complex systems, this process can be optimised using snapshots—periodic captures of state that reduce the number of events needing to be replayed.
 
 ```tsx
 const getStateFromEvents = (events: CanvasAction[], historyIndex: number) => {
@@ -187,6 +191,6 @@ const getStateFromEvents = (events: CanvasAction[], historyIndex: number) => {
 }
 ```
 
-The key insight I used to implement this is that **undo/redo simply involves moving the history index backward and forward**, while the current state is always reconstructed from the events up to that index.
+The key insight used to implement this is that **undo/redo simply involves moving the history index backward and forward**, while the current state is always reconstructed from the events up to that index.
 
 This approach naturally handles complex scenarios like branching, which occurs when you undo several steps and then perform a new action.
