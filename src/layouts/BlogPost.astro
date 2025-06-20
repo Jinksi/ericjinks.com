@@ -7,6 +7,7 @@ import { formatDate } from '../utils/dateUtils'
 import { SITE_TITLE } from '../config'
 import PostTags from '../components/PostTags.astro'
 import type { CollectionEntry } from 'astro:content'
+import PostComments from '../components/react/PostComments'
 
 export interface Props {
   post: CollectionEntry<'blog'>
@@ -54,7 +55,16 @@ const {
           </div>
         </section>
       </article>
+
+      <section class="thin">
+        <div class="container">
+          <div class="textContainer auto">
+            <PostComments client:only="react" />
+          </div>
+        </div>
+      </section>
     </main>
+
     <Footer />
     <style>
       article {
