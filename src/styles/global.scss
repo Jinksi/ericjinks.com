@@ -221,6 +221,21 @@ section {
   }
 }
 
+ol {
+  list-style-type: decimal;
+  padding-left: 0em;
+  margin-bottom: 1rem;
+
+  li {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    &::marker {
+      color: var(--color-highlight);
+    }
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: 1111px;
