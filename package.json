@@ -12,7 +12,6 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/netlify": "^6.4.0",
     "@astrojs/react": "^4.3.0",
