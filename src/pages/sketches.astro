@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 import { getCollection } from 'astro:content'
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
+// Use getCollection to fetch all posts, and then sort them by date.
 let sketches = (await getCollection('sketch')).sort(
   (a, b) =>
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
