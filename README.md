@@ -2,8 +2,6 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/79156c84-6012-4ed1-a8ac-af5538858166/deploy-status)](https://app.netlify.com/sites/ericjinks/deploys)
 
-My personal website 🥳
+My personal website ✨
 
 Built with **[Astro](https://astro.build)**
-
-If you happen to find spelling errors or bugs, feel free to add an issue or create a new PR 🙏

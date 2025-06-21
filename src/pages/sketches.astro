@@ -5,14 +5,14 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 import { getCollection } from 'astro:content'
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
+// Use getCollection to fetch all posts, and then sort them by date.
 let sketches = (await getCollection('sketch')).sort(
   (a, b) =>
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 )
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead
@@ -29,7 +29,7 @@ let sketches = (await getCollection('sketch')).sort(
             sketches.map((sketch) => (
               <a
                 class="sketch-link"
-                href={`/sketch/${sketch.slug}/`}
+                href={`/sketch/${sketch.id}/`}
                 title={sketch.data.title}
               >
                 <img src={sketch.data.previewImage} alt={sketch.data.title} />

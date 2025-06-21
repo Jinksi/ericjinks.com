@@ -38,7 +38,7 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
     slicedPosts &&
       slicedPosts.map(
         ({
-          slug,
+          id,
           data: {
             title,
             pubDate,
@@ -48,7 +48,7 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
             tags,
           },
         }) => (
-          <a href={`/blog/${slug}/`} class="post">
+          <a href={`/blog/${id}/`} class="post">
             <h3 class="title">{title}</h3>
             <PostTags tags={tags} />
 

@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import 'modern-normalize/modern-normalize.css'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import '../styles/global.scss'
 
 export interface Props {
@@ -58,8 +58,8 @@ const {
 <link
   rel="alternate"
   type="application/rss+xml"
-  title="Your Site's Title"
-  href={new URL("rss.xml", Astro.site)}
+  title="Eric Jinks"
+  href={new URL('rss.xml', Astro.site)}
 />
 
-<ViewTransitions  />
+<ClientRouter />

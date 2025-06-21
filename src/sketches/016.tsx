@@ -1,6 +1,6 @@
-import { CanvasSketch } from '../components/react/CanvasSketch'
-
 import random from 'canvas-sketch-util/random'
+
+import { CanvasSketch } from '../components/react/CanvasSketch'
 import Vector from './lib/Vector'
 
 const sketch = {
@@ -16,7 +16,14 @@ const sketch = {
     let blur = 0.3
 
     class Gem {
-      constructor(x, y, radius) {
+      pos: any
+      vel: any
+      radius: number
+      mass: number
+      col: string
+      acc: any
+
+      constructor(x: number, y: number, radius: number) {
         this.col = random.pick(['orange', 'teal', 'tomato'])
         this.pos = new Vector(x, y)
         this.vel = new Vector(random.range(0, 1), random.range(0, 1))
@@ -25,7 +32,7 @@ const sketch = {
         this.mass = 2 + this.radius
       }
 
-      applyForce(force) {
+      applyForce(force: any) {
         // do not affect original force value
         let f = force.copy()
         // F = m * a
@@ -33,7 +40,15 @@ const sketch = {
         this.acc = this.acc.add(f)
       }
 
-      display({ context, width, height }) {
+      display({
+        context,
+        width,
+        height,
+      }: {
+        context: any
+        width: number
+        height: number
+      }) {
         this.vel = this.vel.add(this.acc)
         this.pos = this.pos.add(this.vel)
         // reset acc for next force calculation
@@ -53,7 +68,12 @@ const sketch = {
     }
 
     class Wind {
-      constructor(strength) {
+      xoff: number
+      strength: number
+      direction: any
+      frequency: number
+
+      constructor(strength: number) {
         // initialise Perlin offset
         this.xoff = 0
         this.strength = strength
@@ -61,7 +81,7 @@ const sketch = {
         this.frequency = 0.5
       }
 
-      calculateForce(part) {
+      calculateForce(part: any) {
         // force relative to particle mass
         const force = this.direction.mult(part.mass * part.mass)
         const mag = random.range(0, this.strength)
@@ -85,7 +105,17 @@ const sketch = {
     wind = new Wind(windStrength)
 
     // render loop
-    return ({ context, width, height, time }) => {
+    return ({
+      context,
+      width,
+      height,
+      time,
+    }: {
+      context: any
+      width: number
+      height: number
+      time: number
+    }) => {
       context.globalCompositeOperation = 'normal'
       context.fillStyle = `hsla(0, 0%, 9%, ${1 - blur})`
       context.fillRect(0, 0, width, height)
@@ -96,7 +126,7 @@ const sketch = {
             const x = random.range(i - gridSize, i + gridSize)
             const y = random.range(j - gridSize, j + gridSize)
             if (gems.length < maxGems) {
-              gems.push(new Gem(x, y))
+              gems.push(new Gem(x, y, 1))
             }
           }
         }
