@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
-import react from '@astrojs/react'
-import svelte from '@astrojs/svelte'
+
 import cloudflare from '@astrojs/cloudflare'
+import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import svelte from '@astrojs/svelte'
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,6 +28,6 @@ export default defineConfig({
       theme: 'one-dark-pro',
     },
   },
-  output: 'hybrid',
+  output: 'static',
   adapter: cloudflare(),
 })
