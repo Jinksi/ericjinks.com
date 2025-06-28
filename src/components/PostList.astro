@@ -11,9 +11,17 @@ interface Props {
   postCount?: number
   activeTag?: string
   showTags?: boolean
+  showDrafts?: boolean
 }
 
-let { posts, allPosts, postCount, activeTag, showTags = true } = Astro.props
+let {
+  posts,
+  allPosts,
+  postCount,
+  activeTag,
+  showTags = true,
+  showDrafts = false,
+} = Astro.props
 
 if (!posts) {
   posts = (await getCollection('blog')).sort(
@@ -23,7 +31,13 @@ if (!posts) {
   )
 }
 
-const slicedPosts = postCount ? posts.slice(0, postCount) : posts
+const filteredPosts = showDrafts
+  ? posts
+  : posts.filter((post) => !post.data.isDraft)
+
+const slicedPosts = postCount
+  ? filteredPosts.slice(0, postCount)
+  : filteredPosts
 ---
 
 <div class="textContainer">
