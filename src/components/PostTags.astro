@@ -1,9 +1,10 @@
 ---
-const { tags } = Astro.props
+const { tags, showDraftTag } = Astro.props
 import { formatTag } from '../utils/tags'
 ---
 
 <div class="post-tags">
+  {showDraftTag && <span class="draft">#draft</span>}
   {tags?.split(',').map((tag: string) => <span>#{formatTag(tag)}</span>)}
 </div>
 
@@ -20,5 +21,9 @@ import { formatTag } from '../utils/tags'
 
   .post-tags > * + * {
     margin-left: 0.7em;
+  }
+  .draft {
+    color: var(--color-highlightC);
+    font-style: italic;
   }
 </style>

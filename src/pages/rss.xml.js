@@ -22,16 +22,18 @@ export async function GET() {
     // Optional enhancements
     language: 'en-us',
     generator: 'Astro',
-    items: sortedBlog.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      // Convert tags string to array if needed for RSS
-      categories: post.data.tags?.split(',').map((tag) => tag.trim()),
-      // Compute RSS link from post `id`
-      link: `/blog/${post.id}/`,
-      // Add unique identifier
-      guid: `${SITE_URL}/blog/${post.id}/`,
-    })),
+    items: sortedBlog
+      .filter((post) => !post.data.isDraft)
+      .map((post) => ({
+        title: post.data.title,
+        pubDate: post.data.pubDate,
+        description: post.data.description,
+        // Convert tags string to array if needed for RSS
+        categories: post.data.tags?.split(',').map((tag) => tag.trim()),
+        // Compute RSS link from post `id`
+        link: `/blog/${post.id}/`,
+        // Add unique identifier
+        guid: `${SITE_URL}/blog/${post.id}/`,
+      })),
   })
 }

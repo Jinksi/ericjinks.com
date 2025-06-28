@@ -1,5 +1,6 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 import { formatDate } from '../utils/dateUtils'
 import PostTags from './PostTags.astro'
 import Tags from './Tags.astro'
@@ -46,11 +47,13 @@ const slicedPosts = postCount ? posts.slice(0, postCount) : posts
             description,
             showDate = true,
             tags,
+            isDraft = false,
           },
         }) => (
           <a href={`/blog/${id}/`} class="post">
             <h3 class="title">{title}</h3>
-            <PostTags tags={tags} />
+
+            <PostTags tags={tags} showDraftTag={isDraft} />
 
             {showDate && (
               <h4 class="date">

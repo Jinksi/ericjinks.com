@@ -15,7 +15,15 @@ export interface Props {
 
 const {
   post: {
-    data: { title, description, pubDate, tags, updatedDate, showDate = true },
+    data: {
+      title,
+      description,
+      pubDate,
+      tags,
+      updatedDate,
+      showDate = true,
+      isDraft,
+    },
   },
 } = Astro.props
 ---
@@ -33,13 +41,21 @@ const {
           <div class="container">
             <div class="">
               <h1>{title}</h1>
-              <PostTags tags={tags} />
+              <PostTags tags={tags} showDraftTag={isDraft} />
+
               <div class="postmeta">
                 {
                   showDate && !!pubDate && (
                     <time datetime={pubDate.toDateString()}>
                       {formatDate(pubDate.toString())}
                     </time>
+                  )
+                }
+                {
+                  isDraft && (
+                    <p class="draft-notice">
+                      <em>⚠️ This is a work in progress...</em>
+                    </p>
                   )
                 }
               </div>
@@ -121,6 +137,12 @@ const {
         .post-meta-sep {
           display: inline-block;
         }
+      }
+
+      .draft-notice {
+        color: var(--color-highlightC);
+        font-style: italic;
+        font-size: 0.9em;
       }
     </style>
   </body>
