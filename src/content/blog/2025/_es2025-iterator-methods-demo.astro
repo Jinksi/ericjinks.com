@@ -1,0 +1,88 @@
+<p>
+  <strong>✨ DOM Elements: Array vs Iterator ✨</strong>
+  <br />
+  Let's append 100,000 elements to the DOM, with one element randomly containing
+  a pineapple 🍍
+  <br />
+  How long does it take each method to find the 🍍?
+</p>
+
+<pre>
+  <output id="demo-output">Output from output demo will be shown here.<br />Click the button to find the pineapple 🍍.</output>
+</pre>
+
+<button class="OutlinedButton" id="run-demo">Find the pineapple 🍍</button>
+
+<!-- Container to append the elements to -->
+<div id="elements"></div>
+
+<script>
+  const runDemo = () => {
+    let output = ''
+
+    const createElements = (count = 100_000) => {
+      const randomIndex = Math.floor(Math.random() * count)
+      const containerEl = document.querySelector('#elements')
+      containerEl!.innerHTML = '' // Clear the container
+
+      for (let i = 0; i < count; i++) {
+        const element = document.createElement('span')
+        element.hidden = true // Let's not render 100,000 elements
+        element.textContent =
+          i === randomIndex
+            ? '🍍' // One element contains a pineapple 🍍
+            : '🍌'
+        containerEl!.appendChild(element)
+      }
+
+      output += `Created ${count.toLocaleString()} <span> elements.\n`
+      output += `The 🍍 is in the middle at index ${randomIndex.toLocaleString()}\n`
+
+      return document.querySelectorAll('#elements span')
+    }
+
+    const elements = createElements()
+    const containsPineapple = (element: Element) =>
+      element.textContent!.includes('🍍')
+
+    /**
+     * Using array methods, we first need to copy the DOM elements as an array into memory.
+     * This can be problematic if we're working with a large number of elements, especially on mobile devices.
+     */
+    let start = performance.now()
+    const hasPineappleArr = [...elements] // Copy the DOM elements into an array
+      .some(containsPineapple) // look at each element in the array and see if any contains a pineapple 🍍
+    const timeArr = performance.now() - start
+
+    output += `Array ${hasPineappleArr && 'found 🍍'} in ${timeArr.toFixed(2)}ms`
+    output += `\n`
+
+    /**
+     * The benefit of using an iterator here is that we're not creating a new array in memory.
+     * Instead, we're iterating over the elements one by one, and checking if any of them contain the 🍍.
+     * As soon as we find one that contains the 🍍, we can stop iterating.
+     * This is especially useful if we're working with a large number of elements.
+     */
+
+    start = performance.now()
+    const hasPineappleIterator = elements
+      .values() // .values() turns the DOM elements into an iterator
+      .some(containsPineapple) // iterate over each element, one-by-one, and see if any contains a pineapple 🍍
+    const timeIterator = performance.now() - start
+
+    output += `Iterator ${hasPineappleIterator && 'found 🍍'} in ${timeIterator.toFixed(2)}ms`
+    output += `\n`
+
+    const timeDiffPercentage = ((timeArr - timeIterator) / timeArr) * 100
+
+    output += `🏎️ Iterator was ${timeDiffPercentage.toFixed(0)}% faster than array method`
+
+    /**
+     * Show the output
+     */
+    output = output.trim()
+    document.querySelector('#demo-output')!.textContent = output
+  }
+
+  document.querySelector('#run-demo')!.addEventListener('click', runDemo)
+</script>

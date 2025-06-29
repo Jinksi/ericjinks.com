@@ -1,0 +1,71 @@
+---
+title: 'ES2025 Iterator methods: memory-efficient DOM processing'
+pubDate: 2025-06-29
+description: ES2025 introduces new iterator methods into JavaScript to help us work more efficiently with arrays, maps, and DOM element lists.
+showDate: true
+tags: JavaScript
+isDraft: true
+---
+
+import ES2025IteratorMethodsDemo from './_es2025-iterator-methods-demo.astro'
+import HighlightBox from '../../../components/HighlightBox.astro'
+
+We're used to working with array methods like `map`, `filter`, and `reduce`.
+
+```js
+const numbers = [1, 2, 3, 4, 5]
+const evenNumbers = numbers.filter((number) => number % 2 === 0)
+console.log(evenNumbers) // [2, 4]
+```
+
+But it gets slightly more complicated when you want to work with a Map, Set, or DOM element list.
+
+Often, you'll convert the Set/Map/DOM element list to an array using `Array.from` or with the spread operator `[...map]`, then use array methods.
+
+```js
+const set = new Set([1, 2, 3, 4, 5])
+const evenValues = [...set].filter((value) => value % 2 === 0)
+console.log(evenValues) // [2, 4]
+```
+
+This can be problematic if you're working with a large number of elements, especially on mobile devices.
+
+For example, say we want to check if any table cell contains the string `NaN`.
+
+```js
+const elements = document.querySelectorAll('td') // 1,000,000 table cells
+// First, copy 1,000,000 elements into memory, in order to use array methods
+const cellsWithNaN = [...elements]
+  // Then, use array .some() to check if any cell contains a NaN
+  .some((cell) => cell.textContent.includes('NaN'))
+```
+
+[ES2025 introduces new iterator methods](https://exploringjs.com/js/book/ch_sync-iteration.html#quickref-iterator) to help you work with iterables, e.g. Maps, Sets, and DOM element lists. Iterator methods include: `map()`, `filter()`, `reduce()`, `some()`, `every()`, `find()`, `take()`, `drop()`, and more.
+
+```js
+const elements = document.querySelectorAll('td') // 1,000,000 table cells
+// .values() turns the DOM elements into an iterator, which allows us to iterate over each element, one-by-one
+const cellsWithNaN = elements
+  .values()
+  // Then, use the new iterator .some() method to check if any cell contains a NaN
+  .some((cell) => cell.textContent.includes('NaN'))
+```
+
+Since we're not copying the elements into memory, this is much more efficient.
+
+See the demo below for an example of the difference in performance between the two approaches.
+
+<HighlightBox
+  type="javascript"
+  sourceHref="https://github.com/jinksi/ericjinks.com/blob/main/src/content/blog/2025/_es2025-iterator-methods-demo.astro"
+>
+  <ES2025IteratorMethodsDemo />
+</HighlightBox>
+
+## Can I use these new iterator methods today?
+
+As time of writing, iterator methods are available in at least the latest stable version of Safari, Chrome, Firefox, and Edge browsers.
+
+Check [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/some) for browser support.
+
+For production applications targeting older browsers, consider using a polyfill like [es-shims](https://github.com/es-shims/iterator-helpers-polyfill).
