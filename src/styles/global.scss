@@ -23,9 +23,9 @@
   --color-code: var(--lightBlack);
 
   --font-code: 'Fira Code', monospace;
-  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  --font-system:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 // Default styles
@@ -151,7 +151,8 @@ img {
   }
 }
 
-code {
+code,
+output {
   background: var(--color-lightGrey);
   font-family: var(--font-code);
   padding: 0.2em 0.4em;
@@ -170,7 +171,8 @@ pre {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
 
-  code {
+  code,
+  output {
     background: none;
     color: #abb2bf;
     padding: 2rem;
