@@ -105,6 +105,44 @@ Notes are to be included in this file as progress is made.
 - **No Manual Toggle**: Current implementation only responds to system preference, no user override
 - **Component Integration**: Astro components use CSS custom properties directly, React components access via CSS modules
 
+### 2.3 Migration Strategy Analysis
+
+- [ ] Evaluate full migration vs selective adoption approach
+- [ ] Consider keeping global.scss with Tailwind for React components only
+- [ ] Assess benefits vs complexity of complete migration
+- [ ] Define hybrid approach boundaries and guidelines
+
+**Full Migration Pros:**
+- Consistent utility-first approach across all components
+- Reduced CSS bundle size through purging unused styles
+- Standardised design system with Tailwind's built-in constraints
+- Better developer experience with IntelliSense and consistent patterns
+- Easier maintenance with single styling methodology
+
+**Full Migration Cons:**
+- Significant migration effort for well-functioning Astro components
+- Loss of Astro's scoped styling benefits for complex component styles
+- Potential increase in HTML verbosity with utility classes
+- Risk of visual regressions during migration
+- Learning curve for team members unfamiliar with Tailwind
+
+**Selective/Hybrid Approach Pros:**
+- Minimal disruption to existing, working Astro components
+- Leverage Tailwind's strengths for React components that benefit from utility classes
+- Preserve global.scss for base styles and CSS custom properties
+- Lower risk migration with incremental adoption
+- Maintain Astro's scoped styling advantages where appropriate
+
+**Selective/Hybrid Approach Cons:**
+- Multiple styling methodologies to maintain
+- Potential inconsistencies between Tailwind and custom styles
+- Larger overall CSS bundle (both Tailwind and custom styles)
+- More complex build configuration
+- Team needs to understand both approaches
+
+**Recommendation:**
+TBD - Evaluate after considering project priorities, team preferences, and maintenance goals.
+
 ## Phase 3: Tailwind Installation & Configuration
 
 ### 3.1 Install Tailwind CSS
@@ -223,3 +261,4 @@ Notes are to be included in this file as progress is made.
 - **Rollback plan**: Keep git commits small and atomic for easy rollback
 - **Performance target**: Maintain or improve current bundle size and Core Web Vitals
 - **Browser support**: Ensure compatibility with existing browser support matrix
+- **Astro Component Styling**: Continue using inline `<style>` blocks for Astro components alongside Tailwind utilities - this hybrid approach leverages Astro's scoped styling strengths while gaining Tailwind's utility benefits
