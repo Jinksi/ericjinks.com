@@ -255,15 +255,65 @@ This approach allows Tailwind utilities to work in React components while mainta
 - ✅ Custom utility plugins (`btn-base`, `container-site`) function as expected
 - ✅ No CSS specificity conflicts between Tailwind utilities and global styles
 
-### 4.2 React Components Migration
+### 4.2 React Components Migration ✅ COMPLETED
 
-- [ ] Start with simpler React components (Loading, PostComments)
-- [ ] Remove CSS module imports from React components
-- [ ] Convert class names to Tailwind utilities while preserving CSS custom property usage
-- [ ] Update TypeScript interfaces to use `className` prop where needed
-- [ ] Migrate complex components (AnimatedTitle) carefully, keeping CSS modules for complex layering if needed
-- [ ] Test client-side hydration with new styles
-- [ ] Verify TensorFlow.js demo styling
+- [x] Start with simpler React components (Loading, PostComments)
+- [x] Remove CSS module imports from React components
+- [x] Convert class names to Tailwind utilities while preserving CSS custom property usage
+- [x] Update TypeScript interfaces to use `className` prop where needed
+- [x] Migrate complex components (AnimatedTitle) carefully, keeping CSS modules for complex layering if needed
+- [x] Test client-side hydration with new styles
+- [x] Verify TensorFlow.js demo styling
+
+**Implementation Notes:**
+
+**PostComments Component Migration:**
+- Simple migration: Added `w-full` wrapper class using Tailwind utility
+- No CSS module removal needed (component used no CSS modules)
+- Maintained existing Giscus integration and theming via `usePreferredTheme` hook
+- Component continues to work seamlessly with light/dark theme switching
+
+**Loading Component Migration:**
+- Converted from CSS modules (`Loading.module.scss`) to pure Tailwind utilities
+- Migrated styles: `flex items-center justify-center p-16 relative` for container
+- Background layers: Used `!bg-text` with important modifier to override loaders.css defaults
+- Typography: `mt-28 font-semibold text-2xl` for loading text
+- Removed CSS module file completely after successful migration
+- Maintained integration with external `loaders.css` library for spinner animations
+
+**AnimatedTitle Component Migration:**
+- **Hybrid approach**: Converted basic typography and layout to Tailwind while initially preserving CSS modules for complex layering
+- **Typography migration**: `relative text-5xl font-extralight uppercase tracking-wider px-4 leading-none mt-0`
+- **Color handling**: Dynamic text color using `${inverted ? 'text-background' : 'text-text'}`
+- **Complete CSS module elimination**: Successfully converted all remaining styles including complex background layers
+- **Background layers**: Converted to Tailwind utilities:
+  - `absolute inset-0 bg-highlight-b` (first layer)
+  - `absolute inset-0 bg-highlight` (second layer) 
+  - `absolute inset-0 ${inverted ? 'bg-text' : 'bg-background'}` (third layer with conditional styling)
+- **Props enhancement**: Added `inverted` prop for better component API
+- **CSS module removal**: Completely eliminated `AnimatedTitle.module.css` 
+- **Animation preservation**: All framer-motion animations and mouse/scroll interactions maintained perfectly
+- **Vite cache issue**: Required clearing `.vite` dependency cache after CSS module removal to resolve import errors
+
+**Technical Validation:**
+- ✅ All 17 E2E visual regression tests pass - zero visual changes detected
+- ✅ Client-side hydration works correctly with new Tailwind utilities  
+- ✅ TensorFlow.js demos (Linear Regression, CNN) continue functioning normally with Loading component
+- ✅ Component animations (AnimatedTitle mouse/scroll effects) work perfectly
+- ✅ Theme switching preserved for all migrated components
+- ✅ CSS custom properties integration maintained throughout migration
+- ✅ Build process clean with no warnings or errors
+
+**Files Removed:**
+- `src/components/react/Loading.module.scss` - Fully migrated to Tailwind utilities
+- `src/components/react/AnimatedTitle.module.css` - Fully migrated to Tailwind utilities
+
+**Components Not Requiring Migration:**
+- `CanvasSketch.tsx` - Uses inline styles, no CSS modules 
+- `EventSourcingUndoRedo.tsx` - Uses inline styles with CSS custom properties, no CSS modules
+
+**Key Learning:**
+The complex AnimatedTitle component successfully demonstrated that even sophisticated layered animations and positioning can be fully migrated to Tailwind utilities while maintaining all functionality. The CSS custom properties integration allows seamless theming across the hybrid approach.
 
 ### 4.3 MDX Content Enhancement
 
@@ -361,14 +411,17 @@ This approach allows Tailwind utilities to work in React components while mainta
 - **Phase 2**: Current State Analysis (2.1, 2.2, 2.3) 
 - **Phase 3**: Tailwind Installation & Configuration (3.1, 3.2)
 - **Phase 4.1**: Selective Integration Setup ✅
+- **Phase 4.2**: React Components Migration ✅
 
 **🎯 CURRENT STATUS:**
-- Phase 4.1 completed successfully with comprehensive verification
-- Tailwind CSS and SCSS hybrid approach fully validated with zero conflicts
-- CSS custom properties integration working perfectly across both styling systems
-- All visual regression tests pass - no layout or styling changes detected
-- Build system stable with clean Tailwind utility generation
-- Ready to proceed with Phase 4.2 (React Components Migration)
+- Phase 4.2 completed successfully with all React components fully migrated to Tailwind utilities
+- Successfully eliminated all CSS module files from React components (Loading.module.scss, AnimatedTitle.module.css)
+- Complex AnimatedTitle component with layered animations fully converted to Tailwind while preserving all functionality
+- All 17 E2E visual regression tests pass - zero visual changes detected across migration
+- TensorFlow.js demos, client-side hydration, and component animations all working perfectly
+- CSS custom properties integration maintained throughout React component migration
+- Build system stable with clean Tailwind utility generation and no dependency issues
+- Ready to proceed with Phase 4.3 (MDX Content Enhancement) and Phase 4.4 (Astro Components documentation)
 
 **📁 KEY FILES MODIFIED:**
 - `astro.config.mjs`: Added Tailwind integration with `applyBaseStyles: false`

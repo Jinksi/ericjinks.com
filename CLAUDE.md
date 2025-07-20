@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Tests**: `npm run test:e2e` (runs Playwright E2E tests)
 - **Single test**: `npx playwright test tests/specific-test.spec.ts`
 - **Format**: `npx prettier --write .`
+- I'll be running the dev server in the background
 
 ## Architecture Overview
 
