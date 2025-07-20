@@ -77,12 +77,33 @@ Notes are to be included in this file as progress is made.
 - Comprehensive CSS custom property system for theming
 - Well-organised semantic colour variables that will translate well to Tailwind
 
-### 2.2 Component Style Audit
+### 2.2 Component Style Audit ✅ COMPLETED
 
-- [ ] Audit Astro component styles (`.astro` files)
-- [ ] Audit React CSS modules in `src/components/react/`
-- [ ] Audit Svelte component scoped styles
-- [ ] Document current dark/light theme implementation
+- [x] Audit Astro component styles (`.astro` files)
+- [x] Audit React CSS modules in `src/components/react/`
+- [x] Audit Svelte component scoped styles
+- [x] Document current dark/light theme implementation
+
+**Astro Component Styles:**
+- **Layout Components**: `BlogPost.astro` (scoped styles for article header, responsive h1 typography, post meta), `Sketch.astro` (minimal title/hr styling)
+- **Navigation**: `Nav.astro` (header padding, nav flexbox), `NavLink.astro` (link states, transitions, active styling using CSS custom properties)
+- **Content**: `PostList.astro` (post cards, hover effects, transitions), `Footer.astro` (basic layout)
+- **Styling Patterns**: Scoped `<style>` blocks, heavy use of CSS custom properties, responsive media queries, hover/focus states
+
+**React Components CSS Modules:**
+- **AnimatedTitle.module.css**: Complex positioning, color transitions using CSS custom properties, mix-blend-mode effects
+- **Loading.module.scss**: Flexbox centering, global loader styling integration, typography sizing
+- **Dependencies**: Uses external `loaders.css` library for spinner animations
+
+**Svelte Components:**
+- **One Component Found**: `_DayVsMoment.svelte` - No scoped styles, uses global typography/code styling
+
+**Theme Implementation Analysis:**
+- **Strategy**: Automatic theme detection via `prefers-color-scheme` media queries in global.scss
+- **React Hook**: `usePreferredTheme.ts` provides React components access to theme state via `matchMedia` API
+- **CSS Variables**: All theming handled through CSS custom properties (--color-text, --color-background, etc.)
+- **No Manual Toggle**: Current implementation only responds to system preference, no user override
+- **Component Integration**: Astro components use CSS custom properties directly, React components access via CSS modules
 
 ## Phase 3: Tailwind Installation & Configuration
 
