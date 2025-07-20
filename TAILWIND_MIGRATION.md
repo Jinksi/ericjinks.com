@@ -150,7 +150,8 @@ After evaluating the codebase, a selective approach targeting React components a
 
 **Implementation Strategy:**
 - Install Tailwind configured for React components and MDX files
-- Migrate React CSS modules to Tailwind utilities
+- Configure Tailwind theme to reference existing CSS custom properties for consistency
+- Migrate React CSS modules to Tailwind utilities that use CSS custom properties
 - Preserve global.scss for base styles and CSS custom properties
 - Update build configuration to process Tailwind for React/MDX only
 
@@ -164,13 +165,16 @@ After evaluating the codebase, a selective approach targeting React components a
 - [ ] Configure content paths to include `/src/components/react/**` and `/src/content/**/*.mdx`
 - [ ] Verify Tailwind works with React components in MDX files
 
-### 3.2 Design System Configuration
+### 3.2 Design System Configuration (CRITICAL FOR HYBRID APPROACH)
 
-- [ ] Extract current color palette to Tailwind config (maintain CSS custom property integration)
-- [ ] Configure typography (Fira Code for code blocks, system font stack)
-- [ ] Set up spacing scale to match current design patterns
-- [ ] Configure dark mode strategy (CSS custom properties integration)
-- [ ] Add custom utility classes for React-specific needs
+- [ ] Map existing CSS custom properties to Tailwind theme (e.g., `'text': 'var(--color-text)'`, `'highlight': 'var(--color-highlight)'`)
+- [ ] Configure typography to match existing fonts (Fira Code for code blocks, system font stack)
+- [ ] Set up spacing scale to match current design patterns from global.scss
+- [ ] Configure Tailwind dark mode to integrate with existing `prefers-color-scheme` system
+- [ ] Add custom utility classes for React-specific styling needs
+- [ ] Ensure Tailwind utilities complement rather than replace CSS custom properties
+
+**Note:** The colour duplication between global.scss and Tailwind config creates minimal maintenance overhead for a personal blog with stable design. Benefits of consistent utility classes (`text-text`, `bg-highlight`) outweigh occasional need to update both files when adding colours.
 
 ## Phase 4: Migration Execution
 
@@ -278,3 +282,4 @@ After evaluating the codebase, a selective approach targeting React components a
 - **Selective Approach Decision**: After analysis of 9 MDX files and React component architecture, decided on hybrid approach using Tailwind for React components and MDX content only, preserving Astro scoped styles for layout and navigation components
 - **MDX Tailwind Usage**: MDX files can include Tailwind utility classes in inline JSX elements (e.g., `<div className="bg-blue-500 p-4">content</div>`) while imported Astro/Svelte components retain their existing styling approaches
 - **CSS Custom Properties Preservation**: Maintain global.scss and CSS custom property theming system to ensure consistent colours and spacing across both Tailwind and SCSS components
+- **Tailwind Theme Configuration**: Map CSS custom properties to Tailwind theme values (e.g., `colors: { 'text': 'var(--color-text)' }`) to ensure React components using Tailwind utilities maintain visual consistency with Astro components using SCSS
