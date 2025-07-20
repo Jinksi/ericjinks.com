@@ -171,7 +171,7 @@ const EventSourcingUndoRedo = () => {
   }
 
   return (
-    <div>
+    <div data-testid="event-sourcing-undo-redo">
       <svg
         width="100%"
         height="100%"

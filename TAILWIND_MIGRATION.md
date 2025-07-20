@@ -310,7 +310,15 @@ This approach allows Tailwind utilities to work in React components while mainta
 
 **Components Not Requiring Migration:**
 - `CanvasSketch.tsx` - Uses inline styles, no CSS modules 
-- `EventSourcingUndoRedo.tsx` - Uses inline styles with CSS custom properties, no CSS modules
+- `EventSourcingUndoRedo.tsx` - Uses inline styles with CSS custom properties, no CSS modules (but added `data-testid` for visual regression testing)
+
+**Visual Regression Testing Enhancement:**
+- Added `data-testid="event-sourcing-undo-redo"` to EventSourcingUndoRedo component for reliable test targeting
+- Created focused visual regression tests for EventSourcingUndoRedo component on `/blog/2025/event-sourcing/` page
+- Generated baseline screenshots in production mode for both light and dark themes
+- Tests target component specifically using `data-testid` to avoid page-level snapshot instability
+- New tests: `event-sourcing-component-light-desktop.png` and `event-sourcing-component-dark-desktop.png`
+- Ready to detect visual changes when component's inline styles are migrated to Tailwind
 
 **Key Learning:**
 The complex AnimatedTitle component successfully demonstrated that even sophisticated layered animations and positioning can be fully migrated to Tailwind utilities while maintaining all functionality. The CSS custom properties integration allows seamless theming across the hybrid approach.

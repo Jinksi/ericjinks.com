@@ -192,4 +192,30 @@ test.describe('Visual Regression Tests for Tailwind Migration', () => {
       await expect(nav).toHaveScreenshot('nav-theme-dark.png')
     })
   })
+
+  test.describe('React Components', () => {
+    test('event sourcing undo redo component - light mode desktop', async ({ page }) => {
+      await page.emulateMedia({ colorScheme: 'light' })
+      await page.goto('/blog/2025/event-sourcing/')
+      await page.waitForLoadState('networkidle')
+      
+      // Wait for React component to hydrate
+      const component = page.getByTestId('event-sourcing-undo-redo')
+      await expect(component).toBeVisible()
+      
+      await expect(component).toHaveScreenshot('event-sourcing-component-light-desktop.png')
+    })
+
+    test('event sourcing undo redo component - dark mode desktop', async ({ page }) => {
+      await page.emulateMedia({ colorScheme: 'dark' })
+      await page.goto('/blog/2025/event-sourcing/')
+      await page.waitForLoadState('networkidle')
+      
+      // Wait for React component to hydrate
+      const component = page.getByTestId('event-sourcing-undo-redo')
+      await expect(component).toBeVisible()
+      
+      await expect(component).toHaveScreenshot('event-sourcing-component-dark-desktop.png')
+    })
+  })
 })
