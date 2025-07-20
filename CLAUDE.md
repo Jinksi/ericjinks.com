@@ -91,3 +91,7 @@ Playwright E2E tests configured to:
 - **Components**: Functional components with destructured props
 - **Naming**: PascalCase for components, camelCase for utilities, kebab-case for content files
 - **Formatting**: Prettier with single quotes, no semicolons, trailing commas
+
+## URL Conventions
+
+- All URLs have a trailing slash
