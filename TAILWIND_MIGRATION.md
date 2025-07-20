@@ -1,7 +1,8 @@
 # Tailwind CSS Migration Plan
 
-Migrating this Astro blog from SCSS to Tailwind CSS with visual regression testing to prevent
-regressions
+Migrating this Astro blog from SCSS to Tailwind CSS with visual regression testing to prevent regressions.
+
+Notes are to be included in this file as progress is made.
 
 ## Phase 1: Visual Regression Testing Setup
 
@@ -39,12 +40,42 @@ regressions
 
 ## Phase 2: Current State Analysis
 
-### 2.1 SCSS Audit
+### 2.1 SCSS Audit ✅ COMPLETED
 
-- [ ] List all SCSS files in `src/styles/`
-- [ ] Document CSS custom properties for theming
-- [ ] Identify global styles vs component-specific styles
-- [ ] Note any complex SCSS features (mixins, functions, loops)
+- [x] List all SCSS files in `src/styles/`
+- [x] Document CSS custom properties for theming
+- [x] Identify global styles vs component-specific styles
+- [x] Note any complex SCSS features (mixins, functions, loops)
+
+**SCSS Files Found:**
+
+- `src/styles/global.scss` - Main global stylesheet (327 lines)
+- `src/components/react/Loading.module.scss` - Loading component styles
+- `src/components/react/AnimatedTitle.module.css` - AnimatedTitle component styles
+
+**CSS Custom Properties for Theming:**
+
+- **Color Palette**: `--green`, `--green-semi-transparent`, `--green-almost-transparent`, `--white`, `--offWhite`, `--black`, `--blackTransparent`, `--red`, `--orange`, `--cyan`, `--lightGrey`, `--lightBlack`
+- **Semantic Colors**: `--color-text`, `--color-background`, `--color-lightGrey`, `--color-highlight`, `--color-highlight-semi-transparent`, `--color-highlight-almost-transparent`, `--color-highlightB`, `--color-highlightC`, `--color-code`
+- **Typography**: `--font-code` (Fira Code), `--font-system` (system font stack)
+
+**Global vs Component-Specific Styles:**
+
+- **Global**: CSS custom properties, theme switching via `prefers-color-scheme`, base typography, layout containers (.container, .textContainer), button utilities (.Button, .OutlinedButton, .FancyButton)
+- **Component-Specific**: Loading spinner styles, animated title component
+
+**Complex SCSS Features:**
+
+- **Nesting**: Used throughout for pseudo-selectors and child elements
+- **@extend**: Used in button classes (.OutlinedButton, .FancyButton extend .Button)
+- **Media queries**: Responsive breakpoints and theme switching
+- **No mixins, functions, or loops detected**
+
+**Theme Implementation:**
+
+- Uses `prefers-color-scheme` media queries for automatic dark/light mode
+- Comprehensive CSS custom property system for theming
+- Well-organised semantic colour variables that will translate well to Tailwind
 
 ### 2.2 Component Style Audit
 
