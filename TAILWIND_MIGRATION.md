@@ -157,13 +157,52 @@ After evaluating the codebase, a selective approach targeting React components a
 
 ## Phase 3: Tailwind Installation & Configuration
 
-### 3.1 Install Tailwind CSS
+### 3.1 Install Tailwind CSS ✅ COMPLETED
 
-- [ ] Install `@astrojs/tailwind` integration
-- [ ] Install `tailwindcss` and dependencies
-- [ ] Configure Astro to use Tailwind integration for React components and MDX only
-- [ ] Configure content paths to include `/src/components/react/**` and `/src/content/**/*.mdx`
-- [ ] Verify Tailwind works with React components in MDX files
+- [x] Install `@astrojs/tailwind` integration
+- [x] Install `tailwindcss` and dependencies
+- [x] Configure Astro to use Tailwind integration for React components and MDX only
+- [x] Configure content paths to include `/src/components/react/**` and `/src/content/**/*.mdx`
+- [x] Verify Tailwind works with React components in MDX files
+
+**Implementation Notes:**
+
+- **Dependencies installed**: `@astrojs/tailwind` and `tailwindcss` via npm
+- **Astro configuration**: Added Tailwind integration with `applyBaseStyles: false` to prevent conflicts with existing SCSS
+- **Content paths configured**: Selective targeting of React components (`./src/components/react/**/*.{js,jsx,ts,tsx}`) and MDX files (`./src/content/**/*.mdx`) only
+- **Hybrid approach maintained**: Astro components retain scoped SCSS styles while React components can use Tailwind utilities
+
+**File Structure Changes:**
+- Created `src/styles/tailwind.css` with `@tailwind` directives
+- Updated `src/styles/global.scss` to import Tailwind CSS via `@import './tailwind.css'`
+- Modified `astro.config.mjs` to include Tailwind integration
+- Generated `tailwind.config.js` with selective content paths
+
+**Issues Resolved:**
+- **Sass deprecation warning**: Fixed by moving `@tailwind` directives to separate CSS file (SCSS doesn't support Tailwind at-rules)
+- **Unknown at-rule error**: Resolved by using CSS import in SCSS instead of direct Tailwind directives
+- **Tailwind base reset conflicts**: Added custom styles to `global.scss` to restore essential browser defaults that were being reset by Tailwind's base layer
+- **E2E test validation**: All 20 tests pass, confirming no visual regressions
+
+**Tailwind Base Layer Handling:**
+Since `@tailwind base` includes Preflight (Tailwind's CSS reset), essential browser defaults needed to be restored in `global.scss`:
+
+- **Typography**: Restored `font-weight: bold` for headings, font sizes for h2-h4, `strong` element styling
+- **Links**: Preserved `text-decoration: underline` and hover states
+- **Lists**: Restored `list-style-type: disc` for `<ul>` and `decimal` for `<ol>`, proper margins and padding
+- **Paragraphs**: Maintained `margin-top: 0` and `margin-bottom: 1em` spacing
+- **Images**: Kept responsive `max-width: 100%` and `height: auto`
+- **Box model**: Ensured consistent `box-sizing: border-box` inheritance
+
+This approach allows Tailwind utilities to work in React components while maintaining the existing design system's visual consistency across Astro components.
+
+**Verification Completed:**
+- ✅ Tailwind utilities (padding, borders, colours) successfully applied to React components
+- ✅ No conflicts with existing SCSS styling system
+- ✅ CSS custom properties remain intact for theming
+- ✅ Browser defaults restored after Tailwind base reset
+- ✅ Visual regression tests pass without any layout changes
+- ✅ Clean CLI output without deprecation warnings
 
 ### 3.2 Design System Configuration (CRITICAL FOR HYBRID APPROACH)
 
@@ -283,3 +322,30 @@ After evaluating the codebase, a selective approach targeting React components a
 - **MDX Tailwind Usage**: MDX files can include Tailwind utility classes in inline JSX elements (e.g., `<div className="bg-blue-500 p-4">content</div>`) while imported Astro/Svelte components retain their existing styling approaches
 - **CSS Custom Properties Preservation**: Maintain global.scss and CSS custom property theming system to ensure consistent colours and spacing across both Tailwind and SCSS components
 - **Tailwind Theme Configuration**: Map CSS custom properties to Tailwind theme values (e.g., `colors: { 'text': 'var(--color-text)' }`) to ensure React components using Tailwind utilities maintain visual consistency with Astro components using SCSS
+
+## Current Progress Summary
+
+**✅ COMPLETED PHASES:**
+- **Phase 1**: Visual Regression Testing Setup (1.1, 1.2)
+- **Phase 2**: Current State Analysis (2.1, 2.2, 2.3) 
+- **Phase 3.1**: Tailwind CSS Installation & Basic Configuration
+
+**🎯 CURRENT STATUS:**
+- Tailwind CSS successfully installed and configured for selective use
+- Hybrid approach working: React components can use Tailwind utilities, Astro components retain SCSS
+- All E2E tests passing with zero visual regressions
+- Clean build process without deprecation warnings
+- Ready to proceed with Phase 3.2 (Design System Configuration)
+
+**📁 KEY FILES MODIFIED:**
+- `astro.config.mjs`: Added Tailwind integration with `applyBaseStyles: false`
+- `tailwind.config.js`: Generated with selective content paths for React/MDX only
+- `src/styles/tailwind.css`: New file containing `@tailwind` directives
+- `src/styles/global.scss`: Updated to import Tailwind CSS while preserving CSS custom properties
+
+**🔧 TECHNICAL APPROACH:**
+- **Selective targeting**: Only React components (`src/components/react/**`) and MDX files (`src/content/**/*.mdx`)
+- **CSS custom properties preserved**: Existing theming system remains intact in `global.scss`
+- **Tailwind base handling**: Browser defaults restored in global styles after Tailwind's Preflight reset
+- **Zero conflicts**: Tailwind utilities work alongside existing SCSS without interference
+- **Incremental migration**: Can expand Tailwind usage gradually over time

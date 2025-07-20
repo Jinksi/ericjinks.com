@@ -1,3 +1,5 @@
+@import './tailwind.css';
+
 :root {
   --green: hsla(149, 74%, 61%, 1);
   --green-semi-transparent: hsla(149, 64%, 61%, 0.3);
@@ -93,6 +95,7 @@ strong {
 
 a {
   color: inherit;
+  text-decoration: underline;
   &:hover,
   &:focus {
     color: inherit;
@@ -120,6 +123,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: bold;
   margin: 0;
   margin-bottom: 1em;
   margin-top: 1em;
@@ -127,6 +131,18 @@ h6 {
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1em;
 }
 
 img {
@@ -149,6 +165,15 @@ img {
     height: 100%;
     mix-blend-mode: lighten;
   }
+}
+
+ul {
+  list-style-type: disc;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
 }
 
 code,
