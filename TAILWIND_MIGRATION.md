@@ -204,14 +204,29 @@ This approach allows Tailwind utilities to work in React components while mainta
 - ✅ Visual regression tests pass without any layout changes
 - ✅ Clean CLI output without deprecation warnings
 
-### 3.2 Design System Configuration (CRITICAL FOR HYBRID APPROACH)
+### 3.2 Design System Configuration ✅ COMPLETED
 
-- [ ] Map existing CSS custom properties to Tailwind theme (e.g., `'text': 'var(--color-text)'`, `'highlight': 'var(--color-highlight)'`)
-- [ ] Configure typography to match existing fonts (Fira Code for code blocks, system font stack)
-- [ ] Set up spacing scale to match current design patterns from global.scss
-- [ ] Configure Tailwind dark mode to integrate with existing `prefers-color-scheme` system
-- [ ] Add custom utility classes for React-specific styling needs
-- [ ] Ensure Tailwind utilities complement rather than replace CSS custom properties
+- [x] Map existing CSS custom properties to Tailwind theme (e.g., `'text': 'var(--color-text)'`, `'highlight': 'var(--color-highlight)'`)
+- [x] Configure typography to match existing fonts (Fira Code for code blocks, system font stack)
+- [x] Set up spacing scale to match current design patterns from global.scss
+- [x] Configure Tailwind dark mode to integrate with existing `prefers-color-scheme` system
+- [x] Add custom utility classes for React-specific styling needs
+- [x] Ensure Tailwind utilities complement rather than replace CSS custom properties
+
+**Implementation Notes:**
+
+- **Color System**: Mapped all CSS custom properties to Tailwind theme, including semantic colors (`text`, `background`, `highlight`) and static colors (`green`, `red`, `orange`, etc.)
+- **Typography**: Configured `font-code` (Fira Code) and `font-system` (system font stack), set system font as default sans-serif
+- **Spacing Scale**: Added custom spacing values (`1em`, `2.5rem`, `7rem`, `10rem`, `15rem`) and container widths (`1111px`, `700px`) matching global.scss patterns
+- **Dark Mode**: Configured `darkMode: 'media'` to work with existing `prefers-color-scheme` system
+- **Custom Utilities**: Added button utilities (`btn-base`, `btn-outlined`) and container utilities (`container-site`, `container-text`) via plugin system
+- **Typography Scale**: Included heading font sizes (`h2`, `h3`, `h4`) and code/caption sizes
+- **Integration Verified**: All visual regression tests pass, Tailwind classes generate correctly when used
+
+**Color Mapping Examples:**
+- `bg-highlight` → `var(--color-highlight)` 
+- `text-background` → `var(--color-background)`
+- `border-light-grey` → `var(--color-lightGrey)`
 
 **Note:** The colour duplication between global.scss and Tailwind config creates minimal maintenance overhead for a personal blog with stable design. Benefits of consistent utility classes (`text-text`, `bg-highlight`) outweigh occasional need to update both files when adding colours.
 
@@ -328,18 +343,22 @@ This approach allows Tailwind utilities to work in React components while mainta
 **✅ COMPLETED PHASES:**
 - **Phase 1**: Visual Regression Testing Setup (1.1, 1.2)
 - **Phase 2**: Current State Analysis (2.1, 2.2, 2.3) 
-- **Phase 3.1**: Tailwind CSS Installation & Basic Configuration
+- **Phase 3**: Tailwind Installation & Configuration (3.1, 3.2)
 
 **🎯 CURRENT STATUS:**
-- Tailwind CSS successfully installed and configured for selective use
+- Tailwind CSS successfully installed and configured for selective use with full design system integration
 - Hybrid approach working: React components can use Tailwind utilities, Astro components retain SCSS
+- Complete CSS custom property mapping to Tailwind theme for seamless integration
+- All typography, spacing, colors, and dark mode configuration completed
+- Custom utility plugins added for button and container patterns
 - All E2E tests passing with zero visual regressions
+- Tailwind classes generating correctly when used in React components
 - Clean build process without deprecation warnings
-- Ready to proceed with Phase 3.2 (Design System Configuration)
+- Ready to proceed with Phase 4 (Migration Execution)
 
 **📁 KEY FILES MODIFIED:**
 - `astro.config.mjs`: Added Tailwind integration with `applyBaseStyles: false`
-- `tailwind.config.js`: Generated with selective content paths for React/MDX only
+- `tailwind.config.js`: Complete design system configuration with CSS custom property mapping, typography, spacing, dark mode, and custom utilities
 - `src/styles/tailwind.css`: New file containing `@tailwind` directives
 - `src/styles/global.scss`: Updated to import Tailwind CSS while preserving CSS custom properties
 
