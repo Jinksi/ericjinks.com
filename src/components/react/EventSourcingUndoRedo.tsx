@@ -176,7 +176,7 @@ const EventSourcingUndoRedo = () => {
         width="100%"
         height="100%"
         viewBox="0 0 100 100"
-        style={{ backgroundColor: 'var(--color-code)' }}
+        className="bg-code rounded-lg"
       >
         {canvasElements.map((element) => {
           if (element === null) return null
@@ -201,19 +201,37 @@ const EventSourcingUndoRedo = () => {
         })}
       </svg>
 
-      <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
-        <button type="button" onClick={() => addShape('ADD_CIRCLE')}>
+      <div className="flex gap-2 my-2.5">
+        <button
+          type="button"
+          onClick={() => addShape('ADD_CIRCLE')}
+          className="px-4 py-2 bg-bg border border-text rounded hover:bg-text hover:text-background transition-colors"
+        >
           Add Circle
         </button>
-        <button type="button" onClick={() => addShape('ADD_SQUARE')}>
+        <button
+          type="button"
+          onClick={() => addShape('ADD_SQUARE')}
+          className="px-4 py-2 bg-bg border border-text rounded hover:bg-text hover:text-background transition-colors"
+        >
           Add Square
         </button>
       </div>
-      <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
-        <button type="button" onClick={undo} disabled={!canUndo}>
+      <div className="flex gap-2 my-2.5">
+        <button
+          type="button"
+          onClick={undo}
+          disabled={!canUndo}
+          className="px-4 py-2 bg-transparent text-text border border-text rounded hover:bg-text hover:text-background transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-text"
+        >
           ↩ Undo
         </button>
-        <button type="button" onClick={redo} disabled={!canRedo}>
+        <button
+          type="button"
+          onClick={redo}
+          disabled={!canRedo}
+          className="px-4 py-2 bg-transparent text-text border border-text rounded hover:bg-text hover:text-background transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-text"
+        >
           ↪ Redo
         </button>
       </div>
@@ -228,38 +246,20 @@ const EventSourcingUndoRedo = () => {
               key={event.id}
               type="button"
               tabIndex={0}
-              style={{
-                display: 'block',
-                appearance: 'none',
-                cursor: 'pointer',
-                userSelect: 'none',
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                margin: 0,
-                textAlign: 'left',
-                color: 'inherit',
-              }}
+              className="block appearance-none cursor-pointer select-none bg-transparent border-none p-0 m-0 text-left"
               onClick={() => {
                 dispatch({ type: 'SET_HISTORY_INDEX', index: index + 1 })
               }}
             >
               <code
-                style={{
-                  border: isCurrent
-                    ? '3px solid var(--color-highlight)'
-                    : '3px solid var(--color-code)',
-                  margin: '3px 0',
-                  lineHeight: '1.3',
-                }}
+                className={`my-1 leading-tight ${
+                  isCurrent
+                    ? 'border-2 border-highlight bg-highlight text-background'
+                    : 'border-2 border-black text-text'
+                }`}
               >
                 {event.type}{' '}
-                <span
-                  style={{
-                    color: event.color,
-                    fontSize: '1.3em',
-                  }}
-                >
+                <span style={{ color: event.color }} className="text-4xl">
                   {icon}
                 </span>
               </code>

@@ -83,6 +83,7 @@ Playwright E2E tests configured to:
 - Run against built site (`npm run preview`)
 - Generate HTML reports in `playwright-report/`
 - Retry failed tests on CI environments
+- Visual regression playwright tests are located in `@tests/visual-regression.spec.ts`
 
 ## Code Style Guidelines
 
