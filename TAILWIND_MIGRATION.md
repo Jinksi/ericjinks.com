@@ -85,20 +85,24 @@ Notes are to be included in this file as progress is made.
 - [x] Document current dark/light theme implementation
 
 **Astro Component Styles:**
+
 - **Layout Components**: `BlogPost.astro` (scoped styles for article header, responsive h1 typography, post meta), `Sketch.astro` (minimal title/hr styling)
 - **Navigation**: `Nav.astro` (header padding, nav flexbox), `NavLink.astro` (link states, transitions, active styling using CSS custom properties)
 - **Content**: `PostList.astro` (post cards, hover effects, transitions), `Footer.astro` (basic layout)
 - **Styling Patterns**: Scoped `<style>` blocks, heavy use of CSS custom properties, responsive media queries, hover/focus states
 
 **React Components CSS Modules:**
+
 - **AnimatedTitle.module.css**: Complex positioning, color transitions using CSS custom properties, mix-blend-mode effects
 - **Loading.module.scss**: Flexbox centering, global loader styling integration, typography sizing
 - **Dependencies**: Uses external `loaders.css` library for spinner animations
 
 **Svelte Components:**
+
 - **One Component Found**: `_DayVsMoment.svelte` - No scoped styles, uses global typography/code styling
 
 **Theme Implementation Analysis:**
+
 - **Strategy**: Automatic theme detection via `prefers-color-scheme` media queries in global.scss
 - **React Hook**: `usePreferredTheme.ts` provides React components access to theme state via `matchMedia` API
 - **CSS Variables**: All theming handled through CSS custom properties (--color-text, --color-background, etc.)
@@ -113,12 +117,14 @@ Notes are to be included in this file as progress is made.
 - [x] Define hybrid approach boundaries and guidelines
 
 **Analysis of MDX File Usage:**
+
 - **9 MDX files found**: Blog posts and sketches primarily import React/Astro/Svelte components
 - **Component imports**: HighlightBox (Astro), DayVsMoment (Svelte), various React components
 - **No inline styling**: MDX files contain only content and component imports, no custom CSS
 - **Tailwind compatibility**: MDX files can use Tailwind classes directly in JSX syntax
 
 **Current React Component Architecture:**
+
 - **CSS Modules**: Components like AnimatedTitle use CSS modules with CSS custom properties
 - **Global integration**: Heavy reliance on CSS custom properties for theming
 - **Complex styling**: AnimatedTitle has sophisticated positioning, layering, and theming
@@ -130,6 +136,7 @@ After evaluating the codebase, a selective approach targeting React components a
 **Hybrid Approach Boundaries:**
 
 1. **Use Tailwind CSS for:**
+
    - React components in `/src/components/react/`
    - Content within MDX files (inline JSX elements)
    - Future Svelte components requiring utility classes
@@ -142,6 +149,7 @@ After evaluating the codebase, a selective approach targeting React components a
    - Layout components where scoped styles are more maintainable
 
 **Benefits of This Approach:**
+
 - **Lower risk**: Preserve working Astro components while modernising React workflow
 - **MDX flexibility**: Tailwind classes work seamlessly in MDX JSX elements
 - **Best of both worlds**: Astro scoped styles + Tailwind utilities where beneficial
@@ -149,6 +157,7 @@ After evaluating the codebase, a selective approach targeting React components a
 - **Maintainable**: Clear boundaries between styling approaches
 
 **Implementation Strategy:**
+
 - Install Tailwind configured for React components and MDX files
 - Configure Tailwind theme to reference existing CSS custom properties for consistency
 - Migrate React CSS modules to Tailwind utilities that use CSS custom properties
@@ -173,12 +182,14 @@ After evaluating the codebase, a selective approach targeting React components a
 - **Hybrid approach maintained**: Astro components retain scoped SCSS styles while React components can use Tailwind utilities
 
 **File Structure Changes:**
+
 - Created `src/styles/tailwind.css` with `@tailwind` directives
 - Updated `src/styles/global.scss` to import Tailwind CSS via `@import './tailwind.css'`
 - Modified `astro.config.mjs` to include Tailwind integration
 - Generated `tailwind.config.js` with selective content paths
 
 **Issues Resolved:**
+
 - **Sass deprecation warning**: Fixed by moving `@tailwind` directives to separate CSS file (SCSS doesn't support Tailwind at-rules)
 - **Unknown at-rule error**: Resolved by using CSS import in SCSS instead of direct Tailwind directives
 - **Tailwind base reset conflicts**: Added custom styles to `global.scss` to restore essential browser defaults that were being reset by Tailwind's base layer
@@ -197,6 +208,7 @@ Since `@tailwind base` includes Preflight (Tailwind's CSS reset), essential brow
 This approach allows Tailwind utilities to work in React components while maintaining the existing design system's visual consistency across Astro components.
 
 **Verification Completed:**
+
 - ✅ Tailwind utilities (padding, borders, colours) successfully applied to React components
 - ✅ No conflicts with existing SCSS styling system
 - ✅ CSS custom properties remain intact for theming
@@ -224,7 +236,8 @@ This approach allows Tailwind utilities to work in React components while mainta
 - **Integration Verified**: All visual regression tests pass, Tailwind classes generate correctly when used
 
 **Color Mapping Examples:**
-- `bg-highlight` → `var(--color-highlight)` 
+
+- `bg-highlight` → `var(--color-highlight)`
 - `text-background` → `var(--color-background)`
 - `border-light-grey` → `var(--color-lightGrey)`
 
@@ -248,6 +261,7 @@ This approach allows Tailwind utilities to work in React components while mainta
 - **Zero regressions**: All 20 E2E tests pass including visual regression suite - confirms no interference between styling systems
 
 **Technical Verification:**
+
 - ✅ Tailwind utilities use CSS custom properties seamlessly (`bg-highlight` → `var(--color-highlight)`)
 - ✅ SCSS components continue to function normally with scoped styles
 - ✅ Theme switching via `prefers-color-scheme` works for both styling approaches
@@ -268,12 +282,14 @@ This approach allows Tailwind utilities to work in React components while mainta
 **Implementation Notes:**
 
 **PostComments Component Migration:**
+
 - Simple migration: Added `w-full` wrapper class using Tailwind utility
 - No CSS module removal needed (component used no CSS modules)
 - Maintained existing Giscus integration and theming via `usePreferredTheme` hook
 - Component continues to work seamlessly with light/dark theme switching
 
 **Loading Component Migration:**
+
 - Converted from CSS modules (`Loading.module.scss`) to pure Tailwind utilities
 - Migrated styles: `flex items-center justify-center p-16 relative` for container
 - Background layers: Used `!bg-text` with important modifier to override loaders.css defaults
@@ -282,22 +298,24 @@ This approach allows Tailwind utilities to work in React components while mainta
 - Maintained integration with external `loaders.css` library for spinner animations
 
 **AnimatedTitle Component Migration:**
+
 - **Hybrid approach**: Converted basic typography and layout to Tailwind while initially preserving CSS modules for complex layering
 - **Typography migration**: `relative text-5xl font-extralight uppercase tracking-wider px-4 leading-none mt-0`
 - **Color handling**: Dynamic text color using `${inverted ? 'text-background' : 'text-text'}`
 - **Complete CSS module elimination**: Successfully converted all remaining styles including complex background layers
 - **Background layers**: Converted to Tailwind utilities:
   - `absolute inset-0 bg-highlight-b` (first layer)
-  - `absolute inset-0 bg-highlight` (second layer) 
+  - `absolute inset-0 bg-highlight` (second layer)
   - `absolute inset-0 ${inverted ? 'bg-text' : 'bg-background'}` (third layer with conditional styling)
 - **Props enhancement**: Added `inverted` prop for better component API
-- **CSS module removal**: Completely eliminated `AnimatedTitle.module.css` 
+- **CSS module removal**: Completely eliminated `AnimatedTitle.module.css`
 - **Animation preservation**: All framer-motion animations and mouse/scroll interactions maintained perfectly
 - **Vite cache issue**: Required clearing `.vite` dependency cache after CSS module removal to resolve import errors
 
 **Technical Validation:**
+
 - ✅ All 17 E2E visual regression tests pass - zero visual changes detected
-- ✅ Client-side hydration works correctly with new Tailwind utilities  
+- ✅ Client-side hydration works correctly with new Tailwind utilities
 - ✅ TensorFlow.js demos (Linear Regression, CNN) continue functioning normally with Loading component
 - ✅ Component animations (AnimatedTitle mouse/scroll effects) work perfectly
 - ✅ Theme switching preserved for all migrated components
@@ -305,10 +323,12 @@ This approach allows Tailwind utilities to work in React components while mainta
 - ✅ Build process clean with no warnings or errors
 
 **Files Removed:**
+
 - `src/components/react/Loading.module.scss` - Fully migrated to Tailwind utilities
 - `src/components/react/AnimatedTitle.module.css` - Fully migrated to Tailwind utilities
 
 **EventSourcingUndoRedo Component Migration:**
+
 - **Complete inline styles migration**: Successfully migrated all inline styles to Tailwind utilities while preserving CSS custom properties for dynamic theming
 - **SVG styling**: Converted `backgroundColor: 'var(--color-code)'` to `className="bg-code rounded-lg"`
 - **Flex layouts**: Migrated button containers from `style={{ display: 'flex', gap: '10px', margin: '10px 0' }}` to `className="flex gap-2 my-2.5"`
@@ -322,9 +342,11 @@ This approach allows Tailwind utilities to work in React components while mainta
 - **Component functionality**: All event sourcing, undo/redo, and timeline navigation functionality preserved perfectly
 
 **Components Not Requiring Migration:**
+
 - `CanvasSketch.tsx` - Uses inline styles, no CSS modules
 
 **Visual Regression Testing Enhancement:**
+
 - Added `data-testid="event-sourcing-undo-redo"` to EventSourcingUndoRedo component for reliable test targeting
 - Created focused visual regression tests for EventSourcingUndoRedo component on `/blog/2025/event-sourcing/` page
 - Generated baseline screenshots in production mode for both light and dark themes
@@ -335,82 +357,26 @@ This approach allows Tailwind utilities to work in React components while mainta
 **Key Learning:**
 The complex AnimatedTitle component successfully demonstrated that even sophisticated layered animations and positioning can be fully migrated to Tailwind utilities while maintaining all functionality. The CSS custom properties integration allows seamless theming across the hybrid approach.
 
-### 4.3 MDX Content Enhancement
+## Phase 5: Cleanup & Documentation
 
-- [ ] Add Tailwind utility classes to inline JSX elements in MDX files
-- [ ] Test React component rendering within MDX with Tailwind classes
-- [ ] Verify blog post and sketch content displays correctly
-- [ ] Ensure HighlightBox and other imported components work with enhanced MDX
+### 5.1 Remove Legacy Code (Selective)
 
-### 4.4 Astro Components (NO MIGRATION)
+- [x] Remove only migrated CSS module files from React components (`.module.css`, `.module.scss`)
+- [x] Preserve `src/styles/global.scss` for Astro components and base styles
+- [x] Keep SCSS dependencies and build configuration for Astro component support
+- [x] Clean up only unused React component CSS modules
 
-- [ ] Document decision to preserve Astro component scoped styles
-- [ ] Ensure Astro components continue to work alongside Tailwind
-- [ ] Test that scoped styles don't conflict with Tailwind utilities in React components
-- [ ] Verify layout components maintain current functionality
-
-## Phase 5: Theme System Migration
-
-### 5.1 Dark/Light Mode Implementation
-
-- [ ] Configure Tailwind dark mode to work with existing CSS custom properties
-- [ ] Add Tailwind dark mode classes to React components only
-- [ ] Preserve existing theme switching logic in global.scss
-- [ ] Test theme changes work for both Tailwind (React) and SCSS (Astro) components
-- [ ] Verify consistent theming across hybrid styling approach
-
-### 5.2 Responsive Design Verification
-
-- [ ] Test mobile responsiveness with Tailwind breakpoints
-- [ ] Verify tablet and desktop layouts
-- [ ] Check component behaviour at all screen sizes
-- [ ] Update any custom responsive utilities
-
-## Phase 6: Testing & Validation
-
-### 6.1 Visual Regression Testing
-
-- [ ] Run full visual regression test suite
-- [ ] Compare against baseline screenshots
-- [ ] Fix any visual differences
-- [ ] Test across all supported browsers (Chromium, Firefox, WebKit)
-
-### 6.2 Functional Testing
-
-- [ ] Run existing Playwright E2E tests
-- [ ] Test interactive features (forms, navigation)
-- [ ] Verify sketch/canvas components work correctly
-- [ ] Test blog post rendering and comments integration
-
-### 6.3 Performance Validation
-
-- [ ] Compare bundle sizes before/after migration
-- [ ] Run Lighthouse performance audits
-- [ ] Check Core Web Vitals metrics
-- [ ] Verify CSS delivery optimisation
-
-## Phase 7: Cleanup & Documentation
-
-### 7.1 Remove Legacy Code (Selective)
-
-- [ ] Remove only migrated CSS module files from React components (`.module.css`, `.module.scss`)
-- [ ] Preserve `src/styles/global.scss` for Astro components and base styles
-- [ ] Keep SCSS dependencies and build configuration for Astro component support
-- [ ] Clean up only unused React component CSS modules
-
-### 7.2 Update Documentation
+### 5.2 Update Documentation
 
 - [ ] Update CLAUDE.md with hybrid styling guidelines (Tailwind for React, SCSS for Astro)
 - [ ] Document Tailwind configuration decisions and content path restrictions
 - [ ] Update component development patterns for selective approach
 - [ ] Add Tailwind best practices for React components and MDX content only
 
-### 7.3 Final Verification
+### 5.3 Final Verification
 
 - [ ] Run complete test suite one final time
-- [ ] Deploy to staging environment for manual testing
 - [ ] Verify production build works correctly
-- [ ] Monitor for any post-deployment issues
 
 ## Notes
 
@@ -427,13 +393,15 @@ The complex AnimatedTitle component successfully demonstrated that even sophisti
 ## Current Progress Summary
 
 **✅ COMPLETED PHASES:**
+
 - **Phase 1**: Visual Regression Testing Setup (1.1, 1.2)
-- **Phase 2**: Current State Analysis (2.1, 2.2, 2.3) 
+- **Phase 2**: Current State Analysis (2.1, 2.2, 2.3)
 - **Phase 3**: Tailwind Installation & Configuration (3.1, 3.2)
 - **Phase 4.1**: Selective Integration Setup ✅
 - **Phase 4.2**: React Components Migration ✅
 
 **🎯 CURRENT STATUS:**
+
 - Phase 4.2 completed successfully with all React components fully migrated to Tailwind utilities
 - Successfully eliminated all CSS module files from React components (Loading.module.scss, AnimatedTitle.module.css)
 - Complex AnimatedTitle component with layered animations fully converted to Tailwind while preserving all functionality
@@ -445,12 +413,14 @@ The complex AnimatedTitle component successfully demonstrated that even sophisti
 - Ready to proceed with Phase 4.3 (MDX Content Enhancement) and Phase 4.4 (Astro Components documentation)
 
 **📁 KEY FILES MODIFIED:**
+
 - `astro.config.mjs`: Added Tailwind integration with `applyBaseStyles: false`
 - `tailwind.config.js`: Complete design system configuration with CSS custom property mapping, typography, spacing, dark mode, and custom utilities
 - `src/styles/tailwind.css`: New file containing `@tailwind` directives
 - `src/styles/global.scss`: Updated to import Tailwind CSS while preserving CSS custom properties
 
 **🔧 TECHNICAL APPROACH:**
+
 - **Selective targeting**: Only React components (`src/components/react/**`) and MDX files (`src/content/**/*.mdx`)
 - **CSS custom properties preserved**: Existing theming system remains intact in `global.scss`
 - **Tailwind base handling**: Browser defaults restored in global styles after Tailwind's Preflight reset
