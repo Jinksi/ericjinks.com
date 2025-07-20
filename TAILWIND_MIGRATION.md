@@ -105,43 +105,54 @@ Notes are to be included in this file as progress is made.
 - **No Manual Toggle**: Current implementation only responds to system preference, no user override
 - **Component Integration**: Astro components use CSS custom properties directly, React components access via CSS modules
 
-### 2.3 Migration Strategy Analysis
+### 2.3 Migration Strategy Analysis ✅ COMPLETED
 
-- [ ] Evaluate full migration vs selective adoption approach
-- [ ] Consider keeping global.scss with Tailwind for React components only
-- [ ] Assess benefits vs complexity of complete migration
-- [ ] Define hybrid approach boundaries and guidelines
+- [x] Evaluate full migration vs selective adoption approach
+- [x] Consider keeping global.scss with Tailwind for React components only
+- [x] Assess benefits vs complexity of complete migration
+- [x] Define hybrid approach boundaries and guidelines
 
-**Full Migration Pros:**
-- Consistent utility-first approach across all components
-- Reduced CSS bundle size through purging unused styles
-- Standardised design system with Tailwind's built-in constraints
-- Better developer experience with IntelliSense and consistent patterns
-- Easier maintenance with single styling methodology
+**Analysis of MDX File Usage:**
+- **9 MDX files found**: Blog posts and sketches primarily import React/Astro/Svelte components
+- **Component imports**: HighlightBox (Astro), DayVsMoment (Svelte), various React components
+- **No inline styling**: MDX files contain only content and component imports, no custom CSS
+- **Tailwind compatibility**: MDX files can use Tailwind classes directly in JSX syntax
 
-**Full Migration Cons:**
-- Significant migration effort for well-functioning Astro components
-- Loss of Astro's scoped styling benefits for complex component styles
-- Potential increase in HTML verbosity with utility classes
-- Risk of visual regressions during migration
-- Learning curve for team members unfamiliar with Tailwind
+**Current React Component Architecture:**
+- **CSS Modules**: Components like AnimatedTitle use CSS modules with CSS custom properties
+- **Global integration**: Heavy reliance on CSS custom properties for theming
+- **Complex styling**: AnimatedTitle has sophisticated positioning, layering, and theming
 
-**Selective/Hybrid Approach Pros:**
-- Minimal disruption to existing, working Astro components
-- Leverage Tailwind's strengths for React components that benefit from utility classes
+**Recommendation: Selective/Hybrid Approach**
+
+After evaluating the codebase, a selective approach targeting React components and MDX content is optimal:
+
+**Hybrid Approach Boundaries:**
+
+1. **Use Tailwind CSS for:**
+   - React components in `/src/components/react/`
+   - Content within MDX files (inline JSX elements)
+   - Future Svelte components requiring utility classes
+   - Simple utility classes needed across component types
+
+2. **Keep SCSS/CSS for:**
+   - Astro component scoped styles (leverage Astro's scoped styling strength)
+   - Global styles, CSS custom properties, and theme system in `global.scss`
+   - Complex animations and positioning (like AnimatedTitle background layers)
+   - Layout components where scoped styles are more maintainable
+
+**Benefits of This Approach:**
+- **Lower risk**: Preserve working Astro components while modernising React workflow
+- **MDX flexibility**: Tailwind classes work seamlessly in MDX JSX elements
+- **Best of both worlds**: Astro scoped styles + Tailwind utilities where beneficial
+- **Incremental adoption**: Can expand Tailwind usage over time
+- **Maintainable**: Clear boundaries between styling approaches
+
+**Implementation Strategy:**
+- Install Tailwind configured for React components and MDX files
+- Migrate React CSS modules to Tailwind utilities
 - Preserve global.scss for base styles and CSS custom properties
-- Lower risk migration with incremental adoption
-- Maintain Astro's scoped styling advantages where appropriate
-
-**Selective/Hybrid Approach Cons:**
-- Multiple styling methodologies to maintain
-- Potential inconsistencies between Tailwind and custom styles
-- Larger overall CSS bundle (both Tailwind and custom styles)
-- More complex build configuration
-- Team needs to understand both approaches
-
-**Recommendation:**
-TBD - Evaluate after considering project priorities, team preferences, and maintenance goals.
+- Update build configuration to process Tailwind for React/MDX only
 
 ## Phase 3: Tailwind Installation & Configuration
 
@@ -149,57 +160,60 @@ TBD - Evaluate after considering project priorities, team preferences, and maint
 
 - [ ] Install `@astrojs/tailwind` integration
 - [ ] Install `tailwindcss` and dependencies
-- [ ] Configure Astro to use Tailwind integration
-- [ ] Verify Tailwind works with React/Svelte components
+- [ ] Configure Astro to use Tailwind integration for React components and MDX only
+- [ ] Configure content paths to include `/src/components/react/**` and `/src/content/**/*.mdx`
+- [ ] Verify Tailwind works with React components in MDX files
 
 ### 3.2 Design System Configuration
 
-- [ ] Extract current color palette to Tailwind config
-- [ ] Configure typography (Fira Code for code blocks)
-- [ ] Set up spacing scale to match current design
-- [ ] Configure dark mode strategy (class-based)
-- [ ] Add custom utility classes for specific needs
+- [ ] Extract current color palette to Tailwind config (maintain CSS custom property integration)
+- [ ] Configure typography (Fira Code for code blocks, system font stack)
+- [ ] Set up spacing scale to match current design patterns
+- [ ] Configure dark mode strategy (CSS custom properties integration)
+- [ ] Add custom utility classes for React-specific needs
 
 ## Phase 4: Migration Execution
 
-### 4.1 Global Styles Migration
+### 4.1 Selective Integration Setup
 
-- [ ] Convert `src/styles/global.scss` to Tailwind base layer
-- [ ] Migrate CSS custom properties to Tailwind CSS variables
-- [ ] Update modern-normalize integration
-- [ ] Test global style changes with visual regression
+- [ ] Preserve `src/styles/global.scss` for base styles and CSS custom properties
+- [ ] Ensure Tailwind CSS custom properties integration works correctly
+- [ ] Test Tailwind utilities alongside existing SCSS styles
+- [ ] Verify no conflicts between Tailwind and global styles
 
-### 4.2 Astro Components Migration
+### 4.2 React Components Migration
 
-- [ ] Start with layout components (`src/layouts/`)
-- [ ] Migrate `BlogPost.astro` styles
-- [ ] Migrate `Sketch.astro` styles
-- [ ] Convert page components in `src/pages/`
-- [ ] Update component prop patterns for className
-
-### 4.3 React Components Migration
-
+- [ ] Start with simpler React components (Loading, PostComments)
 - [ ] Remove CSS module imports from React components
-- [ ] Convert class names to Tailwind utilities
-- [ ] Update TypeScript interfaces to use `className` prop
+- [ ] Convert class names to Tailwind utilities while preserving CSS custom property usage
+- [ ] Update TypeScript interfaces to use `className` prop where needed
+- [ ] Migrate complex components (AnimatedTitle) carefully, keeping CSS modules for complex layering if needed
 - [ ] Test client-side hydration with new styles
 - [ ] Verify TensorFlow.js demo styling
 
-### 4.4 Svelte Components Migration
+### 4.3 MDX Content Enhancement
 
-- [ ] Remove `<style>` blocks from Svelte components
-- [ ] Convert to Tailwind utility classes
-- [ ] Test Svelte component reactivity with new styles
-- [ ] Verify interactive elements work correctly
+- [ ] Add Tailwind utility classes to inline JSX elements in MDX files
+- [ ] Test React component rendering within MDX with Tailwind classes
+- [ ] Verify blog post and sketch content displays correctly
+- [ ] Ensure HighlightBox and other imported components work with enhanced MDX
+
+### 4.4 Astro Components (NO MIGRATION)
+
+- [ ] Document decision to preserve Astro component scoped styles
+- [ ] Ensure Astro components continue to work alongside Tailwind
+- [ ] Test that scoped styles don't conflict with Tailwind utilities in React components
+- [ ] Verify layout components maintain current functionality
 
 ## Phase 5: Theme System Migration
 
 ### 5.1 Dark/Light Mode Implementation
 
-- [ ] Implement Tailwind dark mode classes
-- [ ] Update theme switching logic
-- [ ] Test theme persistence across page navigation
-- [ ] Verify all components respect theme changes
+- [ ] Configure Tailwind dark mode to work with existing CSS custom properties
+- [ ] Add Tailwind dark mode classes to React components only
+- [ ] Preserve existing theme switching logic in global.scss
+- [ ] Test theme changes work for both Tailwind (React) and SCSS (Astro) components
+- [ ] Verify consistent theming across hybrid styling approach
 
 ### 5.2 Responsive Design Verification
 
@@ -233,19 +247,19 @@ TBD - Evaluate after considering project priorities, team preferences, and maint
 
 ## Phase 7: Cleanup & Documentation
 
-### 7.1 Remove Legacy Code
+### 7.1 Remove Legacy Code (Selective)
 
-- [ ] Delete SCSS files from `src/styles/`
-- [ ] Remove CSS module files (`.module.css`)
-- [ ] Clean up unused SCSS dependencies from package.json
-- [ ] Remove SCSS build configuration
+- [ ] Remove only migrated CSS module files from React components (`.module.css`, `.module.scss`)
+- [ ] Preserve `src/styles/global.scss` for Astro components and base styles
+- [ ] Keep SCSS dependencies and build configuration for Astro component support
+- [ ] Clean up only unused React component CSS modules
 
 ### 7.2 Update Documentation
 
-- [ ] Update CLAUDE.md with new styling guidelines
-- [ ] Document Tailwind configuration decisions
-- [ ] Update component development patterns
-- [ ] Add Tailwind best practices for the project
+- [ ] Update CLAUDE.md with hybrid styling guidelines (Tailwind for React, SCSS for Astro)
+- [ ] Document Tailwind configuration decisions and content path restrictions
+- [ ] Update component development patterns for selective approach
+- [ ] Add Tailwind best practices for React components and MDX content only
 
 ### 7.3 Final Verification
 
@@ -261,4 +275,6 @@ TBD - Evaluate after considering project priorities, team preferences, and maint
 - **Rollback plan**: Keep git commits small and atomic for easy rollback
 - **Performance target**: Maintain or improve current bundle size and Core Web Vitals
 - **Browser support**: Ensure compatibility with existing browser support matrix
-- **Astro Component Styling**: Continue using inline `<style>` blocks for Astro components alongside Tailwind utilities - this hybrid approach leverages Astro's scoped styling strengths while gaining Tailwind's utility benefits
+- **Selective Approach Decision**: After analysis of 9 MDX files and React component architecture, decided on hybrid approach using Tailwind for React components and MDX content only, preserving Astro scoped styles for layout and navigation components
+- **MDX Tailwind Usage**: MDX files can include Tailwind utility classes in inline JSX elements (e.g., `<div className="bg-blue-500 p-4">content</div>`) while imported Astro/Svelte components retain their existing styling approaches
+- **CSS Custom Properties Preservation**: Maintain global.scss and CSS custom property theming system to ensure consistent colours and spacing across both Tailwind and SCSS components
