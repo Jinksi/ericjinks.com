@@ -14,6 +14,7 @@ regressions
 - [x] Run initial baseline capture (8 screenshots: header on homepage/blog, light/dark, desktop/mobile)
 
 **Notes:**
+
 - Simplified to Chrome-only testing for consistency
 - Focused on stable header/navigation component to avoid dynamic content issues
 - Uses proper `prefers-color-scheme` emulation matching site's theme implementation
@@ -21,10 +22,9 @@ regressions
 
 ### 1.2 Identify Critical UI Components
 
-- [ ] Document all pages that need visual testing
-- [ ] Identify interactive components (buttons, forms, modals)
+- [ ] Identify interactive components to test with visual regression (buttons, forms, modals)
 - [ ] Test responsive breakpoints (mobile, tablet, desktop)
-- [ ] Capture component states (hover, focus, active)
+- [ ] Capture component states where suitable (hover, focus, active)
 
 ## Phase 2: Current State Analysis
 
