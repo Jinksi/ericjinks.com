@@ -19,6 +19,7 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/svelte": "^7.1.0",
+    "@astrojs/tailwind": "^6.0.2",
     "@fontsource/fira-code": "^5.0.15",
     "@giscus/react": "^3.1.0",
     "@tensorflow/tfjs": "^0.11.6",
@@ -41,6 +42,7 @@
     "react-feather": "^2.0.10",
     "react-use": "^17.4.2",
     "svelte": "^5.34.7",
+    "tailwindcss": "^3.4.17",
     "two.js": "^0.8.12",
     "typescript": "^5.8.3",
     "uppy": "^0.25.5"

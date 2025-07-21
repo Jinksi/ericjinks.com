@@ -1,12 +1,11 @@
 import 'loaders.css/loaders.min.css'
-import styles from './Loading.module.scss'
 
 export default ({ text = 'Loading', ...props }) => (
-  <div className={styles.Loading} {...props}>
-    <div className="loader-inner cube-transition">
-      <div />
-      <div />
+  <div className="flex items-center justify-center p-16 relative" {...props}>
+    <div className="loader-inner cube-transition absolute left-1/2 top-20 -translate-x-6">
+      <div className="!bg-text" />
+      <div className="!bg-text" />
     </div>
-    <div className={styles.LoadingText}>{text}</div>
+    <div className="mt-28 font-semibold text-2xl">{text}</div>
   </div>
 )

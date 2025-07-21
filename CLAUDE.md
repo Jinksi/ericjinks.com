@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Tests**: `npm run test:e2e` (runs Playwright E2E tests)
 - **Single test**: `npx playwright test tests/specific-test.spec.ts`
 - **Format**: `npx prettier --write .`
+- I'll be running the dev server in the background
 
 ## Architecture Overview
 
@@ -82,6 +83,7 @@ Playwright E2E tests configured to:
 - Run against built site (`npm run preview`)
 - Generate HTML reports in `playwright-report/`
 - Retry failed tests on CI environments
+- Visual regression playwright tests are located in `@tests/visual-regression.spec.ts`
 
 ## Code Style Guidelines
 
@@ -90,3 +92,7 @@ Playwright E2E tests configured to:
 - **Components**: Functional components with destructured props
 - **Naming**: PascalCase for components, camelCase for utilities, kebab-case for content files
 - **Formatting**: Prettier with single quotes, no semicolons, trailing commas
+
+## URL Conventions
+
+- All URLs have a trailing slash

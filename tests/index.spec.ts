@@ -4,7 +4,7 @@ test('home page renders correctly', async ({ page }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(/Eric Jinks/)
 
-  await expect(page.getByRole('link', { name: 'Blog' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Blog', exact: true })).toBeVisible()
 
   // Expect tags
   await expect(
@@ -18,7 +18,7 @@ test('home page renders correctly', async ({ page }) => {
 test('blog page renders correctly', async ({ page }) => {
   await page.goto('/')
 
-  await page.getByRole('link', { name: 'Blog' }).click()
+  await page.getByRole('link', { name: 'Blog', exact: true }).click()
 
   await expect(page).toHaveTitle(/Blog/)
 

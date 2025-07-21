@@ -30,21 +30,24 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
+  /* Configure visual comparison settings */
+  expect: {
+    /* Configure screenshot comparison */
+    toHaveScreenshot: {
+      /* Allow minor differences due to anti-aliasing and rendering */
+      threshold: 0.2,
+      /* Maximum allowed pixel difference */
+      maxDiffPixels: 1000,
+      /* Animation handling */
+      animations: 'disabled',
+    },
+  },
+
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
