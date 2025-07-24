@@ -27,7 +27,8 @@ async function fetchPage(page) {
   const response = await fetch(url, {
     headers: {
       'Authorization': `Bearer ${GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github+json',
+      // Use star+json to include starred_at timestamp in response
+      'Accept': 'application/vnd.github.star+json',
       'X-GitHub-Api-Version': '2022-11-28',
     },
   })
