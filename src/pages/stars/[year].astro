@@ -9,29 +9,37 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import starsData from '../../data/github-stars.json'
 
 export async function getStaticPaths() {
-  const { stars, perPage } = starsData
-  const totalPages = Math.ceil(stars.length / perPage)
+  const { stars } = starsData
+  
+  // Group stars by year
+  const starsByYear = stars.reduce((acc, star) => {
+    const year = new Date(star.starredAt).getFullYear()
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(star)
+    return acc
+  }, {} as Record<number, typeof stars>)
 
-  return Array.from({ length: totalPages }, (_, i) => {
-    const page = i + 1
-    const startIndex = i * perPage
-    const endIndex = startIndex + perPage
-    const pageStars = stars.slice(startIndex, endIndex)
+  // Get all years and sort them in descending order (most recent first)
+  const years = Object.keys(starsByYear).map(Number).sort((a, b) => b - a)
 
+  return years.map((year) => {
+    const yearStars = starsByYear[year]
     return {
-      params: { page: page.toString() },
+      params: { year: year.toString() },
       props: {
-        stars: pageStars,
-        currentPage: page,
-        totalPages,
+        stars: yearStars,
+        currentYear: year,
+        years,
         totalCount: stars.length,
-        perPage,
+        yearCount: yearStars.length,
       },
     }
   })
 }
 
-const { stars, currentPage, totalPages } = Astro.props
+const { stars, currentYear, years, totalCount, yearCount } = Astro.props
 
 if (import.meta.env.PROD) {
   // Set the Netlify on-demand builders TTL for this page to 24 hours
@@ -44,8 +52,8 @@ if (import.meta.env.PROD) {
 <html lang="en">
   <head>
     <BaseHead
-      title={`Stars (Page ${currentPage}) – ${SITE_TITLE}`}
-      description={`${SITE_DESCRIPTION} - Page ${currentPage} of ${totalPages}`}
+      title={`Stars (${currentYear}) – ${SITE_TITLE}`}
+      description={`${SITE_DESCRIPTION} - Starred repositories from ${currentYear} (${yearCount} repos)`}
     />
   </head>
   <body>
@@ -53,13 +61,14 @@ if (import.meta.env.PROD) {
     <main>
       <section>
         <div class="container skinny">
-          <h2>Starred GitHub Repos</h2>
+          <h2>Starred GitHub Repos ({currentYear})</h2>
+          <p>{yearCount} repositories starred in {currentYear}</p>
 
-          <StarsPagination currentPage={currentPage} totalPages={totalPages} />
+          <StarsPagination currentYear={currentYear} years={years} />
 
           <GitHubStars stars={stars} />
 
-          <StarsPagination currentPage={currentPage} totalPages={totalPages} />
+          <StarsPagination currentYear={currentYear} years={years} />
         </div>
       </section>
     </main>

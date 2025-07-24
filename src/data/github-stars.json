@@ -14,7 +14,7 @@
     {
       "nameWithOwner": "github/github-mcp-server",
       "url": "https://github.com/github/github-mcp-server",
-      "stargazerCount": 18893,
+      "stargazerCount": 18894,
       "description": "GitHub's official MCP Server",
       "primaryLanguage": {
         "name": "Go",
@@ -47,7 +47,7 @@
     {
       "nameWithOwner": "getAsterisk/claudia",
       "url": "https://github.com/getAsterisk/claudia",
-      "stargazerCount": 9658,
+      "stargazerCount": 9659,
       "description": "A powerful GUI app and Toolkit for Claude Code - Create custom agents, manage interactive Claude Code sessions, run secure background agents, and more.",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -368,7 +368,7 @@
     {
       "nameWithOwner": "Anjok07/ultimatevocalremovergui",
       "url": "https://github.com/Anjok07/ultimatevocalremovergui",
-      "stargazerCount": 21305,
+      "stargazerCount": 21306,
       "description": " GUI for a Vocal Remover that uses Deep Neural Networks.",
       "primaryLanguage": {
         "name": "Python",
@@ -549,7 +549,7 @@
     {
       "nameWithOwner": "codecrafters-io/build-your-own-x",
       "url": "https://github.com/codecrafters-io/build-your-own-x",
-      "stargazerCount": 403450,
+      "stargazerCount": 403451,
       "description": "Master programming by recreating your favorite technologies from scratch.",
       "primaryLanguage": {
         "name": "Markdown",
@@ -692,7 +692,7 @@
     {
       "nameWithOwner": "anthropics/claude-code",
       "url": "https://github.com/anthropics/claude-code",
-      "stargazerCount": 25683,
+      "stargazerCount": 25685,
       "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
       "primaryLanguage": {
         "name": "PowerShell",
@@ -1400,7 +1400,7 @@
     {
       "nameWithOwner": "browser-use/browser-use",
       "url": "https://github.com/browser-use/browser-use",
-      "stargazerCount": 66168,
+      "stargazerCount": 66169,
       "description": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
       "primaryLanguage": {
         "name": "Python",
@@ -1856,7 +1856,7 @@
     {
       "nameWithOwner": "awesome-selfhosted/awesome-selfhosted",
       "url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
-      "stargazerCount": 238170,
+      "stargazerCount": 238173,
       "description": "A list of Free Software network services and web applications which can be hosted on your own servers",
       "primaryLanguage": null,
       "starredAt": "2024-03-21T02:12:32Z"
@@ -2482,7 +2482,7 @@
     {
       "nameWithOwner": "mlc-ai/web-llm",
       "url": "https://github.com/mlc-ai/web-llm",
-      "stargazerCount": 16015,
+      "stargazerCount": 16016,
       "description": "High-performance In-browser LLM Inference Engine ",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -2515,7 +2515,7 @@
     {
       "nameWithOwner": "ollama/ollama",
       "url": "https://github.com/ollama/ollama",
-      "stargazerCount": 147386,
+      "stargazerCount": 147387,
       "description": "Get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, Mistral Small 3.1 and other large language models.",
       "primaryLanguage": {
         "name": "Go",
@@ -3117,7 +3117,7 @@
     {
       "nameWithOwner": "openai/openai-cookbook",
       "url": "https://github.com/openai/openai-cookbook",
-      "stargazerCount": 65511,
+      "stargazerCount": 65512,
       "description": "Examples and guides for using the OpenAI API",
       "primaryLanguage": {
         "name": "MDX",
@@ -3183,7 +3183,7 @@
     {
       "nameWithOwner": "coollabsio/coolify",
       "url": "https://github.com/coollabsio/coolify",
-      "stargazerCount": 43667,
+      "stargazerCount": 43668,
       "description": "An open-source & self-hostable Heroku / Netlify / Vercel alternative.",
       "primaryLanguage": {
         "name": "PHP",
@@ -3812,7 +3812,7 @@
     {
       "nameWithOwner": "remoteintech/remote-jobs",
       "url": "https://github.com/remoteintech/remote-jobs",
-      "stargazerCount": 36408,
+      "stargazerCount": 36411,
       "description": "A list of semi to fully remote-friendly companies (jobs) in tech.",
       "primaryLanguage": {
         "name": "JavaScript",
@@ -4458,7 +4458,7 @@
     {
       "nameWithOwner": "tldraw/tldraw",
       "url": "https://github.com/tldraw/tldraw",
-      "stargazerCount": 40902,
+      "stargazerCount": 40903,
       "description": "very good whiteboard SDK / infinite canvas SDK",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -6331,7 +6331,7 @@
     {
       "nameWithOwner": "typescript-cheatsheets/react",
       "url": "https://github.com/typescript-cheatsheets/react",
-      "stargazerCount": 46482,
+      "stargazerCount": 46483,
       "description": "Cheatsheets for experienced React developers getting started with TypeScript",
       "primaryLanguage": {
         "name": "JavaScript",
@@ -6441,7 +6441,7 @@
     {
       "nameWithOwner": "excalidraw/excalidraw",
       "url": "https://github.com/excalidraw/excalidraw",
-      "stargazerCount": 104140,
+      "stargazerCount": 104142,
       "description": "Virtual whiteboard for sketching hand-drawn like diagrams",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -6463,7 +6463,7 @@
     {
       "nameWithOwner": "hashicorp/vault",
       "url": "https://github.com/hashicorp/vault",
-      "stargazerCount": 32803,
+      "stargazerCount": 32804,
       "description": "A tool for secrets management, encryption as a service, and privileged access management",
       "primaryLanguage": {
         "name": "Go",
@@ -8469,7 +8469,7 @@
     {
       "nameWithOwner": "supabase/supabase",
       "url": "https://github.com/supabase/supabase",
-      "stargazerCount": 86073,
+      "stargazerCount": 86074,
       "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -9120,7 +9120,7 @@
     {
       "nameWithOwner": "nvm-sh/nvm",
       "url": "https://github.com/nvm-sh/nvm",
-      "stargazerCount": 85983,
+      "stargazerCount": 85984,
       "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions",
       "primaryLanguage": {
         "name": "Shell",
@@ -9417,7 +9417,7 @@
     {
       "nameWithOwner": "unjs/defu",
       "url": "https://github.com/unjs/defu",
-      "stargazerCount": 1222,
+      "stargazerCount": 1223,
       "description": "🌊 Assign default properties recursively",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -9568,7 +9568,7 @@
     {
       "nameWithOwner": "k3s-io/k3s",
       "url": "https://github.com/k3s-io/k3s",
-      "stargazerCount": 30285,
+      "stargazerCount": 30286,
       "description": "Lightweight Kubernetes",
       "primaryLanguage": {
         "name": "Go",
@@ -10434,7 +10434,7 @@
     {
       "nameWithOwner": "ripienaar/free-for-dev",
       "url": "https://github.com/ripienaar/free-for-dev",
-      "stargazerCount": 107465,
+      "stargazerCount": 107466,
       "description": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
       "primaryLanguage": {
         "name": "HTML",
@@ -11201,7 +11201,7 @@
     {
       "nameWithOwner": "electron/fiddle",
       "url": "https://github.com/electron/fiddle",
-      "stargazerCount": 7599,
+      "stargazerCount": 7600,
       "description": ":electron: 🚀 The easiest way to get started with Electron",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -11278,7 +11278,7 @@
     {
       "nameWithOwner": "nushell/nushell",
       "url": "https://github.com/nushell/nushell",
-      "stargazerCount": 35839,
+      "stargazerCount": 35840,
       "description": "A new type of shell",
       "primaryLanguage": {
         "name": "Rust",
@@ -11432,7 +11432,7 @@
     {
       "nameWithOwner": "google-ai-edge/mediapipe",
       "url": "https://github.com/google-ai-edge/mediapipe",
-      "stargazerCount": 30744,
+      "stargazerCount": 30745,
       "description": "Cross-platform, customizable ML solutions for live and streaming media.",
       "primaryLanguage": {
         "name": "C++",
@@ -11542,7 +11542,7 @@
     {
       "nameWithOwner": "donnemartin/system-design-primer",
       "url": "https://github.com/donnemartin/system-design-primer",
-      "stargazerCount": 312712,
+      "stargazerCount": 312713,
       "description": "Learn how to design large-scale systems. Prep for the system design interview.  Includes Anki flashcards.",
       "primaryLanguage": {
         "name": "Python",
@@ -11575,7 +11575,7 @@
     {
       "nameWithOwner": "volta-cli/volta",
       "url": "https://github.com/volta-cli/volta",
-      "stargazerCount": 12200,
+      "stargazerCount": 12201,
       "description": "Volta: JS Toolchains as Code. ⚡",
       "primaryLanguage": {
         "name": "Rust",
@@ -11961,7 +11961,7 @@
     {
       "nameWithOwner": "jimp-dev/jimp",
       "url": "https://github.com/jimp-dev/jimp",
-      "stargazerCount": 14425,
+      "stargazerCount": 14426,
       "description": "An image processing library written entirely in JavaScript for Node, with zero external or native dependencies.",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -12071,7 +12071,7 @@
     {
       "nameWithOwner": "kubernetes/kubernetes",
       "url": "https://github.com/kubernetes/kubernetes",
-      "stargazerCount": 116484,
+      "stargazerCount": 116486,
       "description": "Production-Grade Container Scheduling and Management",
       "primaryLanguage": {
         "name": "Go",
@@ -16629,7 +16629,7 @@
     {
       "nameWithOwner": "Kaggle/kaggle-api",
       "url": "https://github.com/Kaggle/kaggle-api",
-      "stargazerCount": 6743,
+      "stargazerCount": 6744,
       "description": "Official Kaggle API",
       "primaryLanguage": {
         "name": "Python",
@@ -17855,7 +17855,7 @@
     {
       "nameWithOwner": "lodash/lodash",
       "url": "https://github.com/lodash/lodash",
-      "stargazerCount": 60752,
+      "stargazerCount": 60753,
       "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
       "primaryLanguage": {
         "name": "JavaScript",
@@ -21667,7 +21667,7 @@
     {
       "nameWithOwner": "thedaviddias/Front-End-Checklist",
       "url": "https://github.com/thedaviddias/Front-End-Checklist",
-      "stargazerCount": 70452,
+      "stargazerCount": 70451,
       "description": "🗂 The perfect Front-End Checklist for modern websites and meticulous developers",
       "primaryLanguage": null,
       "starredAt": "2017-10-22T22:26:24Z"
@@ -22222,7 +22222,7 @@
     {
       "nameWithOwner": "hexojs/hexo",
       "url": "https://github.com/hexojs/hexo",
-      "stargazerCount": 40546,
+      "stargazerCount": 40547,
       "description": "A fast, simple & powerful blog framework, powered by Node.js.",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -25243,7 +25243,7 @@
     {
       "nameWithOwner": "sdmg15/Best-websites-a-programmer-should-visit",
       "url": "https://github.com/sdmg15/Best-websites-a-programmer-should-visit",
-      "stargazerCount": 71998,
+      "stargazerCount": 71999,
       "description": ":link: Some useful websites for programmers.",
       "primaryLanguage": null,
       "starredAt": "2017-06-07T01:35:13Z"
@@ -30785,7 +30785,7 @@
     {
       "nameWithOwner": "fabricjs/fabric.js",
       "url": "https://github.com/fabricjs/fabric.js",
-      "stargazerCount": 30243,
+      "stargazerCount": 30244,
       "description": "Javascript Canvas Library, SVG-to-Canvas (& canvas-to-SVG) Parser",
       "primaryLanguage": {
         "name": "TypeScript",
@@ -31024,7 +31024,7 @@
     {
       "nameWithOwner": "processing/processing",
       "url": "https://github.com/processing/processing",
-      "stargazerCount": 6508,
+      "stargazerCount": 6509,
       "description": "⚠️ Processing moved to processing/processing4 ⚠️",
       "primaryLanguage": {
         "name": "Java",
@@ -31068,7 +31068,7 @@
     {
       "nameWithOwner": "processing/p5.js",
       "url": "https://github.com/processing/p5.js",
-      "stargazerCount": 22794,
+      "stargazerCount": 22795,
       "description": "p5.js is a client-side JS platform that empowers artists, designers, students, and anyone to learn to code and express themselves creatively on the web. It is based on the core principles of Processing. http://twitter.com/p5xjs —",
       "primaryLanguage": {
         "name": "JavaScript",
@@ -31387,7 +31387,7 @@
     {
       "nameWithOwner": "electron/electron",
       "url": "https://github.com/electron/electron",
-      "stargazerCount": 117581,
+      "stargazerCount": 117582,
       "description": ":electron: Build cross-platform desktop apps with JavaScript, HTML, and CSS",
       "primaryLanguage": {
         "name": "C++",
@@ -32024,7 +32024,7 @@
     {
       "nameWithOwner": "sindresorhus/awesome",
       "url": "https://github.com/sindresorhus/awesome",
-      "stargazerCount": 384835,
+      "stargazerCount": 384840,
       "description": "😎 Awesome lists about all kinds of interesting topics",
       "primaryLanguage": null,
       "starredAt": "2016-04-11T00:49:12Z"
@@ -32235,7 +32235,7 @@
     {
       "nameWithOwner": "public-apis/public-apis",
       "url": "https://github.com/public-apis/public-apis",
-      "stargazerCount": 357625,
+      "stargazerCount": 357626,
       "description": "A collective list of free APIs",
       "primaryLanguage": {
         "name": "Python",
@@ -33139,7 +33139,7 @@
     {
       "nameWithOwner": "rstacruz/nprogress",
       "url": "https://github.com/rstacruz/nprogress",
-      "stargazerCount": 26349,
+      "stargazerCount": 26350,
       "description": "For slim progress bars like on YouTube, Medium, etc",
       "primaryLanguage": {
         "name": "JavaScript",
@@ -34338,6 +34338,6 @@
     }
   ],
   "totalCount": 3164,
-  "fetchedAt": "2025-07-24T08:39:44.522Z",
+  "fetchedAt": "2025-07-24T08:45:29.623Z",
   "perPage": 100
 }
