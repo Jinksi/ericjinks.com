@@ -1,0 +1,110 @@
+---
+export const prerender = true
+import BaseHead from '../../components/BaseHead.astro'
+import Header from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro'
+import GitHubStars from '../../components/GitHubStars.astro'
+import StarsPagination from '../../components/StarsPagination.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
+import starsData from '../../data/github-stars.json'
+
+export async function getStaticPaths() {
+  const { stars } = starsData
+  
+  // Group stars by year
+  const starsByYear = stars.reduce((acc, star) => {
+    const year = new Date(star.starredAt).getFullYear()
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(star)
+    return acc
+  }, {} as Record<number, typeof stars>)
+
+  // Get all years and sort them in descending order (most recent first)
+  const years = Object.keys(starsByYear).map(Number).sort((a, b) => b - a)
+
+  return years.map((year) => {
+    const yearStars = starsByYear[year]
+    return {
+      params: { year: year.toString() },
+      props: {
+        stars: yearStars,
+        currentYear: year,
+        years,
+        totalCount: stars.length,
+        yearCount: yearStars.length,
+      },
+    }
+  })
+}
+
+const { stars, currentYear, years, totalCount, yearCount } = Astro.props
+
+if (import.meta.env.PROD) {
+  // Set the Netlify on-demand builders TTL for this page to 24 hours
+  // @ts-ignore
+  Astro.locals.runtime?.setBuildersTtl(86_400)
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Stars (${currentYear}) – ${SITE_TITLE}`}
+      description={`${SITE_DESCRIPTION} - Starred repositories from ${currentYear} (${yearCount} repos)`}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <div class="container skinny">
+          <h2>Starred GitHub Repos ({currentYear})</h2>
+          <p>{yearCount} repositories starred in {currentYear}</p>
+
+          <StarsPagination currentYear={currentYear} years={years} />
+
+          <GitHubStars stars={stars} />
+
+          <StarsPagination currentYear={currentYear} years={years} />
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+
+    <style>
+      main {
+        padding-top: 5rem;
+      }
+
+      .repo-header {
+        & > * {
+          display: inline-block;
+          align-items: center;
+
+          &:not(:first-child) {
+            margin-left: 2rem;
+          }
+        }
+      }
+
+      .language {
+        display: inline-flex;
+        align-items: center;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 0.9rem;
+          height: 0.9rem;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+          background-color: var(--language-color);
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -1,137 +1,87 @@
 ---
-import OpenAI from 'openai'
+import starsData from '../data/github-stars.json'
+
+export interface Props {
+  stars?: typeof starsData.stars
+}
 
 type Repo = {
   nameWithOwner: string
   url: string
   stargazerCount: number
   description: string
-  primaryLanguage: {
-    name: string
-    color: string
-  }
+  primaryLanguage: string | null
+  starredAt: string
 }
 
-const numberToFetch = 100
-const token = import.meta.env.GH_TOKEN
-const query = `
-query($username: String!, $numberToFetch: Int = 100) {
-  user(login: $username) {
-    starredRepositories(first: $numberToFetch, orderBy: {
-      direction: DESC
-      field: STARRED_AT
-    }) {
-      totalCount
-      edges {
-        node {
-          nameWithOwner
-          url
-          stargazerCount
-          description
-          primaryLanguage {
-            name
-            color
-          }
-        }
-      }
-    }
-  }
-}`
-
-const response = await fetch('https://api.github.com/graphql', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `bearer ${token}`,
-  },
-  body: JSON.stringify({
-    query,
-    variables: {
-      username: 'jinksi',
-      numberToFetch,
-    },
-  }),
-})
-
-const { data } = await response.json()
-
-const totalCount = data?.user.starredRepositories.totalCount
-const starredRepos = data?.user.starredRepositories.edges.map(
-  ({ node }: { node: Repo }) => node
-)
-const starredReposString = starredRepos
-  .map(
-    (repo: Repo) =>
-      `${repo.nameWithOwner} ${repo.primaryLanguage} ${repo.description}`
-  )
-  .join('\n')
-
-// ChatGPT
-let chatResponseString: string | null = null
-try {
-  // const openai = new OpenAI({
-  //   apiKey: import.meta.env.OPENAI_API_KEY,
-  // })
-  // const chatResponse = await openai.chat.completions.create({
-  //   model: 'gpt-3.5-turbo',
-  //   messages: [
-  //     {
-  //       role: 'user',
-  //       content: `Based on the following list of Github stars, write a concise single-sentence summary:
-  //       ${starredReposString}`,
-  //     },
-  //   ],
-  //   temperature: 0.15,
-  //   max_tokens: 256,
-  //   top_p: 1,
-  //   frequency_penalty: 0,
-  //   presence_penalty: 0,
-  // })
-  // chatResponseString = chatResponse?.choices[0].message.content
-} catch (error) {
-  console.error(error)
+// Get language color using GitHub Linguist official colours from cached data
+function getLanguageColor(language: string): string {
+  return (starsData.colours as Record<string, string>)[language] || '#586069' // Default gray if language not found
 }
 
-const latestBuildTime = new Date().toLocaleDateString('en-GB', {
-  dateStyle: 'medium',
-})
+const { stars = starsData.stars } = Astro.props
+const starredRepos = stars as Repo[]
 ---
 
 <div>
-  <p>
-    Most recent {numberToFetch} of {totalCount.toLocaleString()} starred repos.
-    Last updated {latestBuildTime}.
-  </p>
-
-  {chatResponseString && <p>{chatResponseString}</p>}
-
   {
     starredRepos?.map((repo: Repo) => (
       <div class="repo">
         <div class="repo-header">
           <span>
             <strong>
-              <a href={repo.url}>{repo.nameWithOwner}</a>
+              <a href={repo.url || '#'}>
+                {repo.nameWithOwner || 'Unknown Repository'}
+              </a>
             </strong>
           </span>
 
-          <span
-            class="language"
-            style={`--language-color: ${repo.primaryLanguage?.color}`}
-          >
-            {repo.primaryLanguage?.name}
-          </span>
+          {repo.primaryLanguage && (
+            <span
+              class="language"
+              style={`--language-color: ${getLanguageColor(repo.primaryLanguage)}`}
+            >
+              {repo.primaryLanguage}
+            </span>
+          )}
 
-          <span>★ {repo.stargazerCount.toLocaleString()}</span>
+          <span>★ {(repo.stargazerCount || 0).toLocaleString()}</span>
+
+          <span class="starred-date">
+            Starred{' '}
+            {new Date(repo.starredAt).toLocaleDateString('en-AU', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </span>
         </div>
-        <p>{repo.description}</p>
+        <p>{repo.description || 'No description available'}</p>
       </div>
     ))
   }
 </div>
 
 <style>
+  .update-info {
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .repo {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
   .repo-header {
+    margin-bottom: 0.5rem;
+
     & > * {
       display: inline-block;
       align-items: center;
@@ -155,5 +105,11 @@ const latestBuildTime = new Date().toLocaleDateString('en-GB', {
       margin-right: 0.5rem;
       background-color: var(--language-color);
     }
+  }
+
+  .starred-date {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    font-style: italic;
   }
 </style>
