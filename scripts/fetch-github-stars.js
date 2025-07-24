@@ -15,6 +15,7 @@ config()
 const GITHUB_TOKEN = process.env.GH_TOKEN
 const USERNAME = 'jinksi'
 const PER_PAGE = 100
+const LINGUIST_YAML_URL = 'https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml'
 const CACHE_FILE = path.join(
   __dirname,
   '..',
@@ -26,6 +27,54 @@ const CACHE_FILE = path.join(
 if (!GITHUB_TOKEN) {
   console.error('Error: GH_TOKEN environment variable is required')
   process.exit(1)
+}
+
+// Simple YAML parser for GitHub Linguist languages.yml structure
+function parseLanguageYaml(yamlText) {
+  const languages = {}
+  const lines = yamlText.split('\n')
+  let currentLanguage = null
+  
+  for (const line of lines) {
+    // Match language name (starts at column 0, ends with colon)
+    const languageMatch = line.match(/^([^:\s]+):$/)
+    if (languageMatch) {
+      currentLanguage = languageMatch[1]
+      languages[currentLanguage] = {}
+      continue
+    }
+    
+    // Match color property (indented, starts with "color:")
+    if (currentLanguage && line.match(/^\s+color:\s*["']?([^"'\s]+)["']?/)) {
+      const colorMatch = line.match(/^\s+color:\s*["']?([^"'\s]+)["']?/)
+      if (colorMatch) {
+        languages[currentLanguage].color = colorMatch[1]
+      }
+    }
+  }
+  
+  return languages
+}
+
+async function fetchLanguageColors() {
+  console.log('Fetching GitHub Linguist language colors...')
+  
+  try {
+    const response = await fetch(LINGUIST_YAML_URL)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch languages.yml: ${response.status}`)
+    }
+    
+    const yamlText = await response.text()
+    const allLanguages = parseLanguageYaml(yamlText)
+    
+    console.log(`Parsed ${Object.keys(allLanguages).length} languages from GitHub Linguist`)
+    return allLanguages
+  } catch (error) {
+    console.error('Error fetching language colors:', error)
+    console.log('Continuing without language colors...')
+    return {}
+  }
 }
 
 async function fetchPage(page) {
@@ -135,14 +184,38 @@ async function main() {
       fs.mkdirSync(dataDir, { recursive: true })
     }
 
-    const allStars = await fetchAllStars()
+    // Fetch both stars and language colors concurrently
+    const [allStars, allLanguageColors] = await Promise.all([
+      fetchAllStars(),
+      fetchLanguageColors()
+    ])
+    
     const transformedStars = transformStarData(allStars)
 
+    // Extract unique languages from the stars data
+    const usedLanguages = new Set()
+    transformedStars.forEach(star => {
+      if (star.primaryLanguage) {
+        usedLanguages.add(star.primaryLanguage)
+      }
+    })
+
+    // Build colors object with only the languages we actually use
+    const colours = {}
+    usedLanguages.forEach(language => {
+      if (allLanguageColors[language] && allLanguageColors[language].color) {
+        colours[language] = allLanguageColors[language].color
+      }
+    })
+
+    console.log(`Using colors for ${Object.keys(colours).length} languages out of ${usedLanguages.size} total languages`)
+
     const cacheData = {
-      stars: transformedStars,
+      colours: colours,
       totalCount: transformedStars.length,
       fetchedAt: new Date().toISOString(),
       perPage: PER_PAGE,
+      stars: transformedStars,
     }
 
     fs.writeFileSync(CACHE_FILE, JSON.stringify(cacheData, null, 2))

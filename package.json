@@ -23,7 +23,6 @@
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource/fira-code": "^5.0.15",
     "@giscus/react": "^3.1.0",
-    "@scdev/github-languages-colors": "^1.0.0",
     "@tensorflow/tfjs": "^0.11.6",
     "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",

@@ -1,6 +1,5 @@
 ---
 import starsData from '../data/github-stars.json'
-import ghColors from '@scdev/github-languages-colors'
 
 export interface Props {
   stars?: typeof starsData.stars
@@ -15,9 +14,9 @@ type Repo = {
   starredAt: string
 }
 
-// Get language color using GitHub Linguist official colors
+// Get language color using GitHub Linguist official colours from cached data
 function getLanguageColor(language: string): string {
-  return ghColors[language] || '#586069' // Default gray if language not found
+  return (starsData.colours as Record<string, string>)[language] || '#586069' // Default gray if language not found
 }
 
 const { stars = starsData.stars } = Astro.props
