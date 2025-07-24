@@ -1,0 +1,101 @@
+---
+export const prerender = true
+import BaseHead from '../../components/BaseHead.astro'
+import Header from '../../components/Nav.astro'
+import Footer from '../../components/Footer.astro'
+import GitHubStars from '../../components/GitHubStars.astro'
+import StarsPagination from '../../components/StarsPagination.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
+import starsData from '../../data/github-stars.json'
+
+export async function getStaticPaths() {
+  const { stars, perPage } = starsData
+  const totalPages = Math.ceil(stars.length / perPage)
+
+  return Array.from({ length: totalPages }, (_, i) => {
+    const page = i + 1
+    const startIndex = i * perPage
+    const endIndex = startIndex + perPage
+    const pageStars = stars.slice(startIndex, endIndex)
+
+    return {
+      params: { page: page.toString() },
+      props: {
+        stars: pageStars,
+        currentPage: page,
+        totalPages,
+        totalCount: stars.length,
+        perPage,
+      },
+    }
+  })
+}
+
+const { stars, currentPage, totalPages } = Astro.props
+
+if (import.meta.env.PROD) {
+  // Set the Netlify on-demand builders TTL for this page to 24 hours
+  // @ts-ignore
+  Astro.locals.runtime?.setBuildersTtl(86_400)
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Stars (Page ${currentPage}) – ${SITE_TITLE}`}
+      description={`${SITE_DESCRIPTION} - Page ${currentPage} of ${totalPages}`}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <div class="container skinny">
+          <h2>Starred GitHub Repos</h2>
+
+          <StarsPagination currentPage={currentPage} totalPages={totalPages} />
+
+          <GitHubStars stars={stars} />
+
+          <StarsPagination currentPage={currentPage} totalPages={totalPages} />
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+
+    <style>
+      main {
+        padding-top: 5rem;
+      }
+
+      .repo-header {
+        & > * {
+          display: inline-block;
+          align-items: center;
+
+          &:not(:first-child) {
+            margin-left: 2rem;
+          }
+        }
+      }
+
+      .language {
+        display: inline-flex;
+        align-items: center;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 0.9rem;
+          height: 0.9rem;
+          border-radius: 50%;
+          margin-right: 0.5rem;
+          background-color: var(--language-color);
+        }
+      }
+    </style>
+  </body>
+</html>

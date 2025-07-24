@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run fetch-stars && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "fetch-stars": "node scripts/fetch-github-stars.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
