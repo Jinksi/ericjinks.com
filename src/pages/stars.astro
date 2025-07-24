@@ -1,12 +1,7 @@
 ---
 export const prerender = true
-import starsData from '../data/github-stars.json'
-
-// Get the latest year from the stars data
-const { stars } = starsData
-const years = [...new Set(stars.map(star => new Date(star.starredAt).getFullYear()))].sort((a, b) => b - a)
-const latestYear = years[0]
+import { getMostRecentStarYear } from '../utils/github-stars'
 
 // Redirect /stars to /stars/[latest-year]/
-return Astro.redirect(`/stars/${latestYear}/`)
+return Astro.redirect(`/stars/${getMostRecentStarYear()}/`)
 ---

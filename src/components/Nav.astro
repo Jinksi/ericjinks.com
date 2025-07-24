@@ -3,7 +3,10 @@ import NavLink from './NavLink.astro'
 import NavIconButtons from './NavIconButtons.astro'
 import AnimatedTitle from './react/AnimatedTitle'
 import { SITE_TITLE_COMPACT } from '../config'
+import { getMostRecentStarYear } from '../utils/github-stars'
+
 const isHome = Astro.url.pathname === '/'
+const mostRecentStarYear = getMostRecentStarYear()
 ---
 
 <header>
@@ -18,12 +21,12 @@ const isHome = Astro.url.pathname === '/'
         {SITE_TITLE_COMPACT}
       </AnimatedTitle>
     </a>
-     &emsp; &emsp;
+    &emsp; &emsp;
 
     <NavLink href="/">Home</NavLink>
     <NavLink href="/blog/">Blog</NavLink>
     <!-- <NavLink href="/sketches/">Sketches</NavLink> -->
-    <NavLink href="/stars/">Stars</NavLink>
+    <NavLink href={`/stars/${mostRecentStarYear}/`}>Stars</NavLink>
     <NavIconButtons />
   </nav>
 </header>
