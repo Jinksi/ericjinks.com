@@ -28,7 +28,7 @@ const starredRepos = stars as Repo[]
         <div class="repo-header">
           <span>
             <strong>
-              <a href={repo.url}>{repo.nameWithOwner}</a>
+              <a href={repo.url || '#'}>{repo.nameWithOwner || 'Unknown Repository'}</a>
             </strong>
           </span>
 
@@ -41,9 +41,9 @@ const starredRepos = stars as Repo[]
             </span>
           )}
 
-          <span>★ {repo.stargazerCount.toLocaleString()}</span>
+          <span>★ {(repo.stargazerCount || 0).toLocaleString()}</span>
         </div>
-        <p>{repo.description}</p>
+        <p>{repo.description || 'No description available'}</p>
       </div>
     ))
   }

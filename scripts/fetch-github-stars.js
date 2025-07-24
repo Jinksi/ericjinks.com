@@ -93,17 +93,28 @@ async function fetchAllStars() {
 }
 
 function transformStarData(stars) {
-  return stars.map(repo => ({
-    nameWithOwner: repo.full_name,
-    url: repo.html_url,
-    stargazerCount: repo.stargazers_count,
-    description: repo.description,
-    primaryLanguage: repo.language ? {
-      name: repo.language,
-      color: getLanguageColor(repo.language)
-    } : null,
-    starredAt: repo.starred_at || new Date().toISOString()
-  }))
+  return stars.map(starData => {
+    // With application/vnd.github.star+json header, response is { starred_at, repo }
+    const repo = starData.repo
+    
+    // Add null safety checks
+    if (!repo) {
+      console.warn('Missing repo data in star entry:', starData)
+      return null
+    }
+    
+    return {
+      nameWithOwner: repo.full_name || 'Unknown',
+      url: repo.html_url || '#',
+      stargazerCount: repo.stargazers_count || 0,
+      description: repo.description || '',
+      primaryLanguage: repo.language ? {
+        name: repo.language,
+        color: getLanguageColor(repo.language)
+      } : null,
+      starredAt: starData.starred_at || new Date().toISOString()
+    }
+  }).filter(Boolean) // Remove any null entries
 }
 
 // Simple language color mapping - can be expanded
