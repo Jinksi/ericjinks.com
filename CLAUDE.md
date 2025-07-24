@@ -52,8 +52,8 @@ This is a personal blog/portfolio website built with **Astro** as the primary fr
 - **`src/pages/`**: File-based routing
   - Dynamic routes using `[...id].astro` pattern
   - RSS feed generation in `rss.xml.js`
-  - **GitHub Stars**: Paginated at `/stars/[page]/` (e.g., `/stars/1/`, `/stars/2/`)
-    - `/stars/` redirects to `/stars/1/`
+  - **GitHub Stars**: Paginated by year at `/stars/[year]/` (e.g., `/stars/2025/`, `/stars/2024/`)
+    - `/stars/` redirects to current year
     - Data cached in `src/data/github-stars.json` at build time
     - Fetched via REST API using `scripts/fetch-github-stars.js`
 
