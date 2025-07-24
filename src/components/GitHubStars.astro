@@ -28,7 +28,9 @@ const starredRepos = stars as Repo[]
         <div class="repo-header">
           <span>
             <strong>
-              <a href={repo.url || '#'}>{repo.nameWithOwner || 'Unknown Repository'}</a>
+              <a href={repo.url || '#'}>
+                {repo.nameWithOwner || 'Unknown Repository'}
+              </a>
             </strong>
           </span>
 
@@ -42,6 +44,15 @@ const starredRepos = stars as Repo[]
           )}
 
           <span>★ {(repo.stargazerCount || 0).toLocaleString()}</span>
+
+          <span class="starred-date">
+            Starred{' '}
+            {new Date(repo.starredAt).toLocaleDateString('en-AU', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </span>
         </div>
         <p>{repo.description || 'No description available'}</p>
       </div>
@@ -92,5 +103,11 @@ const starredRepos = stars as Repo[]
       margin-right: 0.5rem;
       background-color: var(--language-color);
     }
+  }
+
+  .starred-date {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    font-style: italic;
   }
 </style>
