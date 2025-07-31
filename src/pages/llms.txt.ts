@@ -1,5 +1,5 @@
-import { getCollection } from 'astro:content'
 import type { APIRoute } from 'astro'
+import { getCollection } from 'astro:content'
 
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../config'
 
@@ -17,14 +17,17 @@ export const GET: APIRoute = async () => {
     )
 
   // Group posts by year for better organisation
-  const postsByYear = sortedBlog.reduce((acc, post) => {
-    const year = new Date(post.data.pubDate).getFullYear()
-    if (!acc[year]) {
-      acc[year] = []
-    }
-    acc[year].push(post)
-    return acc
-  }, {} as Record<number, typeof sortedBlog>)
+  const postsByYear = sortedBlog.reduce(
+    (acc, post) => {
+      const year = new Date(post.data.pubDate).getFullYear()
+      if (!acc[year]) {
+        acc[year] = []
+      }
+      acc[year].push(post)
+      return acc
+    },
+    {} as Record<number, typeof sortedBlog>
+  )
 
   // Build the llms.txt content
   let content = `# ${SITE_TITLE} - Software Engineering Blog\n`
