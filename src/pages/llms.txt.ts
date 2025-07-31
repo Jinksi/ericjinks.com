@@ -60,6 +60,7 @@ export const GET: APIRoute = async () => {
   content += `## Additional Resources\n`
   content += `- [Blog Archive](${SITE_URL}/blog/): Complete list of all blog posts\n`
   content += `- [RSS Feed](${SITE_URL}/rss.xml): Subscribe to updates\n`
+  content += `- **Raw Markdown:** Individual posts available as \`/blog/{post-id}.md\` for direct content access\n`
 
   return new Response(content, {
     headers: {
