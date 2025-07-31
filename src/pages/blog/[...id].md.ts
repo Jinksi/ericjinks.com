@@ -3,6 +3,8 @@ import type { APIRoute } from 'astro'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
+import { SITE_URL } from '../../config'
+
 export const prerender = true
 
 export async function getStaticPaths() {
@@ -52,7 +54,7 @@ export const GET: APIRoute = async ({ props }) => {
       content += `**Tags:** ${post.data.tags}\n`
     }
     
-    content += `**URL:** https://ericjinks.com/blog/${post.id}/\n\n`
+    content += `**URL:** ${SITE_URL}/blog/${post.id}/\n\n`
     content += '---\n\n'
     
     // Add the actual post content
@@ -72,7 +74,7 @@ export const GET: APIRoute = async ({ props }) => {
     }
     
     content += `**Published:** ${post.data.pubDate.toDateString()}\n`
-    content += `**URL:** https://ericjinks.com/blog/${post.id}/\n\n`
+    content += `**URL:** ${SITE_URL}/blog/${post.id}/\n\n`
     content += '*Content not available in markdown format*'
     
     return new Response(content, {
