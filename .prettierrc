@@ -6,9 +6,9 @@
     {
       "files": "*.astro",
       "options": {
-        "parser": "astro",
-      },
-    },
+        "parser": "astro"
+      }
+    }
   ],
   "trailingComma": "es5",
   "semi": false,
