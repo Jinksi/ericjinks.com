@@ -263,6 +263,90 @@ ol {
   }
 }
 
+// Table styles for markdown tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: var(--color-background);
+  border: 1px solid var(--color-lightGrey);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+    margin: 1.5rem 0;
+  }
+}
+
+thead {
+  background: var(--color-highlight-almost-transparent);
+
+  th {
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid var(--color-text);
+    color: var(--color-text);
+
+    @media (max-width: 768px) {
+      padding: 0.75rem 1rem;
+    }
+  }
+}
+
+tbody {
+  tr {
+    border-bottom: 1px solid var(--color-lightGrey);
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background: var(--color-highlight-almost-transparent);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  td {
+    padding: 1rem 1.5rem;
+    vertical-align: top;
+    line-height: 1.5;
+
+    @media (max-width: 768px) {
+      padding: 0.75rem 1rem;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    code {
+      font-size: 0.85em;
+      padding: 0.1em 0.3em;
+    }
+  }
+}
+
+// Responsive table wrapper - horizontal scroll for smaller screens
+@media (max-width: 768px) {
+  .textContainer {
+    table {
+      max-width: 100%;
+      overflow-x: auto;
+      display: block;
+      margin: 1.5rem 0;
+
+      th,
+      td {
+        min-width: 120px; // Ensure minimum readable width
+      }
+    }
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: 1111px;
