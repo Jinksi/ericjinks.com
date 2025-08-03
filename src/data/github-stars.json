@@ -59,7 +59,8 @@
     "Zig": "#ec915c"
   },
   "totalCount": 3178,
-  "fetchedAt": "2025-08-03T11:41:11.733Z",
+  "fetchedAt": "2025-08-03T11:51:39.729Z",
+  "cacheTimestamp": 1754221899729,
   "perPage": 100,
   "stars": [
     {
@@ -105,7 +106,7 @@
     {
       "nameWithOwner": "roboflow/supervision",
       "url": "https://github.com/roboflow/supervision",
-      "stargazerCount": 32958,
+      "stargazerCount": 32959,
       "description": "We write your reusable computer vision tools. 💜",
       "primaryLanguage": "Python",
       "starredAt": "2025-07-31T06:41:48Z"
@@ -129,7 +130,7 @@
     {
       "nameWithOwner": "musistudio/claude-code-router",
       "url": "https://github.com/musistudio/claude-code-router",
-      "stargazerCount": 9628,
+      "stargazerCount": 9630,
       "description": "Use Claude Code as the foundation for coding infrastructure, allowing you to decide how to interact with the model while enjoying updates from Anthropic.",
       "primaryLanguage": "TypeScript",
       "starredAt": "2025-07-29T10:46:07Z"
@@ -137,7 +138,7 @@
     {
       "nameWithOwner": "hesreallyhim/awesome-claude-code",
       "url": "https://github.com/hesreallyhim/awesome-claude-code",
-      "stargazerCount": 8385,
+      "stargazerCount": 8386,
       "description": "A curated list of awesome commands, files, and workflows for Claude Code",
       "primaryLanguage": "Python",
       "starredAt": "2025-07-28T22:20:47Z"
@@ -185,7 +186,7 @@
     {
       "nameWithOwner": "github/github-mcp-server",
       "url": "https://github.com/github/github-mcp-server",
-      "stargazerCount": 19986,
+      "stargazerCount": 19987,
       "description": "GitHub's official MCP Server",
       "primaryLanguage": "Go",
       "starredAt": "2025-07-23T23:52:04Z"
@@ -209,7 +210,7 @@
     {
       "nameWithOwner": "getAsterisk/claudia",
       "url": "https://github.com/getAsterisk/claudia",
-      "stargazerCount": 10541,
+      "stargazerCount": 10542,
       "description": "A powerful GUI app and Toolkit for Claude Code - Create custom agents, manage interactive Claude Code sessions, run secure background agents, and more.",
       "primaryLanguage": "TypeScript",
       "starredAt": "2025-07-21T01:48:14Z"
@@ -233,7 +234,7 @@
     {
       "nameWithOwner": "smtg-ai/claude-squad",
       "url": "https://github.com/smtg-ai/claude-squad",
-      "stargazerCount": 3888,
+      "stargazerCount": 3889,
       "description": "Manage multiple AI terminal agents like Claude Code, Aider, Codex, OpenCode, and Amp.",
       "primaryLanguage": "Go",
       "starredAt": "2025-07-19T23:00:17Z"
@@ -305,7 +306,7 @@
     {
       "nameWithOwner": "upstash/context7",
       "url": "https://github.com/upstash/context7",
-      "stargazerCount": 23733,
+      "stargazerCount": 23734,
       "description": "Context7 MCP Server -- Up-to-date code documentation for LLMs and AI code editors",
       "primaryLanguage": "JavaScript",
       "starredAt": "2025-07-17T22:19:15Z"
@@ -481,7 +482,7 @@
     {
       "nameWithOwner": "reflex-dev/reflex",
       "url": "https://github.com/reflex-dev/reflex",
-      "stargazerCount": 23892,
+      "stargazerCount": 23896,
       "description": "🕸️ Web apps in pure Python 🐍",
       "primaryLanguage": "Python",
       "starredAt": "2025-05-24T03:43:04Z"
@@ -569,7 +570,7 @@
     {
       "nameWithOwner": "openai/codex",
       "url": "https://github.com/openai/codex",
-      "stargazerCount": 31713,
+      "stargazerCount": 31714,
       "description": "Lightweight coding agent that runs in your terminal",
       "primaryLanguage": "Rust",
       "starredAt": "2025-04-17T09:39:47Z"
@@ -585,7 +586,7 @@
     {
       "nameWithOwner": "codecrafters-io/build-your-own-x",
       "url": "https://github.com/codecrafters-io/build-your-own-x",
-      "stargazerCount": 406512,
+      "stargazerCount": 406514,
       "description": "Master programming by recreating your favorite technologies from scratch.",
       "primaryLanguage": "Markdown",
       "starredAt": "2025-04-14T09:59:19Z"
@@ -649,7 +650,7 @@
     {
       "nameWithOwner": "suitenumerique/docs",
       "url": "https://github.com/suitenumerique/docs",
-      "stargazerCount": 13113,
+      "stargazerCount": 13114,
       "description": "A collaborative note taking, wiki and documentation platform that scales. Built with Django and React. ",
       "primaryLanguage": "Python",
       "starredAt": "2025-03-23T08:30:11Z"
@@ -665,7 +666,7 @@
     {
       "nameWithOwner": "LadybirdBrowser/ladybird",
       "url": "https://github.com/LadybirdBrowser/ladybird",
-      "stargazerCount": 46156,
+      "stargazerCount": 46157,
       "description": "Truly independent web browser",
       "primaryLanguage": "C++",
       "starredAt": "2025-02-28T03:14:02Z"
@@ -689,7 +690,7 @@
     {
       "nameWithOwner": "anthropics/claude-code",
       "url": "https://github.com/anthropics/claude-code",
-      "stargazerCount": 27613,
+      "stargazerCount": 27617,
       "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
       "primaryLanguage": "PowerShell",
       "starredAt": "2025-02-26T09:08:54Z"
@@ -737,7 +738,7 @@
     {
       "nameWithOwner": "zed-industries/zed",
       "url": "https://github.com/zed-industries/zed",
-      "stargazerCount": 63314,
+      "stargazerCount": 63315,
       "description": "Code at the speed of thought – Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.",
       "primaryLanguage": "Rust",
       "starredAt": "2025-02-16T10:55:38Z"
@@ -777,7 +778,7 @@
     {
       "nameWithOwner": "slidevjs/slidev",
       "url": "https://github.com/slidevjs/slidev",
-      "stargazerCount": 39191,
+      "stargazerCount": 39190,
       "description": "Presentation Slides for Developers",
       "primaryLanguage": "TypeScript",
       "starredAt": "2025-02-12T19:48:54Z"
@@ -817,7 +818,7 @@
     {
       "nameWithOwner": "huggingface/smolagents",
       "url": "https://github.com/huggingface/smolagents",
-      "stargazerCount": 21771,
+      "stargazerCount": 21772,
       "description": "🤗 smolagents: a barebones library for agents that think in code.",
       "primaryLanguage": "Python",
       "starredAt": "2025-02-07T13:04:09Z"
@@ -865,7 +866,7 @@
     {
       "nameWithOwner": "punkpeye/awesome-mcp-servers",
       "url": "https://github.com/punkpeye/awesome-mcp-servers",
-      "stargazerCount": 64464,
+      "stargazerCount": 64465,
       "description": "A collection of MCP servers.",
       "primaryLanguage": null,
       "starredAt": "2025-02-05T20:04:10Z"
@@ -945,7 +946,7 @@
     {
       "nameWithOwner": "block/goose",
       "url": "https://github.com/block/goose",
-      "stargazerCount": 18010,
+      "stargazerCount": 18011,
       "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
       "primaryLanguage": "Rust",
       "starredAt": "2025-01-30T19:02:12Z"
@@ -1001,7 +1002,7 @@
     {
       "nameWithOwner": "modelcontextprotocol/servers",
       "url": "https://github.com/modelcontextprotocol/servers",
-      "stargazerCount": 62641,
+      "stargazerCount": 62642,
       "description": "Model Context Protocol Servers",
       "primaryLanguage": "TypeScript",
       "starredAt": "2025-01-26T03:25:50Z"
@@ -1057,7 +1058,7 @@
     {
       "nameWithOwner": "anthropics/anthropic-cookbook",
       "url": "https://github.com/anthropics/anthropic-cookbook",
-      "stargazerCount": 18678,
+      "stargazerCount": 18679,
       "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
       "primaryLanguage": "Jupyter Notebook",
       "starredAt": "2025-01-24T21:22:08Z"
@@ -1465,7 +1466,7 @@
     {
       "nameWithOwner": "ItzCrazyKns/Perplexica",
       "url": "https://github.com/ItzCrazyKns/Perplexica",
-      "stargazerCount": 23339,
+      "stargazerCount": 23338,
       "description": "Perplexica is an AI-powered search engine. It is an Open source alternative to Perplexity AI",
       "primaryLanguage": "TypeScript",
       "starredAt": "2024-05-24T06:07:13Z"
@@ -1553,7 +1554,7 @@
     {
       "nameWithOwner": "awesome-selfhosted/awesome-selfhosted",
       "url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
-      "stargazerCount": 239943,
+      "stargazerCount": 239945,
       "description": "A list of Free Software network services and web applications which can be hosted on your own servers",
       "primaryLanguage": null,
       "starredAt": "2024-03-21T02:12:32Z"
@@ -2665,7 +2666,7 @@
     {
       "nameWithOwner": "f/awesome-chatgpt-prompts",
       "url": "https://github.com/f/awesome-chatgpt-prompts",
-      "stargazerCount": 131886,
+      "stargazerCount": 131887,
       "description": "This repo includes ChatGPT prompt curation to use ChatGPT and other LLM tools better.",
       "primaryLanguage": "JavaScript",
       "starredAt": "2023-01-25T11:06:27Z"
@@ -2713,7 +2714,7 @@
     {
       "nameWithOwner": "hotwired/turbo",
       "url": "https://github.com/hotwired/turbo",
-      "stargazerCount": 7077,
+      "stargazerCount": 7078,
       "description": "The speed of a single-page web application without having to write any JavaScript",
       "primaryLanguage": "JavaScript",
       "starredAt": "2022-11-02T12:44:39Z"
@@ -3049,7 +3050,7 @@
     {
       "nameWithOwner": "AUTOMATIC1111/stable-diffusion-webui",
       "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
-      "stargazerCount": 155154,
+      "stargazerCount": 155155,
       "description": "Stable Diffusion web UI",
       "primaryLanguage": "Python",
       "starredAt": "2022-09-15T09:41:35Z"
@@ -3465,7 +3466,7 @@
     {
       "nameWithOwner": "tldraw/tldraw",
       "url": "https://github.com/tldraw/tldraw",
-      "stargazerCount": 41121,
+      "stargazerCount": 41122,
       "description": "very good whiteboard SDK / infinite canvas SDK",
       "primaryLanguage": "TypeScript",
       "starredAt": "2021-12-18T05:14:11Z"
@@ -4641,7 +4642,7 @@
     {
       "nameWithOwner": "caddyserver/caddy",
       "url": "https://github.com/caddyserver/caddy",
-      "stargazerCount": 65919,
+      "stargazerCount": 65920,
       "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
       "primaryLanguage": "Go",
       "starredAt": "2021-03-03T10:20:45Z"
@@ -4929,7 +4930,7 @@
     {
       "nameWithOwner": "excalidraw/excalidraw",
       "url": "https://github.com/excalidraw/excalidraw",
-      "stargazerCount": 104753,
+      "stargazerCount": 104754,
       "description": "Virtual whiteboard for sketching hand-drawn like diagrams",
       "primaryLanguage": "TypeScript",
       "starredAt": "2021-02-12T09:45:54Z"
@@ -5665,7 +5666,7 @@
     {
       "nameWithOwner": "rclone/rclone",
       "url": "https://github.com/rclone/rclone",
-      "stargazerCount": 51784,
+      "stargazerCount": 51785,
       "description": "\"rsync for cloud storage\" - Google Drive, S3, Dropbox, Backblaze B2, One Drive, Swift, Hubic, Wasabi, Google Cloud Storage, Azure Blob, Azure Files, Yandex Files",
       "primaryLanguage": "Go",
       "starredAt": "2020-10-19T01:36:41Z"
@@ -6417,7 +6418,7 @@
     {
       "nameWithOwner": "supabase/supabase",
       "url": "https://github.com/supabase/supabase",
-      "stargazerCount": 86481,
+      "stargazerCount": 86482,
       "description": "The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.",
       "primaryLanguage": "TypeScript",
       "starredAt": "2020-06-02T19:33:37Z"
@@ -7857,7 +7858,7 @@
     {
       "nameWithOwner": "ripienaar/free-for-dev",
       "url": "https://github.com/ripienaar/free-for-dev",
-      "stargazerCount": 108426,
+      "stargazerCount": 108427,
       "description": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
       "primaryLanguage": "HTML",
       "starredAt": "2019-10-28T02:19:57Z"
@@ -8097,7 +8098,7 @@
     {
       "nameWithOwner": "firefly-iii/firefly-iii",
       "url": "https://github.com/firefly-iii/firefly-iii",
-      "stargazerCount": 19957,
+      "stargazerCount": 19958,
       "description": "Firefly III: a personal finances manager",
       "primaryLanguage": "PHP",
       "starredAt": "2019-10-03T03:17:03Z"
@@ -9065,7 +9066,7 @@
     {
       "nameWithOwner": "kubernetes/kubernetes",
       "url": "https://github.com/kubernetes/kubernetes",
-      "stargazerCount": 116654,
+      "stargazerCount": 116655,
       "description": "Production-Grade Container Scheduling and Management",
       "primaryLanguage": "Go",
       "starredAt": "2019-07-16T23:11:17Z"
@@ -10849,7 +10850,7 @@
     {
       "nameWithOwner": "trimstray/the-book-of-secret-knowledge",
       "url": "https://github.com/trimstray/the-book-of-secret-knowledge",
-      "stargazerCount": 180820,
+      "stargazerCount": 180821,
       "description": "A collection of inspiring lists, manuals, cheatsheets, blogs, hacks, one-liners, cli/web tools and more.",
       "primaryLanguage": null,
       "starredAt": "2019-02-25T03:03:10Z"
@@ -11729,7 +11730,7 @@
     {
       "nameWithOwner": "sharkdp/bat",
       "url": "https://github.com/sharkdp/bat",
-      "stargazerCount": 53720,
+      "stargazerCount": 53721,
       "description": "A cat(1) clone with wings.",
       "primaryLanguage": "Rust",
       "starredAt": "2019-01-08T01:25:43Z"
@@ -11913,7 +11914,7 @@
     {
       "nameWithOwner": "developit/htm",
       "url": "https://github.com/developit/htm",
-      "stargazerCount": 8910,
+      "stargazerCount": 8911,
       "description": "Hyperscript Tagged Markup: JSX alternative using standard tagged templates, with compiler support.",
       "primaryLanguage": "JavaScript",
       "starredAt": "2018-12-13T10:36:21Z"
@@ -12865,7 +12866,7 @@
     {
       "nameWithOwner": "browsh-org/browsh",
       "url": "https://github.com/browsh-org/browsh",
-      "stargazerCount": 17709,
+      "stargazerCount": 17708,
       "description": "A fully-modern text-based browser, rendering to TTY and browsers",
       "primaryLanguage": "JavaScript",
       "starredAt": "2018-07-12T22:43:30Z"
@@ -12977,7 +12978,7 @@
     {
       "nameWithOwner": "justadudewhohacks/face-api.js",
       "url": "https://github.com/justadudewhohacks/face-api.js",
-      "stargazerCount": 17406,
+      "stargazerCount": 17407,
       "description": "JavaScript API for face detection and face recognition in the browser and nodejs with tensorflow.js",
       "primaryLanguage": "TypeScript",
       "starredAt": "2018-07-04T00:30:33Z"
@@ -14337,7 +14338,7 @@
     {
       "nameWithOwner": "flutter/flutter",
       "url": "https://github.com/flutter/flutter",
-      "stargazerCount": 171647,
+      "stargazerCount": 171646,
       "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
       "primaryLanguage": "Dart",
       "starredAt": "2018-02-28T18:41:23Z"
@@ -14921,7 +14922,7 @@
     {
       "nameWithOwner": "amark/gun",
       "url": "https://github.com/amark/gun",
-      "stargazerCount": 18523,
+      "stargazerCount": 18524,
       "description": "An open source cybersecurity protocol for syncing decentralized graph data.",
       "primaryLanguage": "JavaScript",
       "starredAt": "2018-01-25T01:23:56Z"
@@ -16201,7 +16202,7 @@
     {
       "nameWithOwner": "tonsky/FiraCode",
       "url": "https://github.com/tonsky/FiraCode",
-      "stargazerCount": 79758,
+      "stargazerCount": 79759,
       "description": "Free monospaced font with programming ligatures",
       "primaryLanguage": "Clojure",
       "starredAt": "2017-10-21T12:10:01Z"
@@ -17617,7 +17618,7 @@
     {
       "nameWithOwner": "ai/nanoid",
       "url": "https://github.com/ai/nanoid",
-      "stargazerCount": 25949,
+      "stargazerCount": 25950,
       "description": "A tiny (124 bytes), secure, URL-friendly, unique string ID generator for JavaScript",
       "primaryLanguage": "JavaScript",
       "starredAt": "2017-09-07T04:50:22Z"
@@ -17985,7 +17986,7 @@
     {
       "nameWithOwner": "torvalds/linux",
       "url": "https://github.com/torvalds/linux",
-      "stargazerCount": 198863,
+      "stargazerCount": 198864,
       "description": "Linux kernel source tree",
       "primaryLanguage": "C",
       "starredAt": "2017-07-19T04:56:43Z"
@@ -18769,7 +18770,7 @@
     {
       "nameWithOwner": "sdmg15/Best-websites-a-programmer-should-visit",
       "url": "https://github.com/sdmg15/Best-websites-a-programmer-should-visit",
-      "stargazerCount": 72286,
+      "stargazerCount": 72287,
       "description": ":link: Some useful websites for programmers.",
       "primaryLanguage": null,
       "starredAt": "2017-06-07T01:35:13Z"
@@ -20001,7 +20002,7 @@
     {
       "nameWithOwner": "microsoft/vscode",
       "url": "https://github.com/microsoft/vscode",
-      "stargazerCount": 175267,
+      "stargazerCount": 175268,
       "description": "Visual Studio Code",
       "primaryLanguage": "TypeScript",
       "starredAt": "2017-03-02T04:47:25Z"
@@ -22153,7 +22154,7 @@
     {
       "nameWithOwner": "react-native-elements/react-native-elements",
       "url": "https://github.com/react-native-elements/react-native-elements",
-      "stargazerCount": 25514,
+      "stargazerCount": 25515,
       "description": "Cross-Platform React Native UI Toolkit",
       "primaryLanguage": "MDX",
       "starredAt": "2016-09-10T08:40:47Z"
@@ -23321,7 +23322,7 @@
     {
       "nameWithOwner": "freeCodeCamp/freeCodeCamp",
       "url": "https://github.com/freeCodeCamp/freeCodeCamp",
-      "stargazerCount": 424969,
+      "stargazerCount": 424970,
       "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
       "primaryLanguage": "TypeScript",
       "starredAt": "2016-04-28T08:57:17Z"
@@ -23433,7 +23434,7 @@
     {
       "nameWithOwner": "kriasoft/react-starter-kit",
       "url": "https://github.com/kriasoft/react-starter-kit",
-      "stargazerCount": 23017,
+      "stargazerCount": 23018,
       "description": "Modern React starter kit with Bun, TypeScript, Tailwind CSS, tRPC, and Cloudflare Workers. Production-ready monorepo for building fast web apps.",
       "primaryLanguage": "TypeScript",
       "starredAt": "2016-04-22T07:24:54Z"
@@ -23777,7 +23778,7 @@
     {
       "nameWithOwner": "sindresorhus/awesome",
       "url": "https://github.com/sindresorhus/awesome",
-      "stargazerCount": 388446,
+      "stargazerCount": 388448,
       "description": "😎 Awesome lists about all kinds of interesting topics",
       "primaryLanguage": null,
       "starredAt": "2016-04-11T00:49:12Z"
@@ -24121,7 +24122,7 @@
     {
       "nameWithOwner": "certbot/certbot",
       "url": "https://github.com/certbot/certbot",
-      "stargazerCount": 32361,
+      "stargazerCount": 32362,
       "description": "Certbot is EFF's tool to obtain certs from Let's Encrypt and (optionally) auto-enable HTTPS on your server.  It can also act as a client for any other CA that uses the ACME protocol.",
       "primaryLanguage": "Python",
       "starredAt": "2016-03-03T01:49:29Z"
@@ -24417,7 +24418,7 @@
     {
       "nameWithOwner": "nodejs/node",
       "url": "https://github.com/nodejs/node",
-      "stargazerCount": 112494,
+      "stargazerCount": 112495,
       "description": "Node.js JavaScript runtime ✨🐢🚀✨",
       "primaryLanguage": "JavaScript",
       "starredAt": "2016-02-22T21:02:26Z"

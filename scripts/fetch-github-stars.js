@@ -31,11 +31,22 @@ if (!GITHUB_TOKEN) {
 }
 
 const forceArg = process.argv.includes('--force')
+const dayInMs = 24 * 60 * 60 * 1000
 
-const dayInMs = 1000 * 60 * 60 * 24 // 1 day in milliseconds
-const isCacheStale =
-  fs.existsSync(CACHE_FILE) &&
-  fs.statSync(CACHE_FILE).mtime.getTime() < Date.now() - dayInMs
+const currentTimestamp = Date.now()
+let isCacheStale = true
+
+if (fs.existsSync(CACHE_FILE)) {
+  try {
+    const cacheContent = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'))
+    if (cacheContent.cacheTimestamp) {
+      isCacheStale = currentTimestamp - cacheContent.cacheTimestamp > dayInMs
+    }
+  } catch (error) {
+    console.warn('Could not parse cache file, treating as stale:', error.message)
+    isCacheStale = true
+  }
+}
 
 // Simple YAML parser for GitHub Linguist languages.yml structure
 function parseLanguageYaml(yamlText) {
@@ -234,6 +245,7 @@ async function main() {
       colours: colours,
       totalCount: transformedStars.length,
       fetchedAt: new Date().toISOString(),
+      cacheTimestamp: Date.now(),
       perPage: PER_PAGE,
       stars: transformedStars,
     }
