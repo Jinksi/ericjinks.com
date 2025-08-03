@@ -1,3 +1,4 @@
+import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
@@ -9,10 +10,20 @@ import tailwind from '@astrojs/tailwind'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ericjinks.com',
-  integrations: [mdx(), sitemap(), react(), svelte(), tailwind({
-    // Apply Tailwind only to React components and MDX files (hybrid approach)
-    applyBaseStyles: false,
-  })],
+  build: {
+    format: 'file',
+  },
+  integrations: [
+    mdx(),
+    sitemap(),
+    react(),
+    svelte(),
+    tailwind({
+      // Apply Tailwind only to React components and MDX files (hybrid approach)
+      applyBaseStyles: false,
+    }),
+    pagefind(),
+  ],
   trailingSlash: 'always',
   markdown: {
     syntaxHighlight: 'shiki',

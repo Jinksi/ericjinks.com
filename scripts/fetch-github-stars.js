@@ -15,7 +15,8 @@ config()
 const GITHUB_TOKEN = process.env.GH_TOKEN
 const USERNAME = 'jinksi'
 const PER_PAGE = 100
-const LINGUIST_YAML_URL = 'https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml'
+const LINGUIST_YAML_URL =
+  'https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml'
 const CACHE_FILE = path.join(
   __dirname,
   '..',
@@ -29,12 +30,30 @@ if (!GITHUB_TOKEN) {
   process.exit(1)
 }
 
+const forceArg = process.argv.includes('--force')
+const dayInMs = 24 * 60 * 60 * 1000
+
+const currentTimestamp = Date.now()
+let isCacheStale = true
+
+if (fs.existsSync(CACHE_FILE)) {
+  try {
+    const cacheContent = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'))
+    if (cacheContent.cacheTimestamp) {
+      isCacheStale = currentTimestamp - cacheContent.cacheTimestamp > dayInMs
+    }
+  } catch (error) {
+    console.warn('Could not parse cache file, treating as stale:', error.message)
+    isCacheStale = true
+  }
+}
+
 // Simple YAML parser for GitHub Linguist languages.yml structure
 function parseLanguageYaml(yamlText) {
   const languages = {}
   const lines = yamlText.split('\n')
   let currentLanguage = null
-  
+
   for (const line of lines) {
     // Match language name (starts at column 0, ends with colon)
     const languageMatch = line.match(/^([^:\s]+):$/)
@@ -43,7 +62,7 @@ function parseLanguageYaml(yamlText) {
       languages[currentLanguage] = {}
       continue
     }
-    
+
     // Match color property (indented, starts with "color:")
     if (currentLanguage && line.match(/^\s+color:\s*["']?([^"'\s]+)["']?/)) {
       const colorMatch = line.match(/^\s+color:\s*["']?([^"'\s]+)["']?/)
@@ -52,23 +71,25 @@ function parseLanguageYaml(yamlText) {
       }
     }
   }
-  
+
   return languages
 }
 
 async function fetchLanguageColors() {
   console.log('Fetching GitHub Linguist language colors...')
-  
+
   try {
     const response = await fetch(LINGUIST_YAML_URL)
     if (!response.ok) {
       throw new Error(`Failed to fetch languages.yml: ${response.status}`)
     }
-    
+
     const yamlText = await response.text()
     const allLanguages = parseLanguageYaml(yamlText)
-    
-    console.log(`Parsed ${Object.keys(allLanguages).length} languages from GitHub Linguist`)
+
+    console.log(
+      `Parsed ${Object.keys(allLanguages).length} languages from GitHub Linguist`
+    )
     return allLanguages
   } catch (error) {
     console.error('Error fetching language colors:', error)
@@ -175,8 +196,14 @@ function transformStarData(stars) {
     .filter(Boolean) // Remove any null entries
 }
 
-
 async function main() {
+  if (isCacheStale || forceArg) {
+    console.log('✨ Github stars cache is stale, fetching new data...')
+  } else {
+    console.log('✨ Github stars cache is up to date, skipping fetch...')
+    return
+  }
+
   try {
     // Ensure data directory exists
     const dataDir = path.dirname(CACHE_FILE)
@@ -187,14 +214,14 @@ async function main() {
     // Fetch both stars and language colors concurrently
     const [allStars, allLanguageColors] = await Promise.all([
       fetchAllStars(),
-      fetchLanguageColors()
+      fetchLanguageColors(),
     ])
-    
+
     const transformedStars = transformStarData(allStars)
 
     // Extract unique languages from the stars data
     const usedLanguages = new Set()
-    transformedStars.forEach(star => {
+    transformedStars.forEach((star) => {
       if (star.primaryLanguage) {
         usedLanguages.add(star.primaryLanguage)
       }
@@ -202,18 +229,23 @@ async function main() {
 
     // Build colors object with only the languages we actually use
     const colours = {}
-    usedLanguages.forEach(language => {
-      if (allLanguageColors[language] && allLanguageColors[language].color) {
-        colours[language] = allLanguageColors[language].color
-      }
-    })
+    Array.from(usedLanguages)
+      .sort()
+      .forEach((language) => {
+        if (allLanguageColors[language] && allLanguageColors[language].color) {
+          colours[language] = allLanguageColors[language].color
+        }
+      })
 
-    console.log(`Using colors for ${Object.keys(colours).length} languages out of ${usedLanguages.size} total languages`)
+    console.log(
+      `Using colors for ${Object.keys(colours).length} languages out of ${usedLanguages.size} total languages`
+    )
 
     const cacheData = {
       colours: colours,
       totalCount: transformedStars.length,
       fetchedAt: new Date().toISOString(),
+      cacheTimestamp: Date.now(),
       perPage: PER_PAGE,
       stars: transformedStars,
     }

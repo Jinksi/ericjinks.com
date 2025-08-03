@@ -5,24 +5,30 @@ import Header from '../../components/Nav.astro'
 import Footer from '../../components/Footer.astro'
 import GitHubStars from '../../components/GitHubStars.astro'
 import StarsPagination from '../../components/StarsPagination.astro'
+import StarsSearch from '../../components/StarsSearch.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import starsData from '../../data/github-stars.json'
 
 export async function getStaticPaths() {
   const { stars } = starsData
-  
+
   // Group stars by year
-  const starsByYear = stars.reduce((acc, star) => {
-    const year = new Date(star.starredAt).getFullYear()
-    if (!acc[year]) {
-      acc[year] = []
-    }
-    acc[year].push(star)
-    return acc
-  }, {} as Record<number, typeof stars>)
+  const starsByYear = stars.reduce(
+    (acc, star) => {
+      const year = new Date(star.starredAt).getFullYear()
+      if (!acc[year]) {
+        acc[year] = []
+      }
+      acc[year].push(star)
+      return acc
+    },
+    {} as Record<number, typeof stars>
+  )
 
   // Get all years and sort them in descending order (most recent first)
-  const years = Object.keys(starsByYear).map(Number).sort((a, b) => b - a)
+  const years = Object.keys(starsByYear)
+    .map(Number)
+    .sort((a, b) => b - a)
 
   return years.map((year) => {
     const yearStars = starsByYear[year]
@@ -32,14 +38,13 @@ export async function getStaticPaths() {
         stars: yearStars,
         currentYear: year,
         years,
-        totalCount: stars.length,
         yearCount: yearStars.length,
       },
     }
   })
 }
 
-const { stars, currentYear, years, totalCount, yearCount } = Astro.props
+const { stars, currentYear, years, yearCount } = Astro.props
 
 if (import.meta.env.PROD) {
   // Set the Netlify on-demand builders TTL for this page to 24 hours
@@ -63,6 +68,8 @@ if (import.meta.env.PROD) {
         <div class="container skinny">
           <h2>Starred GitHub Repos ({currentYear})</h2>
           <p>{yearCount} repositories starred in {currentYear}</p>
+
+          <StarsSearch />
 
           <StarsPagination currentYear={currentYear} years={years} />
 
@@ -105,6 +112,7 @@ if (import.meta.env.PROD) {
           background-color: var(--language-color);
         }
       }
+
     </style>
   </body>
 </html>
