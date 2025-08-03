@@ -30,6 +30,8 @@ if (!GITHUB_TOKEN) {
   process.exit(1)
 }
 
+const forceArg = process.argv.includes('--force')
+
 const dayInMs = 1000 * 60 * 60 * 24 // 1 day in milliseconds
 const isCacheStale =
   fs.existsSync(CACHE_FILE) &&
@@ -184,10 +186,11 @@ function transformStarData(stars) {
 }
 
 async function main() {
-  if (isCacheStale) {
+  if (isCacheStale || forceArg) {
     console.log('✨ Github stars cache is stale, fetching new data...')
   } else {
     console.log('✨ Github stars cache is up to date, skipping fetch...')
+    return
   }
 
   try {
@@ -215,11 +218,13 @@ async function main() {
 
     // Build colors object with only the languages we actually use
     const colours = {}
-    usedLanguages.forEach((language) => {
-      if (allLanguageColors[language] && allLanguageColors[language].color) {
-        colours[language] = allLanguageColors[language].color
-      }
-    })
+    Array.from(usedLanguages)
+      .sort()
+      .forEach((language) => {
+        if (allLanguageColors[language] && allLanguageColors[language].color) {
+          colours[language] = allLanguageColors[language].color
+        }
+      })
 
     console.log(
       `Using colors for ${Object.keys(colours).length} languages out of ${usedLanguages.size} total languages`
