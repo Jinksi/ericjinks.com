@@ -27,6 +27,7 @@
     "@types/react": "^18.2.41",
     "@types/react-dom": "^18.2.17",
     "astro": "^5.12.2",
+    "astro-pagefind": "^1.8.3",
     "canvas-sketch": "^0.7.7",
     "canvas-sketch-util": "^1.10.0",
     "dayjs": "^1.11.10",
