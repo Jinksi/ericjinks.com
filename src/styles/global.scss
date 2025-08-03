@@ -78,7 +78,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection {
+::selection,
+mark {
   background-color: var(--color-highlight);
   color: var(--black);
 }

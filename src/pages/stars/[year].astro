@@ -5,24 +5,30 @@ import Header from '../../components/Nav.astro'
 import Footer from '../../components/Footer.astro'
 import GitHubStars from '../../components/GitHubStars.astro'
 import StarsPagination from '../../components/StarsPagination.astro'
+import Search from 'astro-pagefind/components/Search'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import starsData from '../../data/github-stars.json'
 
 export async function getStaticPaths() {
   const { stars } = starsData
-  
+
   // Group stars by year
-  const starsByYear = stars.reduce((acc, star) => {
-    const year = new Date(star.starredAt).getFullYear()
-    if (!acc[year]) {
-      acc[year] = []
-    }
-    acc[year].push(star)
-    return acc
-  }, {} as Record<number, typeof stars>)
+  const starsByYear = stars.reduce(
+    (acc, star) => {
+      const year = new Date(star.starredAt).getFullYear()
+      if (!acc[year]) {
+        acc[year] = []
+      }
+      acc[year].push(star)
+      return acc
+    },
+    {} as Record<number, typeof stars>
+  )
 
   // Get all years and sort them in descending order (most recent first)
-  const years = Object.keys(starsByYear).map(Number).sort((a, b) => b - a)
+  const years = Object.keys(starsByYear)
+    .map(Number)
+    .sort((a, b) => b - a)
 
   return years.map((year) => {
     const yearStars = starsByYear[year]
@@ -32,14 +38,13 @@ export async function getStaticPaths() {
         stars: yearStars,
         currentYear: year,
         years,
-        totalCount: stars.length,
         yearCount: yearStars.length,
       },
     }
   })
 }
 
-const { stars, currentYear, years, totalCount, yearCount } = Astro.props
+const { stars, currentYear, years, yearCount } = Astro.props
 
 if (import.meta.env.PROD) {
   // Set the Netlify on-demand builders TTL for this page to 24 hours
@@ -63,6 +68,19 @@ if (import.meta.env.PROD) {
         <div class="container skinny">
           <h2>Starred GitHub Repos ({currentYear})</h2>
           <p>{yearCount} repositories starred in {currentYear}</p>
+
+          <div class="textContainer">
+            <div class="search-container">
+              <Search
+                className="pagefind-ui"
+                uiOptions={{
+                  showImages: false,
+                  showSubResults: false,
+                  excerptLength: 30,
+                }}
+              />
+            </div>
+          </div>
 
           <StarsPagination currentYear={currentYear} years={years} />
 
@@ -103,6 +121,37 @@ if (import.meta.env.PROD) {
           border-radius: 50%;
           margin-right: 0.5rem;
           background-color: var(--language-color);
+        }
+      }
+
+      .search-container {
+        margin: 2rem 0;
+        border-radius: 8px;
+
+        --pagefind-ui-scale: 0.9;
+        --pagefind-ui-primary: var(--color-highlight);
+        --pagefind-ui-text: var(--color-text);
+        --pagefind-ui-background: var(--color-background);
+        --pagefind-ui-border: var(--color-lightGrey);
+        --pagefind-ui-tag: transparent;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 4px;
+        --pagefind-ui-image-border-radius: 4px;
+        --pagefind-ui-font: var(--font-system);
+        --pagefind-mark: var(--color-highlight);
+
+        .pagefind-ui__result {
+          padding: calc(10px * var(--pagefind-ui-scale)) 0
+            calc(10px * var(--pagefind-ui-scale));
+          border-top: none;
+        }
+
+        .pagefind-ui__result-title {
+          text-decoration: underline;
+        }
+        .pagefind-ui__result-excerpt mark {
+          background-color: var(--color-highlight-almost-transparent);
+          color: var(--color-highlight);
         }
       }
     </style>
