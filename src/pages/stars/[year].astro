@@ -5,7 +5,7 @@ import Header from '../../components/Nav.astro'
 import Footer from '../../components/Footer.astro'
 import GitHubStars from '../../components/GitHubStars.astro'
 import StarsPagination from '../../components/StarsPagination.astro'
-import Search from 'astro-pagefind/components/Search'
+import StarsSearch from '../../components/StarsSearch.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config'
 import starsData from '../../data/github-stars.json'
 
@@ -69,18 +69,7 @@ if (import.meta.env.PROD) {
           <h2>Starred GitHub Repos ({currentYear})</h2>
           <p>{yearCount} repositories starred in {currentYear}</p>
 
-          <div class="textContainer">
-            <div class="search-container">
-              <Search
-                className="pagefind-ui"
-                uiOptions={{
-                  showImages: false,
-                  showSubResults: false,
-                  excerptLength: 30,
-                }}
-              />
-            </div>
-          </div>
+          <StarsSearch />
 
           <StarsPagination currentYear={currentYear} years={years} />
 
@@ -124,36 +113,6 @@ if (import.meta.env.PROD) {
         }
       }
 
-      .search-container {
-        margin: 2rem 0;
-        border-radius: 8px;
-
-        --pagefind-ui-scale: 0.9;
-        --pagefind-ui-primary: var(--color-highlight);
-        --pagefind-ui-text: var(--color-text);
-        --pagefind-ui-background: var(--color-background);
-        --pagefind-ui-border: var(--color-lightGrey);
-        --pagefind-ui-tag: transparent;
-        --pagefind-ui-border-width: 1px;
-        --pagefind-ui-border-radius: 4px;
-        --pagefind-ui-image-border-radius: 4px;
-        --pagefind-ui-font: var(--font-system);
-        --pagefind-mark: var(--color-highlight);
-
-        .pagefind-ui__result {
-          padding: calc(10px * var(--pagefind-ui-scale)) 0
-            calc(10px * var(--pagefind-ui-scale));
-          border-top: none;
-        }
-
-        .pagefind-ui__result-title {
-          text-decoration: underline;
-        }
-        .pagefind-ui__result-excerpt mark {
-          background-color: var(--color-highlight-almost-transparent);
-          color: var(--color-highlight);
-        }
-      }
     </style>
   </body>
 </html>
