@@ -12,6 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Format**: `npx prettier --write .`
 - **Fetch GitHub stars**: `npm run fetch-stars` (updates cached star data from GitHub REST API)
 - I'll be running the dev server in the background
+- To view GitHub dependabot autodetected vulnerabilities, use 'gh api repos/Jinksi/ericjinks.com/dependabot/alerts'
 
 ## Secrets and Credentials
 
