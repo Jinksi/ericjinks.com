@@ -1,9 +1,9 @@
 ---
-title: 'Vibe coding: adapting from code writers to system designers and verifiers'
+title: 'From code writers to system designers and verifiers'
 pubDate: 2025-08-07
-description: "A summary of a talk by Anthropic's Erik Schluntz"
+description: "A summary of a talk by Anthropic's Erik Schluntz."
 showDate: true
-tags: ai
+tags: ai, system-design
 isDraft: false
 ---
 
