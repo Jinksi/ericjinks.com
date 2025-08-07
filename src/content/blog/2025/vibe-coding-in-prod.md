@@ -19,6 +19,17 @@ Human writes prompt → AI suggests code → Human reviews each line → Human a
 
 Human defines requirements → AI implements solution → Human verifies outputs → System deployed.
 
+## The Exponential Argument
+
+Here's why this matters: according to [research from METR](https://arxiv.org/abs/2503.14499), AI's task completion capability is doubling every seven months. Right now, frontier AI models can reliably complete tasks that take humans about 50 minutes (with 50% success rate). The paper notes that if trends continue, AI could handle month-long human tasks within 5 years.
+
+![AI coding capability doubling every seven months](./measuring_ai_ability_to_complete_long_tasks.png)
+_Source: [Measuring AI's ability to complete long tasks, Kwa et al 2025](https://arxiv.org/abs/2503.14499)_
+
+Early developers probably reviewed compiler-generated assembly code. Now? Nobody does. We trust the abstraction layer. The same will happen with AI-generated code.
+
+> **Update:** Since writing this post yesterday, [OpenAI released GPT-5](https://openai.com/index/introducing-gpt-5/) with state-of-the-art coding abilities, reinforcing this exponential trajectory. While this post references Claude, the principles apply equally to GPT-5, or whatever frontier model emerges next. The specific AI matters less than observing and experiencing this fundamental shift in how we're building software.
+
 ## Being Claude's Product Manager
 
 The key insight: **"Ask not what Claude can do for you, but what you can do for Claude."**
