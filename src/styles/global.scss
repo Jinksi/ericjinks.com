@@ -173,8 +173,14 @@ ul {
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
-  padding-inline-start: 40px;
+  padding-inline-start: 0;
   unicode-bidi: isolate;
+
+  li {
+    &::marker {
+      color: var(--color-highlight);
+    }
+  }
 }
 
 code,
