@@ -173,7 +173,7 @@ ul {
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
-  padding-inline-start: 0;
+  padding-inline-start: 2rem;
   unicode-bidi: isolate;
 
   li {
@@ -257,7 +257,7 @@ section {
 
 ol {
   list-style-type: decimal;
-  padding-left: 0em;
+  padding-left: 2rem;
   margin-bottom: 1rem;
 
   li {
