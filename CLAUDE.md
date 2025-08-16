@@ -117,6 +117,13 @@ Single-user admin authentication with the following components:
   - Type-safe server environment variables with schema validation
   - Required variables: `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SECRET`
 
+- **Rate Limiting**: Handled by Cloudflare at edge level
+  - Requires Cloudflare proxy enabled (orange cloud icon in DNS settings)
+  - Configure rate limiting rules in Cloudflare Dashboard → Security → WAF
+  - Free plan setting: 2 POST requests to `/login` per 10 seconds, block for 10 seconds
+  - Creates cycling blocks for automated attacks while allowing legitimate use
+  - Prevents brute force attacks and conserves Netlify function invocations
+
 ### Testing Strategy
 
 Playwright E2E tests configured to:

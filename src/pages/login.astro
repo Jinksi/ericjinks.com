@@ -5,6 +5,7 @@ import { ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SECRET } from 'astro:env/server'
 export const prerender = false // Enable SSR for authentication logic
 
 // Handle POST request for login
+// Note: Rate limiting handled by Cloudflare at edge level
 if (Astro.request.method === 'POST') {
   try {
     const formData = await Astro.request.formData()
