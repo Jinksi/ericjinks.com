@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:e2e": "playwright test",
-    "fetch-stars": "node scripts/fetch-github-stars.js"
+    "fetch-stars": "node scripts/fetch-github-stars.js",
+    "db:push": "astro db push --remote"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

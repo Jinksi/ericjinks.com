@@ -5,12 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 - **Dev server**: `npm run dev` (starts Astro dev server on localhost:4321)
-- **Build**: `npm run build` (fetches GitHub stars, then generates static site in `dist/`)
+- **Dev server (with DB)**: `npm run dev:remote` (starts dev server with remote database connectivity)
+- **Build**: `npm run build` (fetches GitHub stars, then generates static site in `dist/` with remote DB)
 - **Preview**: `npm run preview` (serves built site for testing)
 - **Tests**: `npm run test:e2e` (runs Playwright E2E tests)
 - **Single test**: `npx playwright test tests/specific-test.spec.ts`
 - **Format**: `npx prettier --write .`
 - **Fetch GitHub stars**: `npm run fetch-stars` (updates cached star data from GitHub REST API)
+- **Database push**: `npm run db:push` (pushes local schema changes to remote database)
 - I'll be running the dev server in the background
 - To view GitHub dependabot autodetected vulnerabilities, use 'gh api repos/Jinksi/ericjinks.com/dependabot/alerts'
 
@@ -26,6 +28,7 @@ This is a personal blog/portfolio website built with **Astro** as the primary fr
 
 ### Tech Stack
 - **Framework**: Astro 5.x (static site generation with hybrid SSR)
+- **Database**: Astro DB (LibSQL/SQLite with local development and remote production)
 - **UI Libraries**: React 18, Svelte 5, TypeScript
 - **Content**: Astro Content Collections with Zod schema validation
 - **Styling**: SCSS with CSS custom properties, dark/light theme support
@@ -45,6 +48,10 @@ This is a personal blog/portfolio website built with **Astro** as the primary fr
   - `react/` subdirectory for React components requiring client-side interactivity
   - `ml/` subdirectory for TensorFlow.js machine learning demos
 
+- **`src/actions/`**: Astro Actions (server-side functions)
+  - `index.ts` - Type-safe server actions for database operations
+  - Exports `getCounter` and `incrementCounter` actions for admin functionality
+
 - **`src/sketches/`**: Canvas-based generative art using canvas-sketch library
   - Each sketch has corresponding `.ts`/`.tsx` file and MDX content file
   - Uses Two.js, canvas-sketch, and custom Vector utilities
@@ -62,8 +69,12 @@ This is a personal blog/portfolio website built with **Astro** as the primary fr
     - Fetched via REST API using `scripts/fetch-github-stars.js`
   - **Authentication**: 
     - `/login/` - Admin login page with form-based authentication
-    - `/admin/` - Protected admin dashboard (requires authentication)
+    - `/admin/` - Protected admin dashboard with interactive counter functionality
     - `/api/logout/` - Logout endpoint supporting both GET and POST requests
+
+- **`db/`**: Database configuration and seeding
+  - `config.ts` - Astro DB schema definition with Counter table
+  - `seed.ts` - Database seeding script for initial data
 
 ### Content Management
 
@@ -123,6 +134,36 @@ Single-user admin authentication with the following components:
   - Free plan setting: 2 POST requests to `/login` per 10 seconds, block for 10 seconds
   - Creates cycling blocks for automated attacks while allowing legitimate use
   - Prevents brute force attacks and conserves Netlify function invocations
+
+### Database System
+
+Astro DB integration for persistent data storage:
+
+- **Database Engine**: LibSQL (SQLite-compatible) with local development and remote production
+- **Schema Definition** (`db/config.ts`): 
+  - `Counter` table with `id` (text, primary key), `name` (text, unique), `count` (number, default 0)
+  - Uses Astro's `defineDb` and `defineTable` for type-safe schema definitions
+  
+- **Data Seeding** (`db/seed.ts`):
+  - Initialises database with `adminCounter` starting at 0
+  - Uses `crypto.randomUUID()` for unique ID generation
+  
+- **Server Actions** (`src/actions/index.ts`):
+  - Type-safe server-side functions using Astro Actions
+  - `getCounter`: Retrieves counter by name with error handling
+  - `incrementCounter`: Atomically increments counter value and returns new count
+  - Uses Drizzle ORM queries with `eq()` for safe SQL operations
+  
+- **Development Setup**:
+  - Local SQLite database for development (`npm run dev`)
+  - Remote database connectivity for production builds (`npm run dev:remote`, `npm run build`)
+  - Schema changes pushed to remote with `npm run db:push`
+  - Automatic table creation and seeding on first run
+
+- **Client Integration**:
+  - Admin dashboard uses `Astro.callAction()` for server-side data fetching
+  - Client-side JavaScript calls actions for interactive updates
+  - Seamless hydration between server and client state
 
 ### Testing Strategy
 
