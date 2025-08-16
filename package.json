@@ -5,16 +5,19 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "dev:remote": "astro dev --remote",
     "start": "astro dev",
-    "build": "npm run fetch-stars && astro build && npm run build:pagefind",
+    "build": "npm run fetch-stars && astro build --remote && npm run build:pagefind",
     "build:pagefind": "node scripts/index-github-stars.js",
     "preview": "astro preview",
     "astro": "astro",
     "test:e2e": "playwright test",
-    "fetch-stars": "node scripts/fetch-github-stars.js"
+    "fetch-stars": "node scripts/fetch-github-stars.js",
+    "db:push": "astro db push --remote"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/db": "^0.17.1",
     "@astrojs/mdx": "^4.3.1",
     "@astrojs/netlify": "^6.5.2",
     "@astrojs/react": "^4.3.0",
