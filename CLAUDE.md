@@ -20,6 +20,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - The GH_TOKEN is in the `.env` file
 - Authentication credentials (ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SECRET) are in `.env`
+- Database credentials (ASTRO_DB_REMOTE_URL, ASTRO_DB_APP_TOKEN) are in `.env` for Turso integration
 - Uses Astro 5.x `astro:env` system for type-safe environment variable access
 
 ## Architecture Overview
@@ -159,6 +160,13 @@ Astro DB integration for persistent data storage:
   - Remote database connectivity for production builds (`npm run dev:remote`, `npm run build`)
   - Schema changes pushed to remote with `npm run db:push`
   - Automatic table creation and seeding on first run
+
+- **Remote Database (Turso)**:
+  - **Required Environment Variables**:
+    - `ASTRO_DB_REMOTE_URL`: Connection URL to LibSQL database (e.g., `libsql://your-db.turso.io`)
+    - `ASTRO_DB_APP_TOKEN`: Authentication token for remote database access
+  - Setup via [Turso](https://turso.tech/) for production LibSQL hosting
+  - Compatible with Astro DB's LibSQL adapter for seamless local/remote development
 
 - **Client Integration**:
   - Admin dashboard uses `Astro.callAction()` for server-side data fetching
