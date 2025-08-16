@@ -1,6 +1,7 @@
 import pagefind from 'astro-pagefind'
 import { defineConfig, envField } from 'astro/config'
 
+import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
 import netlify from '@astrojs/netlify'
 import react from '@astrojs/react'
@@ -24,6 +25,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     pagefind(),
+    db(),
   ],
   trailingSlash: 'always',
   markdown: {
@@ -49,17 +51,17 @@ export default defineConfig({
     schema: {
       ADMIN_USERNAME: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
       }),
       ADMIN_PASSWORD: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
       }),
       ADMIN_SECRET: envField.string({
         context: 'server',
-        access: 'secret'
-      })
+        access: 'secret',
+      }),
     },
-    validateSecrets: true
-  }
+    validateSecrets: true,
+  },
 })
