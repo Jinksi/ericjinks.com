@@ -19,37 +19,50 @@ Implement a secure, cookie-based authentication system for **single-user admin a
 - **Authentication Method:** Username/password with simple session tokens
 - **Session Storage:** HTTP-only cookies with secure random tokens (no JWT complexity)
 - **Route Protection:** Astro middleware for `/admin/*` paths
+- **Rendering Strategy:** Modern Astro 5.x hybrid approach using `output: 'static'` + adapter
 - **Deployment:** Netlify with environment variables
 - **Security:** HTTPS enforcement, secure cookie flags, token expiration
 - **Scope:** Single admin user system - simple and effective
+
+### Rendering Mode Rationale
+
+Astro 5.0+ simplified hybrid rendering by removing the explicit "hybrid" mode. The new approach:
+
+- **Global Config:** `output: 'static'` (default) with Netlify adapter configured
+- **Performance:** Most pages stay static for optimal performance
+- **Selective SSR:** Auth pages use `export const prerender = false` for server-side rendering
+- **Best of Both:** Static performance + dynamic auth functionality when needed
+
+This gives us hybrid behavior without complex configuration - static pages by default, with server-side rendering only where authentication is required.
 
 ## Project Configuration Analysis
 
 ### Current Setup
 
-- ✅ Astro v5.12.2 (compatible)
+- ✅ Astro v5.12.2 (compatible with modern hybrid approach)
 - ✅ `@astrojs/netlify` adapter installed
 - ✅ TypeScript project setup
-- ⚠️ Currently `output: 'static'` - needs hybrid/server mode
-- ⚠️ Netlify adapter not configured in astro.config.mjs
+- ✅ `output: 'static'` configured with Netlify adapter (modern hybrid approach)
+- ✅ Configuration builds successfully
+- ✅ Ready for selective SSR using `export const prerender = false`
 
 ### Required Changes
 
-- [ ] Update `astro.config.mjs` for hybrid rendering + Netlify adapter
-- [ ] Install JWT library (`jose`)
-- [ ] Add crypto utilities if needed
+- [x] ~~Update `astro.config.mjs` for hybrid rendering + Netlify adapter~~ ✅ **Completed**
+- [ ] ~~Install JWT library (`jose`)~~ ❌ **Not needed** (using Node.js crypto)
+- [ ] ~~Add crypto utilities if needed~~ ✅ **Node.js built-in crypto sufficient**
 
 ## Implementation Checklist
 
 ### Phase 1: Project Configuration
 
-- [ ] **Update astro.config.mjs**
-  - [ ] Configure `@astrojs/netlify` adapter
-  - [ ] Enable hybrid/server rendering for auth pages
-  - [ ] Test configuration builds successfully
+- [x] **Update astro.config.mjs** ✅ **Completed**
+  - [x] Configure `@astrojs/netlify` adapter ✅
+  - [x] Enable modern hybrid rendering (static + adapter) ✅
+  - [x] Test configuration builds successfully ✅
 - [ ] **Check dependencies**
   - [ ] Verify Node.js crypto module availability (built-in)
-  - [ ] No external auth libraries needed for simple token approach
+  - [x] No external auth libraries needed for simple token approach ✅
 - [ ] **Environment setup**
   - [ ] Create `.env` with auth variables
   - [ ] Verify `.env` in `.gitignore`
@@ -149,7 +162,7 @@ ADMIN_SECRET=your-long-random-secret-key-32-chars-minimum
 
 ### Modified Files
 
-- `astro.config.mjs` - Add adapter and hybrid rendering
+- `astro.config.mjs` - ✅ **Completed** - Added Netlify adapter with modern static + selective SSR approach
 - `.env` - Add authentication variables
 - No external dependencies required (uses Node.js built-in crypto)
 
