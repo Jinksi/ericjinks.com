@@ -17,18 +17,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Secrets and Credentials
 
 - The GH_TOKEN is in the `.env` file
+- Authentication credentials (ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SECRET) are in `.env`
+- Uses Astro 5.x `astro:env` system for type-safe environment variable access
 
 ## Architecture Overview
 
 This is a personal blog/portfolio website built with **Astro** as the primary framework, using selective hydration with React and Svelte components.
 
 ### Tech Stack
-- **Framework**: Astro 5.x (static site generation)
+- **Framework**: Astro 5.x (static site generation with hybrid SSR)
 - **UI Libraries**: React 18, Svelte 5, TypeScript
 - **Content**: Astro Content Collections with Zod schema validation
 - **Styling**: SCSS with CSS custom properties, dark/light theme support
 - **Testing**: Playwright for E2E tests
-- **Deployment**: Netlify (static hosting)
+- **Deployment**: Netlify (static hosting with serverless functions)
+- **Authentication**: Single-user admin system with HTTPOnly cookies and session tokens
 
 ### Key Directories
 
@@ -57,6 +60,10 @@ This is a personal blog/portfolio website built with **Astro** as the primary fr
     - `/stars/` redirects to current year
     - Data cached in `src/data/github-stars.json` at build time
     - Fetched via REST API using `scripts/fetch-github-stars.js`
+  - **Authentication**: 
+    - `/login/` - Admin login page with form-based authentication
+    - `/admin/` - Protected admin dashboard (requires authentication)
+    - `/api/logout/` - Logout endpoint supporting both GET and POST requests
 
 ### Content Management
 
@@ -77,6 +84,7 @@ Content is managed through Astro Content Collections with strict TypeScript sche
 - React components in `src/components/react/` use `client:only="react"` for client-side features
 - Svelte components for specific interactive elements
 - TensorFlow.js demos use selective hydration for performance
+- Authentication pages use `export const prerender = false` for server-side rendering
 
 ### Styling System
 
@@ -85,6 +93,29 @@ Content is managed through Astro Content Collections with strict TypeScript sche
 - CSS custom properties for theming
 - Modern-normalize for consistent cross-browser styling
 - Fira Code font for code blocks
+
+### Authentication System
+
+Single-user admin authentication with the following components:
+
+- **Middleware** (`src/middleware.ts`): Route protection for `/admin/*` paths
+  - Uses timing-safe token validation to prevent timing attacks
+  - Redirects unauthenticated users to login with return URL
+  - Adds auth context to `Astro.locals` for use in pages
+
+- **Login** (`src/pages/login.astro`): Form-based authentication
+  - Server-side credential validation using `astro:env/server`
+  - Generates session tokens with format: `username|timestamp|hash`
+  - Sets HTTPOnly cookies for security (secure in production)
+
+- **Session Management**: 
+  - Session tokens use SHA-256 hash with secret and timestamp
+  - 24-hour token expiration
+  - URL-safe delimiter (`|`) to handle email addresses in usernames
+
+- **Environment Variables**: Uses Astro 5.x `astro:env` system
+  - Type-safe server environment variables with schema validation
+  - Required variables: `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SECRET`
 
 ### Testing Strategy
 
