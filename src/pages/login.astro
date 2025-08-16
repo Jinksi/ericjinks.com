@@ -43,7 +43,7 @@ if (Astro.request.method === 'POST') {
         httpOnly: true,
         secure: isProduction, // HTTPS only in production
         sameSite: 'lax',
-        maxAge: 24 * 60 * 60, // 24 hours
+        maxAge: 30 * 24 * 60 * 60, // 1 month
         path: '/'
       })
       

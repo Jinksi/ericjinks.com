@@ -110,7 +110,7 @@ Single-user admin authentication with the following components:
 
 - **Session Management**: 
   - Session tokens use SHA-256 hash with secret and timestamp
-  - 24-hour token expiration
+  - 1 month token expiration
   - URL-safe delimiter (`|`) to handle email addresses in usernames
 
 - **Environment Variables**: Uses Astro 5.x `astro:env` system

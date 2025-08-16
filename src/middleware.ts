@@ -39,10 +39,10 @@ function validateSessionToken(token: string): boolean {
       Buffer.from(expectedHash, 'hex')
     )
     
-    // Check if token is not expired (24 hours)
+    // Check if token is not expired (1 month)
     const tokenTime = parseInt(timestamp, 10)
     const now = Date.now()
-    const isNotExpired = (now - tokenTime) < (24 * 60 * 60 * 1000)
+    const isNotExpired = (now - tokenTime) < (30 * 24 * 60 * 60 * 1000)
     
     return isValidHash && isNotExpired
   } catch (error) {

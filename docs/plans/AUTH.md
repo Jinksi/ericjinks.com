@@ -110,7 +110,7 @@ This gives us hybrid behavior without complex configuration - static pages by de
   - [x] Test login with incorrect credentials ✅ (Playwright test passing)
   - [x] Test accessing admin pages without authentication ✅ (Playwright test passing)
   - [x] Test logout functionality ✅ (Playwright test passing)
-  - [ ] Test session expiration ⏳ (24-hour tokens working, automated test pending)
+  - [ ] Test session expiration ⏳ (1 month tokens working, automated test pending)
   - [x] Test middleware redirection ✅ (Playwright test passing)
 - [x] **Automated testing** ✅ **Completed**
   - [x] Create Playwright test suite for authentication ✅
@@ -122,7 +122,7 @@ This gives us hybrid behavior without complex configuration - static pages by de
 - [x] **Security validation** ✅ **Completed**
   - [x] Verify cookies set with `httpOnly: true` ✅ (Code review confirmed)
   - [x] Ensure `secure: true` in production ✅ (Environment-based configuration)
-  - [x] Test session token expiration ✅ (24-hour expiration implemented)
+  - [x] Test session token expiration ✅ (1 month expiration implemented)
   - [x] Verify protected routes redirect properly ✅ (Playwright tests verified)
   - [x] Check for any sensitive data exposure ✅ (Automated test confirmed)
   - [x] Implement Cloudflare rate limiting documentation ✅
@@ -172,7 +172,7 @@ For production deployment, configure these environment variables in Netlify:
 
 - **Simple but Secure:** Single admin user = simpler security model
 - **Password Security:** Simple string comparison (appropriate for single-user system, avoids timing attack complexity)
-- **Session Management:** Simple token expiration (24-hour default, configurable)
+- **Session Management:** Simple token expiration (1 month default, configurable)
 - **Token Generation:** Cryptographically secure random tokens (Node.js crypto module)
 - **HTTPS:** Enforce secure cookies in production
 - **Rate Limiting:** Implemented via Cloudflare edge-level protection (documented)
@@ -210,7 +210,7 @@ For production deployment, configure these environment variables in Netlify:
 - Can log in with correct credentials
 - Cannot access admin pages without authentication
 - Can log out successfully
-- Session expires after 24 hours
+- Session expires after 1 month
 
 ✅ **Security Standards:**
 
