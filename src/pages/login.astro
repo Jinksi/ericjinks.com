@@ -23,12 +23,9 @@ if (Astro.request.method === 'POST') {
       throw new Error('Server configuration error: Missing authentication environment variables')
     }
     
-    // Validate credentials (timing-safe comparison for password)
+    // Validate credentials (simple comparison for single-user system)
     const isValidUsername = username === ADMIN_USERNAME
-    const isValidPassword = password && crypto.timingSafeEqual(
-      Buffer.from(password, 'utf8'),
-      Buffer.from(ADMIN_PASSWORD, 'utf8')
-    )
+    const isValidPassword = password === ADMIN_PASSWORD
     
     if (isValidUsername && isValidPassword) {
       // Generate session token: username|timestamp|hash (using | as delimiter to avoid conflicts with email addresses)

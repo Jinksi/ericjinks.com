@@ -99,12 +99,12 @@ Content is managed through Astro Content Collections with strict TypeScript sche
 Single-user admin authentication with the following components:
 
 - **Middleware** (`src/middleware.ts`): Route protection for `/admin/*` paths
-  - Uses timing-safe token validation to prevent timing attacks
+  - Session token validation using secure hash comparison
   - Redirects unauthenticated users to login with return URL
   - Adds auth context to `Astro.locals` for use in pages
 
 - **Login** (`src/pages/login.astro`): Form-based authentication
-  - Server-side credential validation using `astro:env/server`
+  - Simple credential validation using `astro:env/server` (appropriate for single-user system)
   - Generates session tokens with format: `username|timestamp|hash`
   - Sets HTTPOnly cookies for security (secure in production)
 
@@ -128,9 +128,10 @@ Single-user admin authentication with the following components:
 
 Playwright E2E tests configured to:
 - Test against Chromium, Firefox, and WebKit
-- Run against built site (`npm run preview`)
+- Run against dev server (`npm run dev`) for authentication testing
 - Generate HTML reports in `playwright-report/`
 - Retry failed tests on CI environments
+- Authentication security tests in `tests/auth.spec.ts` (8 comprehensive tests)
 - Visual regression playwright tests are located in `@tests/visual-regression.spec.ts`
 
 ## Code Style Guidelines
