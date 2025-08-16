@@ -1,0 +1,115 @@
+---
+export const prerender = false // Enable SSR for authentication
+
+// Get auth context from middleware
+const auth = Astro.locals.auth
+const user = auth?.user
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Eric Jinks</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #f8fafc;
+        margin: 0;
+        padding: 2rem;
+        line-height: 1.6;
+        color: #374151;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: #1f2937;
+        font-size: 1.5rem;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-badge {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .logout-button {
+        background: #dc2626;
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .logout-button:hover {
+        background: #b91c1c;
+      }
+
+
+      .back-link {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .back-link a {
+        color: #6b7280;
+        text-decoration: none;
+        font-size: 0.875rem;
+      }
+
+      .back-link a:hover {
+        color: #374151;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Admin Dashboard</h1>
+        <div class="user-info">
+          <span class="user-badge">
+            {user?.username || 'Admin'}
+          </span>
+          <a href="/api/logout/" class="logout-button"> Logout</a>
+        </div>
+      </header>
+
+
+      <div class="back-link">
+        <a href="/">&larr; Back to website</a>
+      </div>
+    </div>
+  </body>
+</html>
