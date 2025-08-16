@@ -1,5 +1,5 @@
 import pagefind from 'astro-pagefind'
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
 import netlify from '@astrojs/netlify'
@@ -45,4 +45,21 @@ export default defineConfig({
   },
   output: 'static',
   adapter: netlify(),
+  env: {
+    schema: {
+      ADMIN_USERNAME: envField.string({
+        context: 'server',
+        access: 'secret'
+      }),
+      ADMIN_PASSWORD: envField.string({
+        context: 'server',
+        access: 'secret'
+      }),
+      ADMIN_SECRET: envField.string({
+        context: 'server',
+        access: 'secret'
+      })
+    },
+    validateSecrets: true
+  }
 })

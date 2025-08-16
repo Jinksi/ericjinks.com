@@ -1,0 +1,225 @@
+---
+import crypto from 'node:crypto'
+import { ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SECRET } from 'astro:env/server'
+
+export const prerender = false // Enable SSR for authentication logic
+
+// Handle POST request for login
+if (Astro.request.method === 'POST') {
+  try {
+    const formData = await Astro.request.formData()
+    const username = formData.get('username')?.toString()
+    const password = formData.get('password')?.toString()
+    const returnUrl = formData.get('return')?.toString() || '/admin/'
+    
+    // Validate credentials against environment variables (imported from astro:env/server)
+    if (!ADMIN_USERNAME || !ADMIN_PASSWORD || !ADMIN_SECRET) {
+      console.error('Missing environment variables:', {
+        hasUsername: !!ADMIN_USERNAME,
+        hasPassword: !!ADMIN_PASSWORD,
+        hasSecret: !!ADMIN_SECRET
+      })
+      throw new Error('Server configuration error: Missing authentication environment variables')
+    }
+    
+    // Validate credentials (timing-safe comparison for password)
+    const isValidUsername = username === ADMIN_USERNAME
+    const isValidPassword = password && crypto.timingSafeEqual(
+      Buffer.from(password, 'utf8'),
+      Buffer.from(ADMIN_PASSWORD, 'utf8')
+    )
+    
+    if (isValidUsername && isValidPassword) {
+      // Generate session token: username|timestamp|hash (using | as delimiter to avoid conflicts with email addresses)
+      const timestamp = Date.now().toString()
+      const hash = crypto
+        .createHash('sha256')
+        .update(`${username}|${timestamp}|${ADMIN_SECRET}`)
+        .digest('hex')
+      
+      const sessionToken = `${username}|${timestamp}|${hash}`
+      
+      // Set secure HTTP-only cookie
+      const isProduction = process.env.NODE_ENV === 'production'
+      Astro.cookies.set('session', sessionToken, {
+        httpOnly: true,
+        secure: isProduction, // HTTPS only in production
+        sameSite: 'lax',
+        maxAge: 24 * 60 * 60, // 24 hours
+        path: '/'
+      })
+      
+      // Redirect to admin area or return URL
+      return Astro.redirect(returnUrl)
+    } else {
+      // Invalid credentials - set error message
+      Astro.locals.error = 'Invalid username or password'
+    }
+  } catch (error) {
+    console.error('Login error:', error)
+    Astro.locals.error = 'Login failed. Please try again.'
+  }
+}
+
+// Get return URL from query parameter
+const url = new URL(Astro.request.url)
+const returnUrl = url.searchParams.get('return') || '/admin/'
+const errorMessage = Astro.locals.error
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Eric Jinks</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .login-title {
+      margin: 0 0 1.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1f2937;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #374151;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+    }
+    
+    .login-button {
+      width: 100%;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    
+    .login-button:hover {
+      background: #2563eb;
+    }
+    
+    .login-button:active {
+      background: #1d4ed8;
+    }
+    
+    .error-message {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+    
+    .back-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    
+    .back-link a {
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+    
+    .back-link a:hover {
+      color: #374151;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="login-title">Admin Login</h1>
+    
+    {errorMessage && (
+      <div class="error-message">
+        {errorMessage}
+      </div>
+    )}
+    
+    <form method="POST">
+      <input type="hidden" name="return" value={returnUrl} />
+      
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          required 
+          class="form-input"
+          autocomplete="username"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          required 
+          class="form-input"
+          autocomplete="current-password"
+        />
+      </div>
+      
+      <button type="submit" class="login-button">
+        Sign In
+      </button>
+    </form>
+    
+    <div class="back-link">
+      <a href="/">&larr; Back to website</a>
+    </div>
+  </div>
+</body>
+</html>
