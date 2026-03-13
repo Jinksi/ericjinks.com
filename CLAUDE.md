@@ -11,14 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Single test**: `npx playwright test tests/specific-test.spec.ts`
 - **Format**: `npx prettier --write .`
 - **Fetch GitHub stars**: `npm run fetch-stars` (updates cached star data from GitHub REST API)
-- I'll be running the dev server in the background
-- To view GitHub dependabot autodetected vulnerabilities, use 'gh api repos/Jinksi/ericjinks.com/dependabot/alerts'
 
 ## Secrets and Credentials
 
-- The GH_TOKEN is in the `.env` file
-- Authentication credentials (ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SECRET) are in `.env`
-- Uses Astro 5.x `astro:env` system for type-safe environment variable access
+- Secrets are expected via local environment variables
+- Admin authentication uses Astro's server-only env support
 
 ## Architecture Overview
 
@@ -81,7 +78,7 @@ Content is managed through Astro Content Collections with strict TypeScript sche
 ### Component Hydration Strategy
 
 - Most components are static Astro components for performance
-- React components in `src/components/react/` use `client:only="react"` for client-side features
+- Client-side interactivity uses Astro hydration directives where needed
 - Svelte components for specific interactive elements
 - TensorFlow.js demos use selective hydration for performance
 - Authentication pages use `export const prerender = false` for server-side rendering
@@ -117,12 +114,7 @@ Single-user admin authentication with the following components:
   - Type-safe server environment variables with schema validation
   - Required variables: `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SECRET`
 
-- **Rate Limiting**: Handled by Cloudflare at edge level
-  - Requires Cloudflare proxy enabled (orange cloud icon in DNS settings)
-  - Configure rate limiting rules in Cloudflare Dashboard → Security → WAF
-  - Free plan setting: 2 POST requests to `/login` per 10 seconds, block for 10 seconds
-  - Creates cycling blocks for automated attacks while allowing legitimate use
-  - Prevents brute force attacks and conserves Netlify function invocations
+- **Rate Limiting**: Expected to be handled at the hosting or edge layer
 
 ### Testing Strategy
 
@@ -131,8 +123,7 @@ Playwright E2E tests configured to:
 - Run against dev server (`npm run dev`) for authentication testing
 - Generate HTML reports in `playwright-report/`
 - Retry failed tests on CI environments
-- Authentication security tests in `tests/auth.spec.ts` (8 comprehensive tests)
-- Visual regression playwright tests are located in `@tests/visual-regression.spec.ts`
+- Includes authentication, search, index, and visual regression coverage in `tests/`
 
 ## Code Style Guidelines
 
