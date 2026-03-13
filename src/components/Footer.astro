@@ -4,8 +4,10 @@ import GithubIcon from './GithubIcon.astro'
 
 <footer>
   <div class="inner">
-    <GithubIcon />
-    <a href="https://github.com/jinksi/ericjinks.com"> View source on GitHub</a>
+    <a class="source-link" href="https://github.com/jinksi/ericjinks.com">
+      <GithubIcon />
+      <span>View source on GitHub</span>
+    </a>
   </div>
 </footer>
 <style>
@@ -20,8 +22,10 @@ import GithubIcon from './GithubIcon.astro'
     text-align: center;
   }
 
-  a {
-    margin-left: 0.2em;
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
   }
 </style>
 <script>
