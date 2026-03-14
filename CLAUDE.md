@@ -125,6 +125,33 @@ Playwright E2E tests configured to:
 - Retry failed tests on CI environments
 - Includes authentication, search, index, and visual regression coverage in `tests/`
 
+## Design Context
+
+### Users
+A personal blog and creative outlet. Primary audience is Eric himself; secondary audience is fellow developers who stumble across it. Visitors are technically literate. The site covers writing, generative art sketches, and curated GitHub stars.
+
+### Brand Personality
+**Calm, sharp, curious.** The site should feel like a deliberate artefact, not a flashy portfolio. Design is subordinate to content.
+
+### Tone
+Understated. Let the work speak for itself — no loud self-promotion, no hype.
+
+### Aesthetic Direction
+**Writing-first minimalism.** Strong references:
+- **leerob.com/writing** — minimal personal feel, generous whitespace, clean dark aesthetic
+- **rauchg.com** — extreme restraint, year-based content organisation on the index
+- **t3.gg/blog** — minimal writing-first technical blog (but avoid monospace for body text)
+- **kentcdodds.com** — clear code presentation for technical content
+
+**Anti-patterns to avoid:** monospace fonts for body reading, heavy decorative elements, cluttered layouts, aggressive self-promotion, busy backgrounds.
+
+### Design Principles
+1. **Content supremacy** — Typography and whitespace do the heavy lifting. UI chrome stays invisible.
+2. **Restraint over decoration** — Every visual element must earn its place. Default to removing, not adding.
+3. **System-native by default** — System font stack for reading (not monospace). Fira Code only for actual code.
+4. **Purposeful accent** — The green accent (`hsl(149, 74%, 61%)`) is used sparingly to guide attention, not to decorate.
+5. **Craft in the details** — Subtle transitions (0.15s), careful spacing, and consistent micro-interactions signal quality without announcing it.
+
 ## Code Style Guidelines
 
 - **TypeScript**: Strict mode enabled, prefer interfaces over types
