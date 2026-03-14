@@ -202,6 +202,7 @@ pre {
   overflow: auto;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
+  font-size: 0.85em;
 
   code,
   output {
@@ -371,13 +372,8 @@ tbody {
 
   & > pre[class*='astro-code'] {
     background: var(--color-code);
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-
-    @media (min-width: 800px) {
-      margin-left: -7vw;
-      margin-right: -7vw;
-    }
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 }
 
