@@ -9,7 +9,8 @@ const isHome = Astro.url.pathname === '/'
 const mostRecentStarYear = getMostRecentStarYear()
 ---
 
-<header>
+<header class="site-header" style="padding: 4rem 0 2rem">
+  <div class="container">
   <nav class="textContainer auto">
     <a class="site-title" href="/">
       <AnimatedTitle
@@ -29,13 +30,10 @@ const mostRecentStarYear = getMostRecentStarYear()
     </div>
     <NavIconButtons />
   </nav>
+  </div>
 </header>
 
 <style>
-  header {
-    padding: 4rem 0 0 0;
-  }
-
   a {
     text-decoration: none;
   }

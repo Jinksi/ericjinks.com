@@ -37,28 +37,23 @@ const {
     <Header />
     <main>
       <article>
-        <header>
+        <header class="post-header">
           <div class="container">
-            <div class="">
-              <h1>{title}</h1>
-              <PostTags tags={tags} showDraftTag={isDraft} renderAsLinks />
-
-              <div class="postmeta">
-                {
-                  showDate && !!pubDate && (
-                    <time datetime={pubDate.toDateString()}>
-                      {formatDate(pubDate.toString())}
-                    </time>
-                  )
-                }
-                {
-                  isDraft && (
-                    <p class="draft-notice">
-                      <em>⚠️ This is a work in progress...</em>
-                    </p>
-                  )
-                }
+            <div class="textContainer auto">
+              <div class="post-meta">
+                {showDate && !!pubDate && (
+                  <time datetime={pubDate.toDateString()}>
+                    {formatDate(pubDate.toString())}
+                  </time>
+                )}
+                <PostTags tags={tags} renderAsLinks />
               </div>
+              <h1>{title}</h1>
+              {isDraft && (
+                <p class="draft-notice">
+                  <em>⚠️ This is a work in progress...</em>
+                </p>
+              )}
             </div>
           </div>
         </header>
@@ -83,66 +78,42 @@ const {
 
     <Footer />
     <style>
-      article {
-        padding-top: 40px;
-      }
-      header {
-        overflow: hidden;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
+      .post-header {
+        padding: 1rem 0 2rem;
       }
 
       h1 {
-        font-size: 3rem;
-        line-height: 1.2;
-        position: relative;
+        font-size: 2rem;
+        line-height: 1.3;
+        font-weight: 700;
+        margin: 0.25rem 0 0;
       }
 
-      @media (min-width: 450px) {
+      @media (min-width: 600px) {
         h1 {
-          font-size: 3.5rem;
+          font-size: 2.5rem;
         }
       }
-      @media (min-width: 880px) {
-        h1 {
-          font-size: 4rem;
-        }
-      }
+
       .post-meta {
-        font-size: 2.1rem;
-        font-weight: 200;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
         display: flex;
         align-items: center;
-        flex-direction: column;
+        gap: 1rem;
+        font-size: 0.85em;
+        font-weight: 300;
+        opacity: 0.5;
       }
 
-      .post-meta-sep {
-        display: none;
-      }
-
-      @media (min-width: 500px) {
-        .post-meta {
-          flex-direction: row;
-        }
-
-        .post-meta > * + * {
-          margin-left: 0.7em;
-        }
-
-        .post-meta-sep {
-          display: inline-block;
-        }
+      .post-meta :global(.post-tags) {
+        color: inherit;
+        font-weight: 300;
       }
 
       .draft-notice {
         color: var(--color-highlightC);
         font-style: italic;
         font-size: 0.9em;
+        margin-top: 0.5rem;
       }
     </style>
   </body>
