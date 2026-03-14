@@ -2,26 +2,13 @@
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import { formatDate } from '../utils/dateUtils'
-import PostTags from './PostTags.astro'
-import Tags from './Tags.astro'
 
 interface Props {
   posts?: CollectionEntry<'blog'>[]
-  allPosts?: CollectionEntry<'blog'>[]
-  postCount?: number
-  activeTag?: string
-  showTags?: boolean
   showDrafts?: boolean
 }
 
-let {
-  posts,
-  allPosts,
-  postCount,
-  activeTag,
-  showTags = true,
-  showDrafts = false,
-} = Astro.props
+let { posts, showDrafts = false } = Astro.props
 
 if (!posts) {
   posts = (await getCollection('blog')).sort(
@@ -31,113 +18,63 @@ if (!posts) {
   )
 }
 
-const filteredPosts = showDrafts
-  ? posts
-  : posts.filter((post) => !post.data.isDraft)
-
-const slicedPosts = postCount
-  ? filteredPosts.slice(0, postCount)
-  : filteredPosts
+const displayPosts = showDrafts ? posts : posts.filter((post) => !post.data.isDraft)
 ---
 
 <div class="textContainer">
   <slot />
   {
-    showTags && (
-      <section class="thin">
-        <Tags posts={allPosts || posts} activeTag={activeTag} />
-      </section>
-    )
-  }
-  {
-    slicedPosts &&
-      slicedPosts.map(
-        ({
-          id,
-          data: {
-            title,
-            pubDate,
-            updatedDate,
-            description,
-            showDate = true,
-            tags,
-            isDraft = false,
-          },
-        }) => (
-          <a href={`/blog/${id}/`} class="post">
-            <h3 class="title">{title}</h3>
-
-            <PostTags tags={tags} showDraftTag={isDraft} />
-
-            {showDate && (
-              <h4 class="date">
-                <time datetime={(updatedDate || pubDate).toDateString()}>
-                  {formatDate((updatedDate || pubDate || '').toString())}
-                </time>
-              </h4>
-            )}
-            {description && <p>{description}</p>}
-            <div class="readmore">
-              Read <span>→</span>
-            </div>
-          </a>
-        )
-      )
-  }
-  {
-    slicedPosts.length !== posts.length && (
-      <a class="OutlinedButton" href="/blog/">
-        More Posts →
+    displayPosts.map(({ id, data: { title, pubDate, updatedDate, showDate = true, isDraft = false } }) => (
+      <a href={`/blog/${id}/`} class="post">
+        <span class="title">{title}</span>
+        {isDraft && <span class="draft-badge">draft</span>}
+        {showDate && (
+          <span class="date">
+            <time datetime={(updatedDate || pubDate).toDateString()}>
+              {formatDate((updatedDate || pubDate || '').toString())}
+            </time>
+          </span>
+        )}
       </a>
-    )
+    ))
   }
 </div>
 
 <style>
   .textContainer {
-    padding: 5rem 0;
+    padding: 1rem 0;
   }
 
   .post {
-    margin: 0 auto 5rem auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
     text-decoration: none;
-    display: block;
-  }
-
-  .readmore {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .readmore span {
-    transition: all 0.2s ease-out;
-    margin-left: 0.3em;
   }
 
   .title {
-    margin-bottom: 0;
-    border-bottom: 1px solid transparent;
-    display: inline-flex;
-    transition: all 0.2s ease-out;
-    line-height: 1.3;
-  }
-
-  p {
-    margin-bottom: 0.5rem;
-  }
-
-  .date {
-    font-weight: 200;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    margin-top: 0.6rem;
+    flex: 1;
+    line-height: 1.4;
   }
 
   .post:hover .title {
-    /* border-bottom-color: currentColor; */
     text-decoration: underline;
   }
-  .post:hover .readmore span {
-    transform: translateX(0.5rem);
+
+  .date {
+    font-weight: 300;
+    font-size: 0.85em;
+    opacity: 0.5;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .draft-badge {
+    font-size: 0.75em;
+    opacity: 0.45;
+    font-weight: 400;
+    flex-shrink: 0;
+    padding-top: 0.15em;
   }
 </style>
