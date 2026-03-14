@@ -25,15 +25,16 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) =>
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-)
-const posts = tag
-  ? allPosts.filter((post) =>
-      post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
-    )
-  : [...allPosts]
+const posts = (await getCollection('blog'))
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+  )
+  .filter((post) =>
+    tag
+      ? post.data.tags?.split(',').map(formatTagUrlSafe).includes(tag.toString())
+      : true
+  )
 ---
 
 <!doctype html>
@@ -49,15 +50,21 @@ const posts = tag
     <main>
       <section>
         <div class="container">
-          <PostList
-            allPosts={allPosts}
-            posts={posts}
-            activeTag={tag?.toString()}
-            showDrafts
-          />
+          <h2 class="tag-heading">#{tag}</h2>
+          <PostList posts={posts} showDrafts />
         </div>
       </section>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  .tag-heading {
+    font-size: 1em;
+    font-weight: 400;
+    opacity: 0.5;
+    margin-bottom: 0;
+    padding-top: 4rem;
+  }
+</style>

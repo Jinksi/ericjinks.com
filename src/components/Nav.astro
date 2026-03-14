@@ -10,8 +10,8 @@ const mostRecentStarYear = getMostRecentStarYear()
 ---
 
 <header>
-  <nav class="container">
-    <a href="/">
+  <nav class="textContainer auto">
+    <a class="site-title" href="/">
       <AnimatedTitle
         client:idle
         animate
@@ -21,19 +21,19 @@ const mostRecentStarYear = getMostRecentStarYear()
         {SITE_TITLE_COMPACT}
       </AnimatedTitle>
     </a>
-    &emsp; &emsp;
 
-    <NavLink href="/">Home</NavLink>
-    <NavLink href="/blog/">Blog</NavLink>
-    <!-- <NavLink href="/sketches/">Sketches</NavLink> -->
-    <NavLink href={`/stars/${mostRecentStarYear}/`}>Stars</NavLink>
+    <div class="nav-links">
+      <NavLink href="/">Home</NavLink>
+      <!-- <NavLink href="/sketches/">Sketches</NavLink> -->
+      <NavLink href={`/stars/${mostRecentStarYear}/`}>Stars</NavLink>
+    </div>
     <NavIconButtons />
   </nav>
 </header>
 
 <style>
   header {
-    padding: 3rem 0 0 0;
+    padding: 4rem 0 0 0;
   }
 
   a {
@@ -43,12 +43,17 @@ const mostRecentStarYear = getMostRecentStarYear()
   nav {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 0;
   }
 
-  @media (min-width: 450px) {
-    header {
-      padding: 10vh 0 0 0;
-    }
+  .site-title {
+    margin-right: 2rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
   }
 </style>
