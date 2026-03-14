@@ -25,5 +25,3 @@ pnpm-debug.log*
 /playwright-report/
 /playwright/.cache/
 .playwright-mcp/
-current-blog.png
-current-homepage.png
