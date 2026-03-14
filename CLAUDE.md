@@ -128,13 +128,13 @@ Playwright E2E tests configured to:
 ## Design Context
 
 ### Users
-This is a personal creative outlet — a portfolio/blog for Eric Jinks, Senior Frontend Engineer. The primary audience is Eric himself, with secondary audiences being fellow developers who discover the work. Visitors are technically literate and appreciate quality engineering. The site serves as a showcase of technical craft across writing, generative art sketches, and curated GitHub stars.
+A personal blog and creative outlet. Primary audience is Eric himself; secondary audience is fellow developers who stumble across it. Visitors are technically literate. The site covers writing, generative art sketches, and curated GitHub stars.
 
 ### Brand Personality
-**Calm, sharp, curious.** Understated confidence — thoughtful work that speaks for itself. The site should feel like a deliberate artefact, not a flashy portfolio. Design is subordinate to content.
+**Calm, sharp, curious.** The site should feel like a deliberate artefact, not a flashy portfolio. Design is subordinate to content.
 
-### Emotional Goal
-Visitors should leave feeling **impressed** — "this person really knows their craft." Not through loudness or self-promotion, but through the quality and care evident in every detail.
+### Tone
+Understated. Let the work speak for itself — no loud self-promotion, no hype.
 
 ### Aesthetic Direction
 **Writing-first minimalism.** Strong references:
