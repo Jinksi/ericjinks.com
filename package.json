@@ -31,6 +31,7 @@
     "canvas-sketch": "^0.7.7",
     "canvas-sketch-util": "^1.10.0",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.6.1",
     "feather-icons": "^4.29.1",
     "framer-motion": "^7.6.2",
     "glslify": "^7.1.1",
