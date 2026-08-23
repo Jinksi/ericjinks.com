@@ -45,12 +45,6 @@ export async function getStaticPaths() {
 }
 
 const { stars, currentYear, years, yearCount } = Astro.props
-
-if (import.meta.env.PROD) {
-  // Set the Netlify on-demand builders TTL for this page to 24 hours
-  // @ts-ignore
-  Astro.locals.runtime?.setBuildersTtl(86_400)
-}
 ---
 
 <!doctype html>
@@ -112,7 +106,6 @@ if (import.meta.env.PROD) {
           background-color: var(--language-color);
         }
       }
-
     </style>
   </body>
 </html>
