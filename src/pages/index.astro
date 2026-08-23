@@ -1,9 +1,15 @@
 ---
+import { getCollection } from 'astro:content'
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
 import PostList from '../components/PostList.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+)
 ---
 
 <!doctype html>
@@ -13,21 +19,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
   </head>
   <body>
     <Header />
-    <main class="container skinny">
-      <PostList postCount={3}>
-        <h2>Posts</h2>
-      </PostList>
+    <main>
+      <div class="container">
+        <div class="textContainer auto">
+          <PostList {posts} />
+        </div>
+      </div>
     </main>
-
     <Footer />
-
-    <style>
-      main {
-        padding-top: 5rem;
-      }
-      .sketch {
-        position: relative;
-      }
-    </style>
   </body>
 </html>
